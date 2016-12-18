@@ -15,6 +15,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+## UI Coding
+UI is using angular material 2 as much as possible. For actual samples, see here:
+https://material2-demoapp.firebaseapp.com/date-picker
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
