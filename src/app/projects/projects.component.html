@@ -6,14 +6,7 @@
   <p>
     <md-checkbox>Only my projects ... </md-checkbox>
   </p>
-<div style="float:right"></div>
-  <md-list-item *ngFor="let project of projects">
-    <md-icon>assignment circle</md-icon>
-    <div *ngIf="!selectedProject || (selectedProject && selectedProject.Guid !== project.Guid)">{{project.Name}} <a uiSref="project" [uiParams]="{ id: project.Guid }" uiSrefActive="active">Details</a>
-</div>
-    <div *ngIf="selectedProject && selectedProject.Guid === project.Guid" class="app-input-section">
-      <md-input [(ngModel)]="selectedProject.Name" placeholder="Name"></md-input>
-    </div>
-  </md-list-item>  
-  
+  <md-list-item *ngFor="let project of projects">    
+    <md-icon>assignment circle</md-icon><a uiSref="project" [uiParams]="{ id: project.Guid }" uiSrefActive="active">{{project.Name}}</a>
+  </md-list-item>    
 </md-list>
