@@ -1,5 +1,7 @@
 # SOFTWAREMANAGEMENT
 
+This project is intended to setup an angular 2 client for a full circle software management system, that brings together all software management related functionality, who took part in what project, what technologies were used, what are the technologies best practices, what products were used or created during the project, what versions were released, which bugs/known issues and features are in which version, what configuration options are there and where/how do they work, what environments are they installed in, etc. The UI will be setup generically, and can then be serviced by a backend database and/or external services as needed. 
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
 ## Development server
