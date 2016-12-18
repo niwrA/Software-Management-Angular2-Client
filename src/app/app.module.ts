@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { UIRouterModule } from 'ui-router-ng2';
+import { Transition, UIRouterModule } from 'ui-router-ng2';
 
 import { AppComponent } from './app.component';
 
@@ -15,8 +15,6 @@ import { TechnologiesComponent } from './technologies/technologies.component';
 import { CustomersComponent } from './customers/customers.component';
 
 import { ProjectsService } from './projects/projects.service';
-
-import { Transition } from 'ui-router-ng2';
 
 let projectsState = { name: 'projects', url: '/projects', component: ProjectsComponent };
 let productsState = { name: 'products', url: '/products', component: ProductsComponent };
