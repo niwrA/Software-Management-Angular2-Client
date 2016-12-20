@@ -1,13 +1,13 @@
 import { Company } from './company';
 export const COMPANIES: Company[] = [
-  {Guid: '11', Name: 'Nice Inc.'},
-  {Guid: '12', Name: 'Narco Inc.'},
-  {Guid: '13', Name: 'Bombasto Inc.'},
-  {Guid: '14', Name: 'Celeritas Inc.'},
-  {Guid: '15', Name: 'Magneta Inc.'},
-  {Guid: '16', Name: 'RubberMan Inc.'},
-  {Guid: '17', Name: 'Dynama Inc.'},
-  {Guid: '18', Name: 'Dr IQ Inc.'},
-  {Guid: '19', Name: 'Magma Inc.'},
-  {Guid: '20', Name: 'Tornado Inc.'}
+  {Guid: 'company11', Name: 'Nice Inc.'},
+  {Guid: 'company12', Name: 'Narco Inc.'},
+  {Guid: 'company13', Name: 'Bombasto Inc.'},
+  {Guid: 'company14', Name: 'Celeritas Inc.'},
+  {Guid: 'company15', Name: 'Magneta Inc.'},
+  {Guid: 'company16', Name: 'RubberMan Inc.'},
+  {Guid: 'company17', Name: 'Dynama Inc.'},
+  {Guid: 'company18', Name: 'Dr IQ Inc.'},
+  {Guid: 'company19', Name: 'Magma Inc.'},
+  {Guid: 'company20', Name: 'Tornado Inc.'}
 ];

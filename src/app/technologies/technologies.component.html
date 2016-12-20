@@ -1,6 +1,6 @@
 <md-list>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies(searchTextInput.value || '')" (keyup.enter)='createTechnology(searchTextInput.value)'></md-input>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')" (keyup.enter)='createTechnology(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
   </p>
   <p hidden>

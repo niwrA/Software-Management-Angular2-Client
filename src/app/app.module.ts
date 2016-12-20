@@ -70,7 +70,7 @@ let technologyState = {
 }
 
 export let routerConfig = {
-  otherwise: '/home',
+  otherwise: '/',
   states: [projectsState, projectState, productsState, contactsState, companiesState, companyState, technologiesState, technologyState ]
 };
 // other imports 
@@ -94,7 +94,7 @@ export let routerConfig = {
     CompanyComponent,
     TechnologyComponent
   ],
-  providers: [ProjectsService, CompaniesService],
+  providers: [ProjectsService, CompaniesService, TechnologiesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
