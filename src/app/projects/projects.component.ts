@@ -37,10 +37,13 @@ export class ProjectsComponent implements OnInit {
 */  }
 
   getProjects(): void {
-    this.projectsService.getProjects().then(projects => this.projects = projects);
+    this.projectsService.getProjects(this.searchText).then(projects => this.projects = projects);
   }
 
-  createProject(): void {
+  createProject(name: string): void {
     let project = this.projectsService.createProject();
+    project.Name = name;
+    this.searchText = '';
+    this.getProjects();
   }
 }

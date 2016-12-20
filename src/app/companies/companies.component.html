@@ -1,0 +1,12 @@
+<md-list>
+  <p>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies(searchTextInput.value || '')" (keyup.enter)='createCompany(searchTextInput.value)'></md-input>
+    <button md-raised-button md-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
+  </p>
+  <p hidden>
+    <md-checkbox>Only my companys ... </md-checkbox>
+  </p>
+  <md-list-item *ngFor="let company of companies">    
+    <md-icon>assignment circle</md-icon><a uiSref="company" [uiParams]="{ id: company.Guid }" uiSrefActive="active">{{company.Name}}</a>
+  </md-list-item>    
+</md-list>  

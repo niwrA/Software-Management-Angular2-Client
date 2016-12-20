@@ -1,7 +1,6 @@
-export class Project {
+export class Company {
     Name: string;
     Guid: string;
-    StartDate?: Date;
     EndDate?: Date;
 }
 

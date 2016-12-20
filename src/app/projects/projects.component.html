@@ -1,9 +1,9 @@
 <md-list>
   <p>
-    <md-input [(ngModel)]="searchText" placeholder="Type to search ..."></md-input>
-    <button md-raised-button md-tooltip="Add new project" (click)="createProject()">Add</button>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)" (keyup.enter)='createProject(searchTextInput.value)'></md-input>
+    <button md-raised-button md-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
   </p>
-  <p>
+  <p hidden>
     <md-checkbox>Only my projects ... </md-checkbox>
   </p>
   <md-list-item *ngFor="let project of projects">    
