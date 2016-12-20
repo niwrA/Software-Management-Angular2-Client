@@ -1,3 +1,12 @@
-<p>
-  technologies works!
-</p>
+<md-list>
+  <p>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies(searchTextInput.value || '')" (keyup.enter)='createTechnology(searchTextInput.value)'></md-input>
+    <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
+  </p>
+  <p hidden>
+    <md-checkbox>Only my technologies ... </md-checkbox>
+  </p>
+  <md-list-item *ngFor="let technology of technologies">    
+    <md-icon>assignment circle</md-icon><a uiSref="technology" [uiParams]="{ id: technology.Guid }" uiSrefActive="active">{{technology.Name}}</a>
+  </md-list-item>    
+</md-list>  

@@ -23,6 +23,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompaniesService } from './companies/companies.service';
 import { CompanyComponent } from './company/company.component';
+import { TechnologyComponent } from './technology/technology.component';
+import { TechnologiesService } from './technologies/technologies.service';
 
 let projectsState = { name: 'projects', url: '/projects', component: ProjectsComponent };
 let productsState = { name: 'products', url: '/products', component: ProductsComponent };
@@ -54,10 +56,22 @@ let companyState = {
     }
   ]
 }
+let technologyState = {
+  name: 'technology',
+  url: '/technologies/:id',
+  component: TechnologyComponent,
+  resolve: [
+    {
+      token: 'technology',
+      deps: [Transition, TechnologiesService],
+      resolveFn: (trans, technologiesService) => technologiesService.getTechnology(trans.params().id)
+    }
+  ]
+}
 
 export let routerConfig = {
   otherwise: '/home',
-  states: [projectsState, projectState, productsState, contactsState, companiesState, companyState, technologiesState]
+  states: [projectsState, projectState, productsState, contactsState, companiesState, companyState, technologiesState, technologyState ]
 };
 // other imports 
 @NgModule({
@@ -77,7 +91,8 @@ export let routerConfig = {
     CustomersComponent,
     ContactsComponent,
     CompaniesComponent,
-    CompanyComponent
+    CompanyComponent,
+    TechnologyComponent
   ],
   providers: [ProjectsService, CompaniesService],
   bootstrap: [AppComponent]
