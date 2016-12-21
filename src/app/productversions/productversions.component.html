@@ -4,6 +4,6 @@
     <button md-raised-button md-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
   </p>
   <md-list-item *ngFor="let productversion of productversions">    
-    <md-icon>assignment circle</md-icon><a uiSref="productversion" [uiParams]="{ id: productversion.Guid }" uiSrefActive="active">{{productversion.Name}}</a>
+    <md-icon>assignment circle</md-icon><a uiSref="productversion" [uiParams]="{ productVersionId: productversion.Guid }" uiSrefActive="active">{{productversion.Name}}</a>
   </md-list-item>    
 </md-list>  

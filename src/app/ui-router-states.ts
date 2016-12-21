@@ -21,6 +21,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductsService } from './products/products.service';
 import { ProductVersionsComponent } from './productversions/productversions.component';
 import { ProductVersionsService } from './productversions/productversions.service';
+import { ProductVersionComponent } from './productversion/productversion.component';
 
 export const projectsState = { name: 'projects', url: '/projects', component: ProjectsComponent };
 export const productsState = { name: 'products', url: '/products', component: ProductsComponent };
@@ -92,13 +93,13 @@ export const productVersionsState = {
 
 export const productVersionState = {
   name: 'productversion',
-  url: '/productversions/:id',
-  component: ProductVersionsComponent,
+  url: 'productversions/{productVersionId}',
+  component: ProductVersionComponent,
   resolve: [
     {
       token: 'productversion',
       deps: [Transition, ProductVersionsService],
-      resolveFn: (trans, productVersionsService) => productVersionsService.getProductVersion(trans.params().id)
+      resolveFn: (trans, productVersionsService) => productVersionsService.getProductVersion(trans.params().productVersionId)
     }
   ]
 }

@@ -1,0 +1,22 @@
+<h1>{{productversion.Name}}</h1>
+<button uiSref='productversion.details' md-raised-button md-tooltip="todo: Product Details">Details</button>
+<button uiSref='productversion.features' [uiParams]="{ productVersionId: productversion.Guid }" md-raised-button md-tooltip="todo: features in or requested for this version">Features</button>
+<button uiSref='productversion.issues' [uiParams]="{ productVersionId: productversion.Guid }" md-raised-button md-tooltip="todo: view issues in or fixed in this version">Issues</button>
+<button uiSref='productversion.companies' [uiParams]="{ productVersionId: productversion.Guid }" md-raised-button md-tooltip="todo: companies owning this version">Companies</button>
+<md-card class='flex-h'>
+  <div *ngIf="productversion">
+    <md-input [(ngModel)]="productversion.Name" placeholder="Name"></md-input>
+    <md-input [(ngModel)]="productversion.Major" placeholder="Major"></md-input>
+    <md-input [(ngModel)]="productversion.Minor" placeholder="Minor"></md-input>
+    <md-input [(ngModel)]="productversion.Build" placeholder="Build"></md-input>
+    <md-input [(ngModel)]="productversion.Revision" placeholder="Revision"></md-input>
+    <md-input [(ngModel)]='productversion.ReleaseDate' placeholder="ReleaseDate"></md-input>
+  </div>
+  <div *ngIf="!productversion">
+    Error loading product
+  </div>
+  <div>
+    <ui-view>
+    </ui-view>
+  </div>
+</md-card>

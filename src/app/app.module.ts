@@ -32,6 +32,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductsService } from './products/products.service';
 import { ProductVersionsComponent } from './productversions/productversions.component';
 import { ProductVersionsService } from './productversions/productversions.service';
+import { ProductVersionComponent } from './productversion/productversion.component';
 import {
   projectsState, projectState, productsState, productState, contactsState, companiesState, companyState,
   technologiesState, technologyState, productVersionsState, productVersionState
@@ -69,7 +70,8 @@ export let routerConfig = {
     CompanyComponent,
     TechnologyComponent,
     ProductComponent,
-    ProductVersionsComponent
+    ProductVersionsComponent,
+    ProductVersionComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService],
   bootstrap: [AppComponent]
