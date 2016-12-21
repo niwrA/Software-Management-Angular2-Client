@@ -7,6 +7,6 @@
     <md-checkbox>Only my products ... </md-checkbox>
   </p>
   <md-list-item *ngFor="let product of products">    
-    <md-icon>assignment circle</md-icon><a uiSref="product" [uiParams]="{ id: product.Guid }" uiSrefActive="active">{{product.Name}}</a>
+    <md-icon>assignment circle</md-icon><a uiSref="product" [uiParams]="{ productId: product.Guid }" uiSrefActive="active">{{product.Name}}</a>
   </md-list-item>    
 </md-list>  

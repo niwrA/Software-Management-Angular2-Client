@@ -19,13 +19,14 @@ productversions = new Array<ProductVersion>();
     return newItem;
   }
 
-  getProductVersions(searchText: string): Promise<ProductVersion[]> {
+  getProductVersions(productId: string, searchText: string): Promise<ProductVersion[]> {
     if (searchText && searchText.length > 0) {
 
-      let results = _.filter<ProductVersion>(this.productversions, prj => prj.Name.indexOf(searchText) > -1);
+      let results = _.filter<ProductVersion>(this.productversions, prj => prj.ProductGuid === productId
+        && prj.Name.indexOf(searchText) > -1);
       return Promise.resolve(results);
     }
-    return Promise.resolve(this.productversions);
+    return this.getVersionsForProduct(productId);
   }
 
   

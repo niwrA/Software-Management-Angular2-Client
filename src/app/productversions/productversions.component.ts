@@ -12,7 +12,7 @@ export class ProductVersionsComponent implements OnInit {
 
   @Input() productversions;
 
-  selectedProduct: ProductVersion;
+  selectedProductVersion: ProductVersion;
   searchText: string;
 
   constructor(private productVersionsService: ProductVersionsService) { }
@@ -21,12 +21,12 @@ export class ProductVersionsComponent implements OnInit {
     // this.getProductVersions('');
   }
 
-  onSelect(company: ProductVersion): void {
-    this.selectedProduct = company;
+  onSelect(productVersion: ProductVersion): void {
+    this.selectedProductVersion = productVersion;
   }
 
   clearSelection(): void {
-    this.selectedProduct = null;
+    this.selectedProductVersion = null;
   }
 
   ProductVersionDetail(event, Product: ProductVersion): void {
@@ -35,7 +35,10 @@ export class ProductVersionsComponent implements OnInit {
 */  }
 
   getProductVersions(searchText: string): void {
-    this.productVersionsService.getProductVersions(searchText).then(productversions => this.productversions = productversions);
+    if(this.productversions){
+      this.productVersionsService.getProductVersions(this.productversions[0].ProductGuid, searchText)
+      .then(productversions => this.productversions = productversions);
+    }
   }
 
   createProductVersion(name: string): void {

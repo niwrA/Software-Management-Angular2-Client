@@ -77,13 +77,13 @@ let technologyState = {
 }
 let productState = {
   name: 'product',
-  url: '/products/:id',
+  url: '/products/{productId}',
   component: ProductComponent,
   resolve: [
     {
       token: 'product',
       deps: [Transition, ProductsService],
-      resolveFn: (trans, productsService) => productsService.getProduct(trans.params().id)
+      resolveFn: (trans, productsService) => productsService.getProduct(trans.params().productId)
     }
   ]
 }
