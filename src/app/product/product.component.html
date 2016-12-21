@@ -3,15 +3,16 @@
 <button uiSref='product.productversions' [uiParams]="{ productId: product.Guid }" md-raised-button md-tooltip="Product Versions">Versions</button>
 <button uiSref='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
 <button uiSref='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
-<md-card>
-
-<div *ngIf="product">
-   <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
-   <md-input [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
-</div>
-
-<ui-view></ui-view>
-<div *ngIf="!product">
-  Error loading product
-</div>
+<md-card class='flex-h'>
+  <div *ngIf="product">
+    <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
+    <md-input [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
+  </div>
+  <div *ngIf="!product">
+    Error loading product
+  </div>
+  <div>
+    <ui-view>
+    </ui-view>
+  </div>
 </md-card>

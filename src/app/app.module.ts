@@ -32,92 +32,21 @@ import { ProductComponent } from './product/product.component';
 import { ProductsService } from './products/products.service';
 import { ProductVersionsComponent } from './productversions/productversions.component';
 import { ProductVersionsService } from './productversions/productversions.service';
+import {
+  projectsState, projectState, productsState, productState, contactsState, companiesState, companyState,
+  technologiesState, technologyState, productVersionsState, productVersionState
+} from './ui-router-states';
 
-let projectsState = { name: 'projects', url: '/projects', component: ProjectsComponent };
-let productsState = { name: 'products', url: '/products', component: ProductsComponent };
-let companiesState = { name: 'companies', url: '/companies', component: CompaniesComponent };
-let contactsState = { name: 'contacts', url: '/contacts', component: ContactsComponent };
-let technologiesState = { name: 'technologies', url: '/technologies', component: TechnologiesComponent };
+import * as vis from 'ui-router-visualizer';
 
-let projectState = {
-  name: 'project',
-  url: '/projects/:id',
-  component: ProjectComponent,
-  resolve: [
-    {
-      token: 'project',
-      deps: [Transition, ProjectsService],
-      resolveFn: (trans, projectsService) => projectsService.getProject(trans.params().id)
-    }
-  ]
-}
-let companyState = {
-  name: 'company',
-  url: '/companies/:id',
-  component: CompanyComponent,
-  resolve: [
-    {
-      token: 'company',
-      deps: [Transition, CompaniesService],
-      resolveFn: (trans, companiesService) => companiesService.getCompany(trans.params().id)
-    }
-  ]
-}
-let technologyState = {
-  name: 'technology',
-  url: '/technologies/:id',
-  component: TechnologyComponent,
-  resolve: [
-    {
-      token: 'technology',
-      deps: [Transition, TechnologiesService],
-      resolveFn: (trans, technologiesService) => technologiesService.getTechnology(trans.params().id)
-    }
-  ]
-}
-let productState = {
-  name: 'product',
-  url: '/products/{productId}',
-  component: ProductComponent,
-  resolve: [
-    {
-      token: 'product',
-      deps: [Transition, ProductsService],
-      resolveFn: (trans, productsService) => productsService.getProduct(trans.params().productId)
-    }
-  ]
-}
-
-let productVersionsState = {
-  name: 'product.productversions',
-  url: '/productversions',
-  component: ProductVersionsComponent,
-  resolve: [
-    {
-      token: 'productversions',
-      deps: [Transition, ProductVersionsService],
-      resolveFn: (trans, productVersionsService) => productVersionsService.getVersionsForProduct(trans.params().productId)
-    }
-  ]
-}
-
-let productVersionState = {
-  name: 'productversion',
-  url: '/productversions/:id',
-  component: ProductVersionsComponent,
-  resolve: [
-    {
-      token: 'productversion',
-      deps: [Transition, ProductVersionsService],
-      resolveFn: (trans, productVersionsService) => productVersionsService.getProductVersion(trans.params().id)
-    }
-  ]
-}
 
 export let routerConfig = {
+  constructor(router: UIRouterModule) {
+    vis.visualizer(router);
+  },
   otherwise: '/',
-  states: [projectsState, projectState, productsState, productState, contactsState, companiesState, companyState, 
-  technologiesState, technologyState, productVersionsState, productVersionState ]
+  states: [projectsState, projectState, productsState, productState, contactsState, companiesState, companyState,
+    technologiesState, technologyState, productVersionsState, productVersionState]
 };
 // other imports 
 @NgModule({
