@@ -39,6 +39,12 @@ import {
 } from './ui-router-states';
 
 import * as vis from 'ui-router-visualizer';
+import { ProductfeaturesComponent } from './productfeatures/productfeatures.component';
+import { ProductfeatureComponent } from './productfeature/productfeature.component';
+import { ProductissuesComponent } from './productissues/productissues.component';
+import { ProductissueComponent } from './productissue/productissue.component';
+import { ProductconfigsComponent } from './productconfigs/productconfigs.component';
+import { ProductconfigComponent } from './productconfig/productconfig.component';
 
 
 export let routerConfig = {
@@ -71,7 +77,13 @@ export let routerConfig = {
     TechnologyComponent,
     ProductComponent,
     ProductVersionsComponent,
-    ProductVersionComponent
+    ProductVersionComponent,
+    ProductfeaturesComponent,
+    ProductfeatureComponent,
+    ProductissuesComponent,
+    ProductissueComponent,
+    ProductconfigsComponent,
+    ProductconfigComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService],
   bootstrap: [AppComponent]
