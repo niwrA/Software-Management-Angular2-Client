@@ -1,7 +1,7 @@
 import { Contact } from './contact';
 export const CONTACTS: Contact[] = [
   {Guid: 'contact11', Name: 'John Smith'},
-  {Guid: 'contact12', Name: 'Jane Smith'},
+  {Guid: 'contact12', Name: 'Jane Smith', Email: 'jane@smith.com'},
   {Guid: 'contact13', Name: 'Mr. Nobody'},
   {Guid: 'contact14', Name: 'Sir James Bond Sr 3rd'},
   {Guid: 'contact15', Name: 'Neo'},

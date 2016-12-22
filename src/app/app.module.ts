@@ -47,7 +47,8 @@ import { ProductIssuesComponent } from './productissues/productissues.component'
 import { ProductIssueComponent } from './productissue/productissue.component';
 import { ProductConfigsComponent } from './productconfigs/productconfigs.component';
 import { ProductConfigComponent } from './productconfig/productconfig.component';
-
+import { SmaTextareaComponent } from './sma-textarea/sma-textarea.component';
+//import { MdContentModule, MdSubheaderModule } from "ng2-material";
 
 export let routerConfig = {
   constructor(router: UIRouterModule) {
@@ -86,7 +87,8 @@ export let routerConfig = {
     ProductIssueComponent,
     ProductConfigsComponent,
     ProductConfigComponent,
-    ContactComponent
+    ContactComponent,
+    SmaTextareaComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ContactsService],
   bootstrap: [AppComponent]

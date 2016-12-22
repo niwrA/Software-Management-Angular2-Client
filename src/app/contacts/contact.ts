@@ -10,6 +10,7 @@ export class Contact {
     LastNameSuffix?: string;
     Gender?: string;
     DateOfBirth?: Date;
+    Email?: string;
 }
 
 

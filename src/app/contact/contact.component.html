@@ -6,11 +6,12 @@
 <md-card class='flex-h'>
   <div *ngIf="contact">
     <md-input [(ngModel)]="contact.Name" placeholder="Name"></md-input>
+    <md-input type='email' [(ngModel)]="contact.Email" placeholder="Email"></md-input>
     <md-input [(ngModel)]="contact.FirstName" placeholder="FirstName"></md-input>
     <md-input [(ngModel)]="contact.LastNamePrefix" placeholder="LastNamePrefix"></md-input>
     <md-input [(ngModel)]="contact.LastName" placeholder="LastName"></md-input>
     <md-input [(ngModel)]="contact.Gender" placeholder="Gender"></md-input>
-    <md-input [(ngModel)]="contact.BirthDate" placeholder="BirthDate"></md-input>
+    <md-input type='date' [(ngModel)]="contact.BirthDate" placeholder="BirthDate"></md-input>
   </div>
   <div *ngIf="!contact">
     Error loading contact

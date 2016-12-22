@@ -4,17 +4,31 @@
 <button uiSref='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
 <button uiSref='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
 <md-card class='flex-h'>
+  <md-card-content layout='column'>
+
   <div *ngIf="product">
+    <md-card-content layout='row'>
     <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
-    <textarea [(ngModel)]="product.Description" placeholder="Description"></textarea>
+    </md-card-content>
+    <md-card-content layout='row'>
+    <label class="" for="description">Description</label>
+    <textarea id='description' [(ngModel)]="product.Description" placeholder="Description">
+    </textarea>
+    </md-card-content>
+    <md-card-content layout='row'>
+    <label>BusinessCase</label>
     <textarea [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
-    <md-input [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
+    </md-card-content>
+    <md-card-content layout='row'>
+    <md-input type='date' [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
+    </md-card-content>
   </div>
   <div *ngIf="!product">
     Error loading product
   </div>
-  <div>
+  </md-card-content>
+  <md-card-content layout='column'>
     <ui-view>
     </ui-view>
-  </div>
+  </md-card-content>
 </md-card>
