@@ -22,6 +22,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## UI Coding
 UI is using angular material 2 as much as possible. For actual samples, see here:
 https://material2-demoapp.firebaseapp.com/date-picker
+And some perhaps better examples here:
+https://justindujardin.github.io/ng2-material/#/components/card
 
 ## Running unit tests
 
