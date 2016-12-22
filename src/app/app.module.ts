@@ -18,6 +18,8 @@ import { CustomersComponent } from './customers/customers.component';
 
 import { StateRegistry, Transition, UIRouterModule } from 'ui-router-ng2';
 import { ContactsComponent } from './contacts/contacts.component';
+import { ContactsService } from './contacts/contacts.service';
+import { ContactComponent } from './contact/contact.component';
 
 import { CompaniesComponent } from './companies/companies.component';
 import { CompaniesService } from './companies/companies.service';
@@ -34,17 +36,17 @@ import { ProductVersionsComponent } from './productversions/productversions.comp
 import { ProductVersionsService } from './productversions/productversions.service';
 import { ProductVersionComponent } from './productversion/productversion.component';
 import {
-  projectsState, projectState, productsState, productState, contactsState, companiesState, companyState,
+  projectsState, projectState, productsState, productState, contactsState, contactState, companiesState, companyState,
   technologiesState, technologyState, productVersionsState, productVersionState
 } from './ui-router-states';
 
 import * as vis from 'ui-router-visualizer';
-import { ProductfeaturesComponent } from './productfeatures/productfeatures.component';
-import { ProductfeatureComponent } from './productfeature/productfeature.component';
-import { ProductissuesComponent } from './productissues/productissues.component';
-import { ProductissueComponent } from './productissue/productissue.component';
-import { ProductconfigsComponent } from './productconfigs/productconfigs.component';
-import { ProductconfigComponent } from './productconfig/productconfig.component';
+import { ProductFeaturesComponent } from './productfeatures/productfeatures.component';
+import { ProductFeatureComponent } from './productfeature/productfeature.component';
+import { ProductIssuesComponent } from './productissues/productissues.component';
+import { ProductIssueComponent } from './productissue/productissue.component';
+import { ProductConfigsComponent } from './productconfigs/productconfigs.component';
+import { ProductConfigComponent } from './productconfig/productconfig.component';
 
 
 export let routerConfig = {
@@ -52,7 +54,7 @@ export let routerConfig = {
     vis.visualizer(router);
   },
   otherwise: '/',
-  states: [projectsState, projectState, productsState, productState, contactsState, companiesState, companyState,
+  states: [projectsState, projectState, productsState, productState, contactsState, contactState, companiesState, companyState,
     technologiesState, technologyState, productVersionsState, productVersionState]
 };
 // other imports 
@@ -78,14 +80,15 @@ export let routerConfig = {
     ProductComponent,
     ProductVersionsComponent,
     ProductVersionComponent,
-    ProductfeaturesComponent,
-    ProductfeatureComponent,
-    ProductissuesComponent,
-    ProductissueComponent,
-    ProductconfigsComponent,
-    ProductconfigComponent
+    ProductFeaturesComponent,
+    ProductFeatureComponent,
+    ProductIssuesComponent,
+    ProductIssueComponent,
+    ProductConfigsComponent,
+    ProductConfigComponent,
+    ContactComponent
   ],
-  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService],
+  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

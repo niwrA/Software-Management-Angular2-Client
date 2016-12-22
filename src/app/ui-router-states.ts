@@ -7,6 +7,8 @@ import { ProjectsService } from './projects/projects.service';
 import { CustomersComponent } from './customers/customers.component';
 
 import { ContactsComponent } from './contacts/contacts.component';
+import { ContactComponent } from './contact/contact.component';
+import { ContactsService } from './contacts/contacts.service';
 
 import { CompaniesComponent } from './companies/companies.component';
 import { CompaniesService } from './companies/companies.service';
@@ -104,3 +106,15 @@ export const productVersionState = {
   ]
 }
 
+export const contactState = {
+  name: 'contact',
+  url: '/contacts/{contactId}',
+  component: ContactComponent,
+  resolve: [
+    {
+      token: 'contact',
+      deps: [Transition, ContactsService],
+      resolveFn: (trans, contactsService) => contactsService.getContact(trans.params().contactId)
+    }
+  ]
+}

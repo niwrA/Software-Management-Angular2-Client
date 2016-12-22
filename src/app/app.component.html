@@ -1,12 +1,15 @@
-<md-toolbar color="primary">
+  <md-card class='flex-h' color='primary'>
+  <div>
   {{title}}
-  <span class="app-toolbar-filler"></span>
+  </div>
+  <div>
   <button color='accent' uiSref='projects' md-raised-button md-tooltip="View Projects">Projects</button>
   <button color='accent' uiSref='products' md-raised-button md-tooltip="View Products">Products</button>
   <button color='accent' uiSref='companies' md-raised-button md-tooltip="View Companies">Companies</button>
   <button color='accent' uiSref='contacts' md-raised-button md-tooltip="View Contacts">Contacts</button>
   <button color='accent' uiSref='technologies' md-raised-button md-tooltip="View Technologies">Technologies</button>
-</md-toolbar>
+  </div>
+  </md-card>
 <md-card>
   <ui-view></ui-view>
 </md-card>

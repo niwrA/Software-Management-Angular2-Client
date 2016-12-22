@@ -1,3 +1,9 @@
-<p>
-  contacts works!
-</p>
+<md-list>
+  <p>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts(searchTextInput.value || '')" (keyup.enter)='createContact(searchTextInput.value)'></md-input>
+    <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
+  </p>
+  <md-list-item *ngFor="let contact of contacts">    
+    <md-icon>assignment circle</md-icon><a uiSref="contact" [uiParams]="{ contactId: contact.Guid }" uiSrefActive="active">{{contact.Name}}</a>
+  </md-list-item>    
+</md-list>  

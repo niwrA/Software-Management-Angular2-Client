@@ -6,6 +6,8 @@
 <md-card class='flex-h'>
   <div *ngIf="product">
     <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
+    <textarea [(ngModel)]="product.Description" placeholder="Description"></textarea>
+    <textarea [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
     <md-input [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
   </div>
   <div *ngIf="!product">
