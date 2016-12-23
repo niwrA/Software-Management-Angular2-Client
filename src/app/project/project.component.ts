@@ -1,11 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Project } from '../projects/project';
+import { ProjectsService } from '../projects/projects.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent {
-  @Input() project;
+export class ProjectComponent implements OnInit {
+  project: Project;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ProjectsService
+  ){}
+
+  ngOnInit() {
+    this.route.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
+    .subscribe((project: Project) => this.project = project);
+  }
 }

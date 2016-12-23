@@ -6,7 +6,7 @@
   <p hidden>
     <md-checkbox>Only my technologies ... </md-checkbox>
   </p>
-  <md-card *ngFor="let technology of technologies">    
+  <md-card *ngFor="let technology of technologies">
     <md-card-title-group>
       <md-card-subtitle>
         <md-icon>build</md-icon>
@@ -17,10 +17,8 @@
       <div>{{technology.Description}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button uiSref="technology" [uiParams]="{ technologyId: technology.Guid }">
-<md-icon>details circle</md-icon></button>
-      <button uiSref="technology" [uiParams]="{ technologyId: technology.Guid }">
-<md-icon>share circle</md-icon></button>
+      <button [routerLink]="[technology.Guid]"><md-icon>details circle</md-icon></button>
+      <button [routerLink]="[technology.Guid]"><md-icon>share circle</md-icon></button>
     </md-card-actions>
-      </md-card>    
-</md-card>  
+  </md-card>
+</md-card>

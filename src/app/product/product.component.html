@@ -1,9 +1,9 @@
-<md-card>
+<md-card *ngIf="product">
   <md-card-title>{{product.Name}}</md-card-title>
-  <button uiSref='productDetails' md-raised-button md-tooltip="todo: Product Details">Details</button>
-  <button uiSref='product.productversions' [uiParams]="{ productId: product.Guid }" md-raised-button md-tooltip="Product Versions">Versions</button>
-  <button uiSref='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
-  <button uiSref='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
+  <button [routerLink]='productDetails' md-raised-button md-tooltip="todo: Product Details">Details</button>
+  <button [routerLink]="['productversions']" md-raised-button md-tooltip="Product Versions">Versions</button>
+  <button [routerLink]='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
+  <button [routerLink]='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
   <md-card class='flex-h'>
     <md-card-content layout='column'>
 
@@ -25,13 +25,13 @@
           <md-input type='date' [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
         </md-card-content>
       </div>
-      <div *ngIf="!product">
-        Error loading product
-      </div>
     </md-card-content>
     <md-card-content layout='column'>
-      <ui-view>
-      </ui-view>
+      <router-outlet>
+      </router-outlet>
     </md-card-content>
   </md-card>
 </md-card>
+      <div *ngIf="!product">
+        Error loading product
+      </div>

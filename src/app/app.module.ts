@@ -16,7 +16,6 @@ import { ProjectsService } from './projects/projects.service';
 
 import { CustomersComponent } from './customers/customers.component';
 
-import { StateRegistry, Transition, UIRouterModule } from 'ui-router-ng2';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactsService } from './contacts/contacts.service';
 import { ContactComponent } from './contact/contact.component';
@@ -35,12 +34,6 @@ import { ProductsService } from './products/products.service';
 import { ProductVersionsComponent } from './productversions/productversions.component';
 import { ProductVersionsService } from './productversions/productversions.service';
 import { ProductVersionComponent } from './productversion/productversion.component';
-import {
-  projectsState, projectState, productsState, productState, contactsState, contactState, companiesState, companyState,
-  technologiesState, technologyState, productVersionsState, productVersionState
-} from './ui-router-states';
-
-import * as vis from 'ui-router-visualizer';
 import { ProductFeaturesComponent } from './productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './productfeature/productfeature.component';
 import { ProductIssuesComponent } from './productissues/productissues.component';
@@ -48,16 +41,11 @@ import { ProductIssueComponent } from './productissue/productissue.component';
 import { ProductConfigsComponent } from './productconfigs/productconfigs.component';
 import { ProductConfigComponent } from './productconfig/productconfig.component';
 import { SmaTextareaComponent } from './sma-textarea/sma-textarea.component';
-//import { MdContentModule, MdSubheaderModule } from "ng2-material";
 
-export let routerConfig = {
-  constructor(router: UIRouterModule) {
-    vis.visualizer(router);
-  },
-  otherwise: '/',
-  states: [projectsState, projectState, productsState, productState, contactsState, contactState, companiesState, companyState,
-    technologiesState, technologyState, productVersionsState, productVersionState]
-};
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { PageNotFoundComponent } from './not-found.component';
+import { AppRoutingModule }        from './app-routing.module';
+//import { MdContentModule, MdSubheaderModule } from "ng2-material";
 // other imports 
 @NgModule({
   imports: [
@@ -65,8 +53,7 @@ export let routerConfig = {
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    UIRouterModule.forRoot(routerConfig)  // comment out this line before ng serve, then remove it again when ng serve is running
-  ],
+    AppRoutingModule],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -88,9 +75,13 @@ export let routerConfig = {
     ProductConfigsComponent,
     ProductConfigComponent,
     ContactComponent,
-    SmaTextareaComponent
+    SmaTextareaComponent,
+    PageNotFoundComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+  
+platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));

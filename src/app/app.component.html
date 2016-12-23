@@ -1,16 +1,17 @@
-  <md-card class='flex-h' color='primary'>
+<md-card class='flex-h' color='primary'>
   <md-card-title>
-  {{title}}
+    {{title}}
   </md-card-title>
   <div>
-  <button color='primary' uiSref='projects' md-raised-button md-tooltip="View Projects">Projects</button>
-  <button color='primary' uiSref='products' md-raised-button md-tooltip="View Products">Products</button>
-  <button color='primary' uiSref='companies' md-raised-button md-tooltip="View Companies">Companies</button>
-  <button color='primary' uiSref='contacts' md-raised-button md-tooltip="View Contacts">Contacts</button>
-  <button color='primary' uiSref='technologies' md-raised-button md-tooltip="View Technologies">Technologies</button>
+    <button routerLink='/projects' color='primary' md-raised-button md-tooltip="View Projects">Projects</button>
+    <button routerLink='/products' color='primary' md-raised-button md-tooltip="View Products">Products</button>
+    <button routerLink='/companies' color='primary' md-raised-button md-tooltip="View Companies">Companies</button>
+    <button routerLink='/contacts' color='primary' md-raised-button md-tooltip="View Contacts">Contacts</button>
+    <button routerLink='/technologies' color='primary' md-raised-button md-tooltip="View Technologies">Technologies</button>
   </div>
-  </md-card>
-  <ui-view></ui-view>
+</md-card>
+<!--  <ui-view></ui-view>-->
+<router-outlet></router-outlet>
 <!--<md-card>
   <md-tab-group>
     <md-tab label="Projects">

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductVersionsService } from './productversions.service';
 import { ProductVersion } from './productversion';
 
@@ -10,15 +12,20 @@ import { ProductVersion } from './productversion';
 })
 export class ProductVersionsComponent implements OnInit {
 
-  @Input() productversions;
+  productversions: Array<ProductVersion>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ProductVersionsService
+  ){}
 
   selectedProductVersion: ProductVersion;
   searchText: string;
 
-  constructor(private productVersionsService: ProductVersionsService) { }
-
   ngOnInit() {
-    // this.getProductVersions('');
+    this.route.params.switchMap((params: Params) => this.service.getProductVersions(params['projectId'],''))
+    .subscribe((productversions: Array<ProductVersion>) => this.productversions = productversions);
   }
 
   onSelect(productVersion: ProductVersion): void {
@@ -36,13 +43,13 @@ export class ProductVersionsComponent implements OnInit {
 
   getProductVersions(searchText: string): void {
     if(this.productversions){
-      this.productVersionsService.getProductVersions(this.productversions[0].ProductGuid, searchText)
+      this.service.getProductVersions(this.productversions[0].ProductGuid, searchText)
       .then(productversions => this.productversions = productversions);
     }
   }
 
   createProductVersion(name: string): void {
-    let productversion = this.productVersionsService.createProductVersion();
+    let productversion = this.service.createProductVersion();
     productversion.Name = name;
     this.searchText = '';
     this.getProductVersions('');

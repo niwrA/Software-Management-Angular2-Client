@@ -3,10 +3,7 @@
     <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies(searchTextInput.value || '')" (keyup.enter)='createCompany(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
   </p>
-  <p hidden>
-    <md-checkbox>Only my companys ... </md-checkbox>
-  </p>
-  <md-card *ngFor="let company of companies">    
+  <md-card *ngFor="let company of companies">
     <md-card-title-group>
       <md-card-subtitle>
         <md-icon>business center</md-icon>
@@ -17,10 +14,8 @@
       <div>{{company.Description}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button uiSref="company" [uiParams]="{ companyId: company.Guid }">
-<md-icon>details circle</md-icon></button>
-      <button uiSref="company" [uiParams]="{ companyId: company.Guid }">
-<md-icon>share circle</md-icon></button>
+      <button [routerLink]="['company', company.Guid]"><md-icon>details circle</md-icon></button>
+      <button [routerLink]="['company', company.Guid]"><md-icon>share circle</md-icon></button>
     </md-card-actions>
-  </md-card>    
-</md-card>  
+  </md-card>
+</md-card>

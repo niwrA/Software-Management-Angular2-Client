@@ -17,9 +17,9 @@
       <div>{{product.Description}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button uiSref="product" [uiParams]="{ productId: product.Guid }">
+      <button [routerLink]="[product.Guid]">
 <md-icon>details circle</md-icon></button>
-      <button uiSref="product" [uiParams]="{ productId: product.Guid }">
+      <button [routerLink]="[product.Guid]" >
 <md-icon>share circle</md-icon></button>
     </md-card-actions>
   </md-card>

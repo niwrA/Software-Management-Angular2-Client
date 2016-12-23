@@ -1,14 +1,15 @@
-<h1>{{technology.Name}}</h1>
-<button uiSref='technologyDetails' md-raised-button md-tooltip="Technology Details">Details</button>
-<button uiSref='technologyProducts' md-raised-button md-tooltip="View Products for this Technology">Products</button>
-<button uiSref='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
 <md-card>
-
-<div *ngIf="technology">
-   <md-input [(ngModel)]="technology.Name" placeholder="Name"></md-input>
-   <md-input [(ngModel)]='technology.EndDate' placeholder="EndDate"></md-input>
-</div>
-<div *ngIf="!technology">
-  Error loading technology
-</div>
+  <md-card-actions>
+    <button [routerLink]='technologyDetails' md-raised-button md-tooltip="Technology Details">Details</button>
+    <button [routerLink]='technologyProducts' md-raised-button md-tooltip="View Products for this Technology">Products</button>
+    <button [routerLink]='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
+  </md-card-actions>
+  <md-card-title *ngIf='technology'>{{technology.Name}}</md-card-title>
+  <div *ngIf="technology">
+    <md-input [(ngModel)]="technology.Name" placeholder="Name"></md-input>
+    <md-input [(ngModel)]='technology.EndDate' placeholder="EndDate"></md-input>
+  </div>
+  <div *ngIf="!technology">
+    Error loading technology
+  </div>
 </md-card>

@@ -1,10 +1,10 @@
-<h1>{{contact.Name}}</h1>
-<button uiSref='contactDetails' md-raised-button md-tooltip="todo: Contact Details">Details</button>
-<button uiSref='contact.projects' [uiParams]="{ contactId: contact.Guid }" md-raised-button md-tooltip="Projects this Contact is working on">Projects</button>
-<button uiSref='contact.companies' md-raised-button md-tooltip="todo: View Companies for this Contact">Companies</button>
-<button uiSref='contact.technologies' md-raised-button md-tooltip="todo: Technologies this contact has worked with">Technologies</button>
+<button [routerLink]='contactDetails' md-raised-button md-tooltip="todo: Contact Details">Details</button>
+<button [routerLink]="['contact.projects', contact.Guid]" md-raised-button md-tooltip="Projects this Contact is working on">Projects</button>
+<button [routerLink]='contact.companies' md-raised-button md-tooltip="todo: View Companies for this Contact">Companies</button>
+<button [routerLink]='contact.technologies' md-raised-button md-tooltip="todo: Technologies this contact has worked with">Technologies</button>
 <md-card class='flex-h'>
-  <div *ngIf="contact">
+  <md-card-title>{{contact.Name}}</md-card-title>
+  <div>
     <md-input [(ngModel)]="contact.Name" placeholder="Name"></md-input>
     <md-input type='email' [(ngModel)]="contact.Email" placeholder="Email"></md-input>
     <md-input [(ngModel)]="contact.FirstName" placeholder="FirstName"></md-input>
@@ -13,11 +13,11 @@
     <md-input [(ngModel)]="contact.Gender" placeholder="Gender"></md-input>
     <md-input type='date' [(ngModel)]="contact.BirthDate" placeholder="BirthDate"></md-input>
   </div>
-  <div *ngIf="!contact">
-    Error loading contact
-  </div>
   <div>
-    <ui-view>
-    </ui-view>
+    <router-outlet>
+    </router-outlet>
   </div>
 </md-card>
+<div *ngIf="!contact">
+  Error loading contact
+</div>

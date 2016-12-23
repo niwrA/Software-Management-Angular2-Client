@@ -3,6 +3,7 @@
     <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts(searchTextInput.value || '')" (keyup.enter)='createContact(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   </p>
+
   <md-card *ngFor="let contact of contacts">
     <md-card-title-group>
       <md-card-subtitle>
@@ -13,11 +14,11 @@
     <md-card-content>
       <div>{{contact.FirstName}} ...</div>
     </md-card-content>
-      <md-card-actions align='end'>
-        <button uiSref="contact" [uiParams]="{ contactId: contact.Guid }">
+    <md-card-actions align='end'>
+      <button [routerLink]="['contact', contact.Guid]">
 <md-icon>details circle</md-icon></button>
-        <button [(disabled)]="!contact.Email" uiSref="contact" [uiParams]="{ contactId: contact.Guid }">
+      <button [(disabled)]="!contact.Email" [routerLink]="['contact', contact.Guid]">
 <md-icon>email circle</md-icon></button>
-      </md-card-actions>
+    </md-card-actions>
   </md-card>
 </md-card>

@@ -6,8 +6,8 @@
   <p hidden>
     <md-checkbox>Only my projects ... </md-checkbox>
   </p>
-  <md-card *ngFor="let project of projects">    
-<md-card-title-group>
+  <md-card *ngFor="let project of projects">
+    <md-card-title-group>
       <md-card-subtitle>
         <md-icon>assignment circle</md-icon>
       </md-card-subtitle>
@@ -16,11 +16,11 @@
     <md-card-content>
       <div>{{project.Description}} ...</div>
     </md-card-content>
-      <md-card-actions align='end'>
-        <button uiSref="project" [uiParams]="{ projectId: project.Guid }">
+    <md-card-actions align='end'>
+      <button [routerLink]="[project.Guid]">
 <md-icon>details circle</md-icon></button>
-        <button [(disabled)]="!project.Email" uiSref="project" [uiParams]="{ projectId: project.Guid }">
-<md-icon>email circle</md-icon></button>
-      </md-card-actions>
-  </md-card>    
+      <!--        <button [(disabled)]="!project.Email" routerLink="project" RouterLinkActive='active' [uiParams]="{ projectId: project.Guid }">
+<md-icon>email circle</md-icon></button>-->
+    </md-card-actions>
+  </md-card>
 </md-card>
