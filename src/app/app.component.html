@@ -1,7 +1,7 @@
   <md-card class='flex-h' color='primary'>
-  <div>
+  <md-card-title>
   {{title}}
-  </div>
+  </md-card-title>
   <div>
   <button color='primary' uiSref='projects' md-raised-button md-tooltip="View Projects">Projects</button>
   <button color='primary' uiSref='products' md-raised-button md-tooltip="View Products">Products</button>
@@ -10,9 +10,7 @@
   <button color='primary' uiSref='technologies' md-raised-button md-tooltip="View Technologies">Technologies</button>
   </div>
   </md-card>
-<md-card>
   <ui-view></ui-view>
-</md-card>
 <!--<md-card>
   <md-tab-group>
     <md-tab label="Projects">

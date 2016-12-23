@@ -33,37 +33,37 @@ export const technologiesState = { name: 'technologies', url: '/technologies', c
 
 export const projectState = {
   name: 'project',
-  url: '/projects/:id',
+  url: '/projects/{projectId}',
   component: ProjectComponent,
   resolve: [
     {
       token: 'project',
       deps: [Transition, ProjectsService],
-      resolveFn: (trans, projectsService) => projectsService.getProject(trans.params().id)
+      resolveFn: (trans, projectsService) => projectsService.getProject(trans.params().projectId)
     }
   ]
 }
 export const companyState = {
   name: 'company',
-  url: '/companies/:id',
+  url: '/companies/{companyId}',
   component: CompanyComponent,
   resolve: [
     {
       token: 'company',
       deps: [Transition, CompaniesService],
-      resolveFn: (trans, companiesService) => companiesService.getCompany(trans.params().id)
+      resolveFn: (trans, companiesService) => companiesService.getCompany(trans.params().companyId)
     }
   ]
 }
 export const technologyState = {
   name: 'technology',
-  url: '/technologies/:id',
+  url: '/technologies/{technologyId}',
   component: TechnologyComponent,
   resolve: [
     {
       token: 'technology',
       deps: [Transition, TechnologiesService],
-      resolveFn: (trans, technologiesService) => technologiesService.getTechnology(trans.params().id)
+      resolveFn: (trans, technologiesService) => technologiesService.getTechnology(trans.params().technologyId)
     }
   ]
 }

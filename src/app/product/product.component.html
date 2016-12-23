@@ -1,34 +1,37 @@
-<h1>{{product.Name}}</h1>
-<button uiSref='productDetails' md-raised-button md-tooltip="todo: Product Details">Details</button>
-<button uiSref='product.productversions' [uiParams]="{ productId: product.Guid }" md-raised-button md-tooltip="Product Versions">Versions</button>
-<button uiSref='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
-<button uiSref='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
-<md-card class='flex-h'>
-  <md-card-content layout='column'>
+<md-card>
+  <md-card-title>{{product.Name}}</md-card-title>
+  <button uiSref='productDetails' md-raised-button md-tooltip="todo: Product Details">Details</button>
+  <button uiSref='product.productversions' [uiParams]="{ productId: product.Guid }" md-raised-button md-tooltip="Product Versions">Versions</button>
+  <button uiSref='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
+  <button uiSref='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
+  <md-card class='flex-h'>
+    <md-card-content layout='column'>
 
-  <div *ngIf="product">
-    <md-card-content layout='row'>
-    <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
-    </md-card-content>
-    <md-card-content layout='row'>
-    <label class="" for="description">Description</label>
-    <textarea id='description' [(ngModel)]="product.Description" placeholder="Description">
+      <div *ngIf="product">
+        <md-card-content layout='row'>
+          <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
+        </md-card-content>
+        <!-- waiting for md-input-container to go live -->
+        <md-card-content layout='row'>
+          <label class="" for="description">Description</label><br/>
+          <textarea id='description' [(ngModel)]="product.Description" placeholder="Description">
     </textarea>
+        </md-card-content>
+        <md-card-content layout='row'>
+          <label>BusinessCase</label><br/>
+          <textarea [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
+        </md-card-content>
+        <md-card-content layout='row'>
+          <md-input type='date' [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
+        </md-card-content>
+      </div>
+      <div *ngIf="!product">
+        Error loading product
+      </div>
     </md-card-content>
-    <md-card-content layout='row'>
-    <label>BusinessCase</label>
-    <textarea [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
+    <md-card-content layout='column'>
+      <ui-view>
+      </ui-view>
     </md-card-content>
-    <md-card-content layout='row'>
-    <md-input type='date' [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
-    </md-card-content>
-  </div>
-  <div *ngIf="!product">
-    Error loading product
-  </div>
-  </md-card-content>
-  <md-card-content layout='column'>
-    <ui-view>
-    </ui-view>
-  </md-card-content>
+  </md-card>
 </md-card>

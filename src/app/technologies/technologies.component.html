@@ -1,4 +1,4 @@
-<md-list>
+<md-card>
   <p>
     <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')" (keyup.enter)='createTechnology(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
@@ -6,7 +6,21 @@
   <p hidden>
     <md-checkbox>Only my technologies ... </md-checkbox>
   </p>
-  <md-list-item *ngFor="let technology of technologies">    
-    <md-icon>assignment circle</md-icon><a uiSref="technology" [uiParams]="{ id: technology.Guid }" uiSrefActive="active">{{technology.Name}}</a>
-  </md-list-item>    
-</md-list>  
+  <md-card *ngFor="let technology of technologies">    
+    <md-card-title-group>
+      <md-card-subtitle>
+        <md-icon>build</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{technology.Name}}</md-card-title>
+    </md-card-title-group>
+    <md-card-content>
+      <div>{{technology.Description}} ...</div>
+    </md-card-content>
+    <md-card-actions align='end'>
+      <button uiSref="technology" [uiParams]="{ technologyId: technology.Guid }">
+<md-icon>details circle</md-icon></button>
+      <button uiSref="technology" [uiParams]="{ technologyId: technology.Guid }">
+<md-icon>share circle</md-icon></button>
+    </md-card-actions>
+      </md-card>    
+</md-card>  
