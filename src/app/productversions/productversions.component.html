@@ -1,9 +1,15 @@
-<md-list>
+<md-card>
   <p>
     <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')" (keyup.enter)='createProductVersion(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
   </p>
-  <md-list-item *ngFor="let productversion of productversions">    
-    <md-icon>assignment circle</md-icon><a [routerLink]="['/productversions', productversion.Guid]">{{productversion.Name}}</a>
-  </md-list-item>    
-</md-list>  
+  <md-card *ngFor="let productversion of productversions">    
+    <md-card-subtitle>
+    <md-icon>assignment circle</md-icon>
+    </md-card-subtitle>
+    <md-card-title>{{productversion.Name}}</md-card-title>
+    <md-card-actions align='end'>
+      <button [routerLink]="['/productversions', productversion.Guid]"><md-icon>details</md-icon></button>
+    </md-card-actions>
+  </md-card>    
+</md-card>  

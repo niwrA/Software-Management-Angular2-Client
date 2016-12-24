@@ -24,7 +24,7 @@ export class ProductVersionsComponent implements OnInit {
   searchText: string;
 
   ngOnInit() {
-    this.route.params.switchMap((params: Params) => this.service.getProductVersions(params['projectId'],''))
+    this.route.parent.params.switchMap((params: Params) => this.service.getProductVersions(params['productId'],''))
     .subscribe((productversions: Array<ProductVersion>) => this.productversions = productversions);
   }
 

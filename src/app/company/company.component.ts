@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Company } from '../companies/company';
+import { CompaniesService } from '../companies/companies.service';
 
 @Component({
   selector: 'app-company',
@@ -8,6 +11,17 @@ import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
 })
 export class CompanyComponent {
 
-  @Input() company;
+  company: Company;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: CompaniesService
+  ){}
+
+  ngOnInit() {
+    this.route.params.switchMap((params: Params) => this.service.getCompany(params['companyId']))
+    .subscribe((company: Company) => this.company = company);
+  }
 
 }

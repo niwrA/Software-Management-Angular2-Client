@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 
 import { CompaniesComponent } from './companies/companies.component';
+import { CompanyComponent } from './company/company.component';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
     component: CompaniesComponent
   },
   {
+    path: 'companies/:companyId',
+    component: CompanyComponent
+  },
+  {
     path: 'projects',
     component: ProjectsComponent
   },
@@ -49,14 +54,14 @@ const appRoutes: Routes = [
         component: ProductVersionsComponent
       }]
   },
-    {
+  {
     path: 'productversions/:productVersionId',
     component: ProductVersionComponent
-/*    children: [
-      {
-        path: 'productversionfeatures',
-        component: ProductVersionFeaturesComponent
-      }]*/
+    /*    children: [
+          {
+            path: 'productversionfeatures',
+            component: ProductVersionFeaturesComponent
+          }]*/
   },
   {
     path: 'technologies',
@@ -66,7 +71,7 @@ const appRoutes: Routes = [
     path: 'technologies/:technologyId',
     component: TechnologyComponent
   },
-  { path: '',   redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

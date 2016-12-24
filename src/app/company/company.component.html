@@ -5,7 +5,7 @@
     <button [routerLink]='companyContacts' md-raised-button md-tooltip="Company contacts">Contacts</button>
   </md-card-actions>
   <md-input [(ngModel)]="company.Name" placeholder="Name"></md-input>
-  <md-input [(ngModel)]='company.EndDate' placeholder="EndDate"></md-input>
+  <md-input type='date' [(ngModel)]='company.EndDate' placeholder="EndDate"></md-input>
 </md-card>
 <div *ngIf="!company">
   Error loading company

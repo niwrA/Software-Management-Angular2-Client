@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Technology } from '../technologies/technology';
+import { TechnologiesService } from '../technologies/technologies.service';
 
 @Component({
   selector: 'app-technology',
@@ -8,6 +11,17 @@ import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
 })
 export class TechnologyComponent {
 
-  @Input() technology;
+  technology: Technology;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: TechnologiesService
+  ){}
+
+  ngOnInit() {
+    this.route.params.switchMap((params: Params) => this.service.getTechnology(params['technologyId']))
+    .subscribe((technology: Technology) => this.technology = technology);
+  }
 
 }
