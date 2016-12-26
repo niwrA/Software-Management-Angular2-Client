@@ -1,8 +1,9 @@
 <md-card *ngIf="company">
   <md-card-title>{{company.Name}}</md-card-title>
   <md-card-actions><button [routerLink]='companyDetails' md-raised-button md-tooltip="Project Details">Details</button>
-    <button [routerLink]='companyProducts' md-raised-button md-tooltip="View Products for this Company">Products</button>
-    <button [routerLink]='companyContacts' md-raised-button md-tooltip="Company contacts">Contacts</button>
+    <button [routerLink]='companyContacts' md-raised-button md-tooltip="todo: Company contacts">Contacts</button>
+    <button [routerLink]='companyEnvironments' md-raised-button md-tooltip="todo: View Environments for this Company">Environments</button>
+    <button [routerLink]='companyProducts' md-raised-button md-tooltip="todo: View Products for this Company">Products</button>
   </md-card-actions>
   <md-input [(ngModel)]="company.Name" placeholder="Name"></md-input>
   <md-input type='date' [(ngModel)]='company.EndDate' placeholder="EndDate"></md-input>

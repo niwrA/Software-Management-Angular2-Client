@@ -1,3 +1,36 @@
-<p>
-  productfeature works!
-</p>
+<md-card *ngIf="productfeature">
+  <md-card-title>{{productfeature.Name}}</md-card-title>
+  <button [routerLink]='productfeatureDetails' md-raised-button md-tooltip="todo: productfeature Details">Details</button>
+  <button routerLink="productfeatureissues" md-raised-button md-tooltip="todo: known issues for this  feature">Issues</button>
+  <button [routerLink]='productfeatureconfigs' md-raised-button md-tooltip="todo: configuration options for this feature">Configs</button>
+  <button [routerLink]='productfeaturerequests' md-raised-button md-tooltip="todo: who requested this feature">Requests</button>
+  <md-card class='flex-h'>
+    <md-card-content layout='column'>
+
+      <div>
+        <md-card-content layout='row'>
+          <md-input [(ngModel)]="productfeature.Name" placeholder="Name"></md-input>
+        </md-card-content>
+        <!-- waiting for md-input-container to go live -->
+        <md-card-content layout='row'>
+          <label class="" for="description">Description</label><br/>
+          <textarea id='description' [(ngModel)]="productfeature.Description" placeholder="Description">
+    </textarea>
+        </md-card-content>
+        <md-card-content layout='row'>
+          <md-checkbox [(ngModel)]="productfeature.IsRequest" placeholder="IsRequest">Request</md-checkbox>
+        </md-card-content>
+        <md-card-content layout='row' >
+          <md-input type='date' [disabled]="productfeature.IsRequest" [(ngModel)]='productfeature.ImplementedDate' placeholder="ImplementedDate"></md-input>
+        </md-card-content>
+      </div>
+    </md-card-content>
+    <md-card-content layout='column'>
+      <router-outlet>
+      </router-outlet>
+    </md-card-content>
+  </md-card>
+</md-card>
+<div *ngIf="!productfeature">
+  Error loading productfeature
+</div>

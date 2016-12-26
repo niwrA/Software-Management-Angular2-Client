@@ -36,6 +36,7 @@ import { ProductVersionsService } from './productversions/productversions.servic
 import { ProductVersionComponent } from './productversion/productversion.component';
 import { ProductFeaturesComponent } from './productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './productfeature/productfeature.component';
+import { ProductFeaturesService } from './productfeatures/productfeatures.service';
 import { ProductIssuesComponent } from './productissues/productissues.component';
 import { ProductIssueComponent } from './productissue/productissue.component';
 import { ProductConfigsComponent } from './productconfigs/productconfigs.component';
@@ -78,7 +79,7 @@ import { AppRoutingModule }        from './app-routing.module';
     SmaTextareaComponent,
     PageNotFoundComponent
   ],
-  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ContactsService],
+  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ProductFeaturesService, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
