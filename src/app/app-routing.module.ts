@@ -18,6 +18,9 @@ import { ProductComponent } from './product/product.component';
 import { ProductVersionsComponent } from './productversions/productversions.component';
 import { ProductVersionComponent } from './productversion/productversion.component';
 
+import { ProductFeaturesComponent } from './productfeatures/productfeatures.component';
+import { ProductFeatureComponent } from './productfeature/productfeature.component';
+
 import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
@@ -52,16 +55,21 @@ const appRoutes: Routes = [
       {
         path: 'productversions',
         component: ProductVersionsComponent
+      },
+      {
+        path: 'productfeatures',
+        component: ProductFeaturesComponent
       }]
   },
+
   {
     path: 'productversions/:productVersionId',
-    component: ProductVersionComponent
-    /*    children: [
-          {
-            path: 'productversionfeatures',
-            component: ProductVersionFeaturesComponent
-          }]*/
+    component: ProductVersionComponent,
+    children: [
+      {
+        path: 'productfeatures',
+        component: ProductFeaturesComponent
+      }]
   },
   {
     path: 'technologies',
@@ -70,6 +78,10 @@ const appRoutes: Routes = [
   {
     path: 'technologies/:technologyId',
     component: TechnologyComponent
+  },
+  {
+    path: 'productfeatures/:productFeatureId',
+    component: ProductFeatureComponent
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
