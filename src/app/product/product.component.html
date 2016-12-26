@@ -1,7 +1,7 @@
 <md-card *ngIf="product">
   <md-card-title>{{product.Name}}</md-card-title>
   <button [routerLink]='productDetails' md-raised-button md-tooltip="todo: Product Details">Details</button>
-  <button [routerLink]="['productversions']" md-raised-button md-tooltip="Product Versions">Versions</button>
+  <button routerLink="productversions" md-raised-button md-tooltip="Product Versions">Versions</button>
   <button [routerLink]='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
   <button [routerLink]='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
   <md-card class='flex-h'>

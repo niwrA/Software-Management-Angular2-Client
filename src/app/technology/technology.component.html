@@ -1,15 +1,15 @@
-<md-card>
+<md-card *ngIf="technology">
+  <md-card-title>{{technology.Name}}</md-card-title>
   <md-card-actions>
     <button [routerLink]='technologyDetails' md-raised-button md-tooltip="Technology Details">Details</button>
     <button [routerLink]='technologyProducts' md-raised-button md-tooltip="View Products for this Technology">Products</button>
     <button [routerLink]='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
   </md-card-actions>
-  <md-card-title *ngIf='technology'>{{technology.Name}}</md-card-title>
-  <div *ngIf="technology">
+  <div>
     <md-input [(ngModel)]="technology.Name" placeholder="Name"></md-input>
-    <md-input [(ngModel)]='technology.EndDate' placeholder="EndDate"></md-input>
+    <md-input type='date' [(ngModel)]='technology.EndDate' placeholder="EndDate"></md-input>
   </div>
+</md-card>
   <div *ngIf="!technology">
     Error loading technology
   </div>
-</md-card>

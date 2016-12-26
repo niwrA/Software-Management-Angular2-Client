@@ -1,3 +1,15 @@
-<p>
-  productfeatures works!
-</p>
+<md-card>
+  <p>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')" (keyup.enter)='createProductFeature(searchTextInput.value)'></md-input>
+    <button md-raised-button md-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
+  </p>
+  <md-card *ngFor="let productfeature of productfeatures">    
+    <md-card-subtitle>
+    <md-icon>flash on</md-icon>
+    </md-card-subtitle>
+    <md-card-title>{{productfeature.Name}}</md-card-title>
+    <md-card-actions align='end'>
+      <button [routerLink]="['/productfeatures', productfeature.Guid]"><md-icon>details</md-icon></button>
+    </md-card-actions>
+  </md-card>    
+</md-card>  
