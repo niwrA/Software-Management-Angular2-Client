@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Contact } from '../contacts/contact';
+import { ContactsService } from '../contacts/contacts.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,6 +11,17 @@ import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
 })
 export class ContactComponent {
 
-  @Input() contact;
+  contact: Contact;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ContactsService
+  ){}
+
+  ngOnInit() {
+    this.route.params.switchMap((params: Params) => this.service.getContact(params['contactId']))
+    .subscribe((contact: Contact) => this.contact = contact);
+  }
 
 }

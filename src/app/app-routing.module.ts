@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ContactsComponent } from './contacts/contacts.component';
+import { ContactComponent } from './contact/contact.component';
 
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyComponent } from './company/company.component';
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
   {
     path: 'contacts',
     component: ContactsComponent
+  },
+  {
+    path: 'contacts/:contactId',
+    component: ContactComponent
   },
   {
     path: 'companies',

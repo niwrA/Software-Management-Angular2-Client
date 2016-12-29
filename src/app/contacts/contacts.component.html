@@ -15,10 +15,8 @@
       <div>{{contact.FirstName}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="['contact', contact.Guid]">
-<md-icon>details circle</md-icon></button>
-      <button [(disabled)]="!contact.Email" [routerLink]="['contact', contact.Guid]">
-<md-icon>email circle</md-icon></button>
+      <button [routerLink]="[contact.Guid]"><md-icon>details circle</md-icon></button>
+      <button [(disabled)]="!contact.Email" [routerLink]="[contact.Guid]"><md-icon>email circle</md-icon></button>
     </md-card-actions>
   </md-card>
 </md-card>

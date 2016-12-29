@@ -1,22 +1,28 @@
-<button [routerLink]='contactDetails' md-raised-button md-tooltip="todo: Contact Details">Details</button>
-<button [routerLink]="['contact.projects', contact.Guid]" md-raised-button md-tooltip="Projects this Contact is working on">Projects</button>
-<button [routerLink]='contact.companies' md-raised-button md-tooltip="todo: View Companies for this Contact">Companies</button>
-<button [routerLink]='contact.technologies' md-raised-button md-tooltip="todo: Technologies this contact has worked with">Technologies</button>
-<md-card class='flex-h'>
+<md-card *ngIf="contact">
   <md-card-title>{{contact.Name}}</md-card-title>
-  <div>
-    <md-input [(ngModel)]="contact.Name" placeholder="Name"></md-input>
-    <md-input type='email' [(ngModel)]="contact.Email" placeholder="Email"></md-input>
-    <md-input [(ngModel)]="contact.FirstName" placeholder="FirstName"></md-input>
-    <md-input [(ngModel)]="contact.LastNamePrefix" placeholder="LastNamePrefix"></md-input>
-    <md-input [(ngModel)]="contact.LastName" placeholder="LastName"></md-input>
-    <md-input [(ngModel)]="contact.Gender" placeholder="Gender"></md-input>
-    <md-input type='date' [(ngModel)]="contact.BirthDate" placeholder="BirthDate"></md-input>
-  </div>
-  <div>
-    <router-outlet>
-    </router-outlet>
-  </div>
+  <button [routerLink]='contactDetails' md-raised-button md-tooltip="todo: Contact Details">Details</button>
+  <button [routerLink]="['contact.projects', contact.Guid]" md-raised-button md-tooltip="Projects this Contact is working on">Projects</button>
+  <button [routerLink]='contact.companies' md-raised-button md-tooltip="todo: View Companies for this Contact">Companies</button>
+  <button [routerLink]='contact.technologies' md-raised-button md-tooltip="todo: Technologies this contact has worked with">Technologies</button>
+  <md-card class='flex-h'>
+
+
+    <md-card-content layout='column'>
+      <div>
+        <md-input [(ngModel)]="contact.Name" placeholder="Name"></md-input>
+        <md-input type='email' [(ngModel)]="contact.Email" placeholder="Email"></md-input>
+        <md-input [(ngModel)]="contact.FirstName" placeholder="FirstName"></md-input>
+        <md-input [(ngModel)]="contact.LastNamePrefix" placeholder="LastNamePrefix"></md-input>
+        <md-input [(ngModel)]="contact.LastName" placeholder="LastName"></md-input>
+        <md-input [(ngModel)]="contact.Gender" placeholder="Gender"></md-input>
+        <md-input type='date' [(ngModel)]="contact.BirthDate" placeholder="BirthDate"></md-input>
+      </div>
+    </md-card-content>
+    <md-card-content layout='column'>
+      <router-outlet>
+      </router-outlet>
+    </md-card-content>
+  </md-card>
 </md-card>
 <div *ngIf="!contact">
   Error loading contact
