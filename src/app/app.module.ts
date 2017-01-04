@@ -43,11 +43,14 @@ import { ProductConfigsComponent } from './productconfigs/productconfigs.compone
 import { ProductConfigComponent } from './productconfig/productconfig.component';
 import { SmaTextareaComponent } from './sma-textarea/sma-textarea.component';
 
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { PageNotFoundComponent } from './not-found.component';
-import { AppRoutingModule }        from './app-routing.module';
-//import { MdContentModule, MdSubheaderModule } from "ng2-material";
-// other imports 
+import { AppRoutingModule } from './app-routing.module';
+import { SemgraphComponent } from './semgraph/semgraph.component';
+import { ProjectMembersComponent } from './projectmembers/projectmembers.component';
+import { ProjectDetailsComponent } from './projectdetails/projectdetails.component';
+import { SemgraphService } from './semgraph/semgraph.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -77,12 +80,16 @@ import { AppRoutingModule }        from './app-routing.module';
     ProductConfigComponent,
     ContactComponent,
     SmaTextareaComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SemgraphComponent,
+    ProjectMembersComponent,
+    ProjectDetailsComponent
   ],
-  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService, ProductFeaturesService, ContactsService],
+  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
+    ProductFeaturesService, ContactsService, SemgraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-  
+
 platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+  .catch(err => console.error(err));

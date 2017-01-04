@@ -1,16 +1,12 @@
 <md-card>
   <md-card-title *ngIf="project">{{project.Name}}</md-card-title>
-  <md-card-actions>
-    <button routerLink='projectDetails' md-raised-button md-tooltip="Project Details">Details</button>
-    <button routerLink='projectProducts' md-raised-button md-tooltip="View Products involved in this Project">Products</button>
-    <button routerLink='projectMembers' md-raised-button md-tooltip="Project Members">Members</button>
+  <md-card-actions *ngIf="project">
+    <button routerLink='details' md-raised-button md-tooltip="in progress: Project Details">Details</button>
+    <button routerLink='projectProducts' md-raised-button md-tooltip="todo: View Products involved in this Project">Products</button>
+    <button routerLink='members' md-raised-button md-tooltip="in progress; Project Members">Members</button>
   </md-card-actions>
-  <div *ngIf="project">
-    <md-input [(ngModel)]="project.Name" placeholder="Name"></md-input>
-    <md-input type='date' [(ngModel)]='project.StartDate' placeholder="StartDate"></md-input>
-    <md-input type='date' [(ngModel)]='project.EndDate' placeholder="EndDate"></md-input>
-  </div>
-  <div *ngIf="!project">
-    Error loading project
-  </div>
+  <router-outlet></router-outlet>
 </md-card>
+<div *ngIf="!project">
+  Error loading project
+</div>

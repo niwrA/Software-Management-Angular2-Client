@@ -9,6 +9,7 @@ import { CompanyComponent } from './company/company.component';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
+import { ProjectDetailsComponent } from './projectdetails/projectdetails.component';
 
 import { TechnologiesComponent } from './technologies/technologies.component';
 import { TechnologyComponent } from './technology/technology.component';
@@ -47,7 +48,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'projects/:projectId',
-    component: ProjectComponent
+    component: ProjectComponent,
+    children: [
+      {
+        path: 'details',
+        component: ProjectDetailsComponent
+      }
+    ]
   },
   {
     path: 'products',

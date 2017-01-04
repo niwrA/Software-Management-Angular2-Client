@@ -6,20 +6,19 @@
   <button [routerLink]='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
   <md-card class='flex-h'>
     <md-card-content layout='column'>
-
       <div *ngIf="product">
         <md-card-content layout='row'>
           <md-input [(ngModel)]="product.Name" placeholder="Name"></md-input>
         </md-card-content>
-        <!-- waiting for md-input-container to go live -->
         <md-card-content layout='row'>
-          <label class="" for="description">Description</label><br/>
-          <textarea id='description' [(ngModel)]="product.Description" placeholder="Description">
-    </textarea>
+        <md-input-container>
+          <textarea rows=5 md-input [(ngModel)]="product.Description" placeholder="Description"></textarea>
+        </md-input-container>
         </md-card-content>
         <md-card-content layout='row'>
-          <label>BusinessCase</label><br/>
-          <textarea [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
+        <md-input-container>
+          <textarea rows='5' md-input [(ngModel)]="product.BusinessCase" placeholder="BusinessCase"></textarea>
+        </md-input-container>
         </md-card-content>
         <md-card-content layout='row'>
           <md-input type='date' [(ngModel)]='product.EndDate' placeholder="EndDate"></md-input>
@@ -32,6 +31,6 @@
     </md-card-content>
   </md-card>
 </md-card>
-      <div *ngIf="!product">
-        Error loading product
-      </div>
+<div *ngIf="!product">
+  Error loading product
+</div>

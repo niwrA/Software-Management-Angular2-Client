@@ -3,23 +3,23 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ProductVersionsComponent } from './productversions.component';
+import { ProjectDetailsComponent } from './projectdetails.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('ProductVersionsComponent', () => {
-  let component: ProductVersionsComponent;
-  let fixture: ComponentFixture<ProductVersionsComponent>;
+describe('ProjectDetailsComponent', () => {
+  let component: ProjectDetailsComponent;
+  let fixture: ComponentFixture<ProjectDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductVersionsComponent ],
+      declarations: [ ProjectDetailsComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductVersionsComponent);
+    fixture = TestBed.createComponent(ProjectDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

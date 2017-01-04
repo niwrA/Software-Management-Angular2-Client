@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { CustomersComponent } from './customers.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CustomersComponent', () => {
   let component: CustomersComponent;
@@ -11,7 +12,8 @@ describe('CustomersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomersComponent ]
+      declarations: [ CustomersComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

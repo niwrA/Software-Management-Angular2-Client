@@ -4,20 +4,22 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ProductFeaturesComponent } from './productfeatures.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('ProductfeaturesComponent', () => {
-  let component: ProductfeaturesComponent;
-  let fixture: ComponentFixture<ProductfeaturesComponent>;
+describe('ProductFeaturesComponent', () => {
+  let component: ProductFeaturesComponent;
+  let fixture: ComponentFixture<ProductFeaturesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductfeaturesComponent ]
+      declarations: [ ProductFeaturesComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductfeaturesComponent);
+    fixture = TestBed.createComponent(ProductFeaturesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

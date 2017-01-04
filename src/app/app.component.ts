@@ -1,4 +1,3 @@
-import { UIROUTER_DIRECTIVES } from  'ui-router-ng2';
 import {NgModule, Component} from '@angular/core';
 
 @Component({

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { SmaTextareaComponent } from './sma-textarea.component';
+import { NO_ERRORS_SCHEMA }          from '@angular/core';
 
 describe('SmaTextareaComponent', () => {
   let component: SmaTextareaComponent;
@@ -11,7 +12,8 @@ describe('SmaTextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmaTextareaComponent ]
+      declarations: [ SmaTextareaComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

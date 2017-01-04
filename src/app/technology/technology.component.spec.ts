@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { TechnologyComponent } from './technology.component';
+import { NO_ERRORS_SCHEMA }          from '@angular/core';
+
 
 describe('TechnologyComponent', () => {
   let component: TechnologyComponent;
@@ -11,7 +13,9 @@ describe('TechnologyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TechnologyComponent ]
+      imports: [ ],
+      declarations: [ TechnologyComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
