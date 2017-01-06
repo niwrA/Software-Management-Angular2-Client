@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Project } from '../projects/project';
-import { ProjectsService } from '../projects/projects.service';
+import { Project } from '../project';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-project',

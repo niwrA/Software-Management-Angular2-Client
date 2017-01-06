@@ -2,26 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ContactsComponent } from './contacts/contacts.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './contacts/contact/contact.component';
 
 import { CompaniesComponent } from './companies/companies.component';
-import { CompanyComponent } from './company/company.component';
+import { CompanyComponent } from './companies/company/company.component';
 
 import { ProjectsComponent } from './projects/projects.component';
-import { ProjectComponent } from './project/project.component';
-import { ProjectDetailsComponent } from './projectdetails/projectdetails.component';
+import { ProjectComponent } from './projects/project/project.component';
+import { ProjectDetailsComponent } from './projects/projectdetails/projectdetails.component';
 
 import { TechnologiesComponent } from './technologies/technologies.component';
-import { TechnologyComponent } from './technology/technology.component';
+import { TechnologyComponent } from './technologies/technology/technology.component';
 
 import { ProductsComponent } from './products/products.component';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './products/product/product.component';
 
-import { ProductVersionsComponent } from './productversions/productversions.component';
-import { ProductVersionComponent } from './productversion/productversion.component';
+import { ProductVersionsComponent } from './products/productversions/productversions.component';
+import { ProductVersionComponent } from './products/productversions/productversion/productversion.component';
 
-import { ProductFeaturesComponent } from './productfeatures/productfeatures.component';
-import { ProductFeatureComponent } from './productfeature/productfeature.component';
+import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
+import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 
 import { PageNotFoundComponent } from './not-found.component';
 

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ProjectsService } from '../projects/projects.service';
-import { Project } from '../projects/project';
+import { ProjectsService } from '../projects.service';
+import { Project } from '../project';
 import { UUID } from 'angular2-uuid';
-import { SemgraphService } from '../semgraph/semgraph.service';
-import { Semgraph } from '../semgraph/semgraph';
+import { SemgraphService } from '../../semgraph/semgraph.service';
+import { Semgraph } from '../../semgraph/semgraph';
 
 @Component({
   selector: 'app-projectmembers',

@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Company } from '../companies/company';
-import { CompaniesService } from '../companies/companies.service';
+import { Company } from '../company';
+import { CompaniesService } from '../companies.service';
 
 @Component({
   selector: 'app-company',

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
+import { CommandsService } from '../commands/commands.service';
 import * as _ from 'lodash';
 
 @Injectable()

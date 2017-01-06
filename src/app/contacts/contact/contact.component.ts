@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Contact } from '../contacts/contact';
-import { ContactsService } from '../contacts/contacts.service';
+import { Contact } from '../contact';
+import { ContactsService } from '../contacts.service';
 
 @Component({
   selector: 'app-contact',

@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductFeature } from '../productfeatures/productfeature';
-import { ProductFeaturesService } from '../productfeatures/productfeatures.service';
+import { ProductFeature } from '../productfeature';
+import { ProductFeaturesService } from '../productfeatures.service';
 
 @Component({
   selector: 'app-productfeature',

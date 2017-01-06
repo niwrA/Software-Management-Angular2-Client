@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductVersion } from '../productversions/productversion';
-import { ProductVersionsService } from '../productversions/productversions.service';
+import { ProductVersion } from '../productversion';
+import { ProductVersionsService } from '../productversions.service';
 
 @Component({
   selector: 'app-productversion',
