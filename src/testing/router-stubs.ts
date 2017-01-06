@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable, Directive, Input } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -19,5 +19,21 @@ export class ActivatedRouteStub {
     // ActivatedRoute.snapshot.params
     get snapshot() {
         return { params: this.testParams };
+    }
+}
+
+@Directive({
+    selector: '[routerLink]',
+    host: {
+        '(click)': 'onClick()'
+    }
+})
+
+export class RouterLinkStubDirective {
+    @Input('routerLink') linkParams: any;
+    navigatedTo: any = null;
+
+    onClick() {
+        this.navigatedTo = this.linkParams;
     }
 }

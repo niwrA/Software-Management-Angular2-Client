@@ -15,11 +15,10 @@ export class ProjectComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProjectsService
-  ){}
+    private service: ProjectsService) { }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
-    .subscribe((project: Project) => this.project = project);
+      .subscribe((project: Project) => this.project = project);
   }
 }

@@ -15,11 +15,10 @@ export class ProductVersionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductVersionsService
-  ){}
+    private service: ProductVersionsService) { }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.service.getProductVersion(params['productVersionId']))
-    .subscribe((productVersion: ProductVersion) => this.productversion = productVersion);
+      .subscribe((productVersion: ProductVersion) => this.productversion = productVersion);
   }
 }

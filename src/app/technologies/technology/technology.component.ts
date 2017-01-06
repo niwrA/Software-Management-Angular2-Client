@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Technology } from '../technologies/technology';
-import { TechnologiesService } from '../technologies/technologies.service';
+import { Technology } from '../technology';
+import { TechnologiesService } from '../technologies.service';
 
 @Component({
   selector: 'app-technology',

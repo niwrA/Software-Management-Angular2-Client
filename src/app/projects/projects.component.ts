@@ -1,18 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { Project } from './project';
-import { UUID } from 'angular2-uuid';/*
+import { UUID } from 'angular2-uuid';
 
-import { UIROUTER_DIRECTIVES } from 'ui-router-ng2';
-*/
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css'],
   providers: [ProjectsService]
 })
-export class ProjectsComponent implements OnInit {
 
+export class ProjectsComponent implements OnInit {
   projects = new Array<Project>();
   selectedProject: Project;
   searchText: string;
