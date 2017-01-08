@@ -30,8 +30,12 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   changeName(): void {
-    if (this.project.Name !== this.previousProject.Name) {
-      // rename project command
+    if (this.previousProject !== undefined) {
+      if (this.project.Name !== this.previousProject.Name) {
+        // rename project command
+        this.previousProject = this.project;
+      }
+    } else {
       this.previousProject = this.project;
     }
   }
