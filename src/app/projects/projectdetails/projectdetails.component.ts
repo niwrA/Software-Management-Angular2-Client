@@ -2,6 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from '../project';
+import { RenameProjectCommand, RescheduleProjectCommand } from '../project/project.commands';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ProjectDetailsComponent implements OnInit {
   ) { }
 
   update(newValue) {
-    this.previousProject = this.project;
+    this.previousProject = this.service.cloneProject(newValue);
     this.project = newValue;
   }
 
@@ -32,8 +33,9 @@ export class ProjectDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProject !== undefined) {
       if (this.project.Name !== this.previousProject.Name) {
-        // rename project command
-        this.previousProject = this.project;
+        var renameCommand = new RenameProjectCommand(this.project, this.previousProject.Name);
+        this.service.postCommand(renameCommand, false);
+        this.previousProject.Name = this.project.Name;
       }
     } else {
       this.previousProject = this.project;
@@ -41,14 +43,20 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   changeStartDate(): void {
-    if (event) {
-      let something = event;
+    if(this.project.StartDate !== this.previousProject.StartDate)
+    {
+      var rescheduleCommand = new RescheduleProjectCommand(this.project,this.previousProject.StartDate, this.previousProject.EndDate);
+      this.service.postCommand(rescheduleCommand, true);
+      this.previousProject.StartDate = this.project.StartDate;
     }
   }
 
-  changeEndDate(event): void {
-    if (event) {
-      let something = event;
+  changeEndDate(): void {
+    if(this.project.EndDate !== this.previousProject.EndDate)
+    {
+      var rescheduleCommand = new RescheduleProjectCommand(this.project,this.previousProject.StartDate, this.previousProject.EndDate);
+      this.service.postCommand(rescheduleCommand, true);
+      this.previousProject.EndDate = this.project.EndDate;
     }
   }
 

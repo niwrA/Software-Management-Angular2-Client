@@ -39,7 +39,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject(name: string): void {
-    let project = this.projectsService.createProject();
+    let project = this.projectsService.createProject(true);
     project.Name = name;
     this.searchText = '';
     this.getProjects();
