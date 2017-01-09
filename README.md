@@ -6,8 +6,6 @@ Chat with us at https://software-management.slack.com/
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1. 
 
-!Warning: the ui-router-module currently has an issue where you have to disable one line before starting ng serve, and then enabling it again (don't forget to press save each time). This only has to be done one for each coding session, until a solution has been found.
-
 !Tip: open one command for ng serve (which runs and live recompiles the app in dev mode) and one command for generating new components, installing new packages and so on. 
 
 ## Development server
