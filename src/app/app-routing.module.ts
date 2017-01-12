@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AdminComponent } from './admin/admin.component';
+
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyComponent } from './companies/company/company.component';
+
+import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
@@ -27,6 +31,10 @@ import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
   {
+    path: 'admin',
+    component: AdminComponent
+  },
+  {
     path: 'contacts',
     component: ContactsComponent
   },
@@ -41,6 +49,10 @@ const appRoutes: Routes = [
   {
     path: 'companies/:companyId',
     component: CompanyComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'projects',

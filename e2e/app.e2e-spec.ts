@@ -1,14 +1,23 @@
 import { SOFTWAREMANAGEMENTPage } from './app.po';
 
-describe('software-management App', function() {
+describe('software-management App', function () {
   let page: SOFTWAREMANAGEMENTPage;
 
   beforeEach(() => {
     page = new SOFTWAREMANAGEMENTPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should have a projects button', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getProjectsButton()).toEqual('Projects');
   });
+
+  it('click projects should navigate', () => {
+    page.navigateTo();
+    page.clickButtonByName('Projects');
+    expect(page.getProjectsButton()).toEqual('Projects');
+    page.clickButtonByName('details');
+    page.updateProjectDetails();
+  });
+
 });

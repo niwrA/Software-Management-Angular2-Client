@@ -48,6 +48,19 @@ import { SemgraphComponent } from './semgraph/semgraph.component';
 import { ProjectMembersComponent } from './projects/projectmembers/projectmembers.component';
 import { ProjectDetailsComponent } from './projects/projectdetails/projectdetails.component';
 import { SemgraphService } from './semgraph/semgraph.service';
+import { CommandsComponent } from './commands/commands.component';
+import { EnvironmentsComponent } from './environments/environments.component';
+import { EnvironmentComponent } from './environments/environment/environment.component';
+import { CompanyEnvironmentsComponent } from './companies/companyenvironments/companyenvironments.component';
+import { UsersComponent } from './admin/users/users.component';
+import { UserComponent } from './admin/users/user/user.component';
+import { AccessesComponent } from './admin/accesses/accesses.component';
+import { AccessComponent } from './admin/accesses/access/access.component';
+import { GroupsComponent } from './admin/groups/groups.component';
+import { AdminComponent } from './admin/admin.component';
+import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
+import { GroupaccessesComponent } from './admin/groupaccesses/groupaccesses.component';
+import { LoginComponent } from './admin/login/login.component';
 
 @NgModule({
   imports: [
@@ -80,7 +93,20 @@ import { SemgraphService } from './semgraph/semgraph.service';
     PageNotFoundComponent,
     SemgraphComponent,
     ProjectMembersComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    CommandsComponent,
+    EnvironmentsComponent,
+    EnvironmentComponent,
+    CompanyEnvironmentsComponent,
+    UsersComponent,
+    UserComponent,
+    AccessComponent,
+    AccessesComponent,
+    GroupsComponent,
+    AdminComponent,
+    UsergroupsComponent,
+    GroupaccessesComponent,
+    LoginComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService],

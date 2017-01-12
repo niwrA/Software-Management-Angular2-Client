@@ -3,7 +3,7 @@ import { UUID } from 'angular2-uuid';
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 import { CommandsService } from '../commands/commands.service';
-import { ProjectCommand } from './project/project.commands';
+import { ProjectCommand, CreateProjectCommand } from './project/project.commands';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -22,6 +22,8 @@ export class ProjectsService {
     newItem.Guid = UUID.UUID();
     if (doSave) {
       this.projects.splice(0, 0, newItem);
+      let createProjectCommand = new CreateProjectCommand(newItem);
+      this.postCommand(createProjectCommand, false);
     }
     return newItem;
   }

@@ -5,6 +5,13 @@ export class ProjectCommand extends Command {
         super(name, 'Project', project.Guid);
     };
 }
+
+export class CreateProjectCommand extends ProjectCommand {
+    constructor(project: Project) {
+        super('Create', project);
+    }
+}
+
 export class RenameProjectCommand extends ProjectCommand {
     Name: string;
     OriginalName: string;

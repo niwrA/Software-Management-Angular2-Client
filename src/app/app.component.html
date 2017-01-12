@@ -8,6 +8,9 @@
     <button routerLink='/companies' color='primary' md-raised-button md-tooltip="View Companies">Companies</button>
     <button routerLink='/contacts' color='primary' md-raised-button md-tooltip="View Contacts">Contacts</button>
     <button routerLink='/technologies' color='primary' md-raised-button md-tooltip="View Technologies">Technologies</button>
+    <button *ngIf="isAdmin()" routerLink='/admin' md-raised-button md-tooltip="admin">Admin</button>
+    <button *ngIf="!isLoggedIn()" routerLink='/login' md-raised-button md-tooltip="todo: login">Login</button>
+    <button *ngIf="isLoggedIn()" (click)='logout()' md-raised-button md-tooltip="todo: logout">Logout</button>
   </div>
 </md-card>
 <!--  <ui-view></ui-view>-->
