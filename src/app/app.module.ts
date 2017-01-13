@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
@@ -61,6 +62,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { GroupaccessesComponent } from './admin/groupaccesses/groupaccesses.component';
 import { LoginComponent } from './admin/login/login.component';
+import { UiMenuComponent } from './ui-menu/ui-menu.component';
 
 @NgModule({
   imports: [
@@ -68,6 +70,7 @@ import { LoginComponent } from './admin/login/login.component';
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(),
     AppRoutingModule],
   declarations: [
     AppComponent,
@@ -106,7 +109,8 @@ import { LoginComponent } from './admin/login/login.component';
     AdminComponent,
     UsergroupsComponent,
     GroupaccessesComponent,
-    LoginComponent
+    LoginComponent,
+    UiMenuComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService],

@@ -1,9 +1,9 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts(searchTextInput.value || '')" (keyup.enter)='createContact(searchTextInput.value)'></md-input>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts(searchTextInput.value || '')"
+      (keyup.enter)='createContact(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   </p>
-
   <md-card *ngFor="let contact of contacts">
     <md-card-title-group>
       <md-card-subtitle>
@@ -19,4 +19,13 @@
       <button [(disabled)]="!contact.Email" [routerLink]="[contact.Guid]"><md-icon>email circle</md-icon></button>
     </md-card-actions>
   </md-card>
+  <md-list>
+    <md-list-item *ngFor="let contact of contacts">
+      <h3 md-line>{{contact.Name}}</h3>
+      <p md-line>extra line</p>
+      <p md-line>...</p>
+      <button [routerLink]="[contact.Guid]"><md-icon>details circle</md-icon></button>
+      <button [(disabled)]="!contact.Email" [routerLink]="[contact.Guid]"><md-icon>email circle</md-icon></button>
+    </md-list-item>
+  </md-list>
 </md-card>

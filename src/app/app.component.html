@@ -3,13 +3,14 @@
     {{title}} <a href='https://github.com/niwrA/Software-Management-Angular2-Client'><md-icon>code</md-icon></a>
   </md-card-title>
   <div>
-    <button routerLink="/projects" color='primary' md-raised-button md-tooltip="View Projects">Projects</button>
-    <button routerLink="/products"  color='primary' md-raised-button md-tooltip="View Products">Products</button>
-    <button routerLink='/companies' color='primary' md-raised-button md-tooltip="View Companies">Companies</button>
-    <button routerLink='/contacts' color='primary' md-raised-button md-tooltip="View Contacts">Contacts</button>
-    <button routerLink='/technologies' color='primary' md-raised-button md-tooltip="View Technologies">Technologies</button>
+<!--    <app-ui-menu [menuitems]="menuitems"></app-ui-menu>-->
+    <button (click)="showProjects(true)" color='{{projectsColor}}' md-raised-button md-tooltip="View Projects">Projects</button>
+    <button (click)="showProducts(true)" color='{{productsColor}}' md-raised-button md-tooltip="View Products">Products</button>
+    <button (click)='showCompanies(true)' color='{{companiesColor}}' md-raised-button md-tooltip="View Companies">Companies</button>
+    <button (click)='showContacts(true)' color='{{contactsColor}}' md-raised-button md-tooltip="View Contacts">Contacts</button>
+    <button (click)='showTechnologies(true)' color='{{technologiesColor}}' md-raised-button md-tooltip="View Technologies">Technologies</button>
     <button *ngIf="isAdmin()" routerLink='/admin' md-raised-button md-tooltip="admin">Admin</button>
-    <button *ngIf="!isLoggedIn()" routerLink='/login' md-raised-button md-tooltip="todo: login">Login</button>
+    <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' md-raised-button md-tooltip="todo: login">Login</button>
     <button *ngIf="isLoggedIn()" (click)='logout()' md-raised-button md-tooltip="todo: logout">Logout</button>
   </div>
 </md-card>
