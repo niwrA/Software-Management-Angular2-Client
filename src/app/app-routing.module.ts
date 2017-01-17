@@ -23,7 +23,7 @@ import { ProductComponent } from './products/product/product.component';
 
 import { ProductVersionsComponent } from './products/productversions/productversions.component';
 import { ProductVersionComponent } from './products/productversions/productversion/productversion.component';
-
+import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 
@@ -77,6 +77,10 @@ const appRoutes: Routes = [
     component: ProductComponent,
     children: [
       {
+        path: 'details',
+        component: ProductDetailsComponent
+      },
+      {
         path: 'productversions',
         component: ProductVersionsComponent
       },
@@ -85,7 +89,6 @@ const appRoutes: Routes = [
         component: ProductFeaturesComponent
       }]
   },
-
   {
     path: 'productversions/:productVersionId',
     component: ProductVersionComponent,

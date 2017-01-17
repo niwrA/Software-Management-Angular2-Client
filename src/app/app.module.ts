@@ -63,6 +63,7 @@ import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { GroupaccessesComponent } from './admin/groupaccesses/groupaccesses.component';
 import { LoginComponent } from './admin/login/login.component';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
+import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
 
 @NgModule({
   imports: [
@@ -110,7 +111,8 @@ import { UiMenuComponent } from './ui-menu/ui-menu.component';
     UsergroupsComponent,
     GroupaccessesComponent,
     LoginComponent,
-    UiMenuComponent
+    UiMenuComponent,
+    ProductDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService],

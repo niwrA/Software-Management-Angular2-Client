@@ -33,7 +33,7 @@ export class ProjectDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProject !== undefined) {
       if (this.project.Name !== this.previousProject.Name) {
-        var renameCommand = new RenameProjectCommand(this.project, this.previousProject.Name);
+        let renameCommand = new RenameProjectCommand(this.project, this.previousProject.Name);
         this.service.postCommand(renameCommand, false);
         this.previousProject.Name = this.project.Name;
       }
@@ -43,18 +43,16 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   changeStartDate(): void {
-    if(this.project.StartDate !== this.previousProject.StartDate)
-    {
-      var rescheduleCommand = new RescheduleProjectCommand(this.project,this.previousProject.StartDate, this.previousProject.EndDate);
+    if (this.project.StartDate !== this.previousProject.StartDate) {
+      let rescheduleCommand = new RescheduleProjectCommand(this.project, this.previousProject.StartDate, this.previousProject.EndDate);
       this.service.postCommand(rescheduleCommand, true);
       this.previousProject.StartDate = this.project.StartDate;
     }
   }
 
   changeEndDate(): void {
-    if(this.project.EndDate !== this.previousProject.EndDate)
-    {
-      var rescheduleCommand = new RescheduleProjectCommand(this.project,this.previousProject.StartDate, this.previousProject.EndDate);
+    if (this.project.EndDate !== this.previousProject.EndDate) {
+      let rescheduleCommand = new RescheduleProjectCommand(this.project, this.previousProject.StartDate, this.previousProject.EndDate);
       this.service.postCommand(rescheduleCommand, true);
       this.previousProject.EndDate = this.project.EndDate;
     }
