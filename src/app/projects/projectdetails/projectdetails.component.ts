@@ -2,7 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from '../project';
-import { RenameProjectCommand, RescheduleProjectCommand } from '../project/project.commands';
+import { RenameProjectCommand, ChangeStartDateForProjectCommand, ChangeEndDateForProjectCommand } from '../project/project.commands';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -44,18 +44,17 @@ export class ProjectDetailsComponent implements OnInit {
 
   changeStartDate(): void {
     if (this.project.StartDate !== this.previousProject.StartDate) {
-      let rescheduleCommand = new RescheduleProjectCommand(this.project, this.previousProject.StartDate, this.previousProject.EndDate);
-      this.service.postCommand(rescheduleCommand, true);
+      let changeStartDateForCommand = new ChangeStartDateForProjectCommand(this.project, this.previousProject.StartDate);
+      this.service.postCommand(changeStartDateForCommand, false);
       this.previousProject.StartDate = this.project.StartDate;
     }
   }
 
   changeEndDate(): void {
     if (this.project.EndDate !== this.previousProject.EndDate) {
-      let rescheduleCommand = new RescheduleProjectCommand(this.project, this.previousProject.StartDate, this.previousProject.EndDate);
-      this.service.postCommand(rescheduleCommand, true);
+      let command = new ChangeEndDateForProjectCommand(this.project, this.previousProject.EndDate);
+      this.service.postCommand(command, false);
       this.previousProject.EndDate = this.project.EndDate;
     }
   }
-
 }

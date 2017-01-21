@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angul
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
+import { CommandsService } from '../../commands/commands.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -12,15 +13,15 @@ import { ProductsService } from '../products.service';
 export class ProductDetailsComponent implements OnInit {
   product: Product;
   previousProduct: Product;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductsService
+    private service: ProductsService,
+    private commandsService: CommandsService
   ) { }
 
   update(newValue) {
-//    this.previousProduct = this.service.cloneProduct(newValue);
+    //    this.previousProduct = this.service.cloneProduct(newValue);
     this.product = newValue;
   }
 
@@ -32,8 +33,8 @@ export class ProductDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProduct !== undefined) {
       if (this.product.Name !== this.previousProduct.Name) {
-  //      var renameCommand = new RenameProductCommand(this.product, this.previousProduct.Name);
-  //      this.service.postCommand(renameCommand, false);
+        //      var renameCommand = new RenameProductCommand(this.product, this.previousProduct.Name);
+        //      this.service.postCommand(renameCommand, false);
         this.previousProduct.Name = this.product.Name;
       }
     } else {

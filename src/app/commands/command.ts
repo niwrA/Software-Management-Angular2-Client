@@ -1,16 +1,20 @@
 export class Command {
-    Type: string;
+    Name: string;
     Guid: string;
-    EntityName: string;
+    Entity: string;
     EntityGuid: string;
-    CreateDate?: Date;
-    Parameters?: string;
+    CreatedOn: Date;
+    ParametersJson?: string;
+    Parameters?: CommandParameters;
 
     constructor(type: string, entityName: string, entityGuid: string) {
-        this.Type = type;
-        this.EntityName = entityName;
+        this.Name = type;
+        this.Entity = entityName;
         this.EntityGuid = entityGuid;
-        this.CreateDate = new Date();
+        this.CreatedOn = new Date();
     }
 }
 
+export class CommandParameters {
+
+}

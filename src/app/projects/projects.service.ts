@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
+
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 import { CommandsService } from '../commands/commands.service';
@@ -9,21 +10,20 @@ import * as _ from 'lodash';
 @Injectable()
 
 export class ProjectsService {
-
   projects = new Array<Project>();
-  commands = new Array<ProjectCommand>();
 
-  constructor() {
+  constructor(private commandsService: CommandsService) {
     this.projects = PROJECTS;
   }
 
-  createProject(doSave: boolean): Project {
+  createProject(doSave: boolean, name?: string): Project {
     let newItem = new Project;
     newItem.Guid = UUID.UUID();
+    newItem.Name = name;
     if (doSave) {
       this.projects.splice(0, 0, newItem);
       let createProjectCommand = new CreateProjectCommand(newItem);
-      this.postCommand(createProjectCommand, false);
+      this.commandsService.postCommand(createProjectCommand, false);
     }
     return newItem;
   }
@@ -48,8 +48,7 @@ export class ProjectsService {
     return Promise.resolve(this.projects.find(f => f.Guid === guid));
   }
 
-  postCommand(command: ProjectCommand, replaceOriginal: Boolean) {
-    // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
-    this.commands.push(command);
+  postCommand(command: ProjectCommand, replaceOriginal: boolean) {
+    this.commandsService.postCommand(command, replaceOriginal);
   }
 }

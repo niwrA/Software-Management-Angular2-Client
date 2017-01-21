@@ -50,6 +50,7 @@ import { ProjectMembersComponent } from './projects/projectmembers/projectmember
 import { ProjectDetailsComponent } from './projects/projectdetails/projectdetails.component';
 import { SemgraphService } from './semgraph/semgraph.service';
 import { CommandsComponent } from './commands/commands.component';
+import { CommandsService } from './commands/commands.service';
 import { EnvironmentsComponent } from './environments/environments.component';
 import { EnvironmentComponent } from './environments/environment/environment.component';
 import { CompanyEnvironmentsComponent } from './companies/companyenvironments/companyenvironments.component';
@@ -115,7 +116,7 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
     ProductDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, SemgraphService],
+    ProductFeaturesService, ContactsService, SemgraphService, CommandsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
