@@ -1,7 +1,7 @@
 export class Project {
-    Name: string;
-    Guid: string;
-    StartDate?: Date;
-    EndDate?: Date;
+    name: string;
+    guid: string;
+    startDate?: Date;
+    endDate?: Date;
 }
 

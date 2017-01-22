@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, NgZone } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { Project } from './project';
 import { UUID } from 'angular2-uuid';
@@ -11,11 +11,11 @@ import { UUID } from 'angular2-uuid';
 })
 
 export class ProjectsComponent implements OnInit {
-  projects = new Array<Project>();
+  @Input() projects = new Array<Project>();
   selectedProject: Project;
   searchText: string;
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(private projectsService: ProjectsService, private zone: NgZone) { }
 
   ngOnInit() {
     this.getProjects();
@@ -35,7 +35,7 @@ export class ProjectsComponent implements OnInit {
 */  }
 
   getProjects(): void {
-    this.projectsService.getProjects(this.searchText).then(projects => this.projects = projects);
+    this.projectsService.getProjects(this.searchText).then(projects => this.zone.run(() => this.projects = projects));
   }
 
   createProject(name: string): void {

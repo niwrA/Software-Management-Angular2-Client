@@ -12,13 +12,13 @@
       <md-card-subtitle>
         <md-icon>assignment circle</md-icon>
       </md-card-subtitle>
-      <md-card-title>{{project.Name}}</md-card-title>
+      <md-card-title>{{project.name}}</md-card-title>
     </md-card-title-group>
     <md-card-content>
-      <div>{{project.Description}} ...</div>
+      <div>{{project.description}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[project.Guid, 'details']">
+      <button [routerLink]="[project.guid, 'details']">
 <md-icon>details</md-icon></button>
       <!--        <button [(disabled)]="!project.Email" routerLink="project" RouterLinkActive='active' [uiParams]="{ projectId: project.Guid }">
 <md-icon>email circle</md-icon></button>-->

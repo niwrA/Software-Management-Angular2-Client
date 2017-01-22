@@ -1,25 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { UUID } from 'angular2-uuid';
-
+import { Http } from '@angular/http';
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 import { CommandsService } from '../commands/commands.service';
 import { ProjectCommand, CreateProjectCommand } from './project/project.commands';
 import * as _ from 'lodash';
-
+import { Observable } from 'rxjs/Observable';
 @Injectable()
 
 export class ProjectsService {
+  projectsUrl = 'http://localhost:50274/api/projects';
   projects = new Array<Project>();
 
-  constructor(private commandsService: CommandsService) {
-    this.projects = PROJECTS;
+  constructor(private commandsService: CommandsService, private http: Http) {
+    this.getProjects('').then(result => this.projects = result as Array<Project>);
   }
 
   createProject(doSave: boolean, name?: string): Project {
     let newItem = new Project;
-    newItem.Guid = UUID.UUID();
-    newItem.Name = name;
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
     if (doSave) {
       this.projects.splice(0, 0, newItem);
       let createProjectCommand = new CreateProjectCommand(newItem);
@@ -29,26 +30,39 @@ export class ProjectsService {
   }
 
   cloneProject(original: Project): Project {
-    let clonedItem = this.createProject(false);
-    clonedItem.EndDate = original.EndDate;
-    clonedItem.Name = original.Name;
-    clonedItem.StartDate = original.StartDate;
-    return clonedItem;
+    if (original) {
+      let clonedItem = this.createProject(false);
+      clonedItem.endDate = original.endDate;
+      clonedItem.name = original.name;
+      clonedItem.startDate = original.startDate;
+      return clonedItem;
+    }
   }
 
-  getProjects(searchText: string): Promise<Project[]> {
-    if (searchText && searchText.length > 0) {
-      let results = _.filter<Project>(PROJECTS, prj => prj.Name.indexOf(searchText) > -1);
-      return Promise.resolve(results);
+  getProjects(searchText: string): Promise<Array<Project>> {
+    if (this.projects.length > 0) {
+      if (searchText && searchText.length > 0) {
+        let results = _.filter<Project>(this.projects, prj => prj.name.indexOf(searchText) > -1);
+        return Promise.resolve(results);
+      }
     }
-    return Promise.resolve(PROJECTS);
+    return this.http.get(this.projectsUrl)
+      .toPromise()
+      .then(response => response.json() as Array<Project>)
+      .catch(this.handleError);
   }
 
   getProject(guid: string): Promise<Project> {
-    return Promise.resolve(this.projects.find(f => f.Guid === guid));
+    return Promise.resolve(this.projects.find(f => f.guid === guid));
   }
 
   postCommand(command: ProjectCommand, replaceOriginal: boolean) {
     this.commandsService.postCommand(command, replaceOriginal);
   }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
+
 }

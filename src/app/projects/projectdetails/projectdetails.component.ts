@@ -2,7 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from '../project';
-import { RenameProjectCommand, ChangeStartDateForProjectCommand, ChangeEndDateForProjectCommand } from '../project/project.commands';
+import { RenameProjectCommand, ChangeStartDateOfProjectCommand, ChangeEndDateOfProjectCommand } from '../project/project.commands';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -21,8 +21,10 @@ export class ProjectDetailsComponent implements OnInit {
   ) { }
 
   update(newValue) {
-    this.previousProject = this.service.cloneProject(newValue);
-    this.project = newValue;
+    if (newValue) {
+      this.previousProject = this.service.cloneProject(newValue);
+      this.project = newValue;
+    }
   }
 
   ngOnInit() {
@@ -32,10 +34,10 @@ export class ProjectDetailsComponent implements OnInit {
 
   changeName(): void {
     if (this.previousProject !== undefined) {
-      if (this.project.Name !== this.previousProject.Name) {
-        let renameCommand = new RenameProjectCommand(this.project, this.previousProject.Name);
+      if (this.project.name !== this.previousProject.name) {
+        let renameCommand = new RenameProjectCommand(this.project, this.previousProject.name);
         this.service.postCommand(renameCommand, false);
-        this.previousProject.Name = this.project.Name;
+        this.previousProject.name = this.project.name;
       }
     } else {
       this.previousProject = this.project;
@@ -43,18 +45,18 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   changeStartDate(): void {
-    if (this.project.StartDate !== this.previousProject.StartDate) {
-      let changeStartDateForCommand = new ChangeStartDateForProjectCommand(this.project, this.previousProject.StartDate);
+    if (this.project.startDate !== this.previousProject.startDate) {
+      let changeStartDateForCommand = new ChangeStartDateOfProjectCommand(this.project, this.previousProject.startDate);
       this.service.postCommand(changeStartDateForCommand, false);
-      this.previousProject.StartDate = this.project.StartDate;
+      this.previousProject.startDate = this.project.startDate;
     }
   }
 
   changeEndDate(): void {
-    if (this.project.EndDate !== this.previousProject.EndDate) {
-      let command = new ChangeEndDateForProjectCommand(this.project, this.previousProject.EndDate);
+    if (this.project.endDate !== this.previousProject.endDate) {
+      let command = new ChangeEndDateOfProjectCommand(this.project, this.previousProject.endDate);
       this.service.postCommand(command, false);
-      this.previousProject.EndDate = this.project.EndDate;
+      this.previousProject.endDate = this.project.endDate;
     }
   }
 }
