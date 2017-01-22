@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, NgZone } from '@angular/core';
+import { Component, Input, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { Project } from './project';
 import { UUID } from 'angular2-uuid';
@@ -6,16 +6,15 @@ import { UUID } from 'angular2-uuid';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
-  providers: [ProjectsService]
+  styleUrls: ['./projects.component.css']
 })
 
 export class ProjectsComponent implements OnInit {
-  @Input() projects = new Array<Project>();
+  @Input() projects = new Array<Object>();
   selectedProject: Project;
   searchText: string;
 
-  constructor(private projectsService: ProjectsService, private zone: NgZone) { }
+  constructor(private projectsService: ProjectsService, private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getProjects();
@@ -35,7 +34,11 @@ export class ProjectsComponent implements OnInit {
 */  }
 
   getProjects(): void {
-    this.projectsService.getProjects(this.searchText).then(projects => this.zone.run(() => this.projects = projects));
+    this.projectsService.getProjects(this.searchText).then(projects => this.projects = projects);
+  }
+
+  updateProjects(projects: Array<Project>): void {
+    this.projects = projects;
   }
 
   createProject(name: string): void {

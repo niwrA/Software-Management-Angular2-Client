@@ -44,16 +44,25 @@ export class ProjectsService {
       if (searchText && searchText.length > 0) {
         let results = _.filter<Project>(this.projects, prj => prj.name.indexOf(searchText) > -1);
         return Promise.resolve(results);
-      }
+      } else { return Promise.resolve(this.projects); }
+    } else {
+      return this.http.get(this.projectsUrl)
+        .toPromise()
+        .then(response => response.json() as Array<Project>)
+        .catch(this.handleError);
     }
-    return this.http.get(this.projectsUrl)
-      .toPromise()
-      .then(response => response.json() as Array<Project>)
-      .catch(this.handleError);
   }
 
   getProject(guid: string): Promise<Project> {
-    return Promise.resolve(this.projects.find(f => f.guid === guid));
+    if (this.projects.length > 0) {
+      let result = _.find(this.projects, prj => prj.guid === guid);
+      return Promise.resolve(result);
+    } else {
+      return this.http.get(this.projectsUrl + '/' + guid)
+        .toPromise()
+        .then(response => response.json() as Project)
+        .catch(this.handleError);
+    }
   }
 
   postCommand(command: ProjectCommand, replaceOriginal: boolean) {
