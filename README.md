@@ -2,6 +2,8 @@
 
 This project is intended to setup an angular 2 client for a full circle software management system, that brings together all software management related functionality, who took part in what project, what technologies were used, what are the technologies best practices, what products were used or created during the project, what versions were released, which bugs/known issues and features are in which version, what configuration options are there and where/how do they work, what environments are they installed in, etc. The UI will be setup generically, and can then be serviced by a backend database and/or external services as needed. 
 
+The UI is setup using components only currently, and does not do any dynamic module loading yet. This may change in the future. It uses the command pattern (first C in CQRS) to communicate changes to a backend independently of updating the frontend, so UI updates are immediate. For more information, see also: https://www.linkedin.com/pulse/i-command-arwin-van-arum?trk=prof-post
+
 Chat with us at https://software-management.slack.com/
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1. 
