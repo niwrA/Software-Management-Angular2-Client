@@ -11,6 +11,7 @@ import { UUID } from 'angular2-uuid';
 
 export class ProjectsComponent implements OnInit {
   @Input() projects = new Array<Object>();
+  @Input() canAdd: Boolean;
   selectedProject: Project;
   searchText: string;
 
@@ -43,7 +44,16 @@ export class ProjectsComponent implements OnInit {
 
   createProject(name: string): void {
     let project = this.projectsService.createProject(true, name);
-    this.searchText = '';
+    // this.searchText = '';
     this.getProjects();
   }
+
+  deleteProject(project: Project): void {
+    this.projectsService.deleteProject(project);
+  }
+
+  searchTextChanged(): void {
+    this.canAdd = this.searchText.length > 0;
+  }
+
 }

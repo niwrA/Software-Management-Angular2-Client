@@ -18,6 +18,13 @@ export class CreateProjectCommand extends ProjectCommand {
     }
 }
 
+export class DeleteProjectCommand extends ProjectCommand {
+    constructor(project: Project) {
+        super('Delete', project);
+    }
+}
+
+
 export class RenameProjectParameters extends CommandParameters {
     Name: string;
     OriginalName: string;

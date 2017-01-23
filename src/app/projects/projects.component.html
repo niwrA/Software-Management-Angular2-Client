@@ -1,25 +1,25 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)"
+    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)"
       (keyup.enter)='createProject(searchTextInput.value)'></md-input>
-    <button md-raised-button md-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
+    <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
   </p>
   <p hidden>
     <md-checkbox>Only my projects ... </md-checkbox>
   </p>
   <md-card *ngFor="let project of projects">
-    <md-card-title-group>
+    <md-card-title-group  [routerLink]="[project.guid, 'details']">
       <md-card-subtitle>
-        <md-icon>assignment circle</md-icon>
+        <md-icon>assignment</md-icon>
       </md-card-subtitle>
       <md-card-title>{{project.name}}</md-card-title>
     </md-card-title-group>
     <md-card-content>
-      <div>{{project.description}} ...</div>
+      <div>{{project.startDate | date:'yyyy-MM-dd'}} {{project.endDate | date:'yyyy-MM-dd'}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[project.guid, 'details']">
-<md-icon>details</md-icon></button>
+      <button (click)="deleteProject(project)">
+<md-icon>delete</md-icon></button>
       <!--        <button [(disabled)]="!project.Email" routerLink="project" RouterLinkActive='active' [uiParams]="{ projectId: project.Guid }">
 <md-icon>email circle</md-icon></button>-->
     </md-card-actions>

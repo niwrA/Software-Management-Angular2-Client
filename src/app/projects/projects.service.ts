@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 import { CommandsService } from '../commands/commands.service';
-import { ProjectCommand, CreateProjectCommand } from './project/project.commands';
+import { ProjectCommand, CreateProjectCommand, DeleteProjectCommand } from './project/project.commands';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 @Injectable()
@@ -27,6 +27,15 @@ export class ProjectsService {
       this.commandsService.postCommand(createProjectCommand, false);
     }
     return newItem;
+  }
+
+  deleteProject(project: Project): void {
+    //project.isDeleted = true;
+    let index = this.projects.indexOf(project, 0);
+    if (index > -1) {
+      this.projects.splice(index, 1);
+    }
+    this.postCommand(new DeleteProjectCommand(project), false);
   }
 
   cloneProject(original: Project): Project {
