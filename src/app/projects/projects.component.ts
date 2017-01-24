@@ -15,7 +15,9 @@ export class ProjectsComponent implements OnInit {
   selectedProject: Project;
   searchText: string;
 
-  constructor(private projectsService: ProjectsService, private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private projectsService: ProjectsService, private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) {
+    this.projects = projectsService.projects;
+   }
 
   ngOnInit() {
     this.getProjects();
@@ -50,6 +52,7 @@ export class ProjectsComponent implements OnInit {
 
   deleteProject(project: Project): void {
     this.projectsService.deleteProject(project);
+    this.projects = this.projectsService.projects;
   }
 
   searchTextChanged(): void {
