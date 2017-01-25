@@ -1,9 +1,8 @@
 export class Product {
-    Name: string;
-    Guid: string;
-    Description?: string;
-    BusinessCase?: string;
-    EndDate?: Date;
+    name: string;
+    guid: string;
+    description: string;
+    businessCase: string;
 }
 
 

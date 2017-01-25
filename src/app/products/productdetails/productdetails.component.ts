@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { CommandsService } from '../../commands/commands.service';
+import { RenameProductCommand, ChangeDescriptionOfProductCommand, ChangeBusinessCaseOfProductCommand } from '../product/product.commands';
 
 @Component({
   selector: 'app-productdetails',
@@ -21,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   update(newValue) {
-    //    this.previousProduct = this.service.cloneProduct(newValue);
+    this.previousProduct = this.service.cloneProduct(newValue);
     this.product = newValue;
   }
 
@@ -32,13 +33,38 @@ export class ProductDetailsComponent implements OnInit {
 
   changeName(): void {
     if (this.previousProduct !== undefined) {
-      if (this.product.Name !== this.previousProduct.Name) {
-        //      var renameCommand = new RenameProductCommand(this.product, this.previousProduct.Name);
-        //      this.service.postCommand(renameCommand, false);
-        this.previousProduct.Name = this.product.Name;
+      if (this.product.name !== this.previousProduct.name) {
+        let renameCommand = new RenameProductCommand(this.product, this.previousProduct.name);
+        this.service.postCommand(renameCommand, false);
+        this.previousProduct.name = this.product.name;
       }
     } else {
       this.previousProduct = this.product;
     }
   }
+
+  changeDescription(): void {
+    if (this.previousProduct !== undefined) {
+      if (this.product.description !== this.previousProduct.description) {
+        let command = new ChangeDescriptionOfProductCommand(this.product);
+        this.service.postCommand(command, false);
+        this.previousProduct.description = this.product.description;
+      }
+    } else {
+      this.previousProduct = this.product;
+    }
+  }
+
+  changeBusinessCase(): void {
+    if (this.previousProduct !== undefined) {
+      if (this.product.businessCase !== this.previousProduct.businessCase) {
+        let command = new ChangeBusinessCaseOfProductCommand(this.product);
+        this.service.postCommand(command, false);
+        this.previousProduct.businessCase = this.product.businessCase;
+      }
+    } else {
+      this.previousProduct = this.product;
+    }
+  }
+
 }

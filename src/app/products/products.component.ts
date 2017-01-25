@@ -40,8 +40,8 @@ export class ProductsComponent implements OnInit {
   }
 
   createProduct(name: string): void {
-    let product = this.productsService.createProduct();
-    product.Name = name;
+    let product = this.productsService.createProduct(true, name);
+    product.name = name;
     this.searchText = '';
     this.getProducts('');
   }

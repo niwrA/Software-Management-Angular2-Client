@@ -11,15 +11,16 @@
       <md-card-subtitle>
         <md-icon>shopping cart</md-icon>
       </md-card-subtitle>
-      <md-card-title>{{product.Name}}</md-card-title>
+      <md-card-title>{{product.name}}</md-card-title>
     </md-card-title-group>
     <md-card-content>
-      <div>{{product.Description}} ...</div>
+      <div>{{product.description}}</div>
+      <div>{{product.businessCase}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[product.Guid, 'details']">
+      <button [routerLink]="[product.guid, 'details']">
 <md-icon>details circle</md-icon></button>
-      <button [routerLink]="[product.Guid]" >
+      <button [routerLink]="[product.guid]" >
 <md-icon>share circle</md-icon></button>
     </md-card-actions>
   </md-card>

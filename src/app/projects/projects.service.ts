@@ -1,4 +1,5 @@
 import { Injectable, Input } from '@angular/core';
+
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Project } from './project';
@@ -30,7 +31,6 @@ export class ProjectsService {
   }
 
   deleteProject(project: Project): void {
-    //project.isDeleted = true;
     let index = this.projects.indexOf(project, 0);
     if (index > -1) {
       this.projects.splice(index, 1);
