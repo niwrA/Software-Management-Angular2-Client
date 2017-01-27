@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Command } from './command';
 import { UUID } from 'angular2-uuid';
 import { Headers, Http } from '@angular/http';
+import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -10,7 +11,8 @@ export class CommandsService {
   commands = new Array<Command>();
   postedCommands = new Array<Command>();
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private notificationsService: NotificationsService) {
+  };
 
   // todo: move to commandservice?
   postCommand(command: Command, replaceOriginal: Boolean) {
@@ -21,16 +23,28 @@ export class CommandsService {
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
     this.http.post('http://localhost:50274/api/commands/batch', JSON.stringify(this.commands),
-      { headers: this.headers }).toPromise().then(this.processResults).catch(this.handleError);
-    this.postedCommands.push(command);
-    this.commands = new Array<Command>();
+      { headers: this.headers }).toPromise().then(results => this.processResults(results, command,
+        this.commands, this.postedCommands, this.notificationsService))
+        .catch(error=>this.handleError(error, this.notificationsService));
+    //    this.commands = new Array<Command>();
   }
-  private processResults(results: any) {
+  private processResults(results: any, command: Command, commands: Array<Command>, postedCommands: Array<Command>, notificationService: NotificationsService) {
     console.log('project commands posted successfully', results);
+    postedCommands.push(command);
+    commands.splice(0);
+    notificationService.success(command.Name + ' ' + command.Entity, command.Name + ' ' + command.Entity + ' posted successfully', {timeOut: 3000, clickToClose:false});
     // todo: handle command response properly (only move those that have been changed) 
   }
-  private handleError(error: any): Promise<any> {
+  handleError(error: any, notificationService: NotificationsService): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
+    notificationService.error('An error occurred',error, {timeOut: 5000, clickToClose:false});
+    /*    if (this._pushNotificationsService) {
+          if (this._pushNotificationsService.permission === 'default') {
+            this._pushNotificationsService.requestPermission();
+          }
+          this._pushNotificationsService.create('Command(s) posted successfully', { body: error.message });
+        }
+    */
     return Promise.reject(error.message || error);
   }
 

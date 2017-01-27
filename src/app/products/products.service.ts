@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Product } from './product';
 import { PRODUCTS } from './mock-products';
 import { CommandsService } from '../commands/commands.service';
+import { NotificationsService } from 'angular2-notifications';
 import { ProductCommand, CreateProductCommand, DeleteProductCommand, RenameProductCommand } from './product/product.commands';
 import * as _ from 'lodash';
 
@@ -12,7 +13,7 @@ export class ProductsService {
   productsUrl = 'http://localhost:50274/api/products';
   products = new Array<Product>();
 
-  constructor(private commandsService: CommandsService, private http: Http) {
+  constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
     this.getProducts('').then(result => this.products = result as Array<Product>);
   }
 
@@ -57,7 +58,7 @@ export class ProductsService {
       return this.http.get(this.productsUrl)
         .toPromise()
         .then(response => response.json() as Array<Product>)
-        .catch(this.handleError);
+        .catch(error => this.handleError(error, this.notificationService));
     }
   }
 
@@ -69,7 +70,7 @@ export class ProductsService {
       return this.http.get(this.productsUrl + '/' + guid)
         .toPromise()
         .then(response => response.json() as Product)
-        .catch(this.handleError);
+        .catch(error => this.handleError(error, this.notificationService));
     }
   }
 
@@ -77,8 +78,9 @@ export class ProductsService {
     this.commandsService.postCommand(command, replaceOriginal);
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any, notificationService: NotificationsService): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
+    notificationService.error('An error occurred',error, {timeOut: 5000, clickToClose:false});
     return Promise.reject(error.message || error);
   }
 
