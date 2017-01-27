@@ -1,0 +1,21 @@
+<md-card>
+  <p>
+    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjectRoles(searchTextInput.value)"
+      (keyup.enter)='createProjectRole(searchTextInput.value)'></md-input>
+    <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
+  </p>
+  <md-card *ngFor="let projectrole of projectroles">
+    <md-card-title-group  [routerLink]="[projectrole.guid, 'details']">
+      <md-card-subtitle>
+        <md-icon>assignment</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{projectrole.name}}</md-card-title>
+    </md-card-title-group>
+    <md-card-actions align='end'>
+      <button (click)="deleteProjectRole(projectrole)">
+<md-icon>delete</md-icon></button>
+      <!--        <button [(disabled)]="!projectrole.Email" routerLink="projectrole" RouterLinkActive='active' [uiParams]="{ projectroleId: projectrole.Guid }">
+<md-icon>email circle</md-icon></button>-->
+    </md-card-actions>
+  </md-card>
+</md-card>

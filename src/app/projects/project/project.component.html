@@ -1,9 +1,9 @@
 <md-card>
-  <md-card-title *ngIf="project">{{project.Name}}</md-card-title>
+  <md-card-title *ngIf="project">{{project.name}}</md-card-title>
   <md-card-actions *ngIf="project">
     <button routerLink='details' md-raised-button md-tooltip="in progress: Project Details">Details</button>
     <button routerLink='projectProducts' md-raised-button md-tooltip="todo: View Products involved in this Project">Products</button>
-    <button routerLink='members' md-raised-button md-tooltip="in progress; Project Members">Members</button>
+    <button routerLink='roles' md-raised-button md-tooltip="in progress: Project Roles">Roles</button>
   </md-card-actions>
   <router-outlet></router-outlet>
 </md-card>

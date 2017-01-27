@@ -47,8 +47,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { PageNotFoundComponent } from './not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SemgraphComponent } from './semgraph/semgraph.component';
-import { ProjectMembersComponent } from './projects/projectmembers/projectmembers.component';
-import { ProjectDetailsComponent } from './projects/projectdetails/projectdetails.component';
+import { ProjectRolesComponent } from './projects/project/projectroles/projectroles.component';
+import { ProjectDetailsComponent } from './projects/project/projectdetails/projectdetails.component';
 import { SemgraphService } from './semgraph/semgraph.service';
 import { CommandsComponent } from './commands/commands.component';
 import { CommandsService } from './commands/commands.service';
@@ -99,7 +99,7 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
     SmaTextareaComponent,
     PageNotFoundComponent,
     SemgraphComponent,
-    ProjectMembersComponent,
+    ProjectRolesComponent,
     ProjectDetailsComponent,
     CommandsComponent,
     EnvironmentsComponent,

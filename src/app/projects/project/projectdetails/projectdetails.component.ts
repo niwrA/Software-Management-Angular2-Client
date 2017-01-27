@@ -1,9 +1,9 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Project } from '../project';
-import { RenameProjectCommand, ChangeStartDateOfProjectCommand, ChangeEndDateOfProjectCommand } from '../project/project.commands';
-import { ProjectsService } from '../projects.service';
+import { Project } from '../../project';
+import { RenameProjectCommand, ChangeStartDateOfProjectCommand, ChangeEndDateOfProjectCommand } from '../project.commands';
+import { ProjectsService } from '../../projects.service';
 
 @Component({
   selector: 'app-projectdetails',
@@ -20,16 +20,16 @@ export class ProjectDetailsComponent implements OnInit {
     private service: ProjectsService
   ) { }
 
+  ngOnInit() {
+    this.route.parent.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
+      .subscribe((project: Project) => this.update(project));
+  }
+
   update(newValue) {
     if (newValue) {
       this.previousProject = this.service.cloneProject(newValue);
       this.project = newValue;
     }
-  }
-
-  ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
-      .subscribe((project: Project) => this.update(project));
   }
 
   changeName(): void {

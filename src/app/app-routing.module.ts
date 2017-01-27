@@ -13,7 +13,8 @@ import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
-import { ProjectDetailsComponent } from './projects/projectdetails/projectdetails.component';
+import { ProjectDetailsComponent } from './projects/project/projectdetails/projectdetails.component';
+import { ProjectRolesComponent } from './projects/project/projectroles/projectroles.component';
 
 import { TechnologiesComponent } from './technologies/technologies.component';
 import { TechnologyComponent } from './technologies/technology/technology.component';
@@ -65,7 +66,12 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ProjectDetailsComponent
+      },
+      {
+        path: 'roles',
+        component: ProjectRolesComponent
       }
+
     ]
   },
   {

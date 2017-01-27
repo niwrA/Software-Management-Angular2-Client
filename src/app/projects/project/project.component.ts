@@ -2,6 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from '../project';
+import { ProjectRole } from './projectroles/projectrole';
 import { ProjectsService } from '../projects.service';
 
 @Component({

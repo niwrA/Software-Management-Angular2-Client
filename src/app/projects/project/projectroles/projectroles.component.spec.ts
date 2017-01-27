@@ -1,26 +1,23 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ProjectMembersComponent } from './projectmembers.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ProjectrolesComponent } from './projectroles.component';
 
-describe('ProjectMembersComponent', () => {
-  let component: ProjectMembersComponent;
-  let fixture: ComponentFixture<ProjectMembersComponent>;
+describe('ProjectrolesComponent', () => {
+  let component: ProjectrolesComponent;
+  let fixture: ComponentFixture<ProjectrolesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectMembersComponent ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      declarations: [ ProjectrolesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectMembersComponent);
+    fixture = TestBed.createComponent(ProjectrolesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

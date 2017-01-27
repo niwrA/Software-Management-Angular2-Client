@@ -2,7 +2,7 @@ import { Injectable, Input } from '@angular/core';
 
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
-import { Project } from './project';
+import { Project, ProjectState } from './project';
 import { PROJECTS } from './mock-projects';
 import { CommandsService } from '../commands/commands.service';
 import { ProjectCommand, CreateProjectCommand, DeleteProjectCommand } from './project/project.commands';
@@ -19,7 +19,7 @@ export class ProjectsService {
   }
 
   createProject(doSave: boolean, name?: string): Project {
-    let newItem = new Project;
+    let newItem = new Project();
     newItem.guid = UUID.UUID();
     newItem.name = name;
     if (doSave) {
@@ -40,10 +40,11 @@ export class ProjectsService {
 
   cloneProject(original: Project): Project {
     if (original) {
-      let clonedItem = this.createProject(false);
-      clonedItem.endDate = original.endDate;
-      clonedItem.name = original.name;
-      clonedItem.startDate = original.startDate;
+      let clonedItem = original.clone();//this.createProject(false);
+      /*      clonedItem.endDate = original.endDate;
+            clonedItem.name = original.name;
+            clonedItem.startDate = original.startDate;
+      */
       return clonedItem;
     }
   }
@@ -57,9 +58,18 @@ export class ProjectsService {
     } else {
       return this.http.get(this.projectsUrl)
         .toPromise()
-        .then(response => response.json() as Array<Project>)
+        .then(response => this.parseResponse(response, this.projects))
         .catch(this.handleError);
     }
+  }
+
+  parseResponse(response: any, projects: Array<Project>): Array<Project> {
+    let states = response.json() as Array<ProjectState>;
+    projects = new Array<Project>();
+    for (let state of states) {
+      projects.push(new Project(state));
+    }
+    return projects;
   }
 
   getProject(guid: string): Promise<Project> {
@@ -69,7 +79,7 @@ export class ProjectsService {
     } else {
       return this.http.get(this.projectsUrl + '/' + guid)
         .toPromise()
-        .then(response => response.json() as Project)
+        .then(response => new Project(response.json() as ProjectState))
         .catch(this.handleError);
     }
   }
