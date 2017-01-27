@@ -3,6 +3,7 @@ import { UsersService } from './admin/users/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Epics } from './menu-state';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
+import { NotificationComponent } from 'angular2-notifications';
 
 @Component({
   selector: 'app-root',

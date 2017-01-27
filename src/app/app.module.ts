@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PushNotificationsService, SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
@@ -73,7 +74,8 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
     HttpModule,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
-    AppRoutingModule],
+    AppRoutingModule,
+    SimpleNotificationsModule ],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -116,7 +118,7 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
     ProductDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, SemgraphService, CommandsService],
+    ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
