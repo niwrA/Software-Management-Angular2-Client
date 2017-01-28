@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import * as _ from 'lodash';
-
 import { AppComponent } from './app.component';
 
 import { MaterialModule } from '@angular/material';
@@ -66,6 +65,7 @@ import { GroupaccessesComponent } from './admin/groupaccesses/groupaccesses.comp
 import { LoginComponent } from './admin/login/login.component';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
 import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
+import { BarchartComponent } from './shared/barchart/barchart.component';
 
 @NgModule({
   imports: [
@@ -115,7 +115,8 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
     GroupaccessesComponent,
     LoginComponent,
     UiMenuComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BarchartComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

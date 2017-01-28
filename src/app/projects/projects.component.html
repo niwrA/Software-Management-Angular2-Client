@@ -1,14 +1,10 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)"
-      (keyup.enter)='createProject(searchTextInput.value)'></md-input>
+    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)" (keyup.enter)='createProject(searchTextInput.value)'></md-input>
     <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
   </p>
-  <p hidden>
-    <md-checkbox>Only my projects ... </md-checkbox>
-  </p>
   <md-card *ngFor="let project of projects">
-    <md-card-title-group  [routerLink]="[project.guid, 'details']">
+    <md-card-title-group [routerLink]="[project.guid, 'details']">
       <md-card-subtitle>
         <md-icon>assignment</md-icon>
       </md-card-subtitle>

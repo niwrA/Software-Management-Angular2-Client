@@ -1,4 +1,3 @@
-<md-card>
   <p>
     <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjectRoles(searchTextInput.value)"
       (keyup.enter)='createProjectRole(searchTextInput.value)'></md-input>
@@ -18,4 +17,3 @@
 <md-icon>email circle</md-icon></button>-->
     </md-card-actions>
   </md-card>
-</md-card>

@@ -32,19 +32,12 @@ export class CommandsService {
     console.log('project commands posted successfully', results);
     postedCommands.push(command);
     commands.splice(0);
-    notificationService.success(command.Name + ' ' + command.Entity, command.Name + ' ' + command.Entity + ' posted successfully', {timeOut: 3000, clickToClose:true});
+    notificationService.success(command.DisplayProperties.title, command.DisplayProperties.description + ' posted successfully', {timeOut: 3000, clickToClose:true});
     // todo: handle command response properly (only move those that have been changed) 
   }
   handleError(error: any, notificationService: NotificationsService): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error); 
     notificationService.error('An error occurred',error, {timeOut: 5000, clickToClose:true});
-    /*    if (this._pushNotificationsService) {
-          if (this._pushNotificationsService.permission === 'default') {
-            this._pushNotificationsService.requestPermission();
-          }
-          this._pushNotificationsService.create('Command(s) posted successfully', { body: error.message });
-        }
-    */
     return Promise.reject(error.message || error);
   }
 }
