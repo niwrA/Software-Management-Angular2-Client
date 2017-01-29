@@ -6,7 +6,7 @@ import { ProjectsService } from '../../projects.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
-import { AddRoleToProjectCommand, AddRoleToProjectParameters } from '../project.commands';
+import { AddRoleToProjectCommand, AddRoleToProjectParameters, RemoveRoleFromProjectCommand } from '../project.commands';
 
 @Component({
   selector: 'app-projectroles',
@@ -32,9 +32,6 @@ export class ProjectRolesComponent implements OnInit {
 
   updateProject(project: Project) {
     this.project = project;
-    if (project.projectRoles === undefined) {
-      project.projectRoles = new Array<ProjectRole>();
-    }
     this.projectroles = project.projectRoles
   }
 
@@ -46,17 +43,18 @@ export class ProjectRolesComponent implements OnInit {
     let projectrole = new ProjectRole();
     projectrole.guid = UUID.UUID();
     projectrole.name = name;
-    this.projectroles.push(projectrole);
-    
-    var commandParameters = new AddRoleToProjectParameters();
-    var command = new AddRoleToProjectCommand(this.project,projectrole.guid, projectrole.name);
-    command.Parameters = commandParameters;
+
+    this.project.projectRoles.push(projectrole);
+    this.updateProject(this.project);
+
+    var command = new AddRoleToProjectCommand(this.project, projectrole.guid, projectrole.name);
     this.service.postCommand(command, false);
   }
 
   deleteProjectRole(projectrole: ProjectRole) {
     this.projectroles.splice(this.projectroles.indexOf(projectrole));
-    // todo: create and post command
+    var command = new RemoveRoleFromProjectCommand(this.project, projectrole.guid);
+    this.service.postCommand(command, false);
   }
 
   getProjectRoles(searchText: string) {

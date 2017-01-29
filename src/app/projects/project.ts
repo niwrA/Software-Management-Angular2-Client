@@ -7,6 +7,7 @@ export class ProjectState {
     endDate?: Date;
     projectRoles: Array<ProjectRole>;
 }
+
 export class Project {
     private _state: ProjectState;
     constructor(state?: ProjectState) {
@@ -16,6 +17,10 @@ export class Project {
         }
         if (this.projectRoles === undefined) {
             this.projectRoles = new Array<ProjectRole>();
+        }
+        for(let projectRoleState of state.projectRoles)
+        {
+            this.projectRoles.push(new ProjectRole(projectRoleState));
         }
     }
 
@@ -31,8 +36,8 @@ export class Project {
     get endDate(): Date { return this._state.endDate; };
     set endDate(value: Date) { this._state.endDate = value; };
 
-    get projectRoles(): Array<ProjectRole> { return this._state.projectRoles };
-    set projectRoles(projectRoles: Array<ProjectRole>) { this._state.projectRoles = projectRoles };
+    projectRoles: Array<ProjectRole>;
+
     //    projectRoles: Array<ProjectRole>;
     public clone() : Project {
         return new Project(_.clone(this._state));
