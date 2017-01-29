@@ -66,3 +66,18 @@ export class ChangeEndDateOfProjectCommand extends ProjectCommand {
         this.Parameters = parameters;
     }
 }
+
+export class AddRoleToProjectParameters extends CommandParameters {
+    RoleGuid: string;
+    RoleName?: string;
+}
+export class AddRoleToProjectCommand extends ProjectCommand {
+
+    constructor(project: Project, roleGuid: string, roleName?: string) {
+        super('AddRoleTo', project);
+        let parameters = new AddRoleToProjectParameters();
+        parameters.RoleGuid = roleGuid;
+        parameters.RoleName = roleName;
+        this.Parameters = parameters;
+    }
+}

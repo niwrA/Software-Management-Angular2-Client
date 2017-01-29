@@ -6,6 +6,7 @@ import { ProjectsService } from '../../projects.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
+import { AddRoleToProjectCommand, AddRoleToProjectParameters } from '../project.commands';
 
 @Component({
   selector: 'app-projectroles',
@@ -46,7 +47,11 @@ export class ProjectRolesComponent implements OnInit {
     projectrole.guid = UUID.UUID();
     projectrole.name = name;
     this.projectroles.push(projectrole);
-    // todo: create and post command
+    
+    var commandParameters = new AddRoleToProjectParameters();
+    var command = new AddRoleToProjectCommand(this.project,projectrole.guid, projectrole.name);
+    command.Parameters = commandParameters;
+    this.service.postCommand(command, false);
   }
 
   deleteProjectRole(projectrole: ProjectRole) {
