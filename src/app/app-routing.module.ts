@@ -5,7 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactComponent } from './contacts/contact/contact.component';
-
+import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyComponent } from './companies/company/company.component';
 
@@ -41,7 +41,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'contacts/:contactId',
-    component: ContactComponent
+    component: ContactComponent,
+    children: [
+      {
+        path: 'details',
+        component: ContactDetailsComponent
+      }
+    ]
   },
   {
     path: 'companies',

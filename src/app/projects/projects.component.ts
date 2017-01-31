@@ -45,7 +45,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject(name: string): void {
-    let project = this.projectsService.createProject(true, name);
+    const project = this.projectsService.createProject(true, name);
     // this.searchText = '';
     this.getProjects();
   }

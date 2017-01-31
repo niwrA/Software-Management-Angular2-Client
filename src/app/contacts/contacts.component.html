@@ -9,17 +9,17 @@
       <md-card-subtitle>
         <md-icon>person circle</md-icon>
       </md-card-subtitle>
-      <md-card-title>{{contact.Name}}</md-card-title>
+      <md-card-title>{{contact.name}}</md-card-title>
     </md-card-title-group>
     <md-card-content>
-      <div>{{contact.FirstName}} ...</div>
+      <div>{{contact.email}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[contact.Guid]"><md-icon>details circle</md-icon></button>
-      <button [(disabled)]="!contact.Email" [routerLink]="[contact.Guid]"><md-icon>email circle</md-icon></button>
+      <button [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
+      <button [(disabled)]="!contact.email" [routerLink]="[contact.guid, 'details']"><md-icon>email circle</md-icon></button>
     </md-card-actions>
   </md-card>
-  <md-list>
+<!--  <md-list>
     <md-list-item *ngFor="let contact of contacts">
       <h3 md-line>{{contact.Name}}</h3>
       <p md-line>extra line</p>
@@ -28,4 +28,4 @@
       <button [(disabled)]="!contact.Email" [routerLink]="[contact.Guid]"><md-icon>email circle</md-icon></button>
     </md-list-item>
   </md-list>
-</md-card>
+--></md-card>

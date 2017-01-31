@@ -1,0 +1,5 @@
+  <div *ngIf="contact">
+    <md-input (blur)="changeName()" [(ngModel)]="contact.name" placeholder="Name"></md-input>
+    <md-input (blur)="changeEmail()" [(ngModel)]="contact.email" placeholder="email"></md-input>
+    <md-input (blur)="changeBirthDate()" type='date' [(ngModel)]='contact.birthDate' placeholder="BirthDate"></md-input>
+  </div>

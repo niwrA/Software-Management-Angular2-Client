@@ -66,6 +66,7 @@ import { LoginComponent } from './admin/login/login.component';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
 import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
 import { BarchartComponent } from './shared/barchart/barchart.component';
+import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 
 @NgModule({
   imports: [
@@ -116,7 +117,8 @@ import { BarchartComponent } from './shared/barchart/barchart.component';
     LoginComponent,
     UiMenuComponent,
     ProductDetailsComponent,
-    BarchartComponent
+    BarchartComponent,
+    ContactDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

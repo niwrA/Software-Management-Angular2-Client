@@ -12,7 +12,7 @@ export class CreateProjectParameters extends CommandParameters {
 export class CreateProjectCommand extends ProjectCommand {
     constructor(project: Project) {
         super('Create', project);
-        let parameters = new CreateProjectParameters();
+        const parameters = new CreateProjectParameters();
         parameters.Name = project.name;
         this.Parameters = parameters;
     }
@@ -32,7 +32,7 @@ export class RenameProjectParameters extends CommandParameters {
 export class RenameProjectCommand extends ProjectCommand {
     constructor(project: Project, orgName: string) {
         super('Rename', project);
-        let parameters = new RenameProjectParameters();
+        const parameters = new RenameProjectParameters();
         parameters.OriginalName = orgName;
         parameters.Name = project.name;
         this.Parameters = parameters;
@@ -46,7 +46,7 @@ export class ChangeStartDateOfProjectCommand extends ProjectCommand {
 
     constructor(project: Project, orgStartDate?: Date) {
         super('ChangeStartDateOf', project);
-        let parameters = new ChangeStartDateParameters();
+        const parameters = new ChangeStartDateParameters();
         parameters.OriginalStartDate = orgStartDate;
         parameters.StartDate = project.startDate;
         this.Parameters = parameters;
@@ -60,7 +60,7 @@ export class ChangeEndDateOfProjectCommand extends ProjectCommand {
 
     constructor(project: Project, orgEndDate?: Date) {
         super('ChangeEndDateOf', project);
-        let parameters = new ChangeEndDateParameters();
+        const parameters = new ChangeEndDateParameters();
         parameters.OriginalEndDate = orgEndDate;
         parameters.EndDate = project.endDate;
         this.Parameters = parameters;
@@ -75,7 +75,7 @@ export class AddRoleToProjectCommand extends ProjectCommand {
 
     constructor(project: Project, roleGuid: string, roleName: string) {
         super('AddRoleTo', project);
-        let parameters = new AddRoleToProjectParameters();
+        const parameters = new AddRoleToProjectParameters();
         parameters.RoleGuid = roleGuid;
         parameters.RoleName = roleName;
         this.Parameters = parameters;
@@ -88,7 +88,7 @@ export class RemoveRoleFromProjectCommand extends ProjectCommand {
 
     constructor(project: Project, roleGuid: string) {
         super('RemoveRoleFrom', project);
-        let parameters = new RemoveRoleFromProjectParameters();
+        const parameters = new RemoveRoleFromProjectParameters();
         parameters.RoleGuid = roleGuid;
         this.Parameters = parameters;
     }
