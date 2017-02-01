@@ -45,7 +45,10 @@ export class CompaniesComponent implements OnInit {
 
   deleteCompany(company: Company): void {
     this.companiesService.deleteCompany(company);
-    this.companies = this.companiesService.companies;
+    const index = this.companies.indexOf(company, 0);
+    if (index > -1) {
+      this.companies.splice(index, 1);
+    }
   }
 
   searchTextChanged(): void {

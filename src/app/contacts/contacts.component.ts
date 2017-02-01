@@ -45,7 +45,10 @@ export class ContactsComponent implements OnInit {
 
   deleteContact(contact: Contact): void {
     this.contactsService.deleteContact(contact);
-    this.contacts = this.contactsService.contacts;
+    const index = this.contacts.indexOf(contact, 0);
+    if (index > -1) {
+      this.contacts.splice(index, 1);
+    }
   }
 
   searchTextChanged(): void {

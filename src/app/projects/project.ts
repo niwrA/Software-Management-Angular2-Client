@@ -1,11 +1,11 @@
-import { ProjectRole } from './project/projectroles/projectrole';
+import { ProjectRole, ProjectRoleState } from './project/projectroles/projectrole';
 import * as _ from 'lodash';
 export class ProjectState {
     name: string;
     guid: string;
     startDate: string;
     endDate: string;
-    projectRoles: Array<ProjectRole>;
+    projectRoles: Array<ProjectRoleState>;
 }
 
 export class Project {

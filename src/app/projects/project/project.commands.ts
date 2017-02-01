@@ -53,12 +53,12 @@ export class ChangeStartDateOfProjectCommand extends ProjectCommand {
     }
 }
 export class ChangeEndDateParameters extends CommandParameters {
-    EndDate?: Date;
-    OriginalEndDate?: Date;
+    EndDate?: string;
+    OriginalEndDate?: string;
 }
 export class ChangeEndDateOfProjectCommand extends ProjectCommand {
 
-    constructor(project: Project, orgEndDate?: Date) {
+    constructor(project: Project, orgEndDate?: string) {
         super('ChangeEndDateOf', project);
         const parameters = new ChangeEndDateParameters();
         parameters.OriginalEndDate = orgEndDate;

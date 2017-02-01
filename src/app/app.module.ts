@@ -68,6 +68,7 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
 import { BarchartComponent } from './shared/barchart/barchart.component';
 import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
+import { CompanyrolesComponent } from './companies/company/companyroles/companyroles.component';
 
 @NgModule({
   imports: [
@@ -120,7 +121,8 @@ import { CompanyDetailsComponent } from './companies/company/companydetails/comp
     ProductDetailsComponent,
     BarchartComponent,
     ContactDetailsComponent,
-    CompanyDetailsComponent
+    CompanyDetailsComponent,
+    CompanyrolesComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

@@ -22,7 +22,6 @@ export class CompaniesService {
     const newItem = new Company;
     newItem.guid = UUID.UUID();
     newItem.name = name;
-    this.companies.splice(0, 0, newItem);
     if (doSave) {
       this.companies.splice(0, 0, newItem);
       const createCompanyCommand = new CreateCompanyCommand(newItem);

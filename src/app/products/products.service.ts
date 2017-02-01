@@ -22,7 +22,6 @@ export class ProductsService {
     const newItem = new Product;
     newItem.guid = UUID.UUID();
     newItem.name = name;
-    this.products.splice(0, 0, newItem);
     if (doSave) {
       this.products.splice(0, 0, newItem);
       const createProductCommand = new CreateProductCommand(newItem);

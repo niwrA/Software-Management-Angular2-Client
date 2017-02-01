@@ -37,9 +37,13 @@ export class ProductsComponent implements OnInit {
     const product = this.productsService.createProduct(true, name);
     this.getProducts();
   }
+
   deleteProduct(product: Product): void {
     this.productsService.deleteProduct(product);
-    this.products = this.productsService.products;
+    const index = this.products.indexOf(product, 0);
+    if (index > -1) {
+      this.products.splice(index, 1);
+    }
   }
 
   searchTextChanged(): void {

@@ -7,7 +7,7 @@
     <md-checkbox>Only my products ... </md-checkbox>
   </p>
   <md-card *ngFor="let product of products">
-    <md-card-title-group>
+    <md-card-title-group [routerLink]="[product.guid, 'details']">
       <md-card-subtitle>
         <md-icon>shopping cart</md-icon>
       </md-card-subtitle>
@@ -22,6 +22,8 @@
 <md-icon>details circle</md-icon></button>
       <button [routerLink]="[product.guid]" >
 <md-icon>share circle</md-icon></button>
+      <button (click)="deleteProduct(product)">
+<md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>
 </md-card>

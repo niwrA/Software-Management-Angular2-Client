@@ -45,7 +45,10 @@ export class ProjectsComponent implements OnInit {
 
   deleteProject(project: Project): void {
     this.projectsService.deleteProject(project);
-    this.projects = this.projectsService.projects;
+    const index = this.projects.indexOf(project, 0);
+    if (index > -1) {
+      this.projects.splice(index, 1);
+    }
   }
 
   searchTextChanged(): void {

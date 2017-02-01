@@ -5,7 +5,7 @@
     <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let contact of contacts">
-    <md-card-title-group>
+    <md-card-title-group [routerLink]="[contact.guid, 'details']">
       <md-card-subtitle>
         <md-icon>person circle</md-icon>
       </md-card-subtitle>
@@ -16,7 +16,9 @@
     </md-card-content>
     <md-card-actions align='end'>
       <button [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
-      <button [(disabled)]="!contact.email" [routerLink]="[contact.guid, 'details']"><md-icon>email circle</md-icon></button>
+      <a href="mailto:{{contact.email}}"><button [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
+      <button (click)="deleteContact(contact)">
+<md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>
 <!--  <md-list>
