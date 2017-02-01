@@ -67,6 +67,7 @@ import { UiMenuComponent } from './ui-menu/ui-menu.component';
 import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
 import { BarchartComponent } from './shared/barchart/barchart.component';
 import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
+import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
 
 @NgModule({
   imports: [
@@ -118,7 +119,8 @@ import { ContactDetailsComponent } from './contacts/contact/contactdetails/conta
     UiMenuComponent,
     ProductDetailsComponent,
     BarchartComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    CompanyDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

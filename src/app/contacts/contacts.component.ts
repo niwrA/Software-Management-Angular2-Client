@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
-import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-contacts',
@@ -15,7 +14,7 @@ export class ContactsComponent implements OnInit {
   selectedContact: Contact;
   searchText: string;
 
-  constructor(private contactsService: ContactsService, private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private contactsService: ContactsService) {
     this.contacts = contactsService.contacts;
    }
 
@@ -31,11 +30,6 @@ export class ContactsComponent implements OnInit {
     this.selectedContact = null;
   }
 
-  contactDetail(event, contact: Contact): void {
-/*    event.stopPropagation();
-    this.router.navigate(['/contact', contact.Guid]);
-*/  }
-
   getContacts(): void {
     this.contactsService.getContacts(this.searchText).then(contacts => this.contacts = contacts);
   }
@@ -46,7 +40,6 @@ export class ContactsComponent implements OnInit {
 
   createContact(name: string): void {
     const contact = this.contactsService.createContact(true, name);
-    // this.searchText = '';
     this.getContacts();
   }
 

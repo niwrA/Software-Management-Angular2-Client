@@ -1,25 +1,24 @@
-import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { Product } from './product';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
-  providers: [ProductsService]
+  styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
-  products = new Array<Product>();
+  @Input() products = new Array<Product>();
+  @Input() canAdd: Boolean;
   selectedProduct: Product;
   searchText: string;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {
+    this.products = productsService.products;
+  }
 
   ngOnInit() {
-    this.getProducts('');
+    this.getProducts();
   }
 
   onSelect(company: Product): void {
@@ -30,20 +29,20 @@ export class ProductsComponent implements OnInit {
     this.selectedProduct = null;
   }
 
-  ProductDetail(event, Product: Product): void {
-/*    event.stopPropagation();
-    this.router.navigate(['/Product', Product.Guid]);
-*/  }
-
-  getProducts(searchText: string): void {
-    this.productsService.getProducts(searchText).then(products => this.products = products);
+  getProducts(): void {
+    this.productsService.getProducts(this.searchText).then(products => this.products = products);
   }
 
   createProduct(name: string): void {
-    let product = this.productsService.createProduct(true, name);
-    product.name = name;
-    this.searchText = '';
-    this.getProducts('');
+    const product = this.productsService.createProduct(true, name);
+    this.getProducts();
+  }
+  deleteProduct(product: Product): void {
+    this.productsService.deleteProduct(product);
+    this.products = this.productsService.products;
   }
 
+  searchTextChanged(): void {
+    this.canAdd = this.searchText.length > 0;
+  }
 }

@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CompaniesService } from './companies.service';
 import { Company } from './company';
 
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.css'],
-  providers: [CompaniesService]
+  styleUrls: ['./companies.component.css']
 })
 
 export class CompaniesComponent implements OnInit {
-  companies = new Array<Company>();
+  @Input() companies = new Array<Object>();
+  @Input() canAdd: Boolean;
   selectedCompany: Company;
   searchText: string;
 
-  constructor(private companiesService: CompaniesService) { }
+  constructor(private companiesService: CompaniesService) {
+    this.companies = companiesService.companies;
+   }
 
   ngOnInit() {
-    this.getCompanies('');
+    this.getCompanies();
   }
 
   onSelect(company: Company): void {
@@ -28,20 +30,26 @@ export class CompaniesComponent implements OnInit {
     this.selectedCompany = null;
   }
 
-  CompanyDetail(event, Company: Company): void {
-/*    event.stopPropagation();
-    this.router.navigate(['/Company', Company.Guid]);
-*/  }
+  getCompanies(): void {
+    this.companiesService.getCompanies(this.searchText).then(companies => this.companies = companies);
+  }
 
-  getCompanies(searchText: string): void {
-    this.companiesService.getCompanies(searchText).then(companies => this.companies = companies);
+  updateCompanies(companies: Array<Company>): void {
+    this.companies = companies;
   }
 
   createCompany(name: string): void {
-    let company = this.companiesService.createCompany();
-    company.Name = name;
-    this.searchText = '';
-    this.getCompanies('');
+    const company = this.companiesService.createCompany(true, name);
+    this.getCompanies();
   }
-}
 
+  deleteCompany(company: Company): void {
+    this.companiesService.deleteCompany(company);
+    this.companies = this.companiesService.companies;
+  }
+
+  searchTextChanged(): void {
+    this.canAdd = this.searchText.length > 0;
+  }
+
+}

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { Project } from './project';
-import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +14,7 @@ export class ProjectsComponent implements OnInit {
   selectedProject: Project;
   searchText: string;
 
-  constructor(private projectsService: ProjectsService, private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private projectsService: ProjectsService) {
     this.projects = projectsService.projects;
    }
 
@@ -31,11 +30,6 @@ export class ProjectsComponent implements OnInit {
     this.selectedProject = null;
   }
 
-  projectDetail(event, project: Project): void {
-/*    event.stopPropagation();
-    this.router.navigate(['/project', project.Guid]);
-*/  }
-
   getProjects(): void {
     this.projectsService.getProjects(this.searchText).then(projects => this.projects = projects);
   }
@@ -46,7 +40,6 @@ export class ProjectsComponent implements OnInit {
 
   createProject(name: string): void {
     const project = this.projectsService.createProject(true, name);
-    // this.searchText = '';
     this.getProjects();
   }
 

@@ -1,6 +1,6 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProducts(searchTextInput.value || '')" (keyup.enter)='createProduct(searchTextInput.value)'></md-input>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)'></md-input>
     <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
   </p>
   <p hidden>

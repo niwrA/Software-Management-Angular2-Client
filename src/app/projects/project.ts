@@ -3,8 +3,8 @@ import * as _ from 'lodash';
 export class ProjectState {
     name: string;
     guid: string;
-    startDate?: Date;
-    endDate?: Date;
+    startDate: string;
+    endDate: string;
     projectRoles: Array<ProjectRole>;
 }
 
@@ -30,14 +30,33 @@ export class Project {
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
 
-    get startDate(): Date { return this._state.startDate; };
-    set startDate(value: Date) { this._state.startDate = value; };
+    get startDate(): string { return this._state.startDate; };
+    set startDate(value: string) { this._state.startDate = value; };
 
-    get endDate(): Date { return this._state.endDate; };
-    set endDate(value: Date) { this._state.endDate = value; };
+/*    get startDateString(): string {
+        if (this._state.startDate !== null) {
+            return this.convertToDateString(this._state.startDate);
+        } else { return null; }
+    };
+    set startDateString(value: string) { this._state.startDate = new Date(value); };
+
+*/    get endDate(): string { return this._state.endDate; };
+    set endDate(value: string) { this._state.endDate = value; };
 
     public clone(): Project {
         return new Project(_.clone(this._state));
     }
+/*    private pad(input: any): string {
+        if (input.length === 1) {
+            return '0' + input;
+        }
+        return input;
+    }
+    private convertToDateString(date: Date): string {
+        if (date !== null) {
+            return '' + date.getFullYear() + '-' + this.pad(date.getMonth()) + '-' + this.pad(date.getDate());
+        }
+        return '';
+    }*/
 }
 

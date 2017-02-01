@@ -8,7 +8,7 @@ import { ContactComponent } from './contacts/contact/contact.component';
 import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyComponent } from './companies/company/company.component';
-
+import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
 import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -55,7 +55,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'companies/:companyId',
-    component: CompanyComponent
+    component: CompanyComponent,
+    children: [
+      {
+        path: 'details',
+        component: ContactDetailsComponent
+      }
+    ]
   },
   {
     path: 'login',

@@ -1,5 +1,5 @@
   <div *ngIf="project">
     <md-input (blur)="changeName()" [(ngModel)]="project.name" placeholder="Name"></md-input>
-    <md-input (blur)="changeStartDate()" type='date' [(ngModel)]='project.startDate' placeholder="StartDate"></md-input>
+    <md-input (blur)="changeStartDate()" type='date' [(ngModel)]='project.startDateString' placeholder="StartDate"></md-input>
     <md-input (blur)="changeEndDate()" type='date' [(ngModel)]='project.endDate' placeholder="EndDate"></md-input>
   </div>
