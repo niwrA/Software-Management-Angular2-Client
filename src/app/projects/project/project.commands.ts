@@ -39,12 +39,12 @@ export class RenameProjectCommand extends ProjectCommand {
     }
 }
 export class ChangeStartDateParameters extends CommandParameters {
-    StartDate?: Date;
-    OriginalStartDate?: Date;
+    StartDate?: string;
+    OriginalStartDate?: string;
 }
 export class ChangeStartDateOfProjectCommand extends ProjectCommand {
 
-    constructor(project: Project, orgStartDate?: Date) {
+    constructor(project: Project, orgStartDate?: string) {
         super('ChangeStartDateOf', project);
         const parameters = new ChangeStartDateParameters();
         parameters.OriginalStartDate = orgStartDate;

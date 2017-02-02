@@ -11,8 +11,8 @@
       <md-card-title>{{company.name}}</md-card-title>
     </md-card-title-group>
     <md-card-actions align='end'>
-      <button [routerLink]="[company.guid]"><md-icon>details circle</md-icon></button>
-      <button [routerLink]="[company.guid]"><md-icon>share circle</md-icon></button>
+      <button [routerLink]="[company.guid, 'details']"><md-icon>details circle</md-icon></button>
+      <button [routerLink]="[company.guid, 'details']"><md-icon>share circle</md-icon></button>
       <button (click)="deleteCompany(company)"><md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>

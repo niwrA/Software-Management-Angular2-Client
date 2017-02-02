@@ -16,8 +16,10 @@ export class Company {
         if (this.companyRoles === undefined) {
             this.companyRoles = new Array<CompanyRole>();
         }
-        for (const companyRoleState of state.companyRoles) {
-            this.companyRoles.push(new CompanyRole(companyRoleState));
+        if (state.companyRoles !== undefined) {
+            for (const companyRoleState of state.companyRoles) {
+                this.companyRoles.push(new CompanyRole(companyRoleState));
+            }
         }
     }
 

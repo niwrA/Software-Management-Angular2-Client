@@ -9,6 +9,7 @@ import { ContactDetailsComponent } from './contacts/contact/contactdetails/conta
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyComponent } from './companies/company/company.component';
 import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
+import { CompanyRolesComponent } from './companies/company/companyroles/companyroles.component';
 import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -60,6 +61,10 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ContactDetailsComponent
+      },
+      {
+        path: 'roles',
+        component: CompanyRolesComponent
       }
     ]
   },
