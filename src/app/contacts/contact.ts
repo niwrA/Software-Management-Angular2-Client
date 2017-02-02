@@ -10,7 +10,7 @@ export class ContactState {
     lastName?: string;
     lastNameSuffix?: string;
     gender?: string;
-*/    birthDate?: Date;
+*/    birthDate?: string;
     email?: string;
 }
 
@@ -33,7 +33,7 @@ export class Contact {
     set email(value: string) { this._state.email = value; };
 
     get birthDate() { return this._state.birthDate; };
-    set birthDate(value: Date) { this._state.birthDate = value; };
+    set birthDate(value: string) { this._state.birthDate = value; };
 
     public clone(): Contact {
         return new Contact(_.clone(this._state));
