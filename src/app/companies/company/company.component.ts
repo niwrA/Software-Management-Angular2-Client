@@ -9,8 +9,7 @@ import { CompaniesService } from '../companies.service';
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })
-export class CompanyComponent {
-
+export class CompanyComponent implements OnInit {
   company: Company;
 
   constructor(

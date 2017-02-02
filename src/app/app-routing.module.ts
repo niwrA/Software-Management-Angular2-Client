@@ -60,7 +60,7 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'details',
-        component: ContactDetailsComponent
+        component: CompanyDetailsComponent
       },
       {
         path: 'roles',

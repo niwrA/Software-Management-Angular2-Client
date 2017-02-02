@@ -86,7 +86,7 @@ export class CompaniesService {
 
   private handleError(error: any, notificationService: NotificationsService): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
-    this.notificationService.error('An error occurred', error, { timeOut: 5000, clickToClose: false });
+    notificationService.error('An error occurred', error, { timeOut: 5000, clickToClose: false });
     return Promise.reject(error.message || error);
   }
 

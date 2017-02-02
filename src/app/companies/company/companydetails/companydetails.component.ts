@@ -27,7 +27,7 @@ export class CompanyDetailsComponent implements OnInit {
 
   update(newValue) {
     if (newValue) {
-      this.previousCompany = this.service.cloneCompany(newValue);
+      this.previousCompany = newValue.clone();
       this.company = newValue;
     }
   }

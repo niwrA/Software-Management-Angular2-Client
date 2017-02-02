@@ -55,7 +55,7 @@ export class ContactsService {
       return this.http.get(this.contactsUrl)
         .toPromise()
         .then(response => this.parseResponse(response, this.contacts))
-        .catch(this.handleError);
+        .catch(error => this.handleError(error, this.notificationService));
     }
   }
 
@@ -76,7 +76,7 @@ export class ContactsService {
       return this.http.get(this.contactsUrl + '/' + guid)
         .toPromise()
         .then(response => new Contact(response.json() as ContactState))
-        .catch(this.handleError);
+        .catch(error => this.handleError(error, this.notificationService));
     }
   }
 
@@ -84,9 +84,9 @@ export class ContactsService {
     this.commandsService.postCommand(command, replaceOriginal);
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any, notificationService: NotificationsService): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
-    this.notificationService.error('An error occurred', error, { timeOut: 5000, clickToClose: false });
+    notificationService.error('An error occurred', error, { timeOut: 5000, clickToClose: false });
     return Promise.reject(error.message || error);
   }
 }

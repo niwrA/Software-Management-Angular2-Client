@@ -33,30 +33,10 @@ export class Project {
     get startDate(): string { return this._state.startDate; };
     set startDate(value: string) { this._state.startDate = value; };
 
-/*    get startDateString(): string {
-        if (this._state.startDate !== null) {
-            return this.convertToDateString(this._state.startDate);
-        } else { return null; }
-    };
-    set startDateString(value: string) { this._state.startDate = new Date(value); };
-
-*/    get endDate(): string { return this._state.endDate; };
+    get endDate(): string { return this._state.endDate; };
     set endDate(value: string) { this._state.endDate = value; };
 
     public clone(): Project {
         return new Project(_.clone(this._state));
     }
-/*    private pad(input: any): string {
-        if (input.length === 1) {
-            return '0' + input;
-        }
-        return input;
-    }
-    private convertToDateString(date: Date): string {
-        if (date !== null) {
-            return '' + date.getFullYear() + '-' + this.pad(date.getMonth()) + '-' + this.pad(date.getDate());
-        }
-        return '';
-    }*/
 }
-

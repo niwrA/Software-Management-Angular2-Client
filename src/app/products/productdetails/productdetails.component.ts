@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProduct !== undefined) {
       if (this.product.name !== this.previousProduct.name) {
-        let renameCommand = new RenameProductCommand(this.product, this.previousProduct.name);
+        const renameCommand = new RenameProductCommand(this.product, this.previousProduct.name);
         this.service.postCommand(renameCommand, false);
         this.previousProduct.name = this.product.name;
       }
@@ -46,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousProduct !== undefined) {
       if (this.product.description !== this.previousProduct.description) {
-        let command = new ChangeDescriptionOfProductCommand(this.product);
+        const command = new ChangeDescriptionOfProductCommand(this.product);
         this.service.postCommand(command, false);
         this.previousProduct.description = this.product.description;
       }
@@ -58,7 +58,7 @@ export class ProductDetailsComponent implements OnInit {
   changeBusinessCase(): void {
     if (this.previousProduct !== undefined) {
       if (this.product.businessCase !== this.previousProduct.businessCase) {
-        let command = new ChangeBusinessCaseOfProductCommand(this.product);
+        const command = new ChangeBusinessCaseOfProductCommand(this.product);
         this.service.postCommand(command, false);
         this.previousProduct.businessCase = this.product.businessCase;
       }
