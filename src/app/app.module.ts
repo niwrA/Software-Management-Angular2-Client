@@ -69,6 +69,8 @@ import { BarchartComponent } from './shared/barchart/barchart.component';
 import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
 import { CompanyRolesComponent } from './companies/company/companyroles/companyroles.component';
+import { EmploymentsComponent } from './employments/employments.component';
+import { EmploymentComponent } from './employments/employment/employment.component';
 
 @NgModule({
   imports: [
@@ -122,7 +124,9 @@ import { CompanyRolesComponent } from './companies/company/companyroles/companyr
     BarchartComponent,
     ContactDetailsComponent,
     CompanyDetailsComponent,
-    CompanyRolesComponent
+    CompanyRolesComponent,
+    EmploymentsComponent,
+    EmploymentComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

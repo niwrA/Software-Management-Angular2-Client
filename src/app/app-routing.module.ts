@@ -29,6 +29,8 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 
+import { EmploymentsComponent } from './employments/employments.component';
+
 import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
@@ -64,7 +66,13 @@ const appRoutes: Routes = [
       },
       {
         path: 'roles',
-        component: CompanyRolesComponent
+        component: CompanyRolesComponent,
+        children: [
+          {
+            path: 'employment',
+            component: EmploymentsComponent
+          }
+        ]
       }
     ]
   },

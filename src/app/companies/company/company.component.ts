@@ -16,11 +16,11 @@ export class CompanyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: CompaniesService
-  ){}
+  ) { }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.service.getCompany(params['companyId']))
-    .subscribe((company: Company) => this.company = company);
+      .subscribe((company: Company) => this.company = company);
   }
 
 }

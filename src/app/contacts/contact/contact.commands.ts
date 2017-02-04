@@ -54,12 +54,11 @@ export class ChangeEmailForContactCommand extends ContactCommand {
 }
 
 export class ChangeBirthDateParameters extends CommandParameters {
-    birthDate?: Date;
-    originalBirthDate?: Date;
+    birthDate?: string;
+    originalBirthDate?: string;
 }
 export class ChangeBirthDateOfContactCommand extends ContactCommand {
-
-    constructor(contact: Contact, orgBirthDate?: Date) {
+    constructor(contact: Contact, orgBirthDate?: string) {
         super('ChangeBirthDateOf', contact);
         const parameters = new ChangeBirthDateParameters();
         parameters.originalBirthDate = orgBirthDate;

@@ -13,10 +13,13 @@ export class ContactState {
 */    birthDate?: string;
     email?: string;
 }
-
-export class Contact {
+export class SelectableItem {
+    isSelected: boolean;
+}
+export class Contact extends SelectableItem {
     _state: ContactState;
     constructor(state?: ContactState) {
+        super();
         this._state = state;
         if (!state) {
             this._state = new ContactState();
