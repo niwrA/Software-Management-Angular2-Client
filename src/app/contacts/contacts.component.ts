@@ -38,31 +38,34 @@ export class ContactsComponent implements OnInit {
 
   filterContacts(): void {
     if (this.searchText && this.searchText.length > 0) {
-      this.contacts = _.filter<Contact>(this.contacts, prj => prj.name.indexOf(this.searchText) > -1);
-    } else { this.contacts = this.allContacts; }
+      this.contacts = _.filter<Contact>(this.allContacts, prj => prj.name.indexOf(this.searchText) > -1);
+    } else { this.updateContacts(this.allContacts) }
     if (this.contacts.length === 0) {
-      this.contacts = this.allContacts;
+      this.updateContacts(this.allContacts)
     }
   }
 
   updateContacts(contacts: Array<Contact>): void {
-    this.contacts = contacts;
+    contacts.forEach(element => {
+      this.contacts.push(element);
+    });
     this.allContacts = contacts;
   }
 
   createContact(name: string): void {
     const contact = this.contactsService.createContact(true, name);
     this.contacts.push(contact);
-    this.allContacts.push(contact);
+    //this.allContacts.push(contact);
     //    this.getContacts();
   }
 
   deleteContact(contact: Contact): void {
     this.contactsService.deleteContact(contact);
-    const index = this.contacts.indexOf(contact, 0);
+    let index = this.contacts.indexOf(contact, 0);
     if (index > -1) {
       this.contacts.splice(index, 1);
     }
+    // todo: also cleanup allcontacts, using filter on guid? Or do we directly link the service contacts for that?
   }
 
   searchTextChanged(): void {

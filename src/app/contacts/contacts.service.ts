@@ -8,10 +8,11 @@ import { NotificationsService } from 'angular2-notifications';
 import { ContactCommand, CreateContactCommand, DeleteContactCommand } from './contact/contact.commands';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ContactsService {
-  contactsUrl = 'http://localhost:50274/api/contacts';
+  contactsUrl = environment.contactsUrl;
   contacts = new Array<Contact>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
