@@ -20,6 +20,10 @@ export class ActivatedRouteStub {
     get snapshot() {
         return { params: this.testParams };
     }
+        // ActivatedRoute.parent.params
+    get parent() {
+        return { params: this.subject.asObservable() };
+    }
 }
 
 @Directive({

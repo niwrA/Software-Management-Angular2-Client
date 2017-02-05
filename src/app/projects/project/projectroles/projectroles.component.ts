@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PROJECTROLES } from './mock-projectroles';
 import { Project } from '../../project';
 import { ProjectRole } from './projectrole';
@@ -15,7 +15,7 @@ import { AddRoleToProjectCommand, AddRoleToProjectParameters, RemoveRoleFromProj
 })
 export class ProjectRolesComponent implements OnInit {
   private project: Project;
-  projectroles: Array<ProjectRole>;
+  @Input() projectroles: Array<ProjectRole>;
   canAdd: boolean;
   searchText: string;
 

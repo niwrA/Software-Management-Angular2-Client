@@ -2,20 +2,24 @@ import { Project, ProjectState } from './project';
 import { ProjectRoleState } from './project/projectroles/projectrole';
 export const PROJECTS: ProjectState[] = [
   {
-    guid: 'project1', name: 'Project NoDates', startDate: '',
+    guid: 'nodates', name: 'Project NoDates', startDate: '',
     endDate: '', projectRoles: new Array<ProjectRoleState>()
   },
   {
-    guid: 'project2', name: 'Project StartDate', startDate: '2017-01-01',
+    guid: 'startdateonly', name: 'Project StartDate', startDate: '2017-01-01',
     endDate: '', projectRoles: new Array<ProjectRoleState>()
   },
   {
-    guid: 'project3', name: 'Project EndDate', startDate: '',
+    guid: 'enddateonly', name: 'Project EndDate', startDate: '',
     endDate: '2017-11-06', projectRoles: new Array<ProjectRoleState>()
   },
   {
-    guid: 'project4', name: 'Project BothDates', startDate: '2017-01-01',
+    guid: 'bothdates', name: 'Project BothDates', startDate: '2017-01-01',
     endDate: '2017-11-06', projectRoles: new Array<ProjectRoleState>()
+  },
+  {
+    guid: 'with2roles', name: 'Project With Two Roles', startDate: '2017-01-01',
+    endDate: '2017-11-06', projectRoles: [{ guid: 'tester', name: 'Tester' }, { guid: 'developer', name: 'Developer' }]
   }
 ];
 import { CommandsService } from '../commands/commands.service';

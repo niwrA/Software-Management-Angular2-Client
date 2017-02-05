@@ -21,6 +21,7 @@ export class ProjectDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // todo:  back to route.parent
     this.route.parent.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
       .subscribe((project: Project) => this.update(project));
   }
