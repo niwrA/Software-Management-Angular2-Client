@@ -25,7 +25,7 @@ export class CompanyDetailsComponent implements OnInit {
       .subscribe((company: Company) => this.update(company));
   }
 
-  update(newValue) {
+  update(newValue: Company) {
     if (newValue) {
       this.previousCompany = newValue.clone();
       this.company = newValue;

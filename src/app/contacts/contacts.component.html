@@ -1,17 +1,21 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()"
-      (keyup.enter)='createContact(searchTextInput.value)'></md-input>
+    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()" (keyup.enter)='createContact(searchTextInput.value)'></md-input>
     <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   </p>
+  <md-list *ngIf="selectedContacts">
+    <md-list-item>
+      <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
+    </md-list-item>
+  </md-list>
   <md-card *ngFor="let contact of contacts">
+    <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
     <md-card-title-group [routerLink]="[contact.guid, 'details']">
       <md-card-subtitle>
         <md-icon>person circle</md-icon>
       </md-card-subtitle>
       <md-card-title>{{contact.name}}</md-card-title>
     </md-card-title-group>
-        <md-checkbox [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
     <md-card-content>
       <div>{{contact.email}} ...</div>
     </md-card-content>
@@ -22,12 +26,3 @@
 <md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>
-  <md-list>
-    <md-list-item *ngFor="let contact of selectedContacts">
-      <h3 md-line>{{contact.name}}</h3>
-      <p md-line>extra line</p>
-      <p md-line>...</p>
-      <button [routerLink]="[contact.guid]"><md-icon>details circle</md-icon></button>
-      <button [(disabled)]="!contact.email" [routerLink]="[contact.guid]"><md-icon>email circle</md-icon></button>
-    </md-list-item>
-  </md-list>

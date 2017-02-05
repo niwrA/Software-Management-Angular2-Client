@@ -6,6 +6,10 @@ import { DebugElement } from '@angular/core';
 
 import { ProductsComponent } from './products.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ProductsService } from './products.service';
+import { ProductsServiceStub } from './mock-products';
+import { NotificationsService } from 'angular2-notifications';
+import { NotificationsServiceStub } from '../external/mock-external';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -14,7 +18,9 @@ describe('ProductsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductsComponent ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      schemas: [ NO_ERRORS_SCHEMA ],
+      providers: [{provider: ProductsService, useClass: ProductsServiceStub},
+      {provider: NotificationsService, useClass: NotificationsServiceStub}]
     })
     .compileComponents();
   }));

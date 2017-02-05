@@ -5,6 +5,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ProjectDetailsComponent } from './projectdetails.component';
+import { ProjectsService } from '../../projects.service';
+import { ProjectsServiceStub } from '../../mock-projects';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProjectDetailsComponent', () => {
@@ -13,8 +15,10 @@ describe('ProjectDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule],
       declarations: [ ProjectDetailsComponent ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      providers: [{ provider: ProjectsService, useClass: ProjectsServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

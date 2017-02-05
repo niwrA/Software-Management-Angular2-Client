@@ -4,7 +4,7 @@
     <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new companyrole" (click)="createCompanyRole(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let companyrole of companyroles">
-    <md-card-title-group  [routerLink]="[companyrole.guid, 'details']">
+    <md-card-title-group [routerLink]="[companyrole.guid]">
       <md-card-subtitle>
         <md-icon>assignment</md-icon>
       </md-card-subtitle>

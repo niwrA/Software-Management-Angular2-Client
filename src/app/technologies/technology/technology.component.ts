@@ -17,11 +17,11 @@ export class TechnologyComponent {
     private route: ActivatedRoute,
     private router: Router,
     private service: TechnologiesService
-  ){}
+  ) { }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.service.getTechnology(params['technologyId']))
-    .subscribe((technology: Technology) => this.technology = technology);
+      .subscribe((technology: Technology) => this.technology = technology);
   }
 
 }

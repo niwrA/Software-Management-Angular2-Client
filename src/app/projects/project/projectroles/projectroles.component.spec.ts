@@ -2,22 +2,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { ProjectrolesComponent } from './projectroles.component';
+import { ProjectRolesComponent } from './projectroles.component';
+import { ProjectsService } from '../../projects.service';
+import { ProjectsServiceStub } from '../../mock-projects';
 
-describe('ProjectrolesComponent', () => {
-  let component: ProjectrolesComponent;
-  let fixture: ComponentFixture<ProjectrolesComponent>;
+describe('ProjectRolesComponent', () => {
+  let component: ProjectRolesComponent;
+  let fixture: ComponentFixture<ProjectRolesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectrolesComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ProjectRolesComponent],
+      providers: [{ provider: ProjectsService, useClass: ProjectsServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectrolesComponent);
+    fixture = TestBed.createComponent(ProjectRolesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

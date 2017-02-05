@@ -8,13 +8,15 @@ import { NotificationsService } from 'angular2-notifications';
 import { ProjectCommand, CreateProjectCommand, DeleteProjectCommand } from './project/project.commands';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ProjectsService {
-  projectsUrl = 'http://localhost:50274/api/projects';
+  projectsUrl = environment.projectsUrl;
   projects = new Array<Project>();
 
-  constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
+  constructor(private commandsService: CommandsService, private http: Http,
+    private notificationService: NotificationsService) {
     this.getProjects('').then(result => this.projects = result as Array<Project>);
   }
 

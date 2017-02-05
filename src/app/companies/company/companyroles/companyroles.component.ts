@@ -42,6 +42,7 @@ export class CompanyRolesComponent implements OnInit {
     const companyrole = new CompanyRole();
     companyrole.guid = UUID.UUID();
     companyrole.name = name;
+    companyrole.companyGuid = this.company.guid;
 
     this.company.companyRoles.push(companyrole);
     this.updateCompany(this.company);

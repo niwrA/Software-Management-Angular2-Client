@@ -71,6 +71,7 @@ import { CompanyDetailsComponent } from './companies/company/companydetails/comp
 import { CompanyRolesComponent } from './companies/company/companyroles/companyroles.component';
 import { EmploymentsComponent } from './employments/employments.component';
 import { EmploymentComponent } from './employments/employment/employment.component';
+import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
 
 @NgModule({
   imports: [
@@ -126,7 +127,8 @@ import { EmploymentComponent } from './employments/employment/employment.compone
     CompanyDetailsComponent,
     CompanyRolesComponent,
     EmploymentsComponent,
-    EmploymentComponent
+    EmploymentComponent,
+    CompanyRoleComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],

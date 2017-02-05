@@ -32,7 +32,7 @@ export class ProjectRolesComponent implements OnInit {
 
   updateProject(project: Project) {
     this.project = project;
-    this.projectroles = project.projectRoles
+    this.projectroles = project.projectRoles;
   }
 
   searchTextChanged(): void {
@@ -40,27 +40,27 @@ export class ProjectRolesComponent implements OnInit {
   }
 
   createProjectRole(name: string) {
-    let projectrole = new ProjectRole();
+    const projectrole = new ProjectRole();
     projectrole.guid = UUID.UUID();
     projectrole.name = name;
 
     this.project.projectRoles.push(projectrole);
     this.updateProject(this.project);
 
-    var command = new AddRoleToProjectCommand(this.project, projectrole.guid, projectrole.name);
+    const command = new AddRoleToProjectCommand(this.project, projectrole.guid, projectrole.name);
     this.service.postCommand(command, false);
   }
 
   deleteProjectRole(projectrole: ProjectRole) {
     this.projectroles.splice(this.projectroles.indexOf(projectrole));
-    var command = new RemoveRoleFromProjectCommand(this.project, projectrole.guid);
+    const command = new RemoveRoleFromProjectCommand(this.project, projectrole.guid);
     this.service.postCommand(command, false);
   }
 
   getProjectRoles(searchText: string) {
     if (searchText && searchText.length > 0) {
 
-      let results = _.filter<ProjectRole>(this.projectroles, prj => prj.name.indexOf(searchText) > -1);
+      const results = _.filter<ProjectRole>(this.projectroles, prj => prj.name.indexOf(searchText) > -1);
       return Promise.resolve(results);
     }
     return Promise.resolve(this.projectroles);

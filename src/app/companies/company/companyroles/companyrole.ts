@@ -1,6 +1,8 @@
+import * as _ from 'lodash';
 export class CompanyRoleState {
     guid: string;
     name: string;
+    companyGuid: string;
 }
 export class CompanyRole {
     private _state: CompanyRoleState;
@@ -15,4 +17,11 @@ export class CompanyRole {
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
+
+    get companyGuid(): string { return this._state.companyGuid; };
+    set companyGuid(value: string) { this._state.companyGuid = value; };
+
+    public clone(): CompanyRole {
+        return new CompanyRole(_.clone(this._state));
+    }
 }

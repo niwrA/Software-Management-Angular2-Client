@@ -40,7 +40,7 @@ export class ContactsComponent implements OnInit {
     if (this.searchText && this.searchText.length > 0) {
       this.contacts = _.filter<Contact>(this.contacts, prj => prj.name.indexOf(this.searchText) > -1);
     } else { this.contacts = this.allContacts; }
-    if(this.contacts.length === 0){
+    if (this.contacts.length === 0) {
       this.contacts = this.allContacts;
     }
   }
@@ -70,7 +70,7 @@ export class ContactsComponent implements OnInit {
   }
 
   toggleSelect(contact: Contact): void {
-    //contact.isSelected = !contact.isSelected;
+    // contact.isSelected = !contact.isSelected;
     if (!contact.isSelected) {
       this.selectedContacts.push(contact);
     } else {

@@ -13,6 +13,7 @@ describe('ProductVersionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ ProductVersionsComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

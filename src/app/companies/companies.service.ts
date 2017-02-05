@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Company, CompanyState } from './company';
+import { CompanyRole } from './company/companyroles/companyrole';
 import { COMPANIES } from './mock-companies';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
