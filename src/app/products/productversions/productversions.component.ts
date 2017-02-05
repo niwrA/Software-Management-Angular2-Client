@@ -18,14 +18,14 @@ export class ProductVersionsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: ProductVersionsService
-  ){}
+  ) { }
 
   selectedProductVersion: ProductVersion;
   searchText: string;
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getProductVersions(params['productId'],''))
-    .subscribe((productversions: Array<ProductVersion>) => this.productversions = productversions);
+    this.route.parent.params.switchMap((params: Params) => this.service.getProductVersions(params['productId'], ''))
+      .subscribe((productversions: Array<ProductVersion>) => this.productversions = productversions);
   }
 
   onSelect(productVersion: ProductVersion): void {
@@ -42,9 +42,9 @@ export class ProductVersionsComponent implements OnInit {
 */  }
 
   getProductVersions(searchText: string): void {
-    if(this.productversions){
+    if (this.productversions) {
       this.service.getProductVersions(this.productversions[0].ProductGuid, searchText)
-      .then(productversions => this.productversions = productversions);
+        .then(productversions => this.productversions = productversions);
     }
   }
 

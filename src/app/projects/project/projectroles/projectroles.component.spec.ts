@@ -17,7 +17,7 @@ describe('ProjectRolesComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [ProjectRolesComponent],
-      providers: [{ provider: ProjectsService, useClass: ProjectsServiceStub }],
+      providers: [{provide:ProjectsService, useValue: ProjectsServiceStub}],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
@@ -28,7 +28,7 @@ describe('ProjectRolesComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
+  
   it('should create', () => {
     expect(component).toBeTruthy();
   });

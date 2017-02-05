@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { fakeAsync, async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -13,14 +13,14 @@ describe('ProjectDetailsComponent', () => {
   let component: ProjectDetailsComponent;
   let fixture: ComponentFixture<ProjectDetailsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule],
-      declarations: [ ProjectDetailsComponent ],
-      providers: [{ provider: ProjectsService, useClass: ProjectsServiceStub }],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [RouterTestingModule],
+      declarations: [ProjectDetailsComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provider: ProjectsService, useClass: ProjectsServiceStub }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

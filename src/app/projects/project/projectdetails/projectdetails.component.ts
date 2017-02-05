@@ -35,7 +35,7 @@ export class ProjectDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProject !== undefined) {
       if (this.project.name !== this.previousProject.name) {
-        let renameCommand = new RenameProjectCommand(this.project, this.previousProject.name);
+        const renameCommand = new RenameProjectCommand(this.project, this.previousProject.name);
         this.service.postCommand(renameCommand, false);
         this.previousProject.name = this.project.name;
       }
@@ -46,7 +46,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   changeStartDate(): void {
     if (this.project.startDate !== this.previousProject.startDate) {
-      let changeStartDateForCommand = new ChangeStartDateOfProjectCommand(this.project, this.previousProject.startDate);
+      const changeStartDateForCommand = new ChangeStartDateOfProjectCommand(this.project, this.previousProject.startDate);
       this.service.postCommand(changeStartDateForCommand, false);
       this.previousProject.startDate = this.project.startDate;
     }
@@ -54,7 +54,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   changeEndDate(): void {
     if (this.project.endDate !== this.previousProject.endDate) {
-      let command = new ChangeEndDateOfProjectCommand(this.project, this.previousProject.endDate);
+      const command = new ChangeEndDateOfProjectCommand(this.project, this.previousProject.endDate);
       this.service.postCommand(command, false);
       this.previousProject.endDate = this.project.endDate;
     }
