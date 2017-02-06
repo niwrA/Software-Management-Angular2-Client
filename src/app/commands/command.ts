@@ -3,7 +3,7 @@ export class Command {
     Guid: string;
     Entity: string;
     EntityGuid: string;
-    CreatedOn: string;
+    CreatedOn: Date;
     ParametersJson?: string;
     Parameters?: CommandParameters;
     DisplayProperties: CommandDisplayProperties;
@@ -11,7 +11,7 @@ export class Command {
         this.Name = type;
         this.Entity = entityName;
         this.EntityGuid = entityGuid;
-        this.CreatedOn = new Date().toString();
+        this.CreatedOn = new Date();
         this.DisplayProperties = new CommandDisplayProperties();
         this.DisplayProperties.title = this.Name + ' ' + this.Entity;
         this.DisplayProperties.description = this.CreatedOn.toString();
