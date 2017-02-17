@@ -5,6 +5,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ContactsComponent } from './contacts.component';
+import { ContactsService } from './contacts.service';
+import { ContactsServiceStub } from './mock-contacts';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ContactsComponent', () => {
@@ -13,10 +15,11 @@ describe('ContactsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactsComponent ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      declarations: [ContactsComponent],
+      providers: [{ provide: ContactsService, useClass: ContactsServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

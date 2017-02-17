@@ -22,7 +22,8 @@ describe('EnvironmentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+    // todo: make tests when this component becomes used and connected to backend
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

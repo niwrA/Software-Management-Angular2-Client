@@ -13,11 +13,11 @@ describe('ProductVersionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
-      declarations: [ ProductVersionComponent ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      imports: [RouterTestingModule],
+      declarations: [ProductVersionComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -26,7 +26,8 @@ describe('ProductVersionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  // todo: make tests when this component becomes used and connected to backend
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

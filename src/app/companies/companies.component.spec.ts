@@ -5,6 +5,8 @@ import { DebugElement } from '@angular/core';
 
 import { CompaniesComponent } from './companies.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CompaniesService } from './companies.service';
+import { CompaniesServiceStub } from './mock-companies';
 
 describe('CompaniesComponent', () => {
   let component: CompaniesComponent;
@@ -13,6 +15,7 @@ describe('CompaniesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CompaniesComponent ],
+      imports: [{provide: CompaniesService, useClass: CompaniesServiceStub }],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();

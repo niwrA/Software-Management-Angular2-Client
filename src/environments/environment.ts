@@ -10,5 +10,5 @@ export const environment = {
   projectsUrl: 'http://localhost:50274/api/projects',
   productsUrl: 'http://localhost:50274/api/products',
   employmentsUrl: 'http://localhost:50274/api/employments',
-  commandsUrl: 'http://localhost:50274/api/commands'
+  commandsUrl: 'http://localhost:50274/api/eventsource'
 };

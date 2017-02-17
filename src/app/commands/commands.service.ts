@@ -14,7 +14,6 @@ export class CommandsService {
   constructor(private http: Http, private notificationsService: NotificationsService) {
   };
 
-  // todo: move to commandservice?
   postCommand(command: Command, replaceOriginal: Boolean) {
     // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
     command.Guid = UUID.UUID();
@@ -22,7 +21,7 @@ export class CommandsService {
     this.commands.push(command);
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
-    this.http.post('http://localhost:50274/api/commands/batch', JSON.stringify(this.commands),
+    this.http.post('http://localhost:50274/api/eventsource/batch', JSON.stringify(this.commands),
       { headers: this.headers }).toPromise().then(results => this.processResults(results, command,
         this.commands, this.postedCommands, this.notificationsService))
         .catch(error=>this.handleError(error, this.notificationsService));

@@ -12,7 +12,11 @@ import { NotificationsServiceStub } from '../external/mock-external';
 describe('ProjectsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProjectsService, CommandsService,
+      providers: [ProjectsService,
+        {
+          provide: CommandsService,
+          useClass: CommandsServiceStub
+        },
         {
           provide: NotificationsService,
           useClass: NotificationsServiceStub
