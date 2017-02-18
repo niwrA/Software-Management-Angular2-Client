@@ -1,5 +1,6 @@
 import { Injectable, Directive, Input } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { NavigationExtras } from '@angular/router';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -40,4 +41,9 @@ export class RouterLinkStubDirective {
     onClick() {
         this.navigatedTo = this.linkParams;
     }
+}
+
+export class RouterStub {
+  navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> { return ; }
+  navigateByUrl(url: string) { return url; }
 }

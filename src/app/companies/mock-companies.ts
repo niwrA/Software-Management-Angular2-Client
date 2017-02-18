@@ -21,7 +21,7 @@ export class CompaniesServiceStub {
       this.companies.push(new Company(element));
     });
   }
-  getCompanys(searchText: string): Promise<Array<Company>> {
+  getCompanies(searchText: string): Promise<Array<Company>> {
     return Promise.resolve(this.companies);
   };
   getCompany(guid: string): Promise<Company> {

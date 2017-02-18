@@ -15,7 +15,7 @@ describe('CompaniesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CompaniesComponent ],
-      imports: [{provide: CompaniesService, useClass: CompaniesServiceStub }],
+      providers: [{provide: CompaniesService, useClass: CompaniesServiceStub }],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
