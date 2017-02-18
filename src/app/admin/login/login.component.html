@@ -1,8 +1,8 @@
 <md-card *ngIf="login">
   <md-card-title>{{login.title}}</md-card-title>
   <div>
-    <md-input [(ngModel)]="login.Name" placeholder="Name"></md-input>
-    <md-input type='password' [(ngModel)]='login.Password' placeholder="Password"></md-input>
+    <input mdInput [(ngModel)]="login.Name" placeholder="Name"/>
+    <input mdInput type='password' [(ngModel)]='login.Password' placeholder="Password"/>
   </div>
   <md-card-actions>
     <button md-raised-button (click)="doLogin()">Login</button>

@@ -9,7 +9,7 @@
 
       <div>
         <md-card-content layout='row'>
-          <md-input [(ngModel)]="productfeature.Name" placeholder="Name"></md-input>
+          <input mdInput [(ngModel)]="productfeature.Name" placeholder="Name"/>
         </md-card-content>
         <!-- waiting for md-input-container to go live -->
         <md-card-content layout='row'>
@@ -21,7 +21,7 @@
           <md-checkbox [(ngModel)]="productfeature.IsRequest" placeholder="IsRequest">Request</md-checkbox>
         </md-card-content>
         <md-card-content layout='row' >
-          <md-input type='date' [disabled]="productfeature.IsRequest" [(ngModel)]='productfeature.ImplementedDate' placeholder="ImplementedDate"></md-input>
+          <input mdInput type='date' [disabled]="productfeature.IsRequest" [(ngModel)]='productfeature.ImplementedDate' placeholder="ImplementedDate"/>
         </md-card-content>
       </div>
     </md-card-content>

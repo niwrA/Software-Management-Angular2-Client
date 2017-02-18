@@ -1,6 +1,6 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')" (keyup.enter)='createProductFeature(searchTextInput.value)'></md-input>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')" (keyup.enter)='createProductFeature(searchTextInput.value)'/>
     <button md-raised-button md-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let productfeature of productfeatures">    

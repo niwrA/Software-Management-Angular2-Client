@@ -6,8 +6,8 @@
     <button [routerLink]='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
   </md-card-actions>
   <div>
-    <md-input [(ngModel)]="technology.Name" placeholder="Name"></md-input>
-    <md-input type='date' [(ngModel)]='technology.EndDate' placeholder="EndDate"></md-input>
+    <input mdInput [(ngModel)]="technology.Name" placeholder="Name"/>
+    <input mdInput type='date' [(ngModel)]='technology.EndDate' placeholder="EndDate"/>
   </div>
 </md-card>
   <div *ngIf="!technology">

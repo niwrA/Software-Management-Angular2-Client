@@ -1,6 +1,6 @@
 <md-card>
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')" (keyup.enter)='createProductVersion(searchTextInput.value)'></md-input>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')" (keyup.enter)='createProductVersion(searchTextInput.value)'/>
     <button md-raised-button md-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let productversion of productversions">    

@@ -1,6 +1,6 @@
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjectRoles(searchTextInput.value)"
-      (keyup.enter)='createProjectRole(searchTextInput.value)'></md-input>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjectRoles(searchTextInput.value)"
+      (keyup.enter)='createProjectRole(searchTextInput.value)'/>
     <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let projectrole of projectroles">

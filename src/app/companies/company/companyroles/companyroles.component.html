@@ -1,6 +1,6 @@
   <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyRoles(searchTextInput.value)"
-      (keyup.enter)='createCompanyRole(searchTextInput.value)'></md-input>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyRoles(searchTextInput.value)"
+      (keyup.enter)='createCompanyRole(searchTextInput.value)'/>
     <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new companyrole" (click)="createCompanyRole(searchTextInput.value)">Add</button>
   </p>
   <md-card *ngFor="let companyrole of companyroles">

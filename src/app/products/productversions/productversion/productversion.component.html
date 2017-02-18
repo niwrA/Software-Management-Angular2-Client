@@ -6,12 +6,12 @@
   <button [routerLink]="['installations']" md-raised-button md-tooltip="todo: installations of this version">Installations</button>
   <md-card class='flex-h'>
     <md-card-content layout='column'>
-      <md-input [(ngModel)]="productversion.Name" placeholder="Name"></md-input>
-      <md-input [(ngModel)]="productversion.Major" placeholder="Major"></md-input>
-      <md-input [(ngModel)]="productversion.Minor" placeholder="Minor"></md-input>
-      <md-input [(ngModel)]="productversion.Build" placeholder="Build"></md-input>
-      <md-input [(ngModel)]="productversion.Revision" placeholder="Revision"></md-input>
-      <md-input type='date' [(ngModel)]='productversion.ReleaseDate' placeholder="ReleaseDate"></md-input>
+      <input mdInput [(ngModel)]="productversion.Name" placeholder="Name"/>
+      <input mdInput [(ngModel)]="productversion.Major" placeholder="Major"/>
+      <input mdInput [(ngModel)]="productversion.Minor" placeholder="Minor"/>
+      <input mdInput [(ngModel)]="productversion.Build" placeholder="Build"/>
+      <input mdInput [(ngModel)]="productversion.Revision" placeholder="Revision"/>
+      <input mdInput type='date' [(ngModel)]='productversion.ReleaseDate' placeholder="ReleaseDate"/>
     </md-card-content>
 
     <md-card-content layout='column'>
