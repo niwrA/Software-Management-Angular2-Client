@@ -39,16 +39,22 @@ export class ContactsComponent implements OnInit {
   filterContacts(): void {
     if (this.searchText && this.searchText.length > 0) {
       this.contacts = _.filter<Contact>(this.allContacts, prj => prj.name.indexOf(this.searchText) > -1);
+      // this.updateFilteredContacts(filteredContacts);
     } else { this.updateContacts(this.allContacts) }
     if (this.contacts.length === 0) {
       this.updateContacts(this.allContacts)
     }
   }
 
-  updateContacts(contacts: Array<Contact>): void {
+  updateFilteredContacts(contacts: Array<Contact>): void {
+    this.contacts = new Array<Contact>();
     contacts.forEach(element => {
       this.contacts.push(element);
     });
+  }
+
+  updateContacts(contacts: Array<Contact>): void {
+    this.updateFilteredContacts(contacts);
     this.allContacts = contacts;
   }
 

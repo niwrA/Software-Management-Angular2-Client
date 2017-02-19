@@ -5,6 +5,10 @@ import { Company } from '../../../company';
 import { CompanyRole } from '../companyrole';
 import { RenameRoleForCompanyCommand } from '../../company.commands';
 import { CompaniesService } from '../../../companies.service';
+import { ContactsComponent } from '../../../../contacts/contacts.component';
+import { ContactsService } from '../../../../contacts/contacts.service';
+import { Contact } from '../../../../contacts/contact';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-companyrole',
@@ -15,11 +19,15 @@ export class CompanyRoleComponent implements OnInit {
   companyrole: CompanyRole;
   company: Company;
   previousCompanyRole: CompanyRole;
+  contactDialogRef: MdDialogRef<ContactsComponent>;
+  selectedContacts: Array<Contact>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: CompaniesService
+    private service: CompaniesService,
+    private dialog: MdDialog,
+    private contactsService: ContactsService
   ) { }
 
   ngOnInit() {
@@ -38,6 +46,17 @@ export class CompanyRoleComponent implements OnInit {
     }
   }
 
+  openDialog() {
+    this.contactDialogRef = this.dialog.open(ContactsComponent, {
+      height: '400px',
+      width: '600px',
+    });
+    this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
+  }
+
+  handleSelected(ref) {
+    this.selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
+  }
   changeName(): void {
     if (this.previousCompanyRole !== undefined) {
       if (this.companyrole.name !== this.previousCompanyRole.name) {
