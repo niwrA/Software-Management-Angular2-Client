@@ -1,10 +1,4 @@
 <p>
   companyrole works!
 </p>
-<button md-button (click)="openDialog()">Launch dialog</button>
-You chose: {{selectedOption}}
-  <md-list *ngIf="selectedContacts">
-    <md-list-item>
-      <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
-    </md-list-item>
-  </md-list>
+<app-employments companyroleguid='companyrole.guid'></app-employments>

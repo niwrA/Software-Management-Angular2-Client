@@ -9,10 +9,11 @@ import { NotificationsService } from 'angular2-notifications';
 import { CompanyCommand, CreateCompanyCommand, DeleteCompanyCommand, RenameCompanyCommand } from './company/company.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CompaniesService {
-  companiesUrl = 'http://localhost:50274/api/companies';
+  companiesUrl = environment.companiesUrl;
   companies = new Array<Company>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {

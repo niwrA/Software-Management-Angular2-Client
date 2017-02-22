@@ -8,10 +8,11 @@ import { NotificationsService } from 'angular2-notifications';
 import { ProductCommand, CreateProductCommand, DeleteProductCommand, RenameProductCommand } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ProductsService {
-  productsUrl = 'http://localhost:50274/api/products';
+  productsUrl = environment.productsUrl;
   products = new Array<Product>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
