@@ -4,9 +4,11 @@ import { UUID } from 'angular2-uuid';
 import { Headers, Http } from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CommandsService {
+  private commandsUrl = environment.commandsUrl;
   private headers = new Headers({ 'Content-Type': 'application/json' });
   commands = new Array<Command>();
   postedCommands = new Array<Command>();
@@ -21,7 +23,7 @@ export class CommandsService {
     this.commands.push(command);
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
-    this.http.post('http://localhost:50274/api/eventsource/batch', JSON.stringify(this.commands),
+    this.http.post(this.commandsUrl, JSON.stringify(this.commands),
       { headers: this.headers }).toPromise().then(results => this.processResults(results, command,
         this.commands, this.postedCommands, this.notificationsService))
         .catch(error=>this.handleError(error, this.notificationsService));

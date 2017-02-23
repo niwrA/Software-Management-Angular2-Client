@@ -7,10 +7,11 @@ import { NotificationsService } from 'angular2-notifications';
 import { EmploymentCommand, CreateEmploymentCommand, DeleteEmploymentCommand } from './employment/employment.commands';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class EmploymentsService {
-  employmentsUrl = 'http://localhost:50274/api/employments';
+  employmentsUrl = environment.employmentsUrl;
   employments = new Array<Employment>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
