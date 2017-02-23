@@ -5,12 +5,12 @@
     </md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <textarea (blur)="changeDescription()" rows=5 md-input [(ngModel)]="product.description" placeholder="Description"></textarea>
+        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="product.description" placeholder="Description"></textarea>
       </md-input-container>
     </md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <textarea (blur)="changeBusinessCase()" rows='5' md-input [(ngModel)]="product.businessCase" placeholder="BusinessCase"></textarea>
+        <textarea mdInput (blur)="changeBusinessCase()" rows='5' [(ngModel)]="product.businessCase" placeholder="BusinessCase"></textarea>
       </md-input-container>
     </md-card-content>
   </md-card-content>
