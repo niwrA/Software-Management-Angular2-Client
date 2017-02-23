@@ -10,9 +10,5 @@ export const environment = {
   projectsUrl: 'http://localhost:50274/api/projects',
   productsUrl: 'http://localhost:50274/api/products',
   employmentsUrl: 'http://localhost:50274/api/employments',
-<<<<<<< HEAD
-  commandsUrl: 'http://localhost:50274/api/commands'
-=======
   commandsUrl: 'http://localhost:50274/api/commands' // change to eventsource if you want to try posting to the eventsource backend
->>>>>>> refs/remotes/origin/master
 };
