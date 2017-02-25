@@ -1,5 +1,11 @@
-  <div *ngIf="contact">
-    <input mdInput (blur)="changeName()" [(ngModel)]="contact.name" placeholder="Name"/>
-    <input mdInput (blur)="changeEmail()" [(ngModel)]="contact.email" placeholder="email"/>
-    <input mdInput (blur)="changeBirthDate()" type='date' [(ngModel)]='contact.birthDate' placeholder="BirthDate"/>
-  </div>
+<div *ngIf="contact">
+  <md-input-container>
+    <input mdInput (blur)="changeName()" [(ngModel)]="contact.name" placeholder="Name" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput (blur)="changeEmail()" [(ngModel)]="contact.email" placeholder="email" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput (blur)="changeBirthDate()" type='date' [(ngModel)]='contact.birthDate' placeholder="BirthDate" />
+  </md-input-container>
+</div>

@@ -1,19 +1,18 @@
-  <p>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyRoles(searchTextInput.value)"
-      (keyup.enter)='createCompanyRole(searchTextInput.value)'/>
-    <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new companyrole" (click)="createCompanyRole(searchTextInput.value)">Add</button>
-  </p>
-  <md-card *ngFor="let companyrole of companyroles">
-    <md-card-title-group [routerLink]="[companyrole.guid]">
-      <md-card-subtitle>
-        <md-icon>assignment</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{companyrole.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-actions align='end'>
-      <button (click)="deleteCompanyRole(companyrole)">
+<md-input-container>
+  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyRoles(searchTextInput.value)" (keyup.enter)='createCompanyRole(searchTextInput.value)' />
+</md-input-container>
+<button [disabled]='!canAdd' md-raised-button md-tooltip="Add new companyrole" (click)="createCompanyRole(searchTextInput.value)">Add</button>
+<md-card *ngFor="let companyrole of companyroles">
+  <md-card-title-group [routerLink]="[companyrole.guid]">
+    <md-card-subtitle>
+      <md-icon>assignment</md-icon>
+    </md-card-subtitle>
+    <md-card-title>{{companyrole.name}}</md-card-title>
+  </md-card-title-group>
+  <md-card-actions align='end'>
+    <button (click)="deleteCompanyRole(companyrole)">
 <md-icon>delete</md-icon></button>
-      <!--        <button [(disabled)]="!companyrole.Email" routerLink="companyrole" RouterLinkActive='active' [uiParams]="{ companyroleId: companyrole.Guid }">
+    <!--        <button [(disabled)]="!companyrole.Email" routerLink="companyrole" RouterLinkActive='active' [uiParams]="{ companyroleId: companyrole.Guid }">
 <md-icon>email circle</md-icon></button>-->
-    </md-card-actions>
-  </md-card>
+  </md-card-actions>
+</md-card>
