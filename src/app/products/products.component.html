@@ -3,6 +3,7 @@
     <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)' />
   </md-input-container>
   <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
+
   <md-card *ngFor="let product of products">
     <md-card-title-group [routerLink]="[product.guid, 'details']">
       <md-card-subtitle>
