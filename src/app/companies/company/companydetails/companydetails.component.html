@@ -1,3 +1,5 @@
 <md-card *ngIf="company">
-  <md-input [(ngModel)]="company.name" placeholder="name"></md-input>
+  <md-input-container>
+    <input mdInput [(ngModel)]="company.name" placeholder="name" />
+  </md-input-container>
 </md-card>

@@ -1,8 +1,8 @@
 <md-card>
-  <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies()" (keyup.enter)='createCompany(searchTextInput.value)'></md-input>
-    <button md-raised-button md-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
-  </p>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies()" (keyup.enter)='createCompany(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
   <md-card *ngFor="let company of companies">
     <md-card-title-group [routerLink]="[company.guid, 'details']">
       <md-card-subtitle>

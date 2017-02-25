@@ -1,5 +1,11 @@
-  <div *ngIf="project">
-    <md-input (blur)="changeName()" [(ngModel)]="project.name" placeholder="Name"></md-input>
-    <md-input (blur)="changeStartDate()" type='date' [(ngModel)]='project.startDate' placeholder="StartDate"></md-input>
-    <md-input (blur)="changeEndDate()" type='date' [(ngModel)]='project.endDate' placeholder="EndDate"></md-input>
-  </div>
+<div *ngIf="project">
+  <md-input-container>
+    <input mdInput (blur)="changeName()" [(ngModel)]="project.name" placeholder="Name" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput (blur)="changeStartDate()" type='date' [(ngModel)]='project.startDate' placeholder="StartDate" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput (blur)="changeEndDate()" type='date' [(ngModel)]='project.endDate' placeholder="EndDate" />
+  </md-input-container>
+</div>

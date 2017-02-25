@@ -1,6 +1,9 @@
 import { CompanyRole, CompanyRoleState } from './company/companyroles/companyrole';
 import * as _ from 'lodash';
 export class CompanyState {
+    constructor() {
+        this.companyRoles = new Array<CompanyRoleState>();
+    }
     name: string;
     guid: string;
     companyRoles: Array<CompanyRoleState>;
@@ -9,18 +12,16 @@ export class Company {
     private _state: CompanyState;
     companyRoles: Array<CompanyRole>;
     constructor(state?: CompanyState) {
-        this._state = state;
         if (!state) {
-            this._state = new CompanyState();
+            state = new CompanyState();
         }
-        if (this.companyRoles === undefined) {
+        if (!this.companyRoles) {
             this.companyRoles = new Array<CompanyRole>();
         }
-        if (state.companyRoles !== undefined) {
-            for (const companyRoleState of state.companyRoles) {
-                this.companyRoles.push(new CompanyRole(companyRoleState));
-            }
+        for (const companyRoleState of state.companyRoles) {
+            this.companyRoles.push(new CompanyRole(companyRoleState));
         }
+        this._state = state;
     }
 
     get name(): string { return this._state.name; };

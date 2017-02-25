@@ -6,9 +6,8 @@ import { HttpModule } from '@angular/http';
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
 
-import { MaterialModule } from '@angular/material';
+import { MaterialRootModule } from '@angular/material';
 import 'hammerjs';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { PushNotificationsService, SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -78,8 +77,7 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    MaterialRootModule,
     AppRoutingModule,
     SimpleNotificationsModule ],
   declarations: [

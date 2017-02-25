@@ -1,6 +1,9 @@
 import { ProjectRole, ProjectRoleState } from './project/projectroles/projectrole';
 import * as _ from 'lodash';
 export class ProjectState {
+    constructor() {
+        this.projectRoles = new Array<ProjectRoleState>();
+    }
     name: string;
     guid: string;
     startDate: string;
@@ -12,16 +15,16 @@ export class Project {
     private _state: ProjectState;
     projectRoles: Array<ProjectRole>;
     constructor(state?: ProjectState) {
-        this._state = state;
         if (!state) {
-            this._state = new ProjectState();
+            state = new ProjectState();
         }
-        if (this.projectRoles === undefined) {
+        if (!this.projectRoles) {
             this.projectRoles = new Array<ProjectRole>();
         }
         for (const projectRoleState of state.projectRoles) {
             this.projectRoles.push(new ProjectRole(projectRoleState));
         }
+        this._state = state;
     }
 
     get name(): string { return this._state.name; };

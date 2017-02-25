@@ -1,8 +1,8 @@
 <md-card>
-  <p>
-    <md-input #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()" (keyup.enter)='createContact(searchTextInput.value)'></md-input>
-    <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
-  </p>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()" (keyup.enter)='createContact(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   <md-list *ngIf="selectedContacts">
     <md-list-item>
       <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>

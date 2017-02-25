@@ -1,11 +1,9 @@
 <md-card>
-  <p>
-    <md-input #searchTextInput [(ngModel)]="searchText"  (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)'></md-input>
-    <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
-  </p>
-  <p hidden>
-    <md-checkbox>Only my products ... </md-checkbox>
-  </p>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)' />
+  </md-input-container>
+  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
+
   <md-card *ngFor="let product of products">
     <md-card-title-group [routerLink]="[product.guid, 'details']">
       <md-card-subtitle>
@@ -20,7 +18,7 @@
     <md-card-actions align='end'>
       <button [routerLink]="[product.guid, 'details']">
 <md-icon>details circle</md-icon></button>
-      <button [routerLink]="[product.guid]" >
+      <button [routerLink]="[product.guid]">
 <md-icon>share circle</md-icon></button>
       <button (click)="deleteProduct(product)">
 <md-icon>delete</md-icon></button>
