@@ -4,18 +4,18 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage-istanbul-reporter'),
-      require('angular-cli/plugins/karma')
+      require('@angular/cli/plugins/karma')
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      './src/test.ts': ['@angular/cli']
     },
     mime: {
       'text/x-typescript': ['ts','tsx']
@@ -25,7 +25,7 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     angularCli: {
-      config: './angular-cli.json',
+      config: './.angular-cli.json',
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
