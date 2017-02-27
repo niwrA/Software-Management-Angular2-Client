@@ -1,13 +1,15 @@
 <md-card *ngIf="login">
   <md-card-title>{{login.title}}</md-card-title>
-  <div>
-    <input mdInput [(ngModel)]="login.Name" placeholder="Name"/>
-    <input mdInput type='password' [(ngModel)]='login.Password' placeholder="Password"/>
-  </div>
+  <md-input-container>
+    <input mdInput [(ngModel)]="login.Name" placeholder="Name" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type='password' [(ngModel)]='login.Password' placeholder="Password" />
+  </md-input-container>
   <md-card-actions>
     <button md-raised-button (click)="doLogin()">Login</button>
   </md-card-actions>
 </md-card>
-  <div *ngIf="!login">
-    loading / error
-  </div>
+<div *ngIf="!login">
+  loading / error
+</div>

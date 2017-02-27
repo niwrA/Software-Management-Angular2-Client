@@ -31,32 +31,23 @@ export class CompanyRoleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.getCompany(params['companyId'], params['roleId']));
+    this.route.parent.params.subscribe((params: Params) => this.getCompany(params['companyId'], params['roleId']));
   }
 
-  getCompany(guid: string, roleGuid: string): Promise<Company> {
-    return this.service.getCompany(guid).then((company: Company) => this.update(company, roleGuid));
+  getCompany(guid: string, roleGuid: string) {
+    this.service.getCompany(guid).then((company: Company) => this.update(company, roleGuid));
   }
 
   update(newValue: Company, roleGuid: string) {
     if (newValue) {
       this.company = newValue;
       this.companyrole = newValue.companyRoles.find(role => role.guid === roleGuid);
-      this.previousCompanyRole = this.companyrole.clone();
+      if (this.companyrole) {
+        this.previousCompanyRole = this.companyrole.clone();
+      }
     }
   }
 
-  openDialog() {
-    this.contactDialogRef = this.dialog.open(ContactsComponent, {
-      height: '400px',
-      width: '600px',
-    });
-    this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
-  }
-
-  handleSelected(ref) {
-    this.selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
-  }
   changeName(): void {
     if (this.previousCompanyRole !== undefined) {
       if (this.companyrole.name !== this.previousCompanyRole.name) {

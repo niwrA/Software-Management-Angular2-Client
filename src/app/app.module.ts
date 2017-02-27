@@ -70,6 +70,7 @@ import { CompanyDetailsComponent } from './companies/company/companydetails/comp
 import { CompanyRolesComponent } from './companies/company/companyroles/companyroles.component';
 import { EmploymentsComponent } from './employments/employments.component';
 import { EmploymentComponent } from './employments/employment/employment.component';
+import { EmploymentsService } from './employments/employments.service';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
 
 @NgModule({
@@ -129,7 +130,7 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
     CompanyRoleComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],
+    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
