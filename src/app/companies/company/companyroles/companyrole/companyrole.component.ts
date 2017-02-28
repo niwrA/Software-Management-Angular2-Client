@@ -16,6 +16,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
   styleUrls: ['./companyrole.component.css']
 })
 export class CompanyRoleComponent implements OnInit {
+  companyroleguid: string;
   companyrole: CompanyRole;
   company: Company;
   previousCompanyRole: CompanyRole;
@@ -31,17 +32,21 @@ export class CompanyRoleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.subscribe((params: Params) => this.getCompany(params['companyId'], params['roleId']));
+    this.route.parent.params.subscribe((params: Params) => this.getCompany(params['companyId']));
+    this.route.params.subscribe((params: Params) => this.getRole(params['roleId']));
   }
 
-  getCompany(guid: string, roleGuid: string) {
-    this.service.getCompany(guid).then((company: Company) => this.update(company, roleGuid));
+  getCompany(guid: string) {
+    this.service.getCompany(guid).then((company: Company) => this.company = company).then(() => this.update());
+  }
+  getRole(guid: string) {
+    this.companyroleguid = guid;
+    this.update();
   }
 
-  update(newValue: Company, roleGuid: string) {
-    if (newValue) {
-      this.company = newValue;
-      this.companyrole = newValue.companyRoles.find(role => role.guid === roleGuid);
+  update() {
+    if (this.company && this.companyroleguid) {
+      this.companyrole = this.company.companyRoles.find(role => role.guid === this.companyroleguid);
       if (this.companyrole) {
         this.previousCompanyRole = this.companyrole.clone();
       }

@@ -1,4 +1,4 @@
 <p>
   companyrole works!
 </p>
-<app-employments companyroleguid='companyrole.guid'></app-employments>
+<app-employments *ngIf="companyrole" companyroleguid='{{companyrole.guid}}'></app-employments>

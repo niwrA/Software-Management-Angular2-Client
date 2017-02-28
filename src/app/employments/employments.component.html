@@ -1,3 +1,14 @@
 <p>
   employments works!
 </p>
+<md-card>
+  <md-card-actions>
+    <button (click)="openContactsDialog()"><md-icon>search</md-icon></button>
+  </md-card-actions>
+</md-card>
+<div>{{companyroleguid}}</div>
+  <md-list *ngIf="selectedContacts">
+    <md-list-item>
+      <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
+    </md-list-item>
+  </md-list>

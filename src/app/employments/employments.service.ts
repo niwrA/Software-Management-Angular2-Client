@@ -18,17 +18,28 @@ export class EmploymentsService {
     this.getEmployments().then(result => this.employments = result as Array<Employment>);
   }
 
-  createEmployment(doSave: boolean, contactGuid: string, companyRoleGuid: string): Employment {
+  createEmployment(doSave: boolean, contactGuid: string, companyRoleGuid: string, post: boolean): Employment {
     const newItem = new Employment();
     newItem.guid = UUID.UUID();
     newItem.contactGuid = contactGuid;
     newItem.companyRoleGuid = companyRoleGuid;
     if (doSave) {
       this.employments.splice(0, 0, newItem);
-      const createEmploymentCommand = new CreateEmploymentCommand(newItem);
-      this.commandsService.postCommand(createEmploymentCommand, false);
+      if (post) {
+        const createEmploymentCommand = new CreateEmploymentCommand(newItem);
+        this.commandsService.postCommand(createEmploymentCommand, false);
+      }
     }
     return newItem;
+  }
+
+  postEmployments(employments: Array<Employment>) {
+    var commands = new Array<EmploymentCommand>();
+    for (const employment of employments) {
+      const createEmploymentCommand = new CreateEmploymentCommand(employment);
+      commands.push(createEmploymentCommand);
+    }
+    this.commandsService.postCommands(commands, false);
   }
 
   deleteEmployment(employment: Employment): void {

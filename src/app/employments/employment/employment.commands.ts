@@ -7,15 +7,15 @@ export class EmploymentCommand extends Command {
 }
 
 export class CreateEmploymentParameters extends CommandParameters {
-    contactGuid: string;
-    companyRoleGuid: string;
+    ContactGuid: string;
+    CompanyRoleGuid: string;
 }
 export class CreateEmploymentCommand extends EmploymentCommand {
     constructor(employment: Employment) {
         super('Create', employment);
         const parameters = new CreateEmploymentParameters();
-        parameters.contactGuid = employment.contactGuid;
-        parameters.companyRoleGuid = employment.companyRoleGuid;
+        parameters.ContactGuid = employment.contactGuid;
+        parameters.CompanyRoleGuid = employment.companyRoleGuid;
         this.Parameters = parameters;
     }
 }
