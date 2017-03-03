@@ -1,4 +1,6 @@
-<p>
-  companyrole works!
-</p>
-<app-employments *ngIf="companyrole" companyroleguid='{{companyrole.guid}}'></app-employments>
+<md-card *ngIf="companyrole">
+  <md-card-title>{{companyrole.name}}</md-card-title>
+  <md-card-content>
+    <app-employments companyroleguid='{{companyrole.guid}}'></app-employments>
+  </md-card-content>
+</md-card>

@@ -1,14 +1,15 @@
-<p>
-  employments works!
-</p>
 <md-card>
   <md-card-actions>
-    <button (click)="openContactsDialog()"><md-icon>search</md-icon></button>
+    <button (click)="openContactsDialog()"><md-icon>add</md-icon></button>
   </md-card-actions>
+  <md-card-content>
+    <div>{{companyroleguid}}</div>
+    <!-- todo: make a reusable selected contacts control? -->
+    <md-list *ngIf="contacts">
+      <md-list-item>
+        <div *ngFor="let contact of contacts">{{contact.name}}
+          <md-icon (click)="removeContact(contact)"> delete</md-icon><span style="white-space:pre-wrap" *ngIf="contacts.length>1">; </span> </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
 </md-card>
-<div>{{companyroleguid}}</div>
-  <md-list *ngIf="selectedContacts">
-    <md-list-item>
-      <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
-    </md-list-item>
-  </md-list>

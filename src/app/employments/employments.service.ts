@@ -8,6 +8,8 @@ import { EmploymentCommand, CreateEmploymentCommand, DeleteEmploymentCommand } f
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
+import { Contact, ContactState } from '../contacts/contact';
+
 
 @Injectable()
 export class EmploymentsService {
@@ -77,6 +79,22 @@ export class EmploymentsService {
         .then(employments => this.filterEmployments(companyRoleGuid, contactGuid))
         .catch(error => this.handleError(error, this.notificationService));
     }
+  }
+
+  getContacts(companyRoleGuid): Promise<Array<Contact>> {
+    return this.http.get(this.employmentsUrl + '/getcontactsbycompanyroleid/' + companyRoleGuid)
+        .toPromise()
+        .then(response => this.parseContactsResponse(response))
+        .catch(error => this.handleError(error, this.notificationService));
+  }
+
+  parseContactsResponse(response: any): Array<Contact> {
+    const states = response.json() as Array<ContactState>;
+    let contacts = new Array<Contact>();
+    for (const state of states) {
+      contacts.push(new Contact(state));
+    }
+    return contacts;
   }
 
   parseResponse(response: any, employments: Array<Employment>): Array<Employment> {

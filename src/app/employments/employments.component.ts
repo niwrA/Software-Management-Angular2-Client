@@ -3,13 +3,13 @@ import { CompaniesService } from '../companies/companies.service';
 import { EmploymentsService } from './employments.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import {Employment} from './employment';
+import { Employment } from './employment';
 import { CompanyRole } from '../companies/company/companyroles/companyrole';
 import { ContactsComponent } from '../contacts/contacts.component';
 import { ContactsService } from '../contacts/contacts.service';
 import { Contact } from '../contacts/contact';
 import { MdDialog, MdDialogRef } from '@angular/material';
-
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-employments',
@@ -18,8 +18,15 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 })
 export class EmploymentsComponent implements OnInit {
   contactDialogRef: MdDialogRef<ContactsComponent>;
+  contacts: Array<Contact>;
   selectedContacts: Array<Contact>;
-  @Input() companyroleguid: string;
+  _companyroleguid: string;
+  @Input()
+  set companyroleguid(guid: string) {
+    this._companyroleguid = guid;
+    this.service.getContacts(guid).then(contacts => this.updateContacts(contacts));
+  }
+  get companyroleguid() { return this._companyroleguid; }
   @Input() contactguid: string;
   constructor(
     private route: ActivatedRoute,
@@ -28,15 +35,12 @@ export class EmploymentsComponent implements OnInit {
     private dialog: MdDialog,
     private contactsService: ContactsService
   ) {
-    this.service.getEmployments(this.companyroleguid, this.contactguid)
   }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getEmployments(params['companyRoleId'], params['contactId']))
-      .subscribe(employments => this.updateEmployments(employments));
   }
-  updateEmployments(employments) {
-
+  updateContacts(contacts) {
+    this.contacts = contacts;
   }
   selectContacts(companyrole: CompanyRole) {
     this.openContactsDialog();
@@ -49,12 +53,20 @@ export class EmploymentsComponent implements OnInit {
     this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
   }
 
+  removeContact(contact: Contact) {
+
+  }
+
   handleSelected(ref) {
-    this.selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
+    let selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
     var employments = new Array<Employment>();
-    for (const selected of this.selectedContacts) {
-      var employment = this.service.createEmployment(true, selected.guid, this.companyroleguid, false);
-      employments.push(employment);
+    for (const selected of selectedContacts) {
+      let exist = _.find(this.contacts, contact => contact.guid === selected.guid);
+      if (!exist) {
+        var employment = this.service.createEmployment(true, selected.guid, this.companyroleguid, false);
+        employments.push(employment);
+        this.contacts.push(selected);
+      }
     }
     this.service.postEmployments(employments);
   }

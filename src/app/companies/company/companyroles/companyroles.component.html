@@ -10,6 +10,9 @@
     </md-card-subtitle>
     <md-card-title>{{companyrole.name}}</md-card-title>
   </md-card-title-group>
+  <md-card-content>
+    <app-employments companyroleguid='{{companyrole.guid}}'></app-employments>
+  </md-card-content>
   <md-card-actions align='end'>
     <button (click)="deleteCompanyRole(companyrole)">
 <md-icon>delete</md-icon></button>
