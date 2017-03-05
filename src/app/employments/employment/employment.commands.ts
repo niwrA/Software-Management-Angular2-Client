@@ -9,6 +9,7 @@ export class EmploymentCommand extends Command {
 export class CreateEmploymentParameters extends CommandParameters {
     ContactGuid: string;
     CompanyRoleGuid: string;
+    ContactName: string;
 }
 export class CreateEmploymentCommand extends EmploymentCommand {
     constructor(employment: Employment) {
@@ -16,6 +17,7 @@ export class CreateEmploymentCommand extends EmploymentCommand {
         const parameters = new CreateEmploymentParameters();
         parameters.ContactGuid = employment.contactGuid;
         parameters.CompanyRoleGuid = employment.companyRoleGuid;
+        parameters.ContactName = employment.contactName;
         this.Parameters = parameters;
     }
 }

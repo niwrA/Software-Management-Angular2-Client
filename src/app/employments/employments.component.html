@@ -5,10 +5,10 @@
   <md-card-content>
     <div>{{companyroleguid}}</div>
     <!-- todo: make a reusable selected contacts control? -->
-    <md-list *ngIf="contacts">
+    <md-list *ngIf="employments">
       <md-list-item>
-        <div *ngFor="let contact of contacts">{{contact.name}}
-          <md-icon (click)="removeContact(contact)"> delete</md-icon><span style="white-space:pre-wrap" *ngIf="contacts.length>1">; </span> </div>
+        <div *ngFor="let employment of employments">{{employment.contactName}}
+          <md-icon (click)="deleteEmployment(employment)"> delete</md-icon><span style="white-space:pre-wrap" *ngIf="employments.length>1">; </span> </div>
       </md-list-item>
     </md-list>
   </md-card-content>

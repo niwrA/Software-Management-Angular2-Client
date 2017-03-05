@@ -5,6 +5,7 @@ export class EmploymentState {
     companyRoleGuid: string;
     startDate: string;
     endDate: string;
+    contactName: string;
 }
 
 export class Employment {
@@ -24,6 +25,9 @@ export class Employment {
 
     get companyRoleGuid(): string { return this._state.companyRoleGuid; };
     set companyRoleGuid(value: string) { this._state.companyRoleGuid = value; };
+
+    get contactName(): string { return this._state.contactName; };
+    set contactName(value: string) { this._state.contactName = value; };
 
     get startDate(): string { return this._state.startDate; };
     set startDate(value: string) { this._state.startDate = value; };

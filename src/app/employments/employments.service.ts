@@ -20,11 +20,12 @@ export class EmploymentsService {
     this.getEmployments().then(result => this.employments = result as Array<Employment>);
   }
 
-  createEmployment(doSave: boolean, contactGuid: string, companyRoleGuid: string, post: boolean): Employment {
+  createEmployment(doSave: boolean, contactGuid: string, companyRoleGuid: string, post: boolean, contactName: string): Employment {
     const newItem = new Employment();
     newItem.guid = UUID.UUID();
     newItem.contactGuid = contactGuid;
     newItem.companyRoleGuid = companyRoleGuid;
+    newItem.contactName = contactName;
     if (doSave) {
       this.employments.splice(0, 0, newItem);
       if (post) {
@@ -59,24 +60,24 @@ export class EmploymentsService {
     }
   }
 
-  filterEmployments(companyRoleGuid?: string, contactGuid?: string) {
+  filterEmployments(employments: Array<Employment>, companyRoleGuid?: string, contactGuid?: string) {
     if (companyRoleGuid !== null) {
-      const results = _.filter<Employment>(this.employments, prj => prj.companyRoleGuid === companyRoleGuid);
+      const results = _.filter<Employment>(employments, prj => prj.companyRoleGuid === companyRoleGuid);
       return Promise.resolve(results);
     } else if (contactGuid !== null) {
-      const results = _.filter<Employment>(this.employments, prj => prj.contactGuid === contactGuid);
+      const results = _.filter<Employment>(employments, prj => prj.contactGuid === contactGuid);
       return Promise.resolve(results);
     }
   }
 
   getEmployments(companyRoleGuid?: string, contactGuid?: string): Promise<Array<Employment>> {
     if (this.employments.length > 0) {
-      return this.filterEmployments(companyRoleGuid, contactGuid);
+      return this.filterEmployments(this.employments, companyRoleGuid, contactGuid);
     } else {
       return this.http.get(this.employmentsUrl)
         .toPromise()
         .then(response => this.parseResponse(response, this.employments))
-        .then(employments => this.filterEmployments(companyRoleGuid, contactGuid))
+        .then(employments => this.filterEmployments(employments, companyRoleGuid, contactGuid))
         .catch(error => this.handleError(error, this.notificationService));
     }
   }
@@ -101,7 +102,9 @@ export class EmploymentsService {
     const states = response.json() as Array<EmploymentState>;
     employments = new Array<Employment>();
     for (const state of states) {
-      employments.push(new Employment(state));
+      const employment = new Employment(state);
+      employments.push(employment);
+      this.employments.push(employment);
     }
     return employments;
   }

@@ -18,13 +18,13 @@ import * as _ from 'lodash';
 })
 export class EmploymentsComponent implements OnInit {
   contactDialogRef: MdDialogRef<ContactsComponent>;
-  contacts: Array<Contact>;
+  employments: Array<Employment>;
   selectedContacts: Array<Contact>;
   _companyroleguid: string;
   @Input()
   set companyroleguid(guid: string) {
     this._companyroleguid = guid;
-    this.service.getContacts(guid).then(contacts => this.updateContacts(contacts));
+    this.service.getEmployments(guid).then(employments => this.updateEmployments(employments));
   }
   get companyroleguid() { return this._companyroleguid; }
   @Input() contactguid: string;
@@ -39,8 +39,8 @@ export class EmploymentsComponent implements OnInit {
 
   ngOnInit() {
   }
-  updateContacts(contacts) {
-    this.contacts = contacts;
+  updateEmployments(employments) {
+    this.employments = employments;
   }
   selectContacts(companyrole: CompanyRole) {
     this.openContactsDialog();
@@ -52,20 +52,23 @@ export class EmploymentsComponent implements OnInit {
     });
     this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
   }
-
-  removeContact(contact: Contact) {
-
+  
+  deleteEmployment(employment: Employment)
+  {
+    this.service.deleteEmployment(employment);
+    let index = _.indexOf(this.employments, employment); // not sure this is safe
+    this.employments.splice(index);
   }
 
   handleSelected(ref) {
     let selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
     var employments = new Array<Employment>();
     for (const selected of selectedContacts) {
-      let exist = _.find(this.contacts, contact => contact.guid === selected.guid);
+      let exist = _.find(this.employments, employment => employment.contactGuid === selected.guid);
       if (!exist) {
-        var employment = this.service.createEmployment(true, selected.guid, this.companyroleguid, false);
+        var employment = this.service.createEmployment(true, selected.guid, this.companyroleguid, false, selected.name);
+        this.employments.push(employment);
         employments.push(employment);
-        this.contacts.push(selected);
       }
     }
     this.service.postEmployments(employments);
