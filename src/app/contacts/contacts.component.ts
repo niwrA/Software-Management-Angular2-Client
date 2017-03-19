@@ -13,7 +13,7 @@ export class ContactsComponent implements OnInit {
   @Input() contacts = new Array<Contact>();
   @Input() allContacts = new Array<Contact>();
   @Input() selectedContacts = new Array<Contact>();
-  @Input() canAdd: Boolean;
+  @Input() canAdd: boolean;
   selectedContact: Contact;
   searchText: string;
 
