@@ -1,0 +1,8 @@
+<h1 md-dialog-title>Select Contacts</h1>
+<div md-dialog-content>
+  <app-contacts *ngIf="selectedContacts" [selectedContacts]="selectedContacts"></app-contacts>
+</div>
+<div md-dialog-actions>
+  <button md-button (click)="confirm()" md-dialog-close>OK</button>
+  <button md-button (click)="cancel()" md-dialog-close>Cancel</button>
+</div>

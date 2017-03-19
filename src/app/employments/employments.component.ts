@@ -6,10 +6,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Employment } from './employment';
 import { CompanyRole } from '../companies/company/companyroles/companyrole';
 import { ContactsComponent } from '../contacts/contacts.component';
+import { ContactsSelectComponent } from '../contacts/contacts-select/contacts-select.component';
 import { ContactsService } from '../contacts/contacts.service';
 import { Contact } from '../contacts/contact';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-employments',
@@ -17,7 +19,7 @@ import * as _ from 'lodash';
   styleUrls: ['./employments.component.css']
 })
 export class EmploymentsComponent implements OnInit {
-  contactDialogRef: MdDialogRef<ContactsComponent>;
+  contactDialogRef: MdDialogRef<ContactsSelectComponent>;
   employments: Array<Employment>;
   selectedContacts: Array<Contact>;
   _companyroleguid: string;
@@ -46,10 +48,10 @@ export class EmploymentsComponent implements OnInit {
     this.openContactsDialog();
   }
   openContactsDialog() {
-    this.contactDialogRef = this.dialog.open(ContactsComponent, {
+    this.contactDialogRef = this.dialog.open(ContactsSelectComponent/*, {
       height: '400px',
       width: '600px',
-    });
+    }*/);
     this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
   }
   

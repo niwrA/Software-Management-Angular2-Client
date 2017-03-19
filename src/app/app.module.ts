@@ -72,6 +72,7 @@ import { EmploymentsComponent } from './employments/employments.component';
 import { EmploymentComponent } from './employments/employment/employment.component';
 import { EmploymentsService } from './employments/employments.service';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
+import { ContactsSelectComponent } from './contacts/contacts-select/contacts-select.component';
 
 @NgModule({
   imports: [
@@ -80,7 +81,7 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
     HttpModule,
     MaterialRootModule,
     AppRoutingModule,
-    SimpleNotificationsModule ],
+    SimpleNotificationsModule],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -127,11 +128,14 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
     CompanyRolesComponent,
     EmploymentsComponent,
     EmploymentComponent,
-    CompanyRoleComponent
+    CompanyRoleComponent,
+    ContactsSelectComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService, PushNotificationsService, NotificationsService],
-  bootstrap: [AppComponent]
+    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService, 
+    PushNotificationsService, NotificationsService],
+  bootstrap: [AppComponent],
+  entryComponents: [ContactsSelectComponent]
 })
 export class AppModule { }
 
