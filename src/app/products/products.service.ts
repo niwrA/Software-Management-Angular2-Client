@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Product, ProductState } from './product';
+import { ProductVersion, ProductVersionState } from './productversions/productversion';
 import { PRODUCTS } from './mock-products';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
-import { ProductCommand, CreateProductCommand, DeleteProductCommand, RenameProductCommand } from './product/product.commands';
+import {
+  ProductCommand, CreateProductCommand, DeleteProductCommand,
+  RenameProductCommand, AddVersionToProductCommand
+} from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
@@ -26,6 +30,18 @@ export class ProductsService {
     if (doSave) {
       this.products.splice(0, 0, newItem);
       const createProductCommand = new CreateProductCommand(newItem);
+      this.commandsService.postCommand(createProductCommand, false);
+    }
+    return newItem;
+  }
+
+  createProductVersion(doSave: boolean, product: Product, name: string): ProductVersion {
+    const newItem = new ProductVersion();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      product.versions.splice(0, 0, newItem);
+      const createProductCommand = new AddVersionToProductCommand(product, newItem);
       this.commandsService.postCommand(createProductCommand, false);
     }
     return newItem;
@@ -67,7 +83,7 @@ export class ProductsService {
     } else {
       return this.http.get(this.productsUrl + '/' + guid)
         .toPromise()
-        .then(response => response.json() as Product)
+        .then(response => new Product(response.json() as ProductState))
         .catch(error => this.handleError(error, this.notificationService));
     }
   }

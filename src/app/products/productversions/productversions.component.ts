@@ -1,31 +1,42 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductVersionsService } from './productversions.service';
+import { ProductsService } from '../products.service';
 import { ProductVersion } from './productversion';
+import { Product } from '../product';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-productversions',
   templateUrl: './productversions.component.html',
   styleUrls: ['./productversions.component.css'],
-  providers: [ProductVersionsService]
+  providers: [ProductsService]
 })
 export class ProductVersionsComponent implements OnInit {
-
+  productGuid: string;
+  product: Product;
   productversions: Array<ProductVersion>;
+  selectedProductVersion: ProductVersion;
+  searchText: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductVersionsService
+    private service: ProductsService,
   ) { }
 
-  selectedProductVersion: ProductVersion;
-  searchText: string;
-
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getProductVersions(params['productId'], ''))
-      .subscribe((productversions: Array<ProductVersion>) => this.productversions = productversions);
+    this.route.parent.params.switchMap((params: Params) => this.productGuid = params['productId'])
+      .subscribe((productversions: Array<ProductVersion>) => this.updateVersions(productversions));
+  }
+
+  updateVersions(productversions: Array<ProductVersion>): void {
+    this.service.getProduct(this.productGuid).then(product => this.updateProduct(product));
+  }
+
+  updateProduct(product: Product): void {
+    this.product = product;
+    this.getProductVersions('');
   }
 
   onSelect(productVersion: ProductVersion): void {
@@ -42,17 +53,20 @@ export class ProductVersionsComponent implements OnInit {
 */  }
 
   getProductVersions(searchText: string): void {
-    if (this.productversions) {
-      this.service.getProductVersions(this.productversions[0].ProductGuid, searchText)
-        .then(productversions => this.productversions = productversions);
+    if (this.product && this.product.versions) {
+      if (searchText.length > 0) {
+        this.productversions = _.filter<ProductVersion>(this.product.versions, prj => prj.name.indexOf(this.searchText) > -1);
+      } else {
+        this.productversions = this.product.versions;
+      }
+
     }
   }
 
   createProductVersion(name: string): void {
-    let productversion = this.service.createProductVersion();
-    productversion.Name = name;
-    this.searchText = '';
-    this.getProductVersions('');
+    const productversion = this.service.createProductVersion(true, this.product, name);
+    this.productversions.splice(0, 0, productversion);
+    this.product.versions.splice(0, 0, productversion);
   }
 
 }

@@ -1,5 +1,7 @@
 import { Command, CommandParameters } from '../../commands/command';
 import { Product } from '../product';
+import { ProductVersion } from '../productversions/productversion';
+
 export class ProductCommand extends Command {
     constructor(name: string, product: Product) {
         super(name, 'Product', product.guid);
@@ -63,6 +65,29 @@ export class ChangeBusinessCaseOfProductCommand extends ProductCommand {
         super('ChangeBusinessCaseOf', product);
         const parameters = new ChangeBusinessCaseOfProductParameters();
         parameters.BusinessCase = product.businessCase;
+        this.Parameters = parameters;
+    }
+}
+
+export class AddVersionToProductCommandParameters extends CommandParameters {
+    Name: string;
+    Major: number;
+    Minor: number;
+    Revision: number;
+    Build: number;
+    ProductVersionGuid: string;
+}
+
+export class AddVersionToProductCommand extends ProductCommand {
+    constructor(product: Product, productversion: ProductVersion) {
+        super('AddVersionTo',product);
+        const parameters = new AddVersionToProductCommandParameters();
+        parameters.Name = productversion.name;
+        parameters.Major = productversion.major;
+        parameters.Minor = productversion.minor;
+        parameters.Revision = productversion.revision;
+        parameters.Build = productversion.build;
+        parameters.ProductVersionGuid = productversion.guid;
         this.Parameters = parameters;
     }
 }
