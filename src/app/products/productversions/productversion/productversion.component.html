@@ -1,26 +1,14 @@
 <md-card *ngIf="productversion">
-  <md-card-title>{{productversion.Name}}</md-card-title>
-  <button [routerLink]="['details', productversion.Guid]" md-raised-button md-tooltip="todo: Product Details">Details</button>
+  <md-card-title>{{productversion.name}}</md-card-title>
+  <button routerLink="details" md-raised-button md-tooltip="todo: Product Details">Details</button>
   <button routerLink="productfeatures" md-raised-button md-tooltip="todo: features in or requested for this version">Features</button>
   <button [routerLink]="['issues']" md-raised-button md-tooltip="todo: view issues in or fixed in this version">Issues</button>
   <button [routerLink]="['installations']" md-raised-button md-tooltip="todo: installations of this version">Installations</button>
-  <md-card class='flex-h'>
-    <md-card-content layout='column'>
-      <input mdInput [(ngModel)]="productversion.Name" placeholder="Name"/>
-      <input mdInput [(ngModel)]="productversion.Major" placeholder="Major"/>
-      <input mdInput [(ngModel)]="productversion.Minor" placeholder="Minor"/>
-      <input mdInput [(ngModel)]="productversion.Build" placeholder="Build"/>
-      <input mdInput [(ngModel)]="productversion.Revision" placeholder="Revision"/>
-      <input mdInput type='date' [(ngModel)]='productversion.ReleaseDate' placeholder="ReleaseDate"/>
-    </md-card-content>
-
-    <md-card-content layout='column'>
-      <router-outlet>
-      </router-outlet>
-    </md-card-content>
-  </md-card>
-
+  <router-outlet>
+  </router-outlet>
 </md-card>
 <div *ngIf="!productversion">
-  Error loading productversion  
+  Loading productversion
+    <router-outlet>
+  </router-outlet>
 </div>

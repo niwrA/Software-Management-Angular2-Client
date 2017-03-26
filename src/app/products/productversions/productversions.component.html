@@ -1,7 +1,7 @@
+<router-outlet></router-outlet>
 <md-card>
   <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')"
-      (keyup.enter)='createProductVersion(searchTextInput.value)' />
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')" (keyup.enter)='createProductVersion(searchTextInput.value)' />
   </md-input-container>
   <button md-raised-button md-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
   <div *ngIf="productversions">
@@ -10,8 +10,11 @@
         <md-icon>assignment circle</md-icon>
       </md-card-subtitle>
       <md-card-title>{{productversion.name}}</md-card-title>
+      <md-card-content>
+        <div>{{productversion.releaseDate | date:'yyyy-MM-dd'}}</div>
+      </md-card-content>
       <md-card-actions align='end'>
-        <button [routerLink]="['/productversions',productversion.guid]"><md-icon>details</md-icon></button>
+        <button [routerLink]="['../versions',productversion.guid, 'details']"><md-icon>details</md-icon></button>
       </md-card-actions>
     </md-card>
   </div>

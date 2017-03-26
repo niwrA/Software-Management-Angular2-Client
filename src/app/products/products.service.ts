@@ -47,6 +47,13 @@ export class ProductsService {
     return newItem;
   }
 
+  getProductVersion(productGuid: string, versionGuid: string): Promise<ProductVersion> {
+    if (productGuid && versionGuid) {
+      var version = this.getProduct(productGuid).then(product => _.find<ProductVersion>(product.versions, t => t.guid == versionGuid));
+      return version;
+    }
+  }
+
   deleteProduct(product: Product): void {
     const index = this.products.indexOf(product, 0);
     if (index > -1) {

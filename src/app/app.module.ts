@@ -73,6 +73,7 @@ import { EmploymentComponent } from './employments/employment/employment.compone
 import { EmploymentsService } from './employments/employments.service';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
 import { ContactsSelectComponent } from './contacts/contacts-select/contacts-select.component';
+import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
 
 @NgModule({
   imports: [
@@ -129,10 +130,11 @@ import { ContactsSelectComponent } from './contacts/contacts-select/contacts-sel
     EmploymentsComponent,
     EmploymentComponent,
     CompanyRoleComponent,
-    ContactsSelectComponent
+    ContactsSelectComponent,
+    ProductVersionDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService, 
+    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent]

@@ -26,6 +26,7 @@ import { ProductComponent } from './products/product/product.component';
 
 import { ProductVersionsComponent } from './products/productversions/productversions.component';
 import { ProductVersionComponent } from './products/productversions/productversion/productversion.component';
+import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
 import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
@@ -111,18 +112,23 @@ const appRoutes: Routes = [
         component: ProductDetailsComponent
       },
       {
-        path: 'productversions',
-        component: ProductVersionsComponent
+        path: 'versions',
+        component: ProductVersionsComponent,
       },
       {
-        path: 'productfeatures',
-        component: ProductFeaturesComponent
-      }]
-  },
-  {
-    path: 'productversions/:productVersionId',
-    component: ProductVersionComponent,
-    children: [
+        path: 'versions/:productVersionId',
+        component: ProductVersionComponent,
+        children: [
+          {
+            path: 'details',
+            component: ProductVersionDetailsComponent
+          },
+          {
+            path: 'features',
+            component: ProductFeaturesComponent
+          }]
+      },
+
       {
         path: 'productfeatures',
         component: ProductFeaturesComponent

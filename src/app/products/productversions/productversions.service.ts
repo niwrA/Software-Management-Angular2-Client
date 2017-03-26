@@ -29,8 +29,8 @@ export class ProductVersionsService {
 
   getProductVersions(productId: string, searchText: string): Promise<ProductVersion[]> {
     if (searchText && searchText.length > 0) {
-      const results = _.filter<ProductVersion>(this.productversions, prj => prj.ProductGuid === productId
-        && prj.Name.indexOf(searchText) > -1);
+      const results = _.filter<ProductVersion>(this.productversions, prj => prj.productGuid === productId
+        && prj.name.indexOf(searchText) > -1);
       return Promise.resolve(results);
     }
     return this.getVersionsForProduct(productId);
@@ -38,7 +38,7 @@ export class ProductVersionsService {
 
   getVersionsForProduct(productId: string): Promise<ProductVersion[]> {
     if (productId && productId.length > 0) {
-      const results = _.filter<ProductVersion>(this.productversions, prj => prj.ProductGuid === productId);
+      const results = _.filter<ProductVersion>(this.productversions, prj => prj.productGuid === productId);
       return Promise.resolve(results);
     }
     return Promise.resolve(this.productversions);

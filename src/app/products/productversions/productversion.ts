@@ -6,7 +6,7 @@ export class ProductVersionState {
     minor: number;
     revision: number;
     build: number;
-    releaseDate?: string;
+    releaseDate: string;
     productGuid: string;
 }
 

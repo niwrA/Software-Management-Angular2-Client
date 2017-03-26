@@ -1,0 +1,22 @@
+<md-card *ngIf="productversion">
+  <md-card-content>
+    <md-input-container>
+      <input mdInput [(ngModel)]="productversion.name" placeholder="Name" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="productversion.major" placeholder="Major" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="productversion.minor" placeholder="Minor" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="productversion.build" placeholder="Build" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="productversion.revision" placeholder="Revision" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type='date' [(ngModel)]='productversion.releaseDate' placeholder="ReleaseDate" />
+    </md-input-container>
+  </md-card-content>
+</md-card>
