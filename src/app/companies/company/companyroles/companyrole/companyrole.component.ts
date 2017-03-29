@@ -46,7 +46,7 @@ export class CompanyRoleComponent implements OnInit {
 
   update() {
     if (this.company && this.companyroleguid) {
-      this.companyrole = this.company.companyRoles.find(role => role.guid === this.companyroleguid);
+      this.companyrole = this.company.roles.find(role => role.guid === this.companyroleguid);
       if (this.companyrole) {
         this.previousCompanyRole = this.companyrole.clone();
       }

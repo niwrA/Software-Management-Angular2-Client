@@ -1,6 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Product } from '../../product';
 import { ProductVersion } from '../productversion';
 import { ProductsService } from '../../products.service';
 
@@ -10,9 +11,10 @@ import { ProductsService } from '../../products.service';
   styleUrls: ['./productversion.component.css']
 })
 export class ProductVersionComponent implements OnInit {
+  product: Product;
   productversion: ProductVersion;
-  productGuid: string;
-  versionGuid: string;
+  productId: string;
+  versionId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,13 +22,19 @@ export class ProductVersionComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.productGuid = params['productId']).subscribe(s => this.getProductVersion());
-    this.route.params.switchMap((params: Params) => this.versionGuid = params['productVersionId']).subscribe(s => this.getProductVersion());
+    this.route.params.map(params => [params['productId'], params['productVersionId']])
+      .subscribe(([productId, versionId]) => {
+        this.getProductVersion(productId, versionId);
+      });
   }
 
-  getProductVersion(): void {
-    if (this.productGuid && this.versionGuid) {
-      this.service.getProductVersion(this.productGuid, this.versionGuid).then(productVersion => this.productversion = productVersion);
+  getProductVersion(productId: string, versionId: string): void {
+    if (productId && versionId) {
+      this.productId = productId;
+      this.versionId = versionId;
+      this.service.getProductVersion(productId, versionId).then(productVersion => this.productversion = productVersion);
+      this.service.getProduct(productId).then(product => this.product = product);
+
     }
   }
 }

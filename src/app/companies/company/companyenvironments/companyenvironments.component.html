@@ -1,0 +1,21 @@
+<md-input-container>
+  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyEnvironments(searchTextInput.value)" (keyup.enter)='createCompanyEnvironment(searchTextInput.value)' />
+</md-input-container>
+<button [disabled]='!canAdd' md-raised-button md-tooltip="Add new companyenvironment" (click)="createCompanyEnvironment(searchTextInput.value)">Add</button>
+
+<md-card *ngFor="let companyenvironment of companyenvironments">
+  <md-card-title-group [routerLink]="[companyenvironment.guid]">
+    <md-card-subtitle>
+      <md-icon>assignment</md-icon>
+    </md-card-subtitle>
+    <md-card-title>{{companyenvironment.name}}</md-card-title>
+  </md-card-title-group>
+  <md-card-content>
+  </md-card-content>
+  <md-card-actions align='end'>
+    <button (click)="deleteCompanyEnvironment(companyenvironment)">
+<md-icon>delete</md-icon></button>
+    <!--        <button [(disabled)]="!companyenvironment.Email" routerLink="companyenvironment" RouterLinkActive='active' [uiParams]="{ companyenvironmentId: companyenvironment.Guid }">
+<md-icon>email circle</md-icon></button>-->
+  </md-card-actions>
+</md-card>

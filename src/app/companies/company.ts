@@ -1,25 +1,37 @@
 import { CompanyRole, CompanyRoleState } from './company/companyroles/companyrole';
+import { CompanyEnvironment, CompanyEnvironmentState } from './company/companyenvironments/companyenvironment';
 import * as _ from 'lodash';
 export class CompanyState {
-    constructor() {
-        this.companyRoles = new Array<CompanyRoleState>();
-    }
     name: string;
     guid: string;
-    companyRoles: Array<CompanyRoleState>;
+    roles: Array<CompanyRoleState>;
+    environments: Array<CompanyEnvironmentState>;
+
+    constructor() {
+        this.roles = new Array<CompanyRoleState>();
+        this.environments = new Array<CompanyEnvironmentState>();
+    }
 }
 export class Company {
     private _state: CompanyState;
-    companyRoles: Array<CompanyRole>;
+    roles: Array<CompanyRole>;
+    environments: Array<CompanyEnvironment>;
+
     constructor(state?: CompanyState) {
         if (!state) {
             state = new CompanyState();
         }
-        if (!this.companyRoles) {
-            this.companyRoles = new Array<CompanyRole>();
+        if (!this.roles) {
+            this.roles = new Array<CompanyRole>();
         }
-        for (const companyRoleState of state.companyRoles) {
-            this.companyRoles.push(new CompanyRole(companyRoleState));
+        for (const companyRoleState of state.roles) {
+            this.roles.push(new CompanyRole(companyRoleState));
+        }
+        if (!this.environments) {
+            this.environments = new Array<CompanyEnvironment>();
+        }
+        for (const environmentState of state.environments) {
+            this.environments.push(new CompanyEnvironment(environmentState));
         }
         this._state = state;
     }

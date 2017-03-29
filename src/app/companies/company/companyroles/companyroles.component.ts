@@ -31,7 +31,7 @@ export class CompanyRolesComponent implements OnInit {
 
   updateCompany(company: Company) {
     this.company = company;
-    this.companyroles = company.companyRoles;
+    this.companyroles = company.roles;
   }
 
   searchTextChanged(): void {
@@ -44,7 +44,7 @@ export class CompanyRolesComponent implements OnInit {
     companyrole.name = name;
     companyrole.companyGuid = this.company.guid;
 
-    this.company.companyRoles.push(companyrole);
+    this.company.roles.push(companyrole);
     this.updateCompany(this.company);
 
     const command = new AddRoleToCompanyCommand(this.company, companyrole.guid, companyrole.name);

@@ -11,6 +11,7 @@ import { CompanyComponent } from './companies/company/company.component';
 import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
 import { CompanyRolesComponent } from './companies/company/companyroles/companyroles.component';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
+import { CompanyEnvironmentsComponent } from './companies/company/companyenvironments/companyenvironments.component';
 import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -73,6 +74,10 @@ const appRoutes: Routes = [
       {
         path: 'roles/:roleId',
         component: CompanyRoleComponent
+      },
+      {
+        path: 'environments',
+        component: CompanyEnvironmentsComponent
       }
     ]
   },
@@ -116,21 +121,20 @@ const appRoutes: Routes = [
         component: ProductVersionsComponent,
       },
       {
-        path: 'versions/:productVersionId',
-        component: ProductVersionComponent,
-        children: [
-          {
-            path: 'details',
-            component: ProductVersionDetailsComponent
-          },
-          {
-            path: 'features',
-            component: ProductFeaturesComponent
-          }]
-      },
-
-      {
         path: 'productfeatures',
+        component: ProductFeaturesComponent
+      }]
+  },
+  {
+    path: 'products/:productId/versions/:productVersionId',
+    component: ProductVersionComponent,
+    children: [
+      {
+        path: 'details',
+        component: ProductVersionDetailsComponent
+      },
+      {
+        path: 'features',
         component: ProductFeaturesComponent
       }]
   },

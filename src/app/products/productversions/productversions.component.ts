@@ -26,7 +26,7 @@ export class ProductVersionsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.productGuid = params['productId'])
+    this.route.parent.params.map((params: Params) => this.productGuid = params['productId'])
       .subscribe((productversions: Array<ProductVersion>) => this.updateVersions(productversions));
   }
 
@@ -65,7 +65,7 @@ export class ProductVersionsComponent implements OnInit {
 
   createProductVersion(name: string): void {
     const productversion = this.service.createProductVersion(true, this.product, name);
-    //this.product.versions.splice(0, 0, productversion);
+    // this.product.versions.splice(0, 0, productversion);
   }
 
 }

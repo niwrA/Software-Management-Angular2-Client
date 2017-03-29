@@ -52,7 +52,7 @@ import { CommandsComponent } from './commands/commands.component';
 import { CommandsService } from './commands/commands.service';
 import { EnvironmentsComponent } from './environments/environments.component';
 import { EnvironmentComponent } from './environments/environment/environment.component';
-import { CompanyEnvironmentsComponent } from './companies/companyenvironments/companyenvironments.component';
+import { CompanyEnvironmentsComponent } from './companies/company/companyenvironments/companyenvironments.component';
 import { UsersComponent } from './admin/users/users.component';
 import { UserComponent } from './admin/users/user/user.component';
 import { AccessesComponent } from './admin/accesses/accesses.component';

@@ -10,10 +10,9 @@ import { ProductsService } from '../../../products.service';
   styleUrls: ['./productversiondetails.component.css']
 })
 export class ProductVersionDetailsComponent implements OnInit {
-
   productversion: ProductVersion;
-  productGuid: string;
-  versionGuid: string;
+  productId: string;
+  versionId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,14 +20,17 @@ export class ProductVersionDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.parent.parent.params.switchMap((params: Params) => this.productGuid = params['productId']).subscribe(s => this.getProductVersion());
-    this.route.parent.params.switchMap((params: Params) => this.versionGuid = params['productVersionId']).subscribe(s => this.getProductVersion());
+    this.route.parent.params.map(params => [params['productId'], params['productVersionId']])
+      .subscribe(([productId, versionId]) => {
+        this.getProductVersion(productId, versionId);
+      });
   }
 
-  getProductVersion(): void {
-    if (this.productGuid && this.versionGuid) {
-      this.service.getProductVersion(this.productGuid, this.versionGuid).then(productVersion => this.productversion = productVersion);
+  getProductVersion(productId: string, versionId: string): void {
+    if (productId && versionId) {
+      this.productId = productId;
+      this.versionId = versionId;
+      this.service.getProductVersion(productId, versionId).then(productVersion => this.productversion = productVersion);
     }
   }
-
 }

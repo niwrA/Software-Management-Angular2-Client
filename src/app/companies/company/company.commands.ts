@@ -1,6 +1,8 @@
 import { Command, CommandParameters } from '../../commands/command';
 import { Company } from '../company';
 import { CompanyRole } from '../company/companyroles/companyrole';
+import { CompanyEnvironment } from '../company/companyenvironments/companyenvironment';
+
 export class CompanyCommand extends Command {
     constructor(name: string, company: Company) {
         super(name, 'Company', company.guid);
@@ -85,3 +87,46 @@ export class RenameRoleForCompanyCommand extends CompanyCommand {
     }
 }
 
+export class AddEnvironmentToCompanyParameters extends CommandParameters {
+    EnvironmentGuid: string;
+    EnvironmentName: string;
+}
+
+export class AddEnvironmentToCompanyCommand extends CompanyCommand {
+    constructor(company: Company, environmentGuid: string, environmentName: string) {
+        super('AddEnvironmentTo', company);
+        const parameters = new AddEnvironmentToCompanyParameters();
+        parameters.EnvironmentGuid = environmentGuid;
+        parameters.EnvironmentName = environmentName;
+        this.Parameters = parameters;
+    }
+}
+
+export class RemoveEnvironmentFromCompanyParameters extends CommandParameters {
+    EnvironmentGuid: string;
+}
+
+export class RemoveEnvironmentFromCompanyCommand extends CompanyCommand {
+
+    constructor(company: Company, environmentGuid: string) {
+        super('RemoveEnvironmentFrom', company);
+        const parameters = new RemoveEnvironmentFromCompanyParameters();
+        parameters.EnvironmentGuid = environmentGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class RenameEnvironmentForCompanyParameters extends CommandParameters {
+    Name: string;
+    OriginalName: string;
+}
+
+export class RenameEnvironmentForCompanyCommand extends CompanyCommand {
+    constructor(company: Company, companyenvironment: CompanyEnvironment, orgName: string) {
+        super('RenameEnvironmentFor', company);
+        const parameters = new RenameEnvironmentForCompanyParameters();
+        parameters.OriginalName = orgName;
+        parameters.Name = companyenvironment.name;
+        this.Parameters = parameters;
+    }
+}

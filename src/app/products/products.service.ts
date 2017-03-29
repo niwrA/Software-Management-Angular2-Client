@@ -49,7 +49,7 @@ export class ProductsService {
 
   getProductVersion(productGuid: string, versionGuid: string): Promise<ProductVersion> {
     if (productGuid && versionGuid) {
-      var version = this.getProduct(productGuid).then(product => _.find<ProductVersion>(product.versions, t => t.guid == versionGuid));
+      const version = this.getProduct(productGuid).then(product => _.find<ProductVersion>(product.versions, t => t.guid === versionGuid));
       return version;
     }
   }
@@ -90,9 +90,15 @@ export class ProductsService {
     } else {
       return this.http.get(this.productsUrl + '/' + guid)
         .toPromise()
-        .then(response => new Product(response.json() as ProductState))
+        .then(response => this.parseSingleResponse(response, this.products))
         .catch(error => this.handleError(error, this.notificationService));
     }
+  }
+
+  parseSingleResponse(response: any, Products: Array<Product>): Product {
+    const product = new Product(response.json() as ProductState);
+    Products.push(product);
+    return product;
   }
 
   parseResponse(response: any, Products: Array<Product>): Array<Product> {
