@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Company, CompanyState } from './company';
+import { CompanyEnvironment } from './company/companyenvironments/companyenvironment';
 import { CompanyRole } from './company/companyroles/companyrole';
 import { COMPANIES } from './mock-companies';
 import { CommandsService } from '../commands/commands.service';
@@ -70,6 +71,14 @@ export class CompaniesService {
         .toPromise()
         .then(response => response.json() as Company)
         .catch(error => this.handleError(error, this.notificationService));
+    }
+  }
+
+  getCompanyEnvironment(companyGuid: string, environmentGuid: string): Promise<CompanyEnvironment> {
+    if (companyGuid && environmentGuid) {
+      const environment = this.getCompany(companyGuid)
+      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid));
+      return environment;
     }
   }
 

@@ -130,3 +130,18 @@ export class RenameEnvironmentForCompanyCommand extends CompanyCommand {
         this.Parameters = parameters;
     }
 }
+
+export class ChangeUrlForEnvironmentForCompanyParameters extends CommandParameters {
+    Url: string;
+    OriginalUrl: string;
+}
+
+export class ChangeUrlForEnvironmentForCompanyCommand extends CompanyCommand {
+    constructor(company: Company, companyenvironment: CompanyEnvironment, orgUrl: string) {
+        super('RenameEnvironmentFor', company);
+        const parameters = new ChangeUrlForEnvironmentForCompanyParameters();
+        parameters.OriginalUrl = orgUrl;
+        parameters.Url = companyenvironment.url;
+        this.Parameters = parameters;
+    }
+}

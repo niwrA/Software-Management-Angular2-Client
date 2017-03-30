@@ -74,6 +74,8 @@ import { EmploymentsService } from './employments/employments.service';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
 import { ContactsSelectComponent } from './contacts/contacts-select/contacts-select.component';
 import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
+import { CompanyEnvironmentComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironment.component';
+import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
 
 @NgModule({
   imports: [
@@ -131,7 +133,9 @@ import { ProductVersionDetailsComponent } from './products/productversions/produ
     EmploymentComponent,
     CompanyRoleComponent,
     ContactsSelectComponent,
-    ProductVersionDetailsComponent
+    ProductVersionDetailsComponent,
+    CompanyEnvironmentComponent,
+    CompanyEnvironmentDetailsComponent
   ],
   providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService,

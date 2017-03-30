@@ -1,0 +1,13 @@
+<md-card >
+  <md-card-title *ngIf="companyenvironment">{{companyenvironment.name}} Environment <span *ngIf="company">for {{company.name}}</span></md-card-title>
+  <md-card-content *ngIf="product"><div>{{product.name}}</div></md-card-content>
+  <button routerLink="details" md-raised-button md-tooltip="Environment Details">Details</button>
+  <button routerLink="hardware" md-raised-button md-tooltip="todo: hardare">(Virtual) Machines</button>
+  <button [routerLink]="accounts" md-raised-button md-tooltip="todo: accounts">Accounts</button>
+  <button [routerLink]="productinstallations" md-raised-button md-tooltip="todo: products">Product Installations</button>
+  <router-outlet>
+  </router-outlet>
+</md-card>
+<div *ngIf="!companyenvironment">
+  Loading companyenvironment <md-spinner></md-spinner>
+</div>

@@ -1,0 +1,10 @@
+<md-card *ngIf="companyenvironment">
+  <md-card-content>
+    <md-input-container>
+      <input mdInput (blur)="changeName()" [(ngModel)]="companyenvironment.name" placeholder="Name" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
+    </md-input-container>
+  </md-card-content>
+</md-card>

@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 export class CompanyEnvironmentState {
     guid: string;
     name: string;
+    url: string;
     companyGuid: string;
 }
 export class CompanyEnvironment {
@@ -14,6 +15,9 @@ export class CompanyEnvironment {
     }
     get name(): string { return this._state.name; };
     set name(value: string) { this._state.name = value; };
+
+    get url(): string { return this._state.url; };
+    set url(value: string) { this._state.url = value; };
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };

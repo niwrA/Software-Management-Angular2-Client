@@ -65,6 +65,7 @@ export class ProductVersionsComponent implements OnInit {
 
   createProductVersion(name: string): void {
     const productversion = this.service.createProductVersion(true, this.product, name);
+    this.getProductVersions(name);
     // this.product.versions.splice(0, 0, productversion);
   }
 
