@@ -4,7 +4,10 @@
       <input mdInput (blur)="changeName()" [(ngModel)]="companyenvironment.name" placeholder="Name" />
     </md-input-container>
     <md-input-container>
-      <input mdInput (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
+      <input mdInput type="url" (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
+      <md-hint *ngIf="urlMissingHttp()">
+        Missing http(s)://
+      </md-hint>
     </md-input-container>
   </md-card-content>
 </md-card>

@@ -9,6 +9,12 @@ export class CompanyCommand extends Command {
     };
 }
 
+export class EnvironmentCommand extends Command {
+    constructor(name: string, company: Company) {
+        super(name, 'Environment', company.guid);
+    };
+}
+
 export class CreateCompanyParameters extends CommandParameters {
     Name: string;
 }
@@ -87,12 +93,15 @@ export class RenameRoleForCompanyCommand extends CompanyCommand {
     }
 }
 
-export class AddEnvironmentToCompanyParameters extends CommandParameters {
+export class EnvironmentCommandParameters extends CommandParameters {
     EnvironmentGuid: string;
+}
+
+export class AddEnvironmentToCompanyParameters extends EnvironmentCommandParameters {
     EnvironmentName: string;
 }
 
-export class AddEnvironmentToCompanyCommand extends CompanyCommand {
+export class AddEnvironmentToCompanyCommand extends EnvironmentCommand {
     constructor(company: Company, environmentGuid: string, environmentName: string) {
         super('AddEnvironmentTo', company);
         const parameters = new AddEnvironmentToCompanyParameters();
@@ -102,44 +111,42 @@ export class AddEnvironmentToCompanyCommand extends CompanyCommand {
     }
 }
 
-export class RemoveEnvironmentFromCompanyParameters extends CommandParameters {
-    EnvironmentGuid: string;
-}
-
 export class RemoveEnvironmentFromCompanyCommand extends CompanyCommand {
 
     constructor(company: Company, environmentGuid: string) {
         super('RemoveEnvironmentFrom', company);
-        const parameters = new RemoveEnvironmentFromCompanyParameters();
+        const parameters = new EnvironmentCommandParameters();
         parameters.EnvironmentGuid = environmentGuid;
         this.Parameters = parameters;
     }
 }
 
-export class RenameEnvironmentForCompanyParameters extends CommandParameters {
+export class RenameEnvironmentParameters extends EnvironmentCommandParameters {
     Name: string;
     OriginalName: string;
 }
 
-export class RenameEnvironmentForCompanyCommand extends CompanyCommand {
+export class RenameEnvironmentCommand extends EnvironmentCommand {
     constructor(company: Company, companyenvironment: CompanyEnvironment, orgName: string) {
-        super('RenameEnvironmentFor', company);
-        const parameters = new RenameEnvironmentForCompanyParameters();
+        super('Rename', company);
+        const parameters = new RenameEnvironmentParameters();
+        parameters.EnvironmentGuid = companyenvironment.guid;
         parameters.OriginalName = orgName;
         parameters.Name = companyenvironment.name;
         this.Parameters = parameters;
     }
 }
 
-export class ChangeUrlForEnvironmentForCompanyParameters extends CommandParameters {
+export class ChangeUrlForEnvironmentParameters extends EnvironmentCommandParameters {
     Url: string;
     OriginalUrl: string;
 }
 
-export class ChangeUrlForEnvironmentForCompanyCommand extends CompanyCommand {
+export class ChangeUrlForEnvironmentCommand extends EnvironmentCommand {
     constructor(company: Company, companyenvironment: CompanyEnvironment, orgUrl: string) {
-        super('RenameEnvironmentFor', company);
-        const parameters = new ChangeUrlForEnvironmentForCompanyParameters();
+        super('ChangeUrlFor', company);
+        const parameters = new ChangeUrlForEnvironmentParameters();
+        parameters.EnvironmentGuid = companyenvironment.guid;
         parameters.OriginalUrl = orgUrl;
         parameters.Url = companyenvironment.url;
         this.Parameters = parameters;

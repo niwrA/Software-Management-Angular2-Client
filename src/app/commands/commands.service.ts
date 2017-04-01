@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Command } from './command';
+import { CommandBatchResult } from './commandbatchresult';
 import { UUID } from 'angular2-uuid';
 import { Headers, Http } from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
@@ -42,17 +43,23 @@ export class CommandsService {
   }
 
   private processResults(results: any, commands: Array<Command>, postedCommands: Array<Command>, notificationService: NotificationsService) {
-    console.log('project commands posted successfully', results);
-    for (const command of commands) {
-      postedCommands.push(command);
-      commands.splice(0);
-      notificationService.success(command.DisplayProperties.title, command.DisplayProperties.description + ' posted successfully', { timeOut: 3000, clickToClose: true });
+    const batchresult = results.json() as CommandBatchResult;
+    if (batchresult.success) {
+      console.log(batchresult.executedCommands.length + ' project command(s) posted successfully');
+      for (const command of commands) {
+        postedCommands.push(command);
+        commands.splice(0);
+        notificationService.success(command.DisplayProperties.title, command.DisplayProperties.description + ' posted successfully', { timeOut: 3000, clickToClose: true });
+      }
+    } else {
+      notificationService.error('An error occurred', batchresult.message, { timeOut: 5000, clickToClose: true });
+      // return Promise.reject(batchresult.message || batchresult);
     }
-    // todo: handle command response properly (only move those that have been changed) 
   }
-  handleError(error: any, notificationService: NotificationsService): Promise<any> {
-    console.error('An error occurred', error);
-    notificationService.error('An error occurred', error, { timeOut: 5000, clickToClose: true });
+
+  private handleError(error: any, notificationService: NotificationsService): Promise<any> {
+    console.error('A connection error occurred', error);
+    notificationService.error('A connection error occurred', error, { timeOut: 5000, clickToClose: true });
     return Promise.reject(error.message || error);
   }
 }

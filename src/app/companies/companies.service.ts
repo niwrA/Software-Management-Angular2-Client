@@ -69,7 +69,7 @@ export class CompaniesService {
     } else {
       return this.http.get(this.companiesUrl + '/' + guid)
         .toPromise()
-        .then(response => response.json() as Company)
+        .then(response => this.parseSingleResponse(response))
         .catch(error => this.handleError(error, this.notificationService));
     }
   }
@@ -80,6 +80,11 @@ export class CompaniesService {
       .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid));
       return environment;
     }
+  }
+
+  parseSingleResponse(response: any): Company {
+    var state = response.json() as CompanyState;
+    return new Company(state);
   }
 
   parseResponse(response: any, Companies: Array<Company>): Array<Company> {
