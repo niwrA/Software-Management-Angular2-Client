@@ -76,7 +76,9 @@ import { ContactsSelectComponent } from './contacts/contacts-select/contacts-sel
 import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
 import { CompanyEnvironmentComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironment.component';
 import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
-
+import { ProjectRoleAssignmentsComponent } from './projectroleassignments/projectroleassignments.component';
+import { ProjectRoleAssignmentComponent } from './projectroleassignments/projectroleassignment/projectroleassignment.component';
+import { ProjectRoleAssignmentsService } from './projectroleassignments/projectroleassignments.service'; 
 @NgModule({
   imports: [
     BrowserModule,
@@ -135,9 +137,11 @@ import { CompanyEnvironmentDetailsComponent } from './companies/company/companye
     ContactsSelectComponent,
     ProductVersionDetailsComponent,
     CompanyEnvironmentComponent,
-    CompanyEnvironmentDetailsComponent
+    CompanyEnvironmentDetailsComponent,
+    ProjectRoleAssignmentsComponent,
+    ProjectRoleAssignmentComponent
   ],
-  providers: [ProjectsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
+  providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],

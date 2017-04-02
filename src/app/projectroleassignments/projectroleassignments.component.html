@@ -1,0 +1,14 @@
+
+<md-card>
+  <md-card-actions>
+    <button md-mini-fab (click)="openContactsDialog()"><md-icon>add</md-icon></button>
+  </md-card-actions>
+  <md-card-content>
+    <md-list *ngIf="projectroleassignments">
+      <md-list-item>
+        <div *ngFor="let projectroleassignment of projectroleassignments">{{projectroleassignment.contactName}}
+          <button md-icon-button (click)="deleteProjectRoleAssignment(projectroleassignment)"><md-icon>delete</md-icon></button> </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
