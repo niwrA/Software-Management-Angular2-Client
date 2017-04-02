@@ -1,13 +1,12 @@
 <md-card>
   <md-card-actions>
-    <button (click)="openContactsDialog()"><md-icon>add</md-icon></button>
+    <button md-mini-fab (click)="openContactsDialog()"><md-icon>add</md-icon></button>
   </md-card-actions>
   <md-card-content>
-    <!-- todo: make a reusable selected contacts control? -->
     <md-list *ngIf="employments">
       <md-list-item>
         <div *ngFor="let employment of employments">{{employment.contactName}}
-          <md-icon (click)="deleteEmployment(employment)"> delete</md-icon><span style="white-space:pre-wrap" *ngIf="employments.length>1">; </span> </div>
+          <button md-icon-button (click)="deleteEmployment(employment)"><md-icon>delete</md-icon></button> </div>
       </md-list-item>
     </md-list>
   </md-card-content>

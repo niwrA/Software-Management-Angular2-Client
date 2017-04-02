@@ -78,6 +78,6 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     {
       return !(this.companyenvironment.url.startsWith('http://') || this.companyenvironment.url.startsWith('https://'));
     }
-    return true;
+    return false;
   }
 }

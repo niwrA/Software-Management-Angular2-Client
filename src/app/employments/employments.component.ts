@@ -54,12 +54,13 @@ export class EmploymentsComponent implements OnInit {
     }*/);
     this.contactDialogRef.afterClosed().subscribe(test => this.handleSelected(test));
   }
-  
-  deleteEmployment(employment: Employment)
-  {
+
+  deleteEmployment(employment: Employment) {
     this.service.deleteEmployment(employment);
     let index = _.indexOf(this.employments, employment); // not sure this is safe
-    this.employments.splice(index);
+    if (index > -1) {
+      this.employments.splice(index, 1);
+    }
   }
 
   handleSelected(ref) {
