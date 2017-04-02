@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   contactsUrl: 'http://localhost:50274/api/contacts',
   companiesUrl: 'http://localhost:50274/api/companies',
+  linksUrl: 'http://localhost:50274/api/links',
   projectsUrl: 'http://localhost:50274/api/projects',
   productsUrl: 'http://localhost:50274/api/products',
   employmentsUrl: 'http://localhost:50274/api/employments',

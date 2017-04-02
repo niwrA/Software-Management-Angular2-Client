@@ -78,7 +78,10 @@ import { CompanyEnvironmentComponent } from './companies/company/companyenvironm
 import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
 import { ProjectRoleAssignmentsComponent } from './projectroleassignments/projectroleassignments.component';
 import { ProjectRoleAssignmentComponent } from './projectroleassignments/projectroleassignment/projectroleassignment.component';
-import { ProjectRoleAssignmentsService } from './projectroleassignments/projectroleassignments.service'; 
+import { ProjectRoleAssignmentsService } from './projectroleassignments/projectroleassignments.service';
+import { LinksComponent } from './links/links.component'; 
+import { LinksService } from './links/links.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -139,10 +142,11 @@ import { ProjectRoleAssignmentsService } from './projectroleassignments/projectr
     CompanyEnvironmentComponent,
     CompanyEnvironmentDetailsComponent,
     ProjectRoleAssignmentsComponent,
-    ProjectRoleAssignmentComponent
+    ProjectRoleAssignmentComponent,
+    LinksComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, EmploymentsService, SemgraphService, CommandsService,
+    ProductFeaturesService, ContactsService, EmploymentsService, LinksService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent]

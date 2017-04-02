@@ -104,7 +104,7 @@ export class ProjectRoleAssignmentsService {
     for (const state of states) {
       const projectroleassignment = new ProjectRoleAssignment(state);
       projectroleassignments.push(projectroleassignment);
-      this.projectroleassignments.push(projectroleassignment);
+      // this.projectroleassignments.push(projectroleassignment);
     }
     return projectroleassignments;
   }
