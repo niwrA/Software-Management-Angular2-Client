@@ -81,6 +81,7 @@ import { ProjectRoleAssignmentComponent } from './projectroleassignments/project
 import { ProjectRoleAssignmentsService } from './projectroleassignments/projectroleassignments.service';
 import { LinksComponent } from './links/links.component'; 
 import { LinksService } from './links/links.service';
+import { LinkComponent } from './links/link/link.component';
 
 @NgModule({
   imports: [
@@ -143,7 +144,8 @@ import { LinksService } from './links/links.service';
     CompanyEnvironmentDetailsComponent,
     ProjectRoleAssignmentsComponent,
     ProjectRoleAssignmentComponent,
-    LinksComponent
+    LinksComponent,
+    LinkComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService, TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, ContactsService, EmploymentsService, LinksService, SemgraphService, CommandsService,

@@ -30,13 +30,13 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
       });
   }
 
-  getCompanyEnvironment(companyId: string, environmentId: string): void {
+  getCompanyEnvironment(companyId: string, environmentId: string): Promise<CompanyEnvironment> {
     if (companyId && environmentId) {
       this.companyId = companyId;
       this.environmentId = environmentId;
-      this.service.getCompanyEnvironment(companyId, environmentId)
-        .then(companyEnvironment => this.updateCompanyEnvironment(companyEnvironment));
       this.service.getCompany(companyId).then(company => this.company = company);
+      return this.service.getCompanyEnvironment(companyId, environmentId)
+        .then(companyEnvironment => this.updateCompanyEnvironment(companyEnvironment));
     }
   }
 
@@ -60,7 +60,7 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     }
   }
 
-  changeUrl(): void {
+  changUrl(): void {
     if (this.previousCompanyEnvironment !== undefined) {
       if (this.companyenvironment.url !== this.previousCompanyEnvironment.url) {
         const changeUrlCommand = new ChangeUrlForEnvironmentCommand(this.company,
@@ -71,13 +71,5 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     } else {
       this.previousCompanyEnvironment = this.companyenvironment;
     }
-  }
-
-  urlMissingHttp(): boolean {
-    if(this.companyenvironment.url && this.companyenvironment.url.length > 0)
-    {
-      return !(this.companyenvironment.url.startsWith('http://') || this.companyenvironment.url.startsWith('https://'));
-    }
-    return false;
   }
 }
