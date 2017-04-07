@@ -17,39 +17,41 @@ export class CommandsService {
   constructor(private http: Http, private notificationsService: NotificationsService) {
   };
 
-  postCommands(commands: Array<Command>, replaceOriginal: Boolean) {
+  postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
     for (const command of commands) {
       command.Guid = UUID.UUID();
       command.ParametersJson = JSON.stringify(command.Parameters);
       this.commands.push(command);
     }
-    this.postcommands();
+    return this.postcommands();
   }
-  postCommand(command: Command, replaceOriginal: Boolean) {
+  postCommand(command: Command, replaceOriginal: Boolean): Promise<any> {
     // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
     command.Guid = UUID.UUID();
     command.ParametersJson = JSON.stringify(command.Parameters);
     this.commands.push(command);
-    this.postcommands();
+    return this.postcommands();
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
     //    this.commands = new Array<Command>();
   }
   private postcommands() {
-    this.http.post(this.commandsUrl, JSON.stringify(this.commands),
+    return this.http.post(this.commandsUrl, JSON.stringify(this.commands),
       { headers: this.headers }).toPromise().then(results => this.processResults(results,
         this.commands, this.postedCommands, this.notificationsService))
       .catch(error => this.handleError(error, this.notificationsService));
   }
 
-  private processResults(results: any, commands: Array<Command>, postedCommands: Array<Command>, notificationService: NotificationsService) {
+  private processResults(results: any, commands: Array<Command>, postedCommands: Array<Command>,
+    notificationService: NotificationsService) {
     const batchresult = results.json() as CommandBatchResult;
     if (batchresult.success) {
       console.log(batchresult.executedCommands.length + ' project command(s) posted successfully');
       for (const command of commands) {
         postedCommands.push(command);
         commands.splice(0);
-        notificationService.success(command.DisplayProperties.title, command.DisplayProperties.description + ' posted successfully', { timeOut: 3000, clickToClose: true });
+        notificationService.success(command.DisplayProperties.title,
+          command.DisplayProperties.description + ' posted successfully', { timeOut: 3000, clickToClose: true });
       }
     } else {
       notificationService.error('An error occurred', batchresult.message, { timeOut: 5000, clickToClose: true });

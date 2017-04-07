@@ -28,10 +28,23 @@ export class LinksService {
     if (doSave) {
       this.links.splice(0, 0, newItem);
       const createLinkCommand = new CreateLinkCommand(newItem);
-      this.commandsService.postCommand(createLinkCommand, false);
+      this.commandsService.postCommand(createLinkCommand, false).then(s => this.updateLink(newItem));
     }
     return newItem;
   }
+
+  updateLink(link: Link) {
+    this.getLink(link.guid, true).then(s => this.updateLinkProperties(link, s));
+  }
+
+// not sure if this is the most efficient method, but it will trigger a UI update nicely
+  updateLinkProperties(link: Link, updated: Link) {
+    link.description = updated.description;
+    link.siteName = updated.siteName;
+    link.imageUrl = updated.imageUrl;
+    link.name = updated.name;
+  }
+
 
   deleteLink(link: Link): void {
     const index = this.links.indexOf(link, 0);
@@ -86,8 +99,8 @@ export class LinksService {
     return links;
   }
 
-  getLink(guid: string): Promise<Link> {
-    if (this.links.length > 0) {
+  getLink(guid: string, noCache?: boolean): Promise<Link> {
+    if (this.links.length > 0 && !noCache) {
       const result = _.find(this.links, prj => prj.guid === guid);
       return Promise.resolve(result);
     } else {
