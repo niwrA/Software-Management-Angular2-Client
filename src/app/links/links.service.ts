@@ -19,10 +19,12 @@ export class LinksService {
     this.getLinks('').then(result => this.links = result as Array<Link>);
   }
 
-  createLink(doSave: boolean, name?: string): Link {
+  createLink(doSave: boolean, url: string, forGuid: string): Link {
     const newItem = new Link();
     newItem.guid = UUID.UUID();
-    newItem.name = name;
+    newItem.url = url;
+    newItem.name = url;
+    newItem.forGuid = forGuid;
     if (doSave) {
       this.links.splice(0, 0, newItem);
       const createLinkCommand = new CreateLinkCommand(newItem);
@@ -46,10 +48,24 @@ export class LinksService {
     }
   }
 
+  getLinksForGuid(forGuid: string): Promise<Array<Link>> {
+    if (this.links.length > 0) {
+      if (forGuid && forGuid.length > 0) {
+        const results = _.filter<Link>(this.links, prj => prj.forGuid === forGuid);
+        return Promise.resolve(results);
+      } else { return Promise.resolve(this.links); }
+    } else {
+      return this.http.get(this.linksUrl + '/forGuid/' + forGuid)
+        .toPromise()
+        .then(response => this.parseResponse(response, this.links))
+        .catch(error => this.handleError(error, this.notificationService));
+    }
+  }
+
   getLinks(searchText: string): Promise<Array<Link>> {
     if (this.links.length > 0) {
       if (searchText && searchText.length > 0) {
-        const results = _.filter<Link>(this.links, prj => prj.name.indexOf(searchText) > -1);
+        const results = _.filter<Link>(this.links, prj => prj.name.indexOf(searchText) > -1 || prj.url.indexOf(searchText) > -1);
         return Promise.resolve(results);
       } else { return Promise.resolve(this.links); }
     } else {
@@ -63,6 +79,7 @@ export class LinksService {
   parseResponse(response: any, links: Array<Link>): Array<Link> {
     const states = response.json() as Array<LinkState>;
     links = new Array<Link>();
+    // todo: option to add/update
     for (const state of states) {
       links.push(new Link(state));
     }

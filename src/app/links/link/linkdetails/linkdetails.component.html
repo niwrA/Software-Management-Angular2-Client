@@ -1,0 +1,8 @@
+<div *ngIf="link">
+  <md-input-container>
+    <input mdInput (blur)="changeName()" [(ngModel)]="link.name" placeholder="Name" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput (blur)="changeUrl()" [(ngModel)]="link.url" placeholder="url" />
+  </md-input-container>
+</div>

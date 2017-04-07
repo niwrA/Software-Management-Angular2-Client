@@ -11,13 +11,14 @@ export class CreateLinkParameters extends CommandParameters {
     Url: string;
     Name: string;
 }
+
 export class CreateLinkCommand extends LinkCommand {
     constructor(link: Link) {
         super('Create', link);
         const parameters = new CreateLinkParameters();
         parameters.Name = link.name;
         parameters.Url = link.url;
-        parameters.ForGuid = link.linkForGuid;
+        parameters.ForGuid = link.forGuid;
         this.Parameters = parameters;
     }
 }
@@ -28,11 +29,11 @@ export class DeleteLinkCommand extends LinkCommand {
     }
 }
 
-
 export class RenameLinkParameters extends CommandParameters {
     Name: string;
     OriginalName: string;
 }
+
 export class RenameLinkCommand extends LinkCommand {
     constructor(link: Link, orgName: string) {
         super('Rename', link);

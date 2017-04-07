@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Link } from '../link';
+import { LinksService } from '../links.service';
 
 @Component({
   selector: 'app-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css']
 })
-export class LinkComponent implements OnInit {
+export class LinkComponent {
 
-  constructor() { }
+  link: Link;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: LinksService
+  ){}
 
   ngOnInit() {
+    this.route.params.switchMap((params: Params) => this.service.getLink(params['linkId']))
+    .subscribe((link: Link) => this.link = link);
   }
 
 }

@@ -1,3 +1,31 @@
-<p>
-  links works!
-</p>
+<md-card>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterLinks()" (keyup.enter)='createLink(searchTextInput.value)'
+    />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
+  <md-list *ngIf="selectedLinks">
+    <md-list-item>
+      <div *ngFor="let link of selectedLinks">{{link.name}}<span style="white-space:pre-wrap" *ngIf="selectedLinks.length>1">; </span> </div>
+    </md-list-item>
+  </md-list>
+  <md-card *ngFor="let link of links">
+    <md-card-title-group [routerLink]="[link.guid, 'details']">
+      <md-card-subtitle>
+        <md-icon>link</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{link.name}}</md-card-title>
+      <img md-card-md-image [src]="link.imageUrl">
+    </md-card-title-group>
+    <md-card-content>
+      <div>{{link.description}}</div>
+      <div>{{link.siteName}}</div>
+      <div>{{link.url}}</div>
+    </md-card-content>
+    <md-card-actions align='end'>
+      <button [routerLink]="[link.guid, 'details']"><md-icon>details circle</md-icon></button>
+      <a [attr.href]="link.url"><button [(disabled)]="!link.url"><md-icon>link</md-icon></button></a>
+      <button (click)="deleteLink(link)">
+<md-icon>delete</md-icon></button>
+    </md-card-actions>
+  </md-card>

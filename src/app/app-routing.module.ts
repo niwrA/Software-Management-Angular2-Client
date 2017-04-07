@@ -34,9 +34,30 @@ import { ProductDetailsComponent } from './products/productdetails/productdetail
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 
+import { LinksComponent } from './links/links.component';
+import { LinkComponent } from './links/link/link.component';
+import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.component';
+
 import { EmploymentsComponent } from './employments/employments.component';
 
 import { PageNotFoundComponent } from './not-found.component';
+
+const linksSubRoute = {
+  path: 'links/:forId',
+  component: LinksComponent,
+  children: [
+    {
+      path: ':linkId',
+      component: LinksComponent,
+      children: [
+        {
+          path: 'details',
+          component: LinkDetailsComponent
+        }
+      ]
+    },
+  ]
+};
 
 const appRoutes: Routes = [
   {
@@ -134,7 +155,9 @@ const appRoutes: Routes = [
       {
         path: 'productfeatures',
         component: ProductFeaturesComponent
-      }]
+      },
+      linksSubRoute
+    ]
   },
   {
     path: 'products/:productId/versions/:productVersionId',
