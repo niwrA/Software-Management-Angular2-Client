@@ -16,7 +16,7 @@ export class LinksService {
   links = new Array<Link>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
-    this.getLinks('').then(result => this.links = result as Array<Link>);
+    //    this.getLinks('').then(result => this.links = result as Array<Link>);
   }
 
   createLink(doSave: boolean, url: string, forGuid: string): Link {
@@ -37,7 +37,7 @@ export class LinksService {
     this.getLink(link.guid, true).then(s => this.updateLinkProperties(link, s));
   }
 
-// not sure if this is the most efficient method, but it will trigger a UI update nicely
+  // not sure if this is the most efficient method, but it will trigger a UI update nicely
   updateLinkProperties(link: Link, updated: Link) {
     link.description = updated.description;
     link.siteName = updated.siteName;
@@ -62,17 +62,15 @@ export class LinksService {
   }
 
   getLinksForGuid(forGuid: string): Promise<Array<Link>> {
-    if (this.links.length > 0) {
-      if (forGuid && forGuid.length > 0) {
-        const results = _.filter<Link>(this.links, prj => prj.forGuid === forGuid);
-        return Promise.resolve(results);
-      } else { return Promise.resolve(this.links); }
-    } else {
-      return this.http.get(this.linksUrl + '/forGuid/' + forGuid)
-        .toPromise()
-        .then(response => this.parseResponse(response, this.links))
-        .catch(error => this.handleError(error, this.notificationService));
-    }
+    return this.getLinks('').then(links => this.filterByForGuid(links, forGuid));
+  }
+
+  filterByForGuid(links: Array<Link>, forGuid: string): Promise<Array<Link>> {
+    if (forGuid && forGuid.length > 0) {
+      const results = _.filter<Link>(links, prj => prj.forGuid === forGuid);
+      return Promise.resolve(results);
+    } else { return Promise.resolve(links); }
+
   }
 
   getLinks(searchText: string): Promise<Array<Link>> {

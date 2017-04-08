@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LinksService } from './links.service';
 import { Link } from './link';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,7 +16,7 @@ export class LinksComponent implements OnInit {
   @Input()
   set forGuid(guid: string) {
     this._forGuid = guid;
-    this.getLinks(guid);
+    this.service.getLinksForGuid(guid).then(links => this.updateLinks(links));
   }
   get companyroleguid() { return this._forGuid; }
 
@@ -29,7 +30,8 @@ export class LinksComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: LinksService
+    private service: LinksService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -45,8 +47,7 @@ export class LinksComponent implements OnInit {
   }
 
   getLinksForGuid(forGuid: string): void {
-    this._forGuid = forGuid;
-    this.service.getLinksForGuid(forGuid).then(links => this.updateLinks(links));
+    this.forGuid = forGuid;
   }
 
   getLinks(searchText: string): void {
@@ -55,23 +56,13 @@ export class LinksComponent implements OnInit {
 
   filterLinks(): void {
     if (this.searchText && this.searchText.length > 0) {
-      this.links = _.filter<Link>(this.allLinks, prj => prj.name.indexOf(this.searchText) > -1);
-    } else { this.updateLinks(this.allLinks); }
-    if (this.links.length === 0) {
-      this.updateLinks(this.allLinks);
-    }
-  }
-
-  updateFilteredLinks(links: Array<Link>): void {
-    this.links = new Array<Link>();
-    links.forEach(element => {
-      this.links.push(element);
-    });
+      this.links = _.filter<Link>(this.allLinks, prj => prj.name.indexOf(this.searchText) > -1 || prj.url.indexOf(this.searchText) > -1);
+    } else { this.links = this.allLinks; }
   }
 
   updateLinks(links: Array<Link>): void {
-    this.updateFilteredLinks(links);
     this.allLinks = links;
+    this.filterLinks();
   }
 
   createLink(url: string): void {
@@ -98,6 +89,33 @@ export class LinksComponent implements OnInit {
       const index = this.selectedLinks.indexOf(link, 0);
       if (index > -1) {
         this.selectedLinks.splice(index, 1);
+      }
+    }
+  }
+
+  isVideo(link: Link): boolean {
+    if (link.url.indexOf('youtube.') > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  getEmbeddedUrl(link: Link): SafeResourceUrl {
+    let url = link.url;
+    if (this.isVideo(link)) {
+      const id = getId(link.url);
+      url = 'http://www.youtube.com/embed/' + id;
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+    function getId(urlToGetIdFrom) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = urlToGetIdFrom.match(regExp);
+
+      if (match && match[2].length === 11) {
+        return match[2];
+      } else {
+        return 'error';
       }
     }
   }
