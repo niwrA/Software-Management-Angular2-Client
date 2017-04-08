@@ -75,7 +75,8 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ContactDetailsComponent
-      }
+      },
+      linksSubRoute
     ]
   },
   {

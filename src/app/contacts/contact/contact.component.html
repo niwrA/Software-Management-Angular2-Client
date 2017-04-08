@@ -4,9 +4,11 @@
     <button routerLink='details' md-raised-button md-tooltip="in progress: Contact Details">Details</button>
     <button routerLink='contactProducts' md-raised-button md-tooltip="todo: View Products this Contact has worked on">Products</button>
     <button routerLink='roles' md-raised-button md-tooltip="in progress: Contact Roles">Roles</button>
+    <button [routerLink]="['links',contact.guid]" md-raised-button md-tooltip="Contact Links">Links</button>
   </md-card-actions>
   <router-outlet></router-outlet>
 </md-card>
 <div *ngIf="!contact">
-  loading ...  <md-spinner></md-spinner>
+  loading ...
+  <md-spinner></md-spinner>
 </div>

@@ -9,7 +9,7 @@
       <md-card-subtitle>
         <md-icon>assignment circle</md-icon>
       </md-card-subtitle>
-      <md-card-title>{{productversion.name}}</md-card-title>
+      <md-card-title [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']">{{productversion.name}}</md-card-title>
       <md-card-content>
         <div>{{productversion.releaseDate | date:'yyyy-MM-dd'}}</div>
       </md-card-content>
