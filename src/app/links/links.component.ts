@@ -58,6 +58,11 @@ export class LinksComponent implements OnInit {
     if (this.searchText && this.searchText.length > 0) {
       this.links = _.filter<Link>(this.allLinks, prj => prj.name.indexOf(this.searchText) > -1 || prj.url.indexOf(this.searchText) > -1);
     } else { this.links = this.allLinks; }
+
+    // todo: this can be async
+    for (let link of this.links) {
+      this.setEmbeddedUrl(link);
+    }
   }
 
   updateLinks(links: Array<Link>): void {
@@ -100,13 +105,13 @@ export class LinksComponent implements OnInit {
     return false;
   }
 
-  getEmbeddedUrl(link: Link): SafeResourceUrl {
+  setEmbeddedUrl(link: Link) {
     let url = link.url;
     if (this.isVideo(link)) {
       const id = getId(link.url);
       url = 'http://www.youtube.com/embed/' + id;
+      link.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
     function getId(urlToGetIdFrom) {
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

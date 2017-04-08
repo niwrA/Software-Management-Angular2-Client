@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from '@angular/platform-browser';
 import * as _ from 'lodash';
 export class LinkState {
     guid: string;
@@ -13,6 +14,7 @@ export class SelectableItem {
 }
 export class Link extends SelectableItem {
     _state: LinkState;
+    _embeddedUrl: SafeResourceUrl;
     constructor(state?: LinkState) {
         super();
         this._state = state;
@@ -41,6 +43,9 @@ export class Link extends SelectableItem {
 
     get imageUrl() { return this._state.imageUrl; };
     set imageUrl(value: string) { this._state.imageUrl = value; };
+
+    get embeddedUrl() { return this._embeddedUrl; };
+    set embeddedUrl(value: SafeResourceUrl) { this._embeddedUrl = value; };
 
     public clone(): Link {
         return new Link(_.clone(this._state));
