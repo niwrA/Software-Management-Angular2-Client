@@ -1,0 +1,26 @@
+<md-card>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getDesigns()" (keyup.enter)='createDesign(searchTextInput.value)' />
+  </md-input-container>
+  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new design" (click)="createDesign(searchTextInput.value)">Add</button>
+
+  <md-card *ngFor="let design of designs">
+    <md-card-title-group [routerLink]="[design.guid, 'details']">
+      <md-card-subtitle>
+        <md-icon>shopping cart</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{design.name}}</md-card-title>
+    </md-card-title-group>
+    <md-card-content>
+      <div>{{design.description}}</div>
+    </md-card-content>
+    <md-card-actions align='end'>
+      <button [routerLink]="[design.guid, 'details']">
+<md-icon>details circle</md-icon></button>
+      <button [routerLink]="[design.guid]">
+<md-icon>share circle</md-icon></button>
+      <button (click)="deleteDesign(design)">
+<md-icon>delete</md-icon></button>
+    </md-card-actions>
+  </md-card>
+</md-card>

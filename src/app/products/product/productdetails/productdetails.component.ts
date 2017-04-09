@@ -1,10 +1,10 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Product } from '../product';
-import { ProductsService } from '../products.service';
-import { CommandsService } from '../../commands/commands.service';
-import { RenameProductCommand, ChangeDescriptionOfProductCommand, ChangeBusinessCaseOfProductCommand } from '../product/product.commands';
+import { Product } from '../../product';
+import { ProductsService } from '../../products.service';
+import { CommandsService } from '../../../commands/commands.service';
+import { RenameProductCommand, ChangeDescriptionOfProductCommand, ChangeBusinessCaseOfProductCommand } from '../../product/product.commands';
 
 @Component({
   selector: 'app-productdetails',

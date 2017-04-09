@@ -63,7 +63,7 @@ import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { GroupaccessesComponent } from './admin/groupaccesses/groupaccesses.component';
 import { LoginComponent } from './admin/login/login.component';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
-import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
+import { ProductDetailsComponent } from './products/product/productdetails/productdetails.component';
 import { BarchartComponent } from './shared/barchart/barchart.component';
 import { ContactDetailsComponent } from './contacts/contact/contactdetails/contactdetails.component';
 import { CompanyDetailsComponent } from './companies/company/companydetails/companydetails.component';
@@ -83,6 +83,10 @@ import { LinksComponent } from './links/links.component';
 import { LinksService } from './links/links.service';
 import { LinkComponent } from './links/link/link.component';
 import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.component';
+import { DesignsComponent } from './designs/designs.component';
+import { DesignComponent } from './designs/design/design.component';
+import { DesignsService } from './designs/designs.service';
+import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
 
 @NgModule({
   imports: [
@@ -147,11 +151,14 @@ import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.compo
     ProjectRoleAssignmentComponent,
     LinksComponent,
     LinkComponent,
-    LinkDetailsComponent
+    LinkDetailsComponent,
+    DesignsComponent,    
+    DesignComponent, 
+    DesignDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, ContactsService, EmploymentsService, LinksService, SemgraphService, CommandsService,
+    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService, LinksService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent]

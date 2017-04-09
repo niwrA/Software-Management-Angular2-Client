@@ -30,9 +30,13 @@ import { ProductComponent } from './products/product/product.component';
 import { ProductVersionsComponent } from './products/productversions/productversions.component';
 import { ProductVersionComponent } from './products/productversions/productversion/productversion.component';
 import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
-import { ProductDetailsComponent } from './products/productdetails/productdetails.component';
+import { ProductDetailsComponent } from './products/product/productdetails/productdetails.component';
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
+
+import { DesignsComponent } from './designs/designs.component';
+import { DesignComponent } from './designs/design/design.component';
+import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
 
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
@@ -140,6 +144,21 @@ const appRoutes: Routes = [
   {
     path: 'products',
     component: ProductsComponent
+  },
+  {
+    path: 'designs',
+    component: DesignsComponent
+  },
+  {
+    path: 'designs/:designId',
+    component: DesignComponent,
+    children: [
+      {
+        path: 'details',
+        component: DesignDetailsComponent
+      },
+      linksSubRoute
+    ]
   },
   {
     path: 'products/:productId',

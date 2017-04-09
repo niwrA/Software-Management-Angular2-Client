@@ -10,6 +10,7 @@ export const environment = {
   linksUrl: 'http://localhost:50274/api/links',
   projectsUrl: 'http://localhost:50274/api/projects',
   productsUrl: 'http://localhost:50274/api/products',
+  designsUrl: 'http://localhost:50274/api/designs',
   employmentsUrl: 'http://localhost:50274/api/employments',
   projectroleassignmentsUrl: 'http://localhost:50274/api/projectroleassignments',
   commandsUrl: 'http://localhost:50274/api/commands/batch' // change to eventsource if you want to try posting to the eventsource backend

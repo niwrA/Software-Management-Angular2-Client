@@ -15,11 +15,12 @@ export class AppComponent {
   title = 'Software Management';
   projectsColor = '';
   productsColor = '';
+  designsColor = '';
   contactsColor = '';
   companiesColor = '';
   technologiesColor = '';
   loginColor = '';
-  menuitems = new Array<string>('projects', 'products', 'contacts', 'companies', 'technologies', 'login');
+  menuitems = new Array<string>('projects', 'products', 'designs', 'contacts', 'companies', 'technologies', 'login');
 
   constructor(private usersservice: UsersService, private router: Router, private activatedroute: ActivatedRoute,
     private epics: Epics) {
@@ -40,6 +41,8 @@ export class AppComponent {
         this.showProjects(false);
       } else if (epic === this.epics.products) {
         this.showProducts(false);
+      } else if (epic === this.epics.designs) {
+        this.showDesigns(false);
       } else if (epic === this.epics.companies) {
         this.showCompanies(false);
       } else if (epic === this.epics.contacts) {
@@ -67,6 +70,7 @@ export class AppComponent {
   resetColors() {
     this.projectsColor = 'primary';
     this.productsColor = 'primary';
+    this.designsColor = 'primary';
     this.companiesColor = 'primary';
     this.contactsColor = 'primary';
     this.technologiesColor = 'primary';
@@ -86,6 +90,14 @@ export class AppComponent {
     this.productsColor = 'accent';
     if (doNavigate) {
       this.router.navigate(['/' + this.epics.products]);
+    }
+  }
+
+  showDesigns(doNavigate?: boolean) {
+    this.resetColors();
+    this.designsColor = 'accent';
+    if (doNavigate) {
+      this.router.navigate(['/' + this.epics.designs]);
     }
   }
 
