@@ -1,0 +1,16 @@
+<md-card>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEpicElements(searchTextInput.value || '')"
+      (keyup.enter)='createEpicElement(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new version" (click)="createEpicElement(searchTextInput.value)">Add</button>
+  <div *ngIf="epicElements">
+    <md-card *ngFor="let epicElement of epicElements">
+      <md-card-subtitle>epic</md-card-subtitle>
+      <md-card-title [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']">{{epicElement.name}}</md-card-title>
+      <md-card-actions align='end'>
+        <button [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']"><md-icon>details</md-icon></button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-card>

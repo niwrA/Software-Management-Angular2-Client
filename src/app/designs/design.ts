@@ -1,18 +1,27 @@
 import * as _ from 'lodash';
+import { EpicElement, EpicElementState } from './design/epic-elements/epic-element';
 
 export class DesignState {
     name: string;
     guid: string;
     description: string;
+    epics: Array<EpicElementState>;
 }
 
 export class Design {
     private _state: DesignState;
-
+    epics: Array<EpicElement>;
     constructor(state?: DesignState) {
+        this.epics = new Array<EpicElement>();
         this._state = state;
         if (!state) {
             this._state = new DesignState();
+        } else {
+            if (state.epics && state.epics.length > 0) {
+                for (let i = 0; i < state.epics.length; i++) {
+                    this.epics.push(new EpicElement(state.epics[i]));
+                }
+            }
         }
     }
 

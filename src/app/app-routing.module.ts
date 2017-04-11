@@ -37,6 +37,10 @@ import { ProductFeatureComponent } from './products/productfeatures/productfeatu
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
 import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
+import { DesignElementsComponent } from './designs/design/designelements/designelements.component';
+import { EpicElementsComponent } from './designs/design/epic-elements/epic-elements.component';
+import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
+import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
 
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
@@ -156,6 +160,25 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: DesignDetailsComponent
+      },
+      {
+        path: 'designelements',
+        component: DesignElementsComponent
+      },
+      {
+        path: 'epicelements',
+        component: EpicElementsComponent
+      },
+      linksSubRoute
+    ]
+  },
+  {
+    path: 'designs/:designId/epicelements/:epicElementId',
+    component: EpicElementComponent,
+    children: [
+      {
+        path: 'details',
+        component: EpicElementDetailsComponent
       },
       linksSubRoute
     ]

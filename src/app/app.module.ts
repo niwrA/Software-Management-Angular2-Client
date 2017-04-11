@@ -87,6 +87,17 @@ import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
 import { DesignsService } from './designs/designs.service';
 import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
+import { DesignElementsComponent } from './designs/design/designelements/designelements.component';
+import { DesignElementComponent } from './designs/design/designelements/designelement/designelement.component';
+import { EpicElementsComponent } from './designs/design/epic-elements/epic-elements.component';
+import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
+import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
+import { EntityElementComponent } from './designs/design/entity-elements/entity-element/entity-element.component';
+import { PropertyELementsComponent } from './designs/design/property-elements/property-elements.component';
+import { PropertyELementComponent } from './designs/design/property-elements/property-element/property-element.component';
+import { CommandElementsComponent } from './designs/design/command-elements/command-elements.component';
+import { CommandElementComponent } from './designs/design/command-elements/command-element/command-element.component';
+import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
 
 @NgModule({
   imports: [
@@ -152,9 +163,11 @@ import { DesignDetailsComponent } from './designs/design/designdetails/designdet
     LinksComponent,
     LinkComponent,
     LinkDetailsComponent,
-    DesignsComponent,    
-    DesignComponent, 
-    DesignDetailsComponent
+    DesignsComponent,
+    DesignComponent,
+    DesignDetailsComponent, DesignElementsComponent, DesignElementComponent, EpicElementsComponent,
+    EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyELementsComponent,
+    PropertyELementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

@@ -1,15 +1,11 @@
 import { Design, DesignState } from './design';
+import {EpicElementState } from './design/epic-elements/epic-element';
+
 export const DESIGNS: DesignState[] = [
-  {guid: 'design11', name: 'Nice Suite', description: 'description'},
-  {guid: 'design12', name: 'Narco Suite', description: 'description'},
-  {guid: 'design13', name: 'Bombasto Suite', description: 'description'},
-  {guid: 'design14', name: 'Celeritas Suite', description: 'description'},
-  {guid: 'design15', name: 'Magneta Suite', description: 'description'},
-  {guid: 'design16', name: 'RubberMan Suite', description: 'description'},
-  {guid: 'design17', name: 'Dynama Suite', description: 'description'},
-  {guid: 'design18', name: 'Dr IQ Suite', description: 'description'},
-  {guid: 'design19', name: 'Magma Suite', description: 'description'},
-  {guid: 'design20', name: 'Tornado Suite', description: 'description'}
+  {
+    guid: 'design11', name: 'Nice Suite', description: 'description',
+    epics: [{ guid: 'epic11', name: 'Projects', description: 'description' }]
+  }
 ];
 
 export class DesignsServiceStub {

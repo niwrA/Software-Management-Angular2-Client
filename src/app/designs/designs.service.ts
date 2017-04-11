@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Design, DesignState } from './design';
+import { EpicElement } from './design/epic-elements/epic-element';
 import { DESIGNS } from './mock-designs';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -34,6 +35,19 @@ export class DesignsService {
     return newItem;
   }
 
+  createEpicElement(doSave: boolean, design: Design, name?: string): EpicElement {
+    const newItem = new EpicElement;
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      design.epics.push(newItem);
+      //      const createDesignCommand = new CreateDesignCommand(newItem);
+      //      this.commandsService.postCommand(createDesignCommand, false);
+    }
+    return newItem;
+  }
+
+
   deleteDesign(design: Design): void {
     const index = this.designs.indexOf(design, 0);
     if (index > -1) {
@@ -50,9 +64,8 @@ export class DesignsService {
   }
 
   getDesigns(searchText: string): Promise<Array<Design>> {
-    return Promise.resolve(DESIGNS);
-
-/*    if (this.designs.length > 0) {
+    //    return Promise.resolve(DESIGNS);
+    if (this.designs.length > 0) {
       if (searchText && searchText.length > 0) {
         const results = _.filter<Design>(this.designs, prj => prj.name.indexOf(searchText) > -1);
         return Promise.resolve(results);
@@ -62,10 +75,16 @@ export class DesignsService {
         .toPromise()
         .then(response => this.parseResponse(response, this.designs))
         .catch(error => this.handleError(error, this.notificationService));
-    }*/
+    }
   }
 
   getDesign(guid: string): Promise<Design> {
+    // if mock, then reload all
+    if (guid.length < 10 && this.designs.length === 0) {
+      for (const state of DESIGNS) {
+        this.designs.push(new Design(state));
+      }
+    }
     if (this.designs.length > 0) {
       const result = _.find(this.designs, prj => prj.guid === guid);
       return Promise.resolve(result);
@@ -87,6 +106,10 @@ export class DesignsService {
     const states = response.json() as Array<DesignState>;
     Designs = new Array<Design>();
     for (const state of states) {
+      Designs.push(new Design(state));
+    }
+    // include mocks for UI-only development
+    for (const state of DESIGNS) {
       Designs.push(new Design(state));
     }
     return Designs;
