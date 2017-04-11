@@ -1,10 +1,13 @@
 import { Design, DesignState } from './design';
-import {EpicElementState } from './design/epic-elements/epic-element';
+import { EpicElementState } from './design/epic-elements/epic-element';
 
 export const DESIGNS: DesignState[] = [
   {
     guid: 'design11', name: 'Nice Suite', description: 'description',
-    epics: [{ guid: 'epic11', name: 'Projects', description: 'description' }]
+    epics: [{
+      guid: 'epic11', name: 'Projects', description: 'description',
+      entities: [{ guid: 'entity11', name: 'Project', description: 'description' }]
+    }]
   }
 ];
 

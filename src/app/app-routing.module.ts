@@ -41,6 +41,9 @@ import { DesignElementsComponent } from './designs/design/designelements/designe
 import { EpicElementsComponent } from './designs/design/epic-elements/epic-elements.component';
 import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
 import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
+import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
+import { EntityElementComponent } from './designs/design/entity-elements/entity-element/entity-element.component';
+import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
 
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
@@ -179,6 +182,21 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: EpicElementDetailsComponent
+      },
+      {
+        path: 'entityelements',
+        component: EntityElementsComponent
+      },
+      linksSubRoute
+    ]
+  },
+  {
+    path: 'designs/:designId/entityelements/:entityElementId',
+    component: EntityElementComponent,
+    children: [
+      {
+        path: 'details',
+        component: EntityElementDetailsComponent
       },
       linksSubRoute
     ]

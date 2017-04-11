@@ -28,7 +28,7 @@ export class EpicElementDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.map(params => [params['designId'], params['epicElementId']])
+    this.route.parent.params.map(params => [params['designId'], params['epicElementId']])
       .subscribe(([designId, epicElementId]) => {
         this.getEpicElement(designId, epicElementId);
       });

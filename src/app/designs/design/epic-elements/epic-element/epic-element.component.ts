@@ -30,7 +30,9 @@ export class EpicElementComponent implements OnInit {
   }
 
   getEpicElement(designId: string, epicElementId: string) {
-    this.service.getDesign(designId).then(design => this.updateEpicElement(design, epicElementId));
+    if (designId && epicElementId) {
+      this.service.getDesign(designId).then(design => this.updateEpicElement(design, epicElementId));
+    }
   }
 
   updateEpicElement(design: Design, epicElementId: string) {

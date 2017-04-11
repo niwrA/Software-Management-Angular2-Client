@@ -3,6 +3,7 @@ import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Design, DesignState } from './design';
 import { EpicElement } from './design/epic-elements/epic-element';
+import { EntityElement } from './design/entity-elements/entity-element';
 import { DESIGNS } from './mock-designs';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -41,6 +42,17 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       design.epics.push(newItem);
+      //      const createDesignCommand = new CreateDesignCommand(newItem);
+      //      this.commandsService.postCommand(createDesignCommand, false);
+    }
+    return newItem;
+  }
+  createEntityElement(doSave: boolean, epic: EpicElement, name?: string): EntityElement {
+    const newItem = new EntityElement;
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      epic.entities.push(newItem);
       //      const createDesignCommand = new CreateDesignCommand(newItem);
       //      this.commandsService.postCommand(createDesignCommand, false);
     }
