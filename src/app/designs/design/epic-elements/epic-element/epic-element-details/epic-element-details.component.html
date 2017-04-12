@@ -1,13 +1,13 @@
-<md-card *ngIf="design">
+<md-card *ngIf="epicElement">
   <md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <input mdInput (blur)="changeName()" [(ngModel)]="design.name" placeholder="Name" />
+        <input mdInput (blur)="changeName()" [(ngModel)]="epicElement.name" placeholder="Name" />
       </md-input-container>
     </md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="design.description" placeholder="Description"></textarea>
+        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="epicElement.description" placeholder="Description"></textarea>
       </md-input-container>
     </md-card-content>
   </md-card-content>

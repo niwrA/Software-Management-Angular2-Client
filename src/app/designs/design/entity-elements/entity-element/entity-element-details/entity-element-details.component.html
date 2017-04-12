@@ -1,3 +1,14 @@
-<p>
-  entity-element-details works!
-</p>
+<md-card *ngIf="entityElement">
+  <md-card-content>
+    <md-card-content layout='row'>
+      <md-input-container>
+        <input mdInput (blur)="changeName()" [(ngModel)]="entityElement.name" placeholder="Name" />
+      </md-input-container>
+    </md-card-content>
+    <md-card-content layout='row'>
+      <md-input-container>
+        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="entityElement.description" placeholder="Description"></textarea>
+      </md-input-container>
+    </md-card-content>
+  </md-card-content>
+</md-card>
