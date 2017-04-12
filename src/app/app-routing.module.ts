@@ -191,7 +191,7 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'designs/:designId/entityelements/:entityElementId',
+    path: 'designs/:designId/epicelements/:epicElementId/entityelements/:entityElementId',
     component: EntityElementComponent,
     children: [
       {

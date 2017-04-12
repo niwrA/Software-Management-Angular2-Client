@@ -4,12 +4,12 @@
       (keyup.enter)='createEntityElement(searchTextInput.value)' />
   </md-input-container>
   <button md-raised-button md-tooltip="Add new entity" (click)="createEntityElement(searchTextInput.value)">Add</button>
-  <div *ngIf="entityElements">
+  <div *ngIf="design && epicElement && entityElements">
     <md-card *ngFor="let entityElement of entityElements">
       <md-card-subtitle>entity</md-card-subtitle>
-      <md-card-title [routerLink]="['/designs', design.guid, 'entityelements', entityElement.guid, 'details']">{{entityElement.name}}</md-card-title>
+      <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']">{{entityElement.name}}</md-card-title>
       <md-card-actions align='end'>
-        <button [routerLink]="['/designs', design.guid, 'entityelements', entityElement.guid, 'details']"><md-icon>details</md-icon></button>
+        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']"><md-icon>details</md-icon></button>
       </md-card-actions>
     </md-card>
   </div>
