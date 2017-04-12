@@ -93,12 +93,13 @@ import { EpicElementsComponent } from './designs/design/epic-elements/epic-eleme
 import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
 import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
 import { EntityElementComponent } from './designs/design/entity-elements/entity-element/entity-element.component';
-import { PropertyELementsComponent } from './designs/design/property-elements/property-elements.component';
-import { PropertyELementComponent } from './designs/design/property-elements/property-element/property-element.component';
+import { PropertyElementsComponent } from './designs/design/property-elements/property-elements.component';
+import { PropertyElementComponent } from './designs/design/property-elements/property-element/property-element.component';
 import { CommandElementsComponent } from './designs/design/command-elements/command-elements.component';
 import { CommandElementComponent } from './designs/design/command-elements/command-element/command-element.component';
 import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
 import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
+import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
 
 @NgModule({
   imports: [
@@ -167,8 +168,8 @@ import { EntityElementDetailsComponent } from './designs/design/entity-elements/
     DesignsComponent,
     DesignComponent,
     DesignDetailsComponent, DesignElementsComponent, DesignElementComponent, EpicElementsComponent,
-    EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyELementsComponent,
-    PropertyELementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent, EntityElementDetailsComponent
+    EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
+    PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent, EntityElementDetailsComponent, PropertyElementDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

@@ -44,6 +44,9 @@ import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic
 import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
 import { EntityElementComponent } from './designs/design/entity-elements/entity-element/entity-element.component';
 import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
+import { PropertyElementsComponent } from './designs/design/property-elements/property-elements.component';
+import { PropertyElementComponent } from './designs/design/property-elements/property-element/property-element.component';
+import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
 
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
@@ -113,7 +116,8 @@ const appRoutes: Routes = [
       {
         path: 'environments',
         component: CompanyEnvironmentsComponent
-      }
+      },
+      linksSubRoute
     ]
   },
   {
@@ -198,10 +202,24 @@ const appRoutes: Routes = [
         path: 'details',
         component: EntityElementDetailsComponent
       },
+      {
+        path: 'propertyelements',
+        component: PropertyElementsComponent
+      },
       linksSubRoute
     ]
   },
   {
+    path: 'designs/:designId/epicelements/:epicElementId/entityelements/:entityElementId/propertyelements/:propertyElementId',
+    component: PropertyElementComponent,
+    children: [
+      {
+        path: 'details',
+        component: PropertyElementDetailsComponent
+      },
+      linksSubRoute
+    ]
+  },  {
     path: 'products/:productId',
     component: ProductComponent,
     children: [

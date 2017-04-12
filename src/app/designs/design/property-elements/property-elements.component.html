@@ -1,3 +1,16 @@
-<p>
-  property-elements works!
-</p>
+<md-card>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getPropertyElements(searchTextInput.value || '')"
+      (keyup.enter)='createPropertyElement(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new property" (click)="createPropertyElement(searchTextInput.value)">Add</button>
+  <div *ngIf="design && epicElement && entityElement && propertyElements">
+    <md-card *ngFor="let propertyElement of propertyElements">
+      <md-card-subtitle>property</md-card-subtitle>
+      <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']">{{propertyElement.name}}</md-card-title>
+      <md-card-actions align='end'>
+        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']"><md-icon>details</md-icon></button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-card>

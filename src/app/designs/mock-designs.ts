@@ -6,7 +6,11 @@ export const DESIGNS: DesignState[] = [
     guid: 'design11', name: 'Nice Suite', description: 'description',
     epics: [{
       guid: 'epic11', name: 'Projects', description: 'description',
-      entities: [{ guid: 'entity11', name: 'Project', description: 'description' }]
+      entities: [{
+        guid: 'entity11', name: 'Project', description: 'description',
+        properties: [{ guid: 'property11', name: 'Name', description: 'description' },
+        { guid: 'property12', name: 'Description', description: 'description' }]
+      }]
     }]
   }
 ];

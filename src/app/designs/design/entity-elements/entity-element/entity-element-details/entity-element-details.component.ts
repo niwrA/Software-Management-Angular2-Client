@@ -31,43 +31,23 @@ export class EntityElementDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.parent.params.map(params => [params['designId'], params['epicElementId']])
+    this.route.parent.params.map(params => [params['designId'], params['epicElementId'], params['entityElementId']])
       .subscribe(([designId, epicElementId, entityElementId]) => {
-        this.getEpicElement(designId, epicElementId);
-      });
-    this.route.parent.params.map(params => [params['entityElementId']])
-      .subscribe(([entityElementId]) => {
-        this.getEntityElement(entityElementId);
+        this.getEntityElement(designId, epicElementId, entityElementId);
       });
   }
-  getEpicElement(designId: string, epicElementId: string) {
-    this.service.getDesign(designId).then(design => this.updateEpicElement(design, epicElementId));
-  }
 
-  getEntityElement(entityElementId: string) {
-    this.updateEntityElement(entityElementId);
-  }
-
-  // todo: this won't work for multiple epics, just for quick UI design
-  updateEntityElement(entityElementId: string) {
-    if (entityElementId) {
-      if (this.epicElement) {
-        this.entityElement = this.epicElement.entities.find(entity => entity.guid === entityElementId);
-        this.previousEntityElement = this.entityElement.clone();
-      } else {
-        this.entityElementId = entityElementId;
-      }
+  getEntityElement(designId: string, epicElementId: string, entityElementId: string) {
+    if (designId && epicElementId && entityElementId) {
+      this.service.getDesign(designId).then(design => this.updateEntityElement(design, epicElementId, entityElementId));
     }
   }
 
-  updateEpicElement(design: Design, epicElementId: string) {
-    if (epicElementId) {
-      this.design = design;
-      this.epicElement = design.epics.find(epic => epic.guid === epicElementId);
-      if (this.entityElementId && !this.entityElement) {
-        this.updateEntityElement(this.entityElementId);
-      }
-    }
+  // todo: this won't work with more epics, just for ui design setup
+  updateEntityElement(design: Design, epicElementId: string, entityElementId: string) {
+    this.design = design;
+    this.epicElement = design.epics.find(epic => epic.guid === epicElementId);
+    this.entityElement = this.epicElement.entities.find(entity => entity.guid === entityElementId);
   }
 
   changeName(): void {

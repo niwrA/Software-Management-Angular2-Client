@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Design, DesignState } from './design';
 import { EpicElement } from './design/epic-elements/epic-element';
 import { EntityElement } from './design/entity-elements/entity-element';
+import { PropertyElement } from './design/property-elements/property-element';
 import { DESIGNS } from './mock-designs';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -58,7 +59,17 @@ export class DesignsService {
     }
     return newItem;
   }
-
+  createPropertyElement(doSave: boolean, entity: EntityElement, name?: string): PropertyElement {
+    const newItem = new PropertyElement;
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      entity.properties.push(newItem);
+      //      const createDesignCommand = new CreateDesignCommand(newItem);
+      //      this.commandsService.postCommand(createDesignCommand, false);
+    }
+    return newItem;
+  }
 
   deleteDesign(design: Design): void {
     const index = this.designs.indexOf(design, 0);

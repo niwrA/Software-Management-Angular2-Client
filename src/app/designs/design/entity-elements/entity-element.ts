@@ -1,18 +1,28 @@
 import * as _ from 'lodash';
-
+import { PropertyElement, PropertyElementState } from '../property-elements/property-element';
 export class EntityElementState {
     name: string;
     guid: string;
     description: string;
+    properties: Array<PropertyElementState>;
 }
 
 export class EntityElement {
     private _state: EntityElementState;
+    properties: Array<PropertyElement>;
 
     constructor(state?: EntityElementState) {
         this._state = state;
+        this.properties = new Array<PropertyElement>();
+
         if (!state) {
             this._state = new EntityElementState();
+        } else {
+            if (state.properties && state.properties.length > 0) {
+                for (let i = 0; i < state.properties.length; i++) {
+                    this.properties.push(new PropertyElement(state.properties[i]));
+                }
+            }
         }
     }
 
@@ -29,5 +39,3 @@ export class EntityElement {
         return new EntityElement(_.clone(this._state));
     }
 }
-
-
