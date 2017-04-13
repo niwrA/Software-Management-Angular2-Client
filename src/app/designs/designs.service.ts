@@ -5,6 +5,7 @@ import { Design, DesignState } from './design';
 import { EpicElement } from './design/epic-elements/epic-element';
 import { EntityElement } from './design/entity-elements/entity-element';
 import { PropertyElement } from './design/property-elements/property-element';
+import { CommandElement } from './design/command-elements/command-element';
 import { DESIGNS } from './mock-designs';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -12,6 +13,10 @@ import {
   DesignCommand, CreateDesignCommand, DeleteDesignCommand,
   RenameDesignCommand
 } from './design/design.commands';
+import { CreateEntityElementCommand } from './design/entity-elements/entity-element/entity-element.commands';
+import { CreatePropertyElementCommand } from './design/property-elements/property-element/property-element.commands';
+import { CreateEpicElementCommand } from './design/epic-elements/epic-element/epic-element.commands';
+import { CreateCommandElementCommand } from './design/command-elements/command-element/command-element.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
@@ -54,8 +59,8 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       epic.entities.push(newItem);
-      //      const createDesignCommand = new CreateDesignCommand(newItem);
-      //      this.commandsService.postCommand(createDesignCommand, false);
+      //      const createEntityCommand = new CreateEntityCommand(newItem);
+      //      this.commandsService.postCommand(createEntityCommand, false);
     }
     return newItem;
   }
@@ -65,12 +70,22 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       entity.properties.push(newItem);
-      //      const createDesignCommand = new CreateDesignCommand(newItem);
-      //      this.commandsService.postCommand(createDesignCommand, false);
+      //      const createPropertyCommand = new CreatePropertyCommand(newItem);
+      //      this.commandsService.postCommand(createPropertyCommand, false);
     }
     return newItem;
   }
-
+  createCommandElement(doSave: boolean, entity: EntityElement, name?: string): CommandElement {
+    const newItem = new CommandElement;
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      entity.commands.push(newItem);
+      //      const createCommandCommand = new CreateCommandCommand(newItem);
+      //      this.commandsService.postCommand(createCommandCommand, false);
+    }
+    return newItem;
+  }
   deleteDesign(design: Design): void {
     const index = this.designs.indexOf(design, 0);
     if (index > -1) {

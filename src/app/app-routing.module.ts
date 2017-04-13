@@ -47,6 +47,9 @@ import { EntityElementDetailsComponent } from './designs/design/entity-elements/
 import { PropertyElementsComponent } from './designs/design/property-elements/property-elements.component';
 import { PropertyElementComponent } from './designs/design/property-elements/property-element/property-element.component';
 import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
+import { CommandElementsComponent } from './designs/design/command-elements/command-elements.component';
+import { CommandElementComponent } from './designs/design/command-elements/command-element/command-element.component';
+import { CommandElementDetailsComponent } from './designs/design/command-elements/command-element/command-element-details/command-element-details.component';
 
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
@@ -206,6 +209,10 @@ const appRoutes: Routes = [
         path: 'propertyelements',
         component: PropertyElementsComponent
       },
+      {
+        path: 'commandelements',
+        component: CommandElementsComponent
+      },
       linksSubRoute
     ]
   },
@@ -219,7 +226,19 @@ const appRoutes: Routes = [
       },
       linksSubRoute
     ]
-  },  {
+  },
+  {
+    path: 'designs/:designId/epicelements/:epicElementId/entityelements/:entityElementId/commandelements/:commandElementId',
+    component: CommandElementComponent,
+    children: [
+      {
+        path: 'details',
+        component: CommandElementDetailsComponent
+      },
+      linksSubRoute
+    ]
+  },  
+  {
     path: 'products/:productId',
     component: ProductComponent,
     children: [

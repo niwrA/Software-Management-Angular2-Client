@@ -11,7 +11,7 @@ import { NotificationComponent } from 'angular2-notifications';
   styleUrls: ['./app.component.css'],
   providers: [UsersService, Epics]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Software Management';
   projectsColor = '';
   productsColor = '';
@@ -29,6 +29,11 @@ export class AppComponent {
     this.router.events.subscribe((val) => this.updateActive(val.url));
   }
 
+  ngOnInit() {
+    if (this.activatedroute.firstChild) {
+      this.activatedroute.firstChild.url.subscribe(s => this.updateActive(s.toString()));
+    }
+  }
   updateActive(url: string) {
     if (url.length > 1) {
       let epic = '';

@@ -100,6 +100,7 @@ import { CommandElementComponent } from './designs/design/command-elements/comma
 import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
 import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
 import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
+import { CommandElementDetailsComponent } from './designs/design/command-elements/command-element/command-element-details/command-element-details.component';
 
 @NgModule({
   imports: [
@@ -169,7 +170,7 @@ import { PropertyElementDetailsComponent } from './designs/design/property-eleme
     DesignComponent,
     DesignDetailsComponent, DesignElementsComponent, DesignElementComponent, EpicElementsComponent,
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
-    PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent, EntityElementDetailsComponent, PropertyElementDetailsComponent
+    PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent, EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

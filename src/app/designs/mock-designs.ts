@@ -9,7 +9,9 @@ export const DESIGNS: DesignState[] = [
       entities: [{
         guid: 'entity11', name: 'Project', description: 'description',
         properties: [{ guid: 'property11', name: 'Name', description: 'description' },
-        { guid: 'property12', name: 'Description', description: 'description' }]
+        { guid: 'property12', name: 'Description', description: 'description' }],
+        commands: [{ guid: 'command11', name: 'ChangeNameOf', description: 'description' },
+        { guid: 'command12', name: 'ChangeDescriptionOf', description: 'description' }]
       }]
     }]
   }

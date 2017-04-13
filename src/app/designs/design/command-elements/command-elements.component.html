@@ -1,3 +1,16 @@
-<p>
-  command-elements works!
-</p>
+<md-card>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCommandElements(searchTextInput.value || '')"
+      (keyup.enter)='createCommandElement(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new command" (click)="createCommandElement(searchTextInput.value)">Add</button>
+  <div *ngIf="design && epicElement && entityElement && commandElements">
+    <md-card *ngFor="let commandElement of commandElements">
+      <md-card-subtitle>command</md-card-subtitle>
+      <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'commandelements',commandElement.guid, 'details']">{{commandElement.name}}</md-card-title>
+      <md-card-actions align='end'>
+        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'commandelements',commandElement.guid, 'details']"><md-icon>details</md-icon></button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-card>
