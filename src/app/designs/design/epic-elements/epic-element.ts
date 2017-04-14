@@ -4,7 +4,7 @@ export class EpicElementState {
     name: string;
     guid: string;
     description: string;
-    entities: Array<EntityElementState>;
+    entityElements: Array<EntityElementState>;
 }
 
 export class EpicElement {
@@ -16,9 +16,9 @@ export class EpicElement {
         if (!state) {
             this._state = new EpicElementState();
         } else {
-            if (state.entities && state.entities.length > 0) {
-                for (let i = 0; i < state.entities.length; i++) {
-                    this.entities.push(new EntityElement(state.entities[i]));
+            if (state.entityElements && state.entityElements.length > 0) {
+                for (let i = 0; i < state.entityElements.length; i++) {
+                    this.entities.push(new EntityElement(state.entityElements[i]));
                 }
             }
         }

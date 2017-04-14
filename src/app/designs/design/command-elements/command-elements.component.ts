@@ -65,7 +65,7 @@ export class CommandElementsComponent implements OnInit {
   }
 
   createCommandElement(name: string): void {
-    this.service.createCommandElement(true, this.entityElement, name);
+    this.service.createCommandElement(true, this.entityElement, this.design.guid, name);
     this.getCommandElements(this.searchText);
   }
 }

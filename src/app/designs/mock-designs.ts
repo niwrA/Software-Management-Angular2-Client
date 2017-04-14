@@ -4,13 +4,13 @@ import { EpicElementState } from './design/epic-elements/epic-element';
 export const DESIGNS: DesignState[] = [
   {
     guid: 'design11', name: 'Nice Suite', description: 'description',
-    epics: [{
+    epicElements: [{
       guid: 'epic11', name: 'Projects', description: 'description',
-      entities: [{
+      entityElements: [{
         guid: 'entity11', name: 'Project', description: 'description',
-        properties: [{ guid: 'property11', name: 'Name', description: 'description' },
+        propertyElements: [{ guid: 'property11', name: 'Name', description: 'description' },
         { guid: 'property12', name: 'Description', description: 'description' }],
-        commands: [{ guid: 'command11', name: 'ChangeNameOf', description: 'description' },
+        commandElements: [{ guid: 'command11', name: 'ChangeNameOf', description: 'description' },
         { guid: 'command12', name: 'ChangeDescriptionOf', description: 'description' }]
       }]
     }]

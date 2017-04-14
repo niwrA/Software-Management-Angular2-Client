@@ -5,8 +5,8 @@ export class EntityElementState {
     name: string;
     guid: string;
     description: string;
-    properties: Array<PropertyElementState>;
-    commands: Array<CommandElementState>;
+    propertyElements: Array<PropertyElementState>;
+    commandElements: Array<CommandElementState>;
 }
 
 export class EntityElement {
@@ -22,14 +22,14 @@ export class EntityElement {
         if (!state) {
             this._state = new EntityElementState();
         } else {
-            if (state.properties && state.properties.length > 0) {
-                for (let i = 0; i < state.properties.length; i++) {
-                    this.properties.push(new PropertyElement(state.properties[i]));
+            if (state.propertyElements && state.propertyElements.length > 0) {
+                for (let i = 0; i < state.propertyElements.length; i++) {
+                    this.properties.push(new PropertyElement(state.propertyElements[i]));
                 }
             }
-            if (state.commands && state.commands.length > 0) {
-                for (let i = 0; i < state.commands.length; i++) {
-                    this.commands.push(new CommandElement(state.commands[i]));
+            if (state.commandElements && state.commandElements.length > 0) {
+                for (let i = 0; i < state.commandElements.length; i++) {
+                    this.commands.push(new CommandElement(state.commandElements[i]));
                 }
             }
         }

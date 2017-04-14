@@ -5,7 +5,7 @@ export class DesignState {
     name: string;
     guid: string;
     description: string;
-    epics: Array<EpicElementState>;
+    epicElements: Array<EpicElementState>;
 }
 
 export class Design {
@@ -17,9 +17,9 @@ export class Design {
         if (!state) {
             this._state = new DesignState();
         } else {
-            if (state.epics && state.epics.length > 0) {
-                for (let i = 0; i < state.epics.length; i++) {
-                    this.epics.push(new EpicElement(state.epics[i]));
+            if (state.epicElements && state.epicElements.length > 0) {
+                for (let i = 0; i < state.epicElements.length; i++) {
+                    this.epics.push(new EpicElement(state.epicElements[i]));
                 }
             }
         }
