@@ -57,7 +57,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.name !== this.previousPropertyElement.name) {
-        const renameCommand = new RenamePropertyElementCommand(this.propertyElement, this.previousPropertyElement.name, this.design.guid);
+        const renameCommand = new RenamePropertyElementCommand(this.propertyElement, this.previousPropertyElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.name = this.propertyElement.name;
       }
@@ -69,7 +69,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.description !== this.previousPropertyElement.description) {
-        const command = new ChangeDescriptionOfPropertyElementCommand(this.propertyElement, this.design.guid);
+        const command = new ChangeDescriptionOfPropertyElementCommand(this.propertyElement);
         this.service.postCommand(command, false);
         this.previousPropertyElement.description = this.propertyElement.description;
       }

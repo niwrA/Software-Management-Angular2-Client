@@ -9,26 +9,29 @@ export class EntityElementCommand extends Command {
 
 export class EntityElementCommandParameters extends CommandParameters {
     DesignGuid: string;
+    EpicElementGuid: string;
 }
 
 export class CreateEntityElementParameters extends EntityElementCommandParameters {
     Name: string;
 }
 export class CreateEntityElementCommand extends EntityElementCommand {
-    constructor(entityElement: EntityElement, designId: string) {
+    constructor(entityElement: EntityElement) {
         super('Create', entityElement);
         const parameters = new CreateEntityElementParameters();
         parameters.Name = entityElement.name;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
         this.Parameters = parameters;
     }
 }
 
 export class DeleteEntityElementCommand extends EntityElementCommand {
-    constructor(entityElement: EntityElement, designId: string) {
+    constructor(entityElement: EntityElement) {
         super('Delete', entityElement);
         const parameters = new EntityElementCommandParameters();
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
         this.Parameters = parameters;
     }
 }
@@ -39,12 +42,13 @@ export class RenameEntityElementParameters extends EntityElementCommandParameter
 }
 
 export class RenameEntityElementCommand extends EntityElementCommand {
-    constructor(entityElement: EntityElement, orgName: string, designId: string) {
+    constructor(entityElement: EntityElement, orgName: string) {
         super('Rename', entityElement);
         const parameters = new RenameEntityElementParameters();
         parameters.OriginalName = orgName;
         parameters.Name = entityElement.name;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
         this.Parameters = parameters;
     }
 }
@@ -55,11 +59,12 @@ export class ChangeDescriptionOfEntityElementParameters extends EntityElementCom
 }
 
 export class ChangeDescriptionOfEntityElementCommand extends EntityElementCommand {
-    constructor(entityElement: EntityElement, designId: string) {
+    constructor(entityElement: EntityElement) {
         super('ChangeDescriptionOf', entityElement);
         const parameters = new ChangeDescriptionOfEntityElementParameters();
         parameters.Description = entityElement.description;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
         this.Parameters = parameters;
     }
 }

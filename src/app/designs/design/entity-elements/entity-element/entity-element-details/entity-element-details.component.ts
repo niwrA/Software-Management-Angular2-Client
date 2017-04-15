@@ -53,7 +53,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousEntityElement !== undefined) {
       if (this.entityElement.name !== this.previousEntityElement.name) {
-        const renameCommand = new RenameEntityElementCommand(this.entityElement, this.previousEntityElement.name, this.design.guid);
+        const renameCommand = new RenameEntityElementCommand(this.entityElement, this.previousEntityElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousEntityElement.name = this.entityElement.name;
       }
@@ -65,7 +65,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousEntityElement !== undefined) {
       if (this.entityElement.description !== this.previousEntityElement.description) {
-        const command = new ChangeDescriptionOfEntityElementCommand(this.entityElement, this.design.guid);
+        const command = new ChangeDescriptionOfEntityElementCommand(this.entityElement);
         this.service.postCommand(command, false);
         this.previousEntityElement.description = this.entityElement.description;
       }

@@ -15,20 +15,20 @@ export class CreateEpicElementParameters extends EpicElementCommandParameters {
     Name: string;
 }
 export class CreateEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement, designId: string) {
+    constructor(epicElement: EpicElement) {
         super('Create', epicElement);
         const parameters = new CreateEpicElementParameters();
         parameters.Name = epicElement.name;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
 
 export class DeleteEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement, designId: string) {
+    constructor(epicElement: EpicElement) {
         super('Delete', epicElement);
         const parameters = new EpicElementCommandParameters();
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
@@ -39,12 +39,12 @@ export class RenameEpicElementParameters extends EpicElementCommandParameters {
 }
 
 export class RenameEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement, orgName: string, designId: string) {
+    constructor(epicElement: EpicElement, orgName: string) {
         super('Rename', epicElement);
         const parameters = new RenameEpicElementParameters();
         parameters.OriginalName = orgName;
         parameters.Name = epicElement.name;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
@@ -55,11 +55,11 @@ export class ChangeDescriptionOfEpicElementParameters extends EpicElementCommand
 }
 
 export class ChangeDescriptionOfEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement, designId: string) {
+    constructor(epicElement: EpicElement) {
         super('ChangeDescriptionOf', epicElement);
         const parameters = new ChangeDescriptionOfEpicElementParameters();
         parameters.Description = epicElement.description;
-        parameters.DesignGuid = designId;
+        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }

@@ -57,7 +57,7 @@ export class CommandElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousCommandElement !== undefined) {
       if (this.commandElement.name !== this.previousCommandElement.name) {
-        const renameCommand = new RenameCommandElementCommand(this.commandElement, this.previousCommandElement.name, this.design.guid);
+        const renameCommand = new RenameCommandElementCommand(this.commandElement, this.previousCommandElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousCommandElement.name = this.commandElement.name;
       }
@@ -69,7 +69,7 @@ export class CommandElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousCommandElement !== undefined) {
       if (this.commandElement.description !== this.previousCommandElement.description) {
-        const command = new ChangeDescriptionOfCommandElementCommand(this.commandElement, this.design.guid);
+        const command = new ChangeDescriptionOfCommandElementCommand(this.commandElement);
         this.service.postCommand(command, false);
         this.previousCommandElement.description = this.commandElement.description;
       }

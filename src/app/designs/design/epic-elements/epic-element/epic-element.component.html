@@ -1,5 +1,5 @@
 <md-card>
-  <md-card-subtitle *ngIf="design">epic for <a [routerLink]="['/designs',design.guid, 'details']">{{design.name}}</a></md-card-subtitle>
+  <md-card-subtitle *ngIf="design">epic for <a [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></md-card-subtitle>
   <md-card-title *ngIf="epicElement">{{epicElement.name}}</md-card-title>
   <md-card-actions *ngIf="epicElement">
     <button routerLink='details' md-raised-button md-tooltip="Details">Details</button>

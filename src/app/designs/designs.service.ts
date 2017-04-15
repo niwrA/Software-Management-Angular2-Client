@@ -31,7 +31,7 @@ export class DesignsService {
   }
 
   createDesign(doSave: boolean, name?: string): Design {
-    const newItem = new Design;
+    const newItem = new Design();
     newItem.guid = UUID.UUID();
     newItem.name = name;
     if (doSave) {
@@ -43,45 +43,54 @@ export class DesignsService {
   }
 
   createEpicElement(doSave: boolean, design: Design, name?: string): EpicElement {
-    const newItem = new EpicElement;
+    const newItem = new EpicElement();
     newItem.guid = UUID.UUID();
+    newItem.designGuid = design.guid;
     newItem.name = name;
     if (doSave) {
       design.epics.push(newItem);
-      const createDesignCommand = new CreateEpicElementCommand(newItem, design.guid);
+      const createDesignCommand = new CreateEpicElementCommand(newItem);
       this.commandsService.postCommand(createDesignCommand, false);
     }
     return newItem;
   }
-  createEntityElement(doSave: boolean, epic: EpicElement, designId: string, name?: string): EntityElement {
-    const newItem = new EntityElement;
+  createEntityElement(doSave: boolean, epic: EpicElement, name?: string): EntityElement {
+    const newItem = new EntityElement();
     newItem.guid = UUID.UUID();
+    newItem.designGuid = epic.designGuid;
+    newItem.epicGuid = epic.guid;
     newItem.name = name;
     if (doSave) {
       epic.entities.push(newItem);
-      const createEntityCommand = new CreateEntityElementCommand(newItem, designId);
+      const createEntityCommand = new CreateEntityElementCommand(newItem);
       this.commandsService.postCommand(createEntityCommand, false);
     }
     return newItem;
   }
-  createPropertyElement(doSave: boolean, entity: EntityElement, designId: string, name?: string): PropertyElement {
-    const newItem = new PropertyElement;
+  createPropertyElement(doSave: boolean, entity: EntityElement, name?: string): PropertyElement {
+    const newItem = new PropertyElement();
     newItem.guid = UUID.UUID();
+    newItem.designGuid = entity.designGuid;
+    newItem.epicGuid = entity.epicGuid;
+    newItem.entityGuid = entity.guid;
     newItem.name = name;
     if (doSave) {
       entity.properties.push(newItem);
-      const createPropertyCommand = new CreatePropertyElementCommand(newItem, designId);
+      const createPropertyCommand = new CreatePropertyElementCommand(newItem);
       this.commandsService.postCommand(createPropertyCommand, false);
     }
     return newItem;
   }
-  createCommandElement(doSave: boolean, entity: EntityElement, designId: string, name?: string): CommandElement {
-    const newItem = new CommandElement;
+  createCommandElement(doSave: boolean, entity: EntityElement, name?: string): CommandElement {
+    const newItem = new CommandElement();
     newItem.guid = UUID.UUID();
+    newItem.designGuid = entity.designGuid;
+    newItem.epicGuid = entity.epicGuid;
+    newItem.entityGuid = entity.guid;
     newItem.name = name;
     if (doSave) {
       entity.commands.push(newItem);
-      const createCommandCommand = new CreateCommandElementCommand(newItem, designId);
+      const createCommandCommand = new CreateCommandElementCommand(newItem);
       this.commandsService.postCommand(createCommandCommand, false);
     }
     return newItem;

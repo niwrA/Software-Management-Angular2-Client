@@ -4,6 +4,8 @@ import { CommandElement, CommandElementState } from '../command-elements/command
 export class EntityElementState {
     name: string;
     guid: string;
+    designGuid: string;
+    epicElementGuid: string;
     description: string;
     propertyElements: Array<PropertyElementState>;
     commandElements: Array<CommandElementState>;
@@ -37,6 +39,12 @@ export class EntityElement {
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
+
+    get designGuid(): string { return this._state.designGuid; };
+    set designGuid(value: string) { this._state.designGuid = value; };
+
+    get epicGuid(): string { return this._state.epicElementGuid; };
+    set epicGuid(value: string) { this._state.epicElementGuid = value; };
 
     get name(): string { return this._state.name; };
     set name(value: string) { this._state.name = value; };

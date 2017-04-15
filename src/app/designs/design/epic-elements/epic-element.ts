@@ -3,6 +3,7 @@ import { EntityElement, EntityElementState } from '../entity-elements/entity-ele
 export class EpicElementState {
     name: string;
     guid: string;
+    designGuid: string;
     description: string;
     entityElements: Array<EntityElementState>;
 }
@@ -26,6 +27,9 @@ export class EpicElement {
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
+
+    get designGuid(): string { return this._state.designGuid; };
+    set designGuid(value: string) { this._state.designGuid = value; };
 
     get name(): string { return this._state.name; };
     set name(value: string) { this._state.name = value; };

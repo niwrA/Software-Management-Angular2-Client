@@ -1,5 +1,5 @@
 <md-card>
-  <md-card-subtitle>property for <a *ngIf="design && epicElement && entityElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements', entityElement.guid, 'details']">{{entityElement.name}}</a> in <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'details']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'details']">{{design.name}}</a></md-card-subtitle>
+  <md-card-subtitle>property for <a *ngIf="design && epicElement && entityElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements', entityElement.guid, 'propertyelements']">{{entityElement.name}}</a> in <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></md-card-subtitle>
   <md-card-title *ngIf="propertyElement">{{propertyElement.name}}</md-card-title>
   <md-card-actions *ngIf="propertyElement">
     <button routerLink='details' md-raised-button md-tooltip="Details">Details</button>
