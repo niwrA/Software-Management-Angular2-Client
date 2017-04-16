@@ -46,12 +46,12 @@ export class CommandElementDetailsComponent implements OnInit {
     }
   }
 
-  // todo: this won't work with more epics, just for ui design setup
   updateCommandElement(design: Design, epicElementId: string, entityElementId, commandElementId: string) {
     this.design = design;
     this.epicElement = design.epics.find(epic => epic.guid === epicElementId);
     this.entityElement = this.epicElement.entities.find(entity => entity.guid === entityElementId);
     this.commandElement = this.entityElement.commands.find(command => command.guid === commandElementId);
+    this.previousCommandElement = this.commandElement.clone();
   }
 
   changeName(): void {
@@ -62,7 +62,7 @@ export class CommandElementDetailsComponent implements OnInit {
         this.previousCommandElement.name = this.commandElement.name;
       }
     } else {
-      this.previousCommandElement = this.commandElement;
+      this.previousCommandElement = this.commandElement.clone();
     }
   }
 
@@ -74,7 +74,7 @@ export class CommandElementDetailsComponent implements OnInit {
         this.previousCommandElement.description = this.commandElement.description;
       }
     } else {
-      this.previousCommandElement = this.commandElement;
+      this.previousCommandElement = this.commandElement.clone();
     }
   }
 }

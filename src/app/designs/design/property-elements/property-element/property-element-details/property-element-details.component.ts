@@ -52,6 +52,7 @@ export class PropertyElementDetailsComponent implements OnInit {
     this.epicElement = design.epics.find(epic => epic.guid === epicElementId);
     this.entityElement = this.epicElement.entities.find(entity => entity.guid === entityElementId);
     this.propertyElement = this.entityElement.properties.find(property => property.guid === propertyElementId);
+    this.previousPropertyElement = this.propertyElement.clone();
   }
 
   changeName(): void {
@@ -62,7 +63,7 @@ export class PropertyElementDetailsComponent implements OnInit {
         this.previousPropertyElement.name = this.propertyElement.name;
       }
     } else {
-      this.previousPropertyElement = this.propertyElement;
+      this.previousPropertyElement = this.propertyElement.clone();
     }
   }
 
@@ -74,7 +75,7 @@ export class PropertyElementDetailsComponent implements OnInit {
         this.previousPropertyElement.description = this.propertyElement.description;
       }
     } else {
-      this.previousPropertyElement = this.propertyElement;
+      this.previousPropertyElement = this.propertyElement.clone();
     }
   }
 }

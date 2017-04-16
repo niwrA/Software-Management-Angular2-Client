@@ -43,14 +43,6 @@ export class EntityElementsComponent implements OnInit {
     this.getEntityElements(this.searchText);
   }
 
-  getDesign(guid: string) {
-    this.service.getDesign(guid).then(design => this.updateDesign(design));
-  }
-
-  updateDesign(design: Design) {
-    this.design = design;
-  }
-
   getEntityElements(searchText: string): void {
     if (this.epicElement && this.epicElement.entities) {
       if (searchText.length > 0) {

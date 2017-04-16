@@ -145,7 +145,10 @@ export class DesignsService {
 
   parseSingleResponse(response: any, Designs: Array<Design>): Design {
     const design = new Design(response.json() as DesignState);
-    Designs.push(design);
+    const result = _.find(this.designs, prj => prj.guid === design.guid);
+    if (!result) {
+      Designs.push(design);
+    }
     return design;
   }
 
@@ -153,11 +156,13 @@ export class DesignsService {
     const states = response.json() as Array<DesignState>;
     Designs = new Array<Design>();
     for (const state of states) {
-      Designs.push(new Design(state));
+      const design = new Design(state);
+      Designs.push(design);
     }
     // include mocks for UI-only development
     for (const state of DESIGNS) {
-      Designs.push(new Design(state));
+      const design = new Design(state);
+      Designs.push(design);
     }
     return Designs;
   }
