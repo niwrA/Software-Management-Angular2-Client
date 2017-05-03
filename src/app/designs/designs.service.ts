@@ -14,7 +14,7 @@ import {
   RenameDesignCommand
 } from './design/design.commands';
 import { CreateEntityElementCommand } from './design/entity-elements/entity-element/entity-element.commands';
-import { CreatePropertyElementCommand } from './design/property-elements/property-element/property-element.commands';
+import { CreatePropertyElementCommand, CreatePropertyCodeGenCommand } from './design/property-elements/property-element/property-element.commands';
 import { CreateEpicElementCommand } from './design/epic-elements/epic-element/epic-element.commands';
 import { CreateCommandElementCommand } from './design/command-elements/command-element/command-element.commands';
 import { Observable } from 'rxjs/Observable';
@@ -78,6 +78,9 @@ export class DesignsService {
       entity.properties.push(newItem);
       const createPropertyCommand = new CreatePropertyElementCommand(newItem);
       this.commandsService.postCommand(createPropertyCommand, false);
+
+      const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity);
+      this.commandsService.postCommand(createPropertyCodeGenCommand, false);
     }
     return newItem;
   }
