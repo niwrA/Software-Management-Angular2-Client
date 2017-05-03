@@ -7,6 +7,7 @@ import { EntityElement } from './design/entity-elements/entity-element';
 import { PropertyElement } from './design/property-elements/property-element';
 import { CommandElement } from './design/command-elements/command-element';
 import { DESIGNS } from './mock-designs';
+import { Command } from '../commands/command';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import {
@@ -76,11 +77,15 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       entity.properties.push(newItem);
+      let commands = new Array<Command>();
+
       const createPropertyCommand = new CreatePropertyElementCommand(newItem);
-      this.commandsService.postCommand(createPropertyCommand, false);
+      commands.push(createPropertyCommand);
 
       const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity);
-      this.commandsService.postCommand(createPropertyCodeGenCommand, false);
+      commands.push(createPropertyCodeGenCommand);
+
+      this.commandsService.postCommands(commands, false);
     }
     return newItem;
   }
