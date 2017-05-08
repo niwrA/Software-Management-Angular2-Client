@@ -68,4 +68,12 @@ export class PropertyElementsComponent implements OnInit {
     this.service.createPropertyElement(true, this.entityElement, name);
     this.getPropertyElements(this.searchText);
   }
+
+  deletePropertyElement(propertyElement: PropertyElement): void {
+    const index = this.entityElement.properties.indexOf(propertyElement, 0);
+    if (index > -1) {
+      this.entityElement.properties.splice(index, 1);
+    }
+    this.service.deletePropertyElement(propertyElement);
+  }
 }

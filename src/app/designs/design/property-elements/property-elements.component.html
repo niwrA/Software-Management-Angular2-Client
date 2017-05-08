@@ -9,7 +9,8 @@
       <md-card-subtitle>property</md-card-subtitle>
       <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']">{{propertyElement.name}}</md-card-title>
       <md-card-actions align='end'>
-        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']"><md-icon>details</md-icon></button>
+        <button md-icon-button (click)="deletePropertyElement(propertyElement)"><md-icon>delete</md-icon></button>
+        <button md-icon-button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']"><md-icon>details</md-icon></button>
       </md-card-actions>
     </md-card>
   </div>

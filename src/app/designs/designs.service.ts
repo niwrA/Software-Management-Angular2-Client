@@ -15,7 +15,8 @@ import {
   RenameDesignCommand
 } from './design/design.commands';
 import { CreateEntityElementCommand } from './design/entity-elements/entity-element/entity-element.commands';
-import { CreatePropertyElementCommand, CreatePropertyCodeGenCommand } from './design/property-elements/property-element/property-element.commands';
+import { CreatePropertyElementCommand, CreatePropertyCodeGenCommand, DeletePropertyElementCommand 
+} from './design/property-elements/property-element/property-element.commands';
 import { CreateEpicElementCommand } from './design/epic-elements/epic-element/epic-element.commands';
 import { CreateCommandElementCommand } from './design/command-elements/command-element/command-element.commands';
 import { Observable } from 'rxjs/Observable';
@@ -109,6 +110,10 @@ export class DesignsService {
       this.designs.splice(index, 1);
     }
     this.postCommand(new DeleteDesignCommand(design), false);
+  }
+
+  deletePropertyElement(propertyElement: PropertyElement): void {
+    this.postCommand(new DeletePropertyElementCommand(propertyElement), false);
   }
 
   cloneDesign(original: Design): Design {

@@ -55,7 +55,6 @@ export class CreatePropertyCodeGenCommand extends PropertyCodeGenCommand {
     }
 }
 
-
 export class DeletePropertyElementCommand extends PropertyElementCommand {
     constructor(propertyElement: PropertyElement) {
         super('Delete', propertyElement);
