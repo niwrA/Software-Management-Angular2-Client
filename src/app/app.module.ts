@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import { MdButtonModule } from '@angular/material';
 
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
@@ -87,8 +90,6 @@ import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
 import { DesignsService } from './designs/designs.service';
 import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
-import { DesignElementsComponent } from './designs/design/designelements/designelements.component';
-import { DesignElementComponent } from './designs/design/designelements/designelement/designelement.component';
 import { EpicElementsComponent } from './designs/design/epic-elements/epic-elements.component';
 import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
 import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
@@ -105,11 +106,13 @@ import { CommandElementDetailsComponent } from './designs/design/command-element
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     MaterialRootModule,
     AppRoutingModule,
-    SimpleNotificationsModule],
+    SimpleNotificationsModule,
+    MdButtonModule],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -168,9 +171,10 @@ import { CommandElementDetailsComponent } from './designs/design/command-element
     LinkDetailsComponent,
     DesignsComponent,
     DesignComponent,
-    DesignDetailsComponent, DesignElementsComponent, DesignElementComponent, EpicElementsComponent,
+    DesignDetailsComponent, EpicElementsComponent,
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
-    PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent, EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent
+    PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
+    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

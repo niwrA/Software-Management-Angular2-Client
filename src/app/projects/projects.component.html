@@ -14,7 +14,7 @@
       <div>{{project.startDate | date:'yyyy-MM-dd'}} {{project.endDate | date:'yyyy-MM-dd'}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button (click)="deleteProject(project)">
+      <button md-mini-fab color="warn" (click)="deleteProject(project)">
 <md-icon>delete</md-icon></button>
       <!--        <button [(disabled)]="!project.Email" routerLink="project" RouterLinkActive='active' [uiParams]="{ projectId: project.Guid }">
 <md-icon>email circle</md-icon></button>-->

@@ -16,7 +16,7 @@ import { CompaniesServiceStub } from '../../mock-companies';
 describe('CompanyRolesComponent', () => {
   let component: CompanyRolesComponent;
   let fixture: ComponentFixture<CompanyRolesComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: any;
 
 
   beforeEach(async(() => {

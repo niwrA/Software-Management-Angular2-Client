@@ -14,7 +14,7 @@ import { CompaniesServiceStub } from '../../mock-companies';
 describe('CompanyDetailsComponent', () => {
   let component: CompanyDetailsComponent;
   let fixture: ComponentFixture<CompanyDetailsComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

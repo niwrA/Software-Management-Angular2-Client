@@ -1,8 +1,9 @@
 <md-card>
-  <p>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')" (keyup.enter)='createTechnology(searchTextInput.value)'/>
-    <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
-  </p>
+  <md-input-container>
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')"
+      (keyup.enter)='createTechnology(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
   <p hidden>
     <md-checkbox>Only my technologies ... </md-checkbox>
   </p>
@@ -17,8 +18,8 @@
       <div>{{technology.Description}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[technology.Guid]"><md-icon>details circle</md-icon></button>
-      <button [routerLink]="[technology.Guid]"><md-icon>share circle</md-icon></button>
+      <button md-mini-fab [routerLink]="[technology.Guid]"><md-icon>details circle</md-icon></button>
+      <button md-mini-fab [routerLink]="[technology.Guid]"><md-icon>share circle</md-icon></button>
     </md-card-actions>
   </md-card>
 </md-card>

@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     private epics: Epics) {
     this.resetColors();
     this.updateActive(this.activatedroute.url.toString());
-    this.router.events.subscribe((val) => this.updateActive(val.url));
+    this.router.events.subscribe((val) => this.updateActive(val.toString())); // todo: used to be url?
   }
 
   ngOnInit() {

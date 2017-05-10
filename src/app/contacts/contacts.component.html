@@ -21,9 +21,9 @@
       <div>{{contact.email}} ...</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
+      <button md-mini-fab [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
       <a href="mailto:{{contact.email}}"><button [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
-      <button (click)="deleteContact(contact)">
+      <button md-mini-fab color="warn" (click)="deleteContact(contact)">
 <md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>

@@ -40,11 +40,12 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     }
   }
 
-  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment): void {
+  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment): CompanyEnvironment {
     if (companyEnvironment) {
       this.companyenvironment = companyEnvironment;
       this.previousCompanyEnvironment = companyEnvironment.clone();
     }
+    return companyEnvironment;
   }
 
   changeName(): void {

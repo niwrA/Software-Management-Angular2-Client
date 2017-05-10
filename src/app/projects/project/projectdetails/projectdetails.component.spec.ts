@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
 describe('ProjectDetailsComponent', () => {
   let component: ProjectDetailsComponent;
   let fixture: ComponentFixture<ProjectDetailsComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: any; // todo: cleanup;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

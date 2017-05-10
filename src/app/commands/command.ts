@@ -8,10 +8,11 @@ export class Command {
     Parameters?: CommandParameters;
     DisplayProperties: CommandDisplayProperties;
     constructor(type: string, entityName: string, entityGuid: string) {
+        const now = new Date();
         this.Name = type;
         this.Entity = entityName;
         this.EntityGuid = entityGuid;
-        this.CreatedOn = new Date();
+        this.CreatedOn = now;
         this.DisplayProperties = new CommandDisplayProperties();
         this.DisplayProperties.title = this.Name + ' ' + this.Entity;
         this.DisplayProperties.description = this.CreatedOn.toString();

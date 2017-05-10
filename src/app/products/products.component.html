@@ -15,11 +15,11 @@
       <div>{{product.description}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[product.guid, 'details']">
+      <button md-mini-fab [routerLink]="[product.guid, 'details']">
 <md-icon>details circle</md-icon></button>
-      <button [routerLink]="[product.guid]">
+      <button md-mini-fab [routerLink]="[product.guid]">
 <md-icon>share circle</md-icon></button>
-      <button (click)="deleteProduct(product)">
+      <button md-mini-fab color="warn" (click)="deleteProduct(product)">
 <md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>

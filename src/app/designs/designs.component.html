@@ -15,11 +15,11 @@
       <div>{{design.description}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[design.guid, 'details']">
+      <button md-mini-fab [routerLink]="[design.guid, 'details']">
 <md-icon>details circle</md-icon></button>
-      <button [routerLink]="[design.guid]">
+      <button md-mini-fab [routerLink]="[design.guid]">
 <md-icon>share circle</md-icon></button>
-      <button (click)="deleteDesign(design)">
+      <button md-mini-fab color="warn" (click)="deleteDesign(design)">
 <md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>

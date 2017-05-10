@@ -37,7 +37,6 @@ import { ProductFeatureComponent } from './products/productfeatures/productfeatu
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
 import { DesignDetailsComponent } from './designs/design/designdetails/designdetails.component';
-import { DesignElementsComponent } from './designs/design/designelements/designelements.component';
 import { EpicElementsComponent } from './designs/design/epic-elements/epic-elements.component';
 import { EpicElementComponent } from './designs/design/epic-elements/epic-element/epic-element.component';
 import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic-element/epic-element-details/epic-element-details.component';
@@ -151,8 +150,8 @@ const appRoutes: Routes = [
       {
         path: 'roles',
         component: ProjectRolesComponent
-      }
-
+      },
+      linksSubRoute
     ]
   },
   {
@@ -170,10 +169,6 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: DesignDetailsComponent
-      },
-      {
-        path: 'designelements',
-        component: DesignElementsComponent
       },
       {
         path: 'epicelements',
@@ -237,7 +232,7 @@ const appRoutes: Routes = [
       },
       linksSubRoute
     ]
-  },  
+  },
   {
     path: 'products/:productId',
     component: ProductComponent,

@@ -14,7 +14,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 describe('ProjectRolesComponent', () => {
   let component: ProjectRolesComponent;
   let fixture: ComponentFixture<ProjectRolesComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: any; // todo: cleanup
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({

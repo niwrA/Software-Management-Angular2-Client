@@ -14,7 +14,7 @@ import { ContactsServiceStub } from '../../mock-contacts';
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
   let fixture: ComponentFixture<ContactDetailsComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: any; // todo: cleanup
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

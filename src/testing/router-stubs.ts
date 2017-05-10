@@ -1,9 +1,10 @@
 import { Injectable, Directive, Input } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Params, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
-export class ActivatedRouteStub {
+export class ActivatedRouteStub extends ActivatedRoute {
 
     // ActivatedRoute.params is Observable
     private subject = new BehaviorSubject(this.testParams);
@@ -19,11 +20,15 @@ export class ActivatedRouteStub {
 
     // ActivatedRoute.snapshot.params
     get snapshot() {
-        return { params: this.testParams };
+        const snapshot = new ActivatedRouteSnapshot();
+        snapshot.params = this.testParams;
+        return snapshot;
     }
-        // ActivatedRoute.parent.params
+    // ActivatedRoute.parent.params
     get parent() {
-        return { params: this.subject.asObservable() };
+        const route = new ActivatedRoute();
+        route.params =  this.subject.asObservable();
+        return route;
     }
 }
 
@@ -44,6 +49,6 @@ export class RouterLinkStubDirective {
 }
 
 export class RouterStub {
-  navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> { return ; }
-  navigateByUrl(url: string) { return url; }
+    navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> { return; }
+    navigateByUrl(url: string) { return url; }
 }

@@ -1,17 +1,17 @@
 import { Company, CompanyState } from './company';
 import { CompanyRoleState } from './company/companyroles/companyrole';
-
+import { CompanyEnvironmentState } from './company/companyenvironments/companyenvironment';
 export const COMPANIES: CompanyState[] = [
-  { guid: 'company11', name: 'Nice Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company12', name: 'Narco Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company13', name: 'Bombasto Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company14', name: 'Celeritas Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company15', name: 'Magneta Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company16', name: 'RubberMan Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company17', name: 'Dynama Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company18', name: 'Dr IQ Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company19', name: 'Magma Inc.', companyRoles: new Array<CompanyRoleState>() },
-  { guid: 'company20', name: 'Tornado Inc.', companyRoles: new Array<CompanyRoleState>() }
+  { guid: 'company11', name: 'Nice Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company12', name: 'Narco Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company13', name: 'Bombasto Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company14', name: 'Celeritas Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company15', name: 'Magneta Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company16', name: 'RubberMan Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company17', name: 'Dynama Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company18', name: 'Dr IQ Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company19', name: 'Magma Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() },
+  { guid: 'company20', name: 'Tornado Inc.', roles: new Array<CompanyRoleState>(), environments: new Array<CompanyEnvironmentState>() }
 ];
 
 export class CompaniesServiceStub {

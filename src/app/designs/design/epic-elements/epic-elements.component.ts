@@ -41,7 +41,7 @@ export class EpicElementsComponent implements OnInit {
   getEpicElements(searchText: string): void {
     if (this.design && this.design.epics) {
       if (searchText.length > 0) {
-        this.epicElements = _.filter<ProductVersion>(this.design.epics, prj => prj.name.indexOf(this.searchText) > -1);
+        this.epicElements = _.filter<EpicElement>(this.design.epics, prj => prj.name.indexOf(this.searchText) > -1);
       } else {
         this.epicElements = this.design.epics;
       }
