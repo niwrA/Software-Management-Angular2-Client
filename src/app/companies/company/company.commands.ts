@@ -101,7 +101,7 @@ export class AddEnvironmentToCompanyParameters extends EnvironmentCommandParamet
     EnvironmentName: string;
 }
 
-export class AddEnvironmentToCompanyCommand extends EnvironmentCommand {
+export class AddEnvironmentToCompanyCommand extends CompanyCommand {
     constructor(company: Company, environmentGuid: string, environmentName: string) {
         super('AddEnvironmentTo', company);
         const parameters = new AddEnvironmentToCompanyParameters();

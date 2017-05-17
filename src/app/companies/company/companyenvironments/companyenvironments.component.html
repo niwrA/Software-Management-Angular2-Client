@@ -15,7 +15,7 @@
     <a [href]="companyenvironment.url">{{companyenvironment.url}}</a>
   </md-card-content>
   <md-card-actions align='end'>
-    <button (click)="deleteCompanyEnvironment(companyenvironment)">
+    <button md-mini-fab color="warn" (click)="deleteCompanyEnvironment(companyenvironment)">
 <md-icon>delete</md-icon>
 </button>
     <!--        <button [(disabled)]="!companyenvironment.Email" routerLink="companyenvironment" RouterLinkActive='active' [uiParams]="{ companyenvironmentId: companyenvironment.Guid }">

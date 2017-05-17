@@ -9,7 +9,7 @@ import { MdButtonModule } from '@angular/material';
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
 
-import { MaterialRootModule } from '@angular/material';
+import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import { PushNotificationsService, SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
@@ -109,10 +109,9 @@ import { CommandElementDetailsComponent } from './designs/design/command-element
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    MaterialRootModule,
     AppRoutingModule,
     SimpleNotificationsModule,
-    MdButtonModule],
+    MaterialModule],
   declarations: [
     AppComponent,
     ProductsComponent,

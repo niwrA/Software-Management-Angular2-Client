@@ -14,7 +14,7 @@
     <app-employments companyroleguid='{{companyrole.guid}}'></app-employments>
   </md-card-content>
   <md-card-actions align='end'>
-    <button (click)="deleteCompanyRole(companyrole)">
+    <button md-mini-fab color="warn" (click)="deleteCompanyRole(companyrole)">
 <md-icon>delete</md-icon></button>
     <!--        <button [(disabled)]="!companyrole.Email" routerLink="companyrole" RouterLinkActive='active' [uiParams]="{ companyroleId: companyrole.Guid }">
 <md-icon>email circle</md-icon></button>-->

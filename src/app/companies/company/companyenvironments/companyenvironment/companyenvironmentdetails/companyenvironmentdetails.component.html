@@ -5,7 +5,7 @@
     </md-input-container>
     <md-input-container>
       <input mdInput type="url" (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
-      <md-hint *ngIf="urlMissingHttp()">
+      <md-hint *ngIf="urlMissingHttp()" color="warn">
         Missing http(s)://
       </md-hint>
     </md-input-container>

@@ -24,10 +24,7 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['companyId'], params['environmentId']])
-      .subscribe(([companyId, environmentId]) => {
-        this.getCompanyEnvironment(companyId, environmentId);
-      });
+    this.route.parent.params.subscribe(params => this.getCompanyEnvironment(params['companyId'], params['environmentId']));
   }
 
   getCompanyEnvironment(companyId: string, environmentId: string): Promise<CompanyEnvironment> {
@@ -61,16 +58,23 @@ export class CompanyEnvironmentDetailsComponent implements OnInit {
     }
   }
 
-  changUrl(): void {
+  changeUrl(): void {
     if (this.previousCompanyEnvironment !== undefined) {
       if (this.companyenvironment.url !== this.previousCompanyEnvironment.url) {
         const changeUrlCommand = new ChangeUrlForEnvironmentCommand(this.company,
           this.companyenvironment, this.previousCompanyEnvironment.url);
         this.service.postCommand(changeUrlCommand, false);
-        this.previousCompanyEnvironment.name = this.companyenvironment.name;
+        this.previousCompanyEnvironment.url = this.companyenvironment.url;
       }
     } else {
       this.previousCompanyEnvironment = this.companyenvironment;
     }
+  }
+
+  urlMissingHttp(): boolean {
+    if (this.companyenvironment && this.companyenvironment.url && !this.companyenvironment.url.startsWith('http')) {
+      return true;
+    }
+    return false;
   }
 }
