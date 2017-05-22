@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { MdButtonModule } from '@angular/material';
 
+import { FileUploadModule } from 'ng2-file-upload';
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
 
@@ -102,6 +103,7 @@ import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic
 import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
 import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
 import { CommandElementDetailsComponent } from './designs/design/command-elements/command-element/command-element-details/command-element-details.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   imports: [
@@ -111,7 +113,8 @@ import { CommandElementDetailsComponent } from './designs/design/command-element
     HttpModule,
     AppRoutingModule,
     SimpleNotificationsModule,
-    MaterialModule],
+    MaterialModule,
+    FileUploadModule],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -173,7 +176,7 @@ import { CommandElementDetailsComponent } from './designs/design/command-element
     DesignDetailsComponent, EpicElementsComponent,
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
-    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent
+    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent, FileUploadComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

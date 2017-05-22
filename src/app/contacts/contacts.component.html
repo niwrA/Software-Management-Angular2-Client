@@ -1,29 +1,35 @@
 <md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()" (keyup.enter)='createContact(searchTextInput.value)'
-    />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
-  <md-list *ngIf="selectedContacts">
-    <md-list-item>
-      <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
-    </md-list-item>
-  </md-list>
-  <md-card *ngFor="let contact of contacts">
-    <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
-    <md-card-title-group [routerLink]="[contact.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>person circle</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{contact.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
-      <div>{{contact.email}} ...</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
-      <a href="mailto:{{contact.email}}"><button md-mini-fab [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
-      <button md-mini-fab color="warn" (click)="deleteContact(contact)">
+  <md-card-title>
+    <md-input-container>
+      <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterContacts()" (keyup.enter)='createContact(searchTextInput.value)'
+      />
+    </md-input-container>
+    <button md-raised-button md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
+  </md-card-title>
+    <md-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</md-card-subtitle>
+  <md-card-content>
+    <md-list *ngIf="selectedContacts.length>0">
+      <md-list-item>
+        <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
+      </md-list-item>
+    </md-list>
+    <md-card *ngFor="let contact of contacts">
+      <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
+      <md-card-title-group [routerLink]="[contact.guid, 'details']">
+        <md-card-subtitle>
+          <md-icon>person circle</md-icon>
+        </md-card-subtitle>
+        <md-card-title>{{contact.name}}</md-card-title>
+      </md-card-title-group>
+      <md-card-content>
+        <div>{{contact.email}} ...</div>
+      </md-card-content>
+      <md-card-actions align='end'>
+        <button md-mini-fab [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
+        <a href="mailto:{{contact.email}}"><button md-mini-fab [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
+        <button md-mini-fab color="warn" (click)="deleteContact(contact)">
 <md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
+      </md-card-actions>
+    </md-card>
+  </md-card-content>
+</md-card>

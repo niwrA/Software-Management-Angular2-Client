@@ -6,6 +6,7 @@
     <button [routerLink]='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
     <button [routerLink]='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
     <button [routerLink]="['links',product.guid]" md-raised-button md-tooltip="Product Links">Links</button>
+    <button [routerLink]="['files']" md-raised-button md-tooltip="Product Files">Files</button>
   </md-card-actions>
   <router-outlet></router-outlet>
 </md-card>

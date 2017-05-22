@@ -38,7 +38,8 @@ export class ContactsComponent implements OnInit {
 
   filterContacts(): void {
     if (this.searchText && this.searchText.length > 0) {
-      this.contacts = _.filter<Contact>(this.allContacts, prj => prj.name.indexOf(this.searchText) > -1);
+      const filteredContacts = _.filter<Contact>(this.allContacts, prj => prj.name.indexOf(this.searchText) > -1);
+      this.contacts = _.orderBy(filteredContacts, ['name'], ['asc']);
       // this.updateFilteredContacts(filteredContacts);
     } else { this.updateContacts(this.allContacts) }
     if (this.contacts.length === 0) {
@@ -47,10 +48,10 @@ export class ContactsComponent implements OnInit {
   }
 
   updateFilteredContacts(contacts: Array<Contact>): void {
-    this.contacts = new Array<Contact>();
-    contacts.forEach(element => {
-      this.contacts.push(element);
-    });
+    this.contacts  = _.orderBy(contacts, ['name'], ['asc']);
+    // filteredContacts.forEach(element => {
+    //   this.contacts.push(element);
+    // });
   }
 
   updateContacts(contacts: Array<Contact>): void {
@@ -61,7 +62,9 @@ export class ContactsComponent implements OnInit {
   createContact(name: string): void {
     const contact = this.contactsService.createContact(true, name);
     this.contacts.push(contact);
-    //this.allContacts.push(contact);
+    // todo: check if contacts points to allContacts
+    this.allContacts.push(contact);
+    this.filterContacts();
     //    this.getContacts();
   }
 

@@ -13,5 +13,6 @@ export const environment = {
   designsUrl: 'http://localhost:50274/api/designs',
   employmentsUrl: 'http://localhost:50274/api/employments',
   projectroleassignmentsUrl: 'http://localhost:50274/api/projectroleassignments',
-  commandsUrl: 'http://localhost:50274/api/commands/batch' // change to eventsource if you want to try posting to the eventsource backend
+  commandsUrl: 'http://localhost:50274/api/commands/batch', // change to eventsource if you want to try posting to the eventsource backend
+  fileUploadUrl: 'http://localhost:50274/api/fileupload'
 };

@@ -54,6 +54,8 @@ import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
 import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.component';
 
+import { FileUploadComponent } from './file-upload/file-upload.component';
+
 import { EmploymentsComponent } from './employments/employments.component';
 
 import { PageNotFoundComponent } from './not-found.component';
@@ -63,15 +65,16 @@ const linksSubRoute = {
   component: LinksComponent,
   children: [
     {
-      path: ':linkId',
-      component: LinksComponent,
-      children: [
-        {
-          path: 'details',
-          component: LinkDetailsComponent
-        }
-      ]
-    },
+      path: 'details',
+      component: LinkDetailsComponent
+    }
+  ]
+};
+
+const filesSubRoute = {
+  path: 'files',
+  component: FileUploadComponent,
+  children: [
   ]
 };
 
@@ -134,6 +137,16 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'links/:linkId',
+    component: LinkComponent,
+    children: [
+      {
+        path: 'details',
+        component: LinkDetailsComponent
+      }
+    ]
   },
   {
     path: 'projects',
@@ -249,7 +262,8 @@ const appRoutes: Routes = [
         path: 'productfeatures',
         component: ProductFeaturesComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {

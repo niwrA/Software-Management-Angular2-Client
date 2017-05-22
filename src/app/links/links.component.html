@@ -1,16 +1,17 @@
 <md-card>
+  <md-card-title>
   <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterLinks()" (keyup.enter)='createLink(searchTextInput.value)'
-    />
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterLinks()" (keyup.enter)='createLink(searchTextInput.value)'/>
   </md-input-container>
   <button md-raised-button md-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
+  </md-card-title>
   <md-list *ngIf="selectedLinks">
     <md-list-item>
       <div *ngFor="let link of selectedLinks">{{link.name}}<span style="white-space:pre-wrap" *ngIf="selectedLinks.length>1">; </span> </div>
     </md-list-item>
   </md-list>
   <md-card *ngFor="let link of links">
-    <md-card-title-group [routerLink]="[link.guid, 'details']">
+    <md-card-title-group [routerLink]="['/links',link.guid, 'details']">
       <md-card-subtitle>
         <md-icon>link</md-icon>
       </md-card-subtitle>
@@ -19,16 +20,17 @@
     </md-card-title-group>
     <md-card-content>
       <!-- todo: scss styling -->
-      <div *ngIf="link.embeddedUrl"><iframe width="380" height="214" align="middle" [src]="link.embeddedUrl" frameborder="0" allowfullscreen></iframe><br /></div> 
+      <div *ngIf="link.embeddedUrl">
+        <iframe width="380" height="214" align="middle" [src]="link.embeddedUrl" frameborder="0" allowfullscreen></iframe><br /></div>
       <br/>
       <div>{{link.description}}</div>
       <div>{{link.siteName}}</div>
       <div>{{link.url}}</div>
     </md-card-content>
     <md-card-actions align='end'>
-      <button [routerLink]="[link.guid, 'details']"><md-icon>details circle</md-icon></button>
-      <a [attr.href]="link.url"><button [(disabled)]="!link.url"><md-icon>link</md-icon></button></a>
-      <button (click)="deleteLink(link)">
+      <button md-mini-fab [routerLink]="['details']"><md-icon>details circle</md-icon></button>
+      <a [attr.href]="link.url"><button md-mini-fab [(disabled)]="!link.url"><md-icon>link</md-icon></button></a>
+      <button md-mini-fab color="warn" (click)="deleteLink(link)">
 <md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>
