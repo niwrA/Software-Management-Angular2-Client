@@ -1,0 +1,37 @@
+<md-card>
+  <div  style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start" >
+    <div style="width: 40%" >
+      <md-input-container>
+        <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterFiles()" (keyup.enter)='createFile(searchTextInput.value)'
+        />
+      </md-input-container>
+      <button md-raised-button md-tooltip="Add new file" (click)="createFile(searchTextInput.value)">Add</button>
+    </div>
+    <div style="width: 60%" >
+      <app-file-upload></app-file-upload>
+    </div>
+  </div>
+  <md-list *ngIf="selectedFiles">
+    <md-list-item>
+      <div *ngFor="let file of selectedFiles">{{file.name}}<span style="white-space:pre-wrap" *ngIf="selectedFiles.length>1">; </span> </div>
+    </md-list-item>
+  </md-list>
+  <md-card *ngFor="let file of files">
+    <md-card-title-group [routerLink]="['/files',file.guid, 'details']">
+      <md-card-subtitle>
+        <md-icon>file</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{file.name}}</md-card-title>
+      <img md-card-md-image [src]="file.url">
+    </md-card-title-group>
+    <md-card-content>
+      <!-- todo: scss styling -->
+      <div>{{file.description}}</div>
+    </md-card-content>
+    <md-card-actions align='end'>
+      <button md-mini-fab [routerLink]="['/files', file.guid, 'details']"><md-icon>details circle</md-icon></button>
+      <a [attr.href]="file.url"><button md-mini-fab [(disabled)]="!file.url"><md-icon>link</md-icon></button></a>
+      <button md-mini-fab color="warn" (click)="deleteFile(file)">
+<md-icon>delete</md-icon></button>
+    </md-card-actions>
+  </md-card>

@@ -55,27 +55,22 @@ import { LinkComponent } from './links/link/link.component';
 import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.component';
 
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FilesComponent } from './files/files.component';
+import { FileComponent } from './files/file/file.component';
+import { FileDetailsComponent } from './files/file/file-details/file-details.component';
 
 import { EmploymentsComponent } from './employments/employments.component';
 
 import { PageNotFoundComponent } from './not-found.component';
 
 const linksSubRoute = {
-  path: 'links/:forId',
-  component: LinksComponent,
-  children: [
-    {
-      path: 'details',
-      component: LinkDetailsComponent
-    }
-  ]
+  path: 'links',
+  component: LinksComponent
 };
 
 const filesSubRoute = {
   path: 'files',
-  component: FileUploadComponent,
-  children: [
-  ]
+  component: FilesComponent
 };
 
 const appRoutes: Routes = [
@@ -145,6 +140,16 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: LinkDetailsComponent
+      }
+    ]
+  },
+  {
+    path: 'files/:fileId',
+    component: FileComponent,
+    children: [
+      {
+        path: 'details',
+        component: FileDetailsComponent
       }
     ]
   },

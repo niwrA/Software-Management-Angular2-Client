@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { LinksService } from './links.service';
 import { Link } from './link';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -24,6 +24,7 @@ export class LinksComponent implements OnInit {
   @Input() allLinks = new Array<Link>();
   @Input() selectedLinks = new Array<Link>();
   @Input() canAdd: boolean;
+  snapshot: RouterStateSnapshot;
   selectedLink: Link;
   searchText: string;
 
@@ -32,10 +33,17 @@ export class LinksComponent implements OnInit {
     private router: Router,
     private service: LinksService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+    this.snapshot = router.routerState.snapshot;
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.getLinksForGuid(params['forId']));
+    if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
+      const url = this.snapshot.url.split('/');
+      this._forGuid = url[2].toString();
+      this.getLinksForGuid(this._forGuid);
+    }
   }
 
   onSelect(link: Link): void {

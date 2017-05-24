@@ -1,49 +1,23 @@
-<style>
-    .my-drop-zone { border: dotted 3px lightgray; }
-    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-    .another-file-over-class { border: dotted 3px green; }
-
-    html, body { height: 100%; }
-</style>
 
 <div class="container">
-
-    <div class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand" href>Angular File Upload</a>
-        </div>
-    </div>
 
     <div class="row">
 
         <div class="col-md-3">
-
-            <h3>Select files</h3>
 
             <div ng2FileDrop
                  [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
                  (fileOver)="fileOverBase($event)"
                  [uploader]="uploader"
                  class="well my-drop-zone">
-                Base drop zone
+                Drag files to upload here
             </div>
 
-            <div ng2FileDrop
-                 [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
-                 (fileOver)="fileOverAnother($event)"
-                 [uploader]="uploader"
-                 class="well my-drop-zone">
-                Another drop zone
-            </div>
-
-            Multiple
+            Or select file(s) here
             <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
-
-            Single
-            <input type="file" ng2FileSelect [uploader]="uploader" />
         </div>
 
-        <div class="col-md-9" style="margin-bottom: 40px">
+        <div *ngIf="uploader?.queue?.length>0" class="col-md-9" style="margin-bottom: 40px">
 
             <h3>Upload queue</h3>
             <p>Queue length: {{ uploader?.queue?.length }}</p>
@@ -72,7 +46,7 @@
                         <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
                         <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                     </td>
-                    <td nowrap>
+                    <!--<td nowrap>
                         <button type="button" class="btn btn-success btn-xs"
                                 (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
                             <span class="glyphicon glyphicon-upload"></span> Upload
@@ -85,7 +59,7 @@
                                 (click)="item.remove()">
                             <span class="glyphicon glyphicon-trash"></span> Remove
                         </button>
-                    </td>
+                    </td>-->
                 </tr>
                 </tbody>
             </table>

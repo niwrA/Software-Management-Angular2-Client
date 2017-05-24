@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdButtonModule } from '@angular/material';
 
 import { FileUploadModule } from 'ng2-file-upload';
@@ -104,6 +104,10 @@ import { EntityElementDetailsComponent } from './designs/design/entity-elements/
 import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
 import { CommandElementDetailsComponent } from './designs/design/command-elements/command-element/command-element-details/command-element-details.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FilesComponent } from './files/files.component';
+import { FileComponent } from './files/file/file.component';
+import { FileDetailsComponent } from './files/file/file-details/file-details.component';
+import { FilesService } from './files/files.service';
 
 @NgModule({
   imports: [
@@ -114,7 +118,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AppRoutingModule,
     SimpleNotificationsModule,
     MaterialModule,
-    FileUploadModule],
+    FileUploadModule,
+    FlexLayoutModule],
   declarations: [
     AppComponent,
     ProductsComponent,
@@ -176,11 +181,12 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     DesignDetailsComponent, EpicElementsComponent,
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
-    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent, FileUploadComponent
+    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent, FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService, LinksService, SemgraphService, CommandsService,
+    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService, 
+    LinksService, FilesService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent]
