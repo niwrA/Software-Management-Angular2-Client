@@ -18,11 +18,17 @@ export class FilesService {
     //    this.getFiles('').then(result => this.files = result as Array<File>);
   }
 
-  createFile(doSave: boolean, url: string, forGuid: string): File {
-    const newItem = new File();
-    newItem.guid = UUID.UUID();
-    newItem.name = url;
-    newItem.forGuid = forGuid;
+  createFile(doSave: boolean, name: string, forGuid: string, forType: string): File {
+    const newState = new FileState();
+
+    newState.guid = UUID.UUID();
+    newState.name = name;
+    newState.forGuid = forGuid;
+    newState.forType = forType;
+    newState.fileName = name;
+    newState.type = name.substring(name.lastIndexOf('.')).toLowerCase();
+
+    const newItem = new File(newState);
     if (doSave) {
       this.files.splice(0, 0, newItem);
       const createFileCommand = new CreateFileCommand(newItem);
@@ -32,7 +38,13 @@ export class FilesService {
   }
 
   updateFile(file: File) {
-    this.getFile(file.guid, true);
+    this.getFile(file.guid, true).then(s => this.updateLinkProperties(file, s));
+  }
+
+  // this may need to be changed so that the state initialisation stuff is handled and
+  // readonly properties are updated
+  updateLinkProperties(link: File, updated: File) {
+    // may not need to actually update anything for now
   }
 
   deleteFile(file: File): void {

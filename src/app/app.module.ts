@@ -108,6 +108,7 @@ import { FilesComponent } from './files/files.component';
 import { FileComponent } from './files/file/file.component';
 import { FileDetailsComponent } from './files/file/file-details/file-details.component';
 import { FilesService } from './files/files.service';
+import { FilePreviewComponent } from './files/file/file-preview/file-preview.component';
 
 @NgModule({
   imports: [
@@ -181,15 +182,16 @@ import { FilesService } from './files/files.service';
     DesignDetailsComponent, EpicElementsComponent,
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
-    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent, FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent
+    EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
+    FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService, 
+    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService],
   bootstrap: [AppComponent],
-  entryComponents: [ContactsSelectComponent]
+  entryComponents: [ContactsSelectComponent, FilePreviewComponent]
 })
 export class AppModule { }
 

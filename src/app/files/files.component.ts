@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { FilesService } from './files.service';
 import { File } from './file';
+import { FilePreviewComponent } from './file/file-preview/file-preview.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,6 +15,7 @@ import * as _ from 'lodash';
 
 export class FilesComponent implements OnInit {
   private _forGuid: string;
+  private _forType: string;
   @Input()
   set forGuid(guid: string) {
     this._forGuid = guid;
@@ -27,22 +30,24 @@ export class FilesComponent implements OnInit {
   snapshot: RouterStateSnapshot;
   selectedFile: File;
   searchText: string;
+  imageDialogRef: MdDialogRef<FilePreviewComponent>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: FilesService,
+    private dialog: MdDialog,
     private sanitizer: DomSanitizer
   ) {
     this.snapshot = router.routerState.snapshot;
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => this.getFilesForGuid(params['forId']));
     if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
       const url = this.snapshot.url.split('/');
+      this._forType = url[1].toString();
       this._forGuid = url[2].toString();
-      this.getFilesForGuid(this._forGuid);
+      this.service.getFilesForGuid(this._forGuid).then(files => this.updateFiles(files));
     }
   }
 
@@ -74,7 +79,7 @@ export class FilesComponent implements OnInit {
   }
 
   createFile(url: string): void {
-    const file = this.service.createFile(true, url, this._forGuid);
+    const file = this.service.createFile(true, url, this._forGuid, this._forType);
     this.files.push(file);
   }
 
@@ -100,6 +105,23 @@ export class FilesComponent implements OnInit {
       }
     }
   }
+
+  showActions(file: File): void {
+    file.showActions = true;
+  }
+
+  hideActions(file: File): void {
+    file.showActions = false;
+  }
+
+  zoomImage(file): void {
+    this.imageDialogRef = this.dialog.open(FilePreviewComponent/*, {
+      height: '400px',
+      width: '600px',
+    }*/);
+    this.imageDialogRef.componentInstance.file = file;
+  }
+
 
   // file could be video
   // isVideo(file: File): boolean {

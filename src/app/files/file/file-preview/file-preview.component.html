@@ -1,0 +1,6 @@
+<md-card>
+  <md-card-title *ngIf="file">{{file.name}}</md-card-title>
+  <md-card-content *ngIf="file">
+    <img *ngIf="file.cardType==='image'" [src]="file.url">
+  </md-card-content>
+</md-card>

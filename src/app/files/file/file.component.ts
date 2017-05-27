@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { File } from '../file';
 import { FilesService } from '../files.service';
@@ -9,19 +9,29 @@ import { FilesService } from '../files.service';
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.css']
 })
-export class FileComponent {
-
+export class FileComponent implements OnInit {
+  @Input()
   file: File;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: FilesService
-  ){}
+  ) { }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.service.getFile(params['fileId']))
-    .subscribe((file: File) => this.file = file);
+      .subscribe((file: File) => this.update(file));
   }
-
+  update(newValue) {
+    if (newValue) {
+      this.file = newValue;
+    }
+  }
+  getFile(fileId: string) {
+    if (fileId && fileId.length > 0) {
+      this.service.getFile(fileId)
+        .then((file: File) => this.file = file);
+    }
+  }
 }

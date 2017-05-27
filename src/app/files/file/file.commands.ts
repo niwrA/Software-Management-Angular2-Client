@@ -8,8 +8,11 @@ export class FileCommand extends Command {
 
 export class CreateFileParameters extends CommandParameters {
     ForGuid: string;
+    ForType: string;
     Url: string;
     Name: string;
+    FileName: string;
+    Type: string;
 }
 
 export class CreateFileCommand extends FileCommand {
@@ -17,8 +20,11 @@ export class CreateFileCommand extends FileCommand {
         super('Create', file);
         const parameters = new CreateFileParameters();
         parameters.Name = file.name;
+        parameters.FileName = file.name;
         parameters.Url = file.url;
+        parameters.ForType = file.forType;
         parameters.ForGuid = file.forGuid;
+        parameters.Type = file.type;
         this.Parameters = parameters;
     }
 }

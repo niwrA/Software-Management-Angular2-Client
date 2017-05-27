@@ -1,14 +1,14 @@
 <md-card>
-  <div  style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start" >
-    <div style="width: 40%" >
+  <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start">
+    <div style="width: 40%">
       <md-input-container>
         <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterFiles()" (keyup.enter)='createFile(searchTextInput.value)'
         />
       </md-input-container>
       <button md-raised-button md-tooltip="Add new file" (click)="createFile(searchTextInput.value)">Add</button>
     </div>
-    <div style="width: 60%" >
-      <app-file-upload></app-file-upload>
+    <div style="width: 60%">
+      <app-file-upload [files]="files"></app-file-upload>
     </div>
   </div>
   <md-list *ngIf="selectedFiles">
@@ -16,22 +16,28 @@
       <div *ngFor="let file of selectedFiles">{{file.name}}<span style="white-space:pre-wrap" *ngIf="selectedFiles.length>1">; </span> </div>
     </md-list-item>
   </md-list>
-  <md-card *ngFor="let file of files">
-    <md-card-title-group [routerLink]="['/files',file.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>file</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{file.name}}</md-card-title>
-      <img md-card-md-image [src]="file.url">
-    </md-card-title-group>
-    <md-card-content>
-      <!-- todo: scss styling -->
-      <div>{{file.description}}</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="['/files', file.guid, 'details']"><md-icon>details circle</md-icon></button>
-      <a [attr.href]="file.url"><button md-mini-fab [(disabled)]="!file.url"><md-icon>link</md-icon></button></a>
-      <button md-mini-fab color="warn" (click)="deleteFile(file)">
-<md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
+
+
+  <!-- compact layout -->
+  <div style="width: 100%" fxLayout="row" fxLayoutWrap>
+    <div *ngFor="let file of files">
+      <md-card (mouseenter)="showActions(file)" (mouseleave)="hideActions(file)" > 
+        <md-card-title-group [routerLink]="['/files',file.guid, 'details']">
+          <md-card-subtitle>
+            <md-icon>{{file.icon}}</md-icon>
+          </md-card-subtitle>
+        </md-card-title-group>
+        <md-card-content>
+          <img (click)="zoomImage(file)" *ngIf="file.cardType==='image'" [src]="file.url">
+          <!-- todo: scss styling -->
+          <div>{{file.name}}</div>
+          <div>{{file.description}}</div>
+        </md-card-content>
+        <md-card-actions align='end' *ngIf="file.showActions">
+          <button md-mini-fab [routerLink]="['/files', file.guid, 'details']"><md-icon>details circle</md-icon></button>
+          <a [attr.href]="file.url"><button md-mini-fab [(disabled)]="!file.url"><md-icon>file_download</md-icon></button></a>
+          <button md-mini-fab color="warn" (click)="deleteFile(file)"><md-icon>delete</md-icon></button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>

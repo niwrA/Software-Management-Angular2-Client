@@ -1,6 +1,6 @@
     .my-drop-zone {
       border: dotted 3px lightgray;
-      min-height: 100px;
+      min-height: 50px;
     }
 
     .nv-file-over {
