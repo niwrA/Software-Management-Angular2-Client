@@ -18,7 +18,7 @@ export class FilesService {
     //    this.getFiles('').then(result => this.files = result as Array<File>);
   }
 
-  createFile(doSave: boolean, name: string, forGuid: string, forType: string): File {
+  createFile(doSave: boolean, name: string, contentType: string, size: number, forGuid: string, forType: string): File {
     const newState = new FileState();
 
     newState.guid = UUID.UUID();
@@ -27,6 +27,8 @@ export class FilesService {
     newState.forType = forType;
     newState.fileName = name;
     newState.type = name.substring(name.lastIndexOf('.')).toLowerCase();
+    newState.contentType = contentType;
+    newState.size = size;
 
     const newItem = new File(newState);
     if (doSave) {

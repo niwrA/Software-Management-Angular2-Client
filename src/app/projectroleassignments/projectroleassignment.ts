@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 export class ProjectRoleAssignmentState {
     guid: string;
     contactGuid: string;
+    projectGuid: string;
     projectRoleGuid: string;
     startDate: string;
     endDate: string;
@@ -22,6 +23,9 @@ export class ProjectRoleAssignment {
 
     get contactGuid(): string { return this._state.contactGuid; };
     set contactGuid(value: string) { this._state.contactGuid = value; };
+
+    get projectGuid(): string { return this._state.projectGuid; };
+    set projectGuid(value: string) { this._state.projectGuid = value; };
 
     get projectRoleGuid(): string { return this._state.projectRoleGuid; };
     set projectRoleGuid(value: string) { this._state.projectRoleGuid = value; };

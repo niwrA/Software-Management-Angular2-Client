@@ -69,6 +69,12 @@ export class File extends SelectableItem {
     get type() { return this._state.type; };
     set type(value: string) { this._state.type = value; };
 
+    get contentType() { return this._state.contentType; };
+    set contentType(value: string) { this._state.contentType = value; };
+
+    get size() { return this._state.size; };
+    set size(value: number) { this._state.size = value; };
+
     get embeddedUrl() { return this._embeddedUrl; };
     set embeddedUrl(value: SafeResourceUrl) { this._embeddedUrl = value; };
 

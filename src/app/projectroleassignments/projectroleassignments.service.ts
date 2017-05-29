@@ -20,10 +20,12 @@ export class ProjectRoleAssignmentsService {
     this.getProjectRoleAssignments().then(result => this.projectroleassignments = result as Array<ProjectRoleAssignment>);
   }
 
-  createProjectRoleAssignment(doSave: boolean, contactGuid: string, projectRoleGuid: string, post: boolean, contactName: string): ProjectRoleAssignment {
+  createProjectRoleAssignment(doSave: boolean, contactGuid: string, projectGuid: string, projectRoleGuid: string, 
+  post: boolean, contactName: string): ProjectRoleAssignment {
     const newItem = new ProjectRoleAssignment();
     newItem.guid = UUID.UUID();
     newItem.contactGuid = contactGuid;
+    newItem.projectGuid = projectGuid;
     newItem.projectRoleGuid = projectRoleGuid;
     newItem.contactName = contactName;
     if (doSave) {
@@ -84,6 +86,13 @@ export class ProjectRoleAssignmentsService {
 
   getContacts(projectRoleGuid): Promise<Array<Contact>> {
     return this.http.get(this.projectroleassignmentsUrl + '/getcontactsbyprojectroleid/' + projectRoleGuid)
+        .toPromise()
+        .then(response => this.parseContactsResponse(response))
+        .catch(error => this.handleError(error, this.notificationService));
+  }
+
+ getContactsByProjectGuid(projectGuid): Promise<Array<Contact>> {
+    return this.http.get(this.projectroleassignmentsUrl + '/getcontactsbyprojectid/' + projectGuid)
         .toPromise()
         .then(response => this.parseContactsResponse(response))
         .catch(error => this.handleError(error, this.notificationService));

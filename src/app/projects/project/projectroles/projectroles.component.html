@@ -1,7 +1,13 @@
 <md-input-container>
-  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjectRoles(searchTextInput.value)" (keyup.enter)='createProjectRole(searchTextInput.value)' />
+  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+    (keyup)="getProjectRoles(searchTextInput.value)" (keyup.enter)='createProjectRole(searchTextInput.value)' />
 </md-input-container>
 <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
+<md-card>
+  <md-card-actions>
+    <a href="mailto:{{mailto}}"><button md-mini-fab [(disabled)]="!mailto"><md-icon>email circle</md-icon></button></a>
+  </md-card-actions>
+</md-card>
 <md-card *ngFor="let projectrole of projectroles">
   <md-card-title-group [routerLink]="[projectrole.guid, 'details']">
     <md-card-subtitle>
@@ -9,8 +15,8 @@
     </md-card-subtitle>
     <md-card-title>{{projectrole.name}}</md-card-title>
   </md-card-title-group>
-    <md-card-content>
-    <app-projectroleassignments projectroleguid='{{projectrole.guid}}'></app-projectroleassignments>
+  <md-card-content>
+    <app-projectroleassignments projectroleguid='{{projectrole.guid}}' [project]='project'></app-projectroleassignments>
   </md-card-content>
   <md-card-actions align='end'>
     <button md-mini-fab color="warn" (click)="deleteProjectRole(projectrole)">

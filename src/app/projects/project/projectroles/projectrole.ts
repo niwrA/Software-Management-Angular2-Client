@@ -1,6 +1,7 @@
 export class ProjectRoleState {
     guid: string;
     name: string;
+    projectGuid: string;
 }
 export class ProjectRole {
     private _state: ProjectRoleState;
@@ -15,4 +16,7 @@ export class ProjectRole {
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
+
+    get projectGuid(): string { return this._state.projectGuid; };
+    set projectGuid(value: string) { this._state.projectGuid = value; };
 }

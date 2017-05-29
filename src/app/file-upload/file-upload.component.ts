@@ -6,8 +6,6 @@ import { Router, ActivatedRoute, Params, UrlSegment, RouterStateSnapshot, Router
 import { FilesService } from '../files/files.service';
 import { File as SMFile, FileState } from '../files/file';
 
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
-
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
@@ -56,7 +54,7 @@ export class FileUploadComponent implements OnInit {
       fileState.contentType = item.file.type;
       fileState.size = item.file.size;
       // fileState.type = item.file.type; // todo: add contenttype and size, will be useful
-      const file = this.filesService.createFile(true, item.file.name, this.forEntityGuid, this.forEntityType);
+      const file = this.filesService.createFile(true, item.file.name, item.file.type, item.file.size, this.forEntityGuid, this.forEntityType);
       this.files.push(file);
     };
     //    this.uploader.onBuildItemForm = function (fileItem, form) { form.append('forGuid', forId); return { fileItem, form } };

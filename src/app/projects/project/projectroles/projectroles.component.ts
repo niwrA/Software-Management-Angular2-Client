@@ -3,6 +3,8 @@ import { PROJECTROLES } from './mock-projectroles';
 import { Project } from '../../project';
 import { ProjectRole } from './projectrole';
 import { ProjectsService } from '../../projects.service';
+import { ProjectRoleAssignmentsService } from '../../../projectroleassignments/projectroleassignments.service';
+import { Contact } from '../../../contacts/contact';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
@@ -14,15 +16,17 @@ import { AddRoleToProjectCommand, AddRoleToProjectParameters, RemoveRoleFromProj
   styleUrls: ['./projectroles.component.css']
 })
 export class ProjectRolesComponent implements OnInit {
-  private project: Project;
+  public project: Project;
   @Input() projectroles: Array<ProjectRole>;
   canAdd: boolean;
   searchText: string;
+  mailto: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProjectsService
+    private service: ProjectsService,
+    private projectRoleAssignmentsService: ProjectRoleAssignmentsService
   ) { }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class ProjectRolesComponent implements OnInit {
   updateProject(project: Project) {
     this.project = project;
     this.projectroles = project.projectRoles;
+    this.getAllEmails();
   }
 
   searchTextChanged(): void {
@@ -64,5 +69,14 @@ export class ProjectRolesComponent implements OnInit {
       return Promise.resolve(results);
     }
     return Promise.resolve(this.projectroles);
+  }
+
+  getAllEmails() {
+    this.projectRoleAssignmentsService.getContactsByProjectGuid(this.project.guid)
+    .then((contacts: Array<Contact>) => this.createMailTo(contacts));
+  }
+
+  createMailTo(contacts) {
+    this.mailto = _.map(contacts, 'email').join(';');
   }
 }

@@ -4,6 +4,8 @@
     <button [routerLink]='technologyDetails' md-raised-button md-tooltip="Technology Details">Details</button>
     <button [routerLink]='technologyProducts' md-raised-button md-tooltip="View Products for this Technology">Products</button>
     <button [routerLink]='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
+    <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
+    <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
   </md-card-actions>
   <div>
     <input mdInput [(ngModel)]="technology.Name" placeholder="Name"/>

@@ -1,9 +1,9 @@
 <md-card>
   <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterLinks()" (keyup.enter)='createLink(searchTextInput.value)'
+    <input mdInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)'
     />
   </md-input-container>
-  <button md-raised-button md-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
+  <button md-raised-button [disabled]='!canAdd' md-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
   <md-list *ngIf="selectedLinks">
     <md-list-item>
       <div *ngFor="let link of selectedLinks">{{link.name}}<span style="white-space:pre-wrap" *ngIf="selectedLinks.length>1">; </span> </div>

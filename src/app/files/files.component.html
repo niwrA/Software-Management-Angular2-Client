@@ -2,10 +2,10 @@
   <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start">
     <div style="width: 40%">
       <md-input-container>
-        <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterFiles()" (keyup.enter)='createFile(searchTextInput.value)'
+        <input mdInput [disabled]='!canAdd' #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getFiles()" (keyup.enter)='createFile(searchTextInput.value)'
         />
       </md-input-container>
-      <button md-raised-button md-tooltip="Add new file" (click)="createFile(searchTextInput.value)">Add</button>
+      <button md-raised-button [disabled]='!canAdd' md-tooltip="Add new file" (click)="createFile(searchTextInput.value)">Add</button>
     </div>
     <div style="width: 60%">
       <app-file-upload [files]="files"></app-file-upload>
@@ -21,7 +21,7 @@
   <!-- compact layout -->
   <div style="width: 100%" fxLayout="row" fxLayoutWrap>
     <div *ngFor="let file of files">
-      <md-card (mouseenter)="showActions(file)" (mouseleave)="hideActions(file)" > 
+      <md-card (mouseenter)="showActions(file)" (mouseleave)="hideActions(file)">
         <md-card-title-group [routerLink]="['/files',file.guid, 'details']">
           <md-card-subtitle>
             <md-icon>{{file.icon}}</md-icon>
@@ -29,6 +29,9 @@
         </md-card-title-group>
         <md-card-content>
           <img (click)="zoomImage(file)" *ngIf="file.cardType==='image'" [src]="file.url">
+          <video (click)="zoomImage(file)" controls *ngIf="file.cardType==='video'">
+            <source [src]="file.url" [type]="file.contentType">
+          </video>
           <!-- todo: scss styling -->
           <div>{{file.name}}</div>
           <div>{{file.description}}</div>

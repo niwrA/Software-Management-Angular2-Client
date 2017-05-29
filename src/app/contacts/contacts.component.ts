@@ -33,6 +33,7 @@ export class ContactsComponent implements OnInit {
   }
 
   getContacts(): void {
+    this.searchTextChanged();
     this.contactsService.getContacts(this.searchText).then(contacts => this.updateContacts(contacts));
   }
 
@@ -78,7 +79,7 @@ export class ContactsComponent implements OnInit {
   }
 
   searchTextChanged(): void {
-    this.canAdd = this.searchText.length > 0;
+    this.canAdd = this.searchText && this.searchText.length > 0;
   }
 
   toggleSelect(contact: Contact): void {

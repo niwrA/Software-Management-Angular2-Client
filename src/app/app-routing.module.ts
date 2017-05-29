@@ -90,7 +90,8 @@ const appRoutes: Routes = [
         path: 'details',
         component: ContactDetailsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -117,7 +118,8 @@ const appRoutes: Routes = [
         path: 'environments',
         component: CompanyEnvironmentsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -169,7 +171,8 @@ const appRoutes: Routes = [
         path: 'roles',
         component: ProjectRolesComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -192,7 +195,8 @@ const appRoutes: Routes = [
         path: 'epicelements',
         component: EpicElementsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -207,7 +211,8 @@ const appRoutes: Routes = [
         path: 'entityelements',
         component: EntityElementsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -226,7 +231,8 @@ const appRoutes: Routes = [
         path: 'commandelements',
         component: CommandElementsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -237,7 +243,8 @@ const appRoutes: Routes = [
         path: 'details',
         component: PropertyElementDetailsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {
@@ -248,7 +255,8 @@ const appRoutes: Routes = [
         path: 'details',
         component: CommandElementDetailsComponent
       },
-      linksSubRoute
+      linksSubRoute,
+      filesSubRoute
     ]
   },
   {

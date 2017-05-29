@@ -8,7 +8,8 @@ export class ProjectRoleAssignmentCommand extends Command {
 
 export class CreateProjectRoleAssignmentParameters extends CommandParameters {
     ContactGuid: string;
-    CompanyRoleGuid: string;
+    ProjectGuid: string;
+    ProjectRoleGuid: string;
     ContactName: string;
 }
 export class CreateProjectRoleAssignmentCommand extends ProjectRoleAssignmentCommand {
@@ -16,7 +17,8 @@ export class CreateProjectRoleAssignmentCommand extends ProjectRoleAssignmentCom
         super('Create', projectroleassignment);
         const parameters = new CreateProjectRoleAssignmentParameters();
         parameters.ContactGuid = projectroleassignment.contactGuid;
-        parameters.CompanyRoleGuid = projectroleassignment.projectRoleGuid;
+        parameters.ProjectGuid = projectroleassignment.projectGuid;
+        parameters.ProjectRoleGuid = projectroleassignment.projectRoleGuid;
         parameters.ContactName = projectroleassignment.contactName;
         this.Parameters = parameters;
     }

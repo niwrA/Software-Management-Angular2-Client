@@ -26,7 +26,7 @@ export class FilesComponent implements OnInit {
   @Input() files = new Array<File>();
   @Input() allFiles = new Array<File>();
   @Input() selectedFiles = new Array<File>();
-  @Input() canAdd: boolean;
+  @Input() canAdd = false;
   snapshot: RouterStateSnapshot;
   selectedFile: File;
   searchText: string;
@@ -79,8 +79,8 @@ export class FilesComponent implements OnInit {
   }
 
   createFile(url: string): void {
-    const file = this.service.createFile(true, url, this._forGuid, this._forType);
-    this.files.push(file);
+    //    const file = this.service.createFile(true, url, this._forGuid, this._forType);
+    //    this.files.push(file);
   }
 
   deleteFile(file: File): void {

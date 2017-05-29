@@ -4,6 +4,7 @@ import { ProjectRoleAssignmentsService } from './projectroleassignments.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ProjectRoleAssignment } from './projectroleassignment';
+import { Project } from '../projects/project';
 import { ProjectRole } from '../projects/project/projectroles/projectrole';
 import { ContactsComponent } from '../contacts/contacts.component';
 import { ContactsSelectComponent } from '../contacts/contacts-select/contacts-select.component';
@@ -24,6 +25,8 @@ export class ProjectRoleAssignmentsComponent implements OnInit {
   selectedContacts: Array<Contact>;
   _projectroleguid: string;
   @Input()
+  project: Project;
+  @Input()
   set projectroleguid(guid: string) {
     this._projectroleguid = guid;
     this.service.getProjectRoleAssignments(guid).then(projectroleassignments => this.updateProjectRoleAssignments(projectroleassignments));
@@ -35,7 +38,9 @@ export class ProjectRoleAssignmentsComponent implements OnInit {
     private router: Router,
     private service: ProjectRoleAssignmentsService,
     private dialog: MdDialog,
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+    private projectsService: ProjectsService
+
   ) {
   }
 
@@ -57,19 +62,20 @@ export class ProjectRoleAssignmentsComponent implements OnInit {
 
   deleteProjectRoleAssignment(projectroleassignment: ProjectRoleAssignment) {
     this.service.deleteProjectRoleAssignment(projectroleassignment);
-    let index = _.indexOf(this.projectroleassignments, projectroleassignment); // not sure this is safe
+    const index = _.indexOf(this.projectroleassignments, projectroleassignment); // not sure this is safe
     if (index > -1) {
       this.projectroleassignments.splice(index, 1);
     }
   }
 
   handleSelected(ref) {
-    let selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
-    var projectroleassignments = new Array<ProjectRoleAssignment>();
+    const selectedContacts = this.contactDialogRef.componentInstance.selectedContacts;
+    const projectroleassignments = new Array<ProjectRoleAssignment>();
     for (const selected of selectedContacts) {
-      let exist = _.find(this.projectroleassignments, projectroleassignment => projectroleassignment.contactGuid === selected.guid);
+      const exist = _.find(this.projectroleassignments, projectroleassignment => projectroleassignment.contactGuid === selected.guid);
       if (!exist) {
-        var projectroleassignment = this.service.createProjectRoleAssignment(true, selected.guid, this.projectroleguid, false, selected.name);
+        const projectroleassignment = this.service.createProjectRoleAssignment(true, selected.guid, this.project.guid, 
+        this.projectroleguid, false, selected.name);
         this.projectroleassignments.push(projectroleassignment);
         projectroleassignments.push(projectroleassignment);
       }

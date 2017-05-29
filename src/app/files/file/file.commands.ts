@@ -13,6 +13,8 @@ export class CreateFileParameters extends CommandParameters {
     Name: string;
     FileName: string;
     Type: string;
+    ContentType: string;
+    Size: number;
 }
 
 export class CreateFileCommand extends FileCommand {
@@ -25,6 +27,8 @@ export class CreateFileCommand extends FileCommand {
         parameters.ForType = file.forType;
         parameters.ForGuid = file.forGuid;
         parameters.Type = file.type;
+        parameters.ContentType = file.contentType;
+        parameters.Size = file.size;
         this.Parameters = parameters;
     }
 }

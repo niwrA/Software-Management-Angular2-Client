@@ -23,7 +23,7 @@ export class LinksComponent implements OnInit {
   @Input() links = new Array<Link>();
   @Input() allLinks = new Array<Link>();
   @Input() selectedLinks = new Array<Link>();
-  @Input() canAdd: boolean;
+  @Input() canAdd = false;
   snapshot: RouterStateSnapshot;
   selectedLink: Link;
   searchText: string;
@@ -38,11 +38,14 @@ export class LinksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => this.getLinksForGuid(params['forId']));
+    // this.route.params.subscribe((params: Params) => this.getLinksForGuid(params['forId']));
     if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
       const url = this.snapshot.url.split('/');
-      this._forGuid = url[2].toString();
-      this.getLinksForGuid(this._forGuid);
+      const maxIndex = url.length - 1;
+      if (maxIndex > 1) {
+        this._forGuid = url[maxIndex - 1].toString();
+        this.getLinksForGuid(this._forGuid);
+      }
     }
   }
 
