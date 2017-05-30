@@ -82,8 +82,9 @@ export class LinksComponent implements OnInit {
   }
 
   createLink(url: string): void {
-    const link = this.service.createLink(true, url, this._forGuid);
+    const link = this.service.createLink(true, url, this._forGuid);    
     this.links.push(link);
+    this.setEmbeddedUrl(link); // todo: integrate into state wrapper / link.ts?
   }
 
   deleteLink(link: Link): void {
@@ -110,7 +111,7 @@ export class LinksComponent implements OnInit {
   }
 
   isVideo(link: Link): boolean {
-    if (link.url.indexOf('youtube.') > 0) {
+    if (link.url.indexOf('youtube.') > 0 || link.url.indexOf('youtu.be') > 0) {
       return true;
     }
     return false;
