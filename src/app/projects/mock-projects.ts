@@ -19,7 +19,7 @@ export const PROJECTS: ProjectState[] = [
   },
   {
     guid: 'with2roles', name: 'Project With Two Roles', startDate: '2017-01-01',
-    endDate: '2017-11-06', projectRoles: [{ guid: 'tester', name: 'Tester' }, { guid: 'developer', name: 'Developer' }]
+    endDate: '2017-11-06', projectRoles: [{ guid: 'tester', name: 'Tester', projectGuid: 'with2roles' }, { guid: 'developer', name: 'Developer', projectGuid: 'with2roles' }]
   }
 ];
 import { CommandsService } from '../commands/commands.service';
