@@ -93,4 +93,14 @@ export class ContactsComponent implements OnInit {
       }
     }
   }
+
+
+  showActions(contact: Contact): void {
+    contact.showActions = true;
+  }
+
+  hideActions(contact: Contact): void {
+    contact.showActions = false;
+  }
+
 }

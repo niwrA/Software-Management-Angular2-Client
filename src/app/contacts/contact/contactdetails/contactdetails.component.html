@@ -8,4 +8,12 @@
   <md-input-container>
     <input mdInput (blur)="changeBirthDate()" type='date' [(ngModel)]='contact.birthDate' placeholder="BirthDate" />
   </md-input-container>
+  <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start">
+    <div style="width:40%">
+      <img *ngIf="contact.avatarUrl" [src]="contact.avatarUrl" />
+    </div>
+    <div style="width: 60%">
+      <app-file-upload (onFileUploaded)="onFileUploaded($event)"></app-file-upload>
+    </div>
+  </div>
 </div>

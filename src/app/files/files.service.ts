@@ -40,12 +40,12 @@ export class FilesService {
   }
 
   updateFile(file: File) {
-    this.getFile(file.guid, true).then(s => this.updateLinkProperties(file, s));
+    this.getFile(file.guid, true).then(s => this.updateFileProperties(file, s));
   }
 
   // this may need to be changed so that the state initialisation stuff is handled and
   // readonly properties are updated
-  updateLinkProperties(link: File, updated: File) {
+  updateFileProperties(link: File, updated: File) {
     // may not need to actually update anything for now
   }
 

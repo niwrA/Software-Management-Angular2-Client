@@ -1,10 +1,10 @@
 import { FileUploader, FileUploaderOptions, FileItem } from 'ng2-file-upload';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploadService } from './file-upload.service';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute, Params, UrlSegment, RouterStateSnapshot, RouterState } from '@angular/router';
 import { FilesService } from '../files/files.service';
-import { File as SMFile, FileState } from '../files/file';
+import { File as SMFile, FileState } from '../files/file'; // alias to prevent conflict with file-uploader File
 
 @Component({
   selector: 'app-file-upload',
@@ -15,6 +15,8 @@ import { File as SMFile, FileState } from '../files/file';
 export class FileUploadComponent implements OnInit {
   @Input()
   public files: Array<SMFile>;
+  @Output() onFileUploaded = new EventEmitter<SMFile>();
+
   fileUploadUrl = environment.fileUploadUrl;
   forEntityGuid: string;
   forEntityType: string;
@@ -54,8 +56,10 @@ export class FileUploadComponent implements OnInit {
       fileState.contentType = item.file.type;
       fileState.size = item.file.size;
       // fileState.type = item.file.type; // todo: add contenttype and size, will be useful
-      const file = this.filesService.createFile(true, item.file.name, item.file.type, item.file.size, this.forEntityGuid, this.forEntityType);
+      const file = this.filesService.createFile(true, item.file.name, item.file.type,
+        item.file.size, this.forEntityGuid, this.forEntityType);
       this.files.push(file);
+      this.onFileUploaded.emit(file);
     };
     //    this.uploader.onBuildItemForm = function (fileItem, form) { form.append('forGuid', forId); return { fileItem, form } };
   }

@@ -19,24 +19,24 @@ export class CommandsService {
 
   postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
     for (const command of commands) {
-      command.Guid = UUID.UUID();
       command.ParametersJson = JSON.stringify(command.Parameters);
       this.commands.push(command);
     }
-    return this.postcommands();
+    return this.postcommands(this.commands);
   }
   postCommand(command: Command, replaceOriginal: Boolean): Promise<any> {
     // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
-    command.Guid = UUID.UUID();
     command.ParametersJson = JSON.stringify(command.Parameters);
     this.commands.push(command);
-    return this.postcommands();
+    const currentCommands = new Array<Command>();
+    currentCommands.push(command);
+    return this.postcommands(currentCommands);
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
     //    this.commands = new Array<Command>();
   }
-  private postcommands() {
-    return this.http.post(this.commandsUrl, JSON.stringify(this.commands),
+  private postcommands(commands: Array<Command>) {
+    return this.http.post(this.commandsUrl, JSON.stringify(commands),
       { headers: this.headers }).toPromise().then(results => this.processResults(results,
         this.commands, this.postedCommands, this.notificationsService))
       .catch(error => this.handleError(error, this.notificationsService));

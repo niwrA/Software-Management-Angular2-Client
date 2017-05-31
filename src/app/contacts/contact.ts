@@ -2,15 +2,17 @@ import * as _ from 'lodash';
 export class ContactState {
     guid: string;
     name: string;
-/*    prefix?: string;
-    firstName?: string;
-    firstInitial?: string;
-    middleInitials?: string;
-    lastNamePrefix?: string;
-    lastName?: string;
-    lastNameSuffix?: string;
-    gender?: string;
-*/    birthDate?: string;
+    /*    prefix?: string;
+        firstName?: string;
+        firstInitial?: string;
+        middleInitials?: string;
+        lastNamePrefix?: string;
+        lastName?: string;
+        lastNameSuffix?: string;
+        gender?: string; */
+    birthDate?: string;
+    avatarFileGuid?: string;
+    avatarUrl?: string;
     email?: string;
 }
 export class SelectableItem {
@@ -18,6 +20,7 @@ export class SelectableItem {
 }
 export class Contact extends SelectableItem {
     _state: ContactState;
+    _showActions = false;
     constructor(state?: ContactState) {
         super();
         this._state = state;
@@ -37,6 +40,15 @@ export class Contact extends SelectableItem {
 
     get birthDate() { return this._state.birthDate; };
     set birthDate(value: string) { this._state.birthDate = value; };
+
+    get avatarFileGuid() { return this._state.avatarFileGuid; };
+    set avatarFileGuid(value: string) { this._state.avatarFileGuid = value; };
+
+    get avatarUrl() { return this._state.avatarUrl; };
+    set avatarUrl(value: string) { this._state.avatarUrl = value; };
+
+    get showActions() { return this._showActions; };
+    set showActions(value: boolean) { this._showActions = value; };
 
     public clone(): Contact {
         return new Contact(_.clone(this._state));

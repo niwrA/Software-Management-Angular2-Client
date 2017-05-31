@@ -1,3 +1,4 @@
+import { UUID } from 'angular2-uuid';
 export class Command {
     Name: string;
     Guid: string;
@@ -9,6 +10,7 @@ export class Command {
     DisplayProperties: CommandDisplayProperties;
     constructor(type: string, entityName: string, entityGuid: string) {
         const now = new Date();
+        this.Guid = UUID.UUID();
         this.Name = type;
         this.Entity = entityName;
         this.EntityGuid = entityGuid;

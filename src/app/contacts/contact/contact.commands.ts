@@ -53,6 +53,22 @@ export class ChangeEmailForContactCommand extends ContactCommand {
     }
 }
 
+export class ChangeAvatarForContactParameters extends CommandParameters {
+    AvatarFileGuid: string;
+    OriginalAvatarFileGuid: string;
+    AvatarUrl: string;
+}
+export class ChangeAvatarForContactCommand extends ContactCommand {
+    constructor(contact: Contact, orgFileGuid: string) {
+        super('ChangeAvatarFor', contact);
+        const parameters = new ChangeAvatarForContactParameters();
+        parameters.OriginalAvatarFileGuid = orgFileGuid;
+        parameters.AvatarFileGuid = contact.avatarFileGuid;
+        parameters.AvatarUrl = contact.avatarUrl;
+        this.Parameters = parameters;
+    }
+}
+
 export class ChangeBirthDateParameters extends CommandParameters {
     birthDate?: string;
     originalBirthDate?: string;

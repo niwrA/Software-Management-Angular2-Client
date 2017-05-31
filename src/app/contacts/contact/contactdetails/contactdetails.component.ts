@@ -2,8 +2,13 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Contact } from '../../contact';
-import { RenameContactCommand, ChangeBirthDateOfContactCommand, ChangeEmailForContactCommand } from '../contact.commands';
+import {
+  RenameContactCommand, ChangeBirthDateOfContactCommand
+  , ChangeEmailForContactCommand, ChangeAvatarForContactCommand
+} from '../contact.commands';
 import { ContactsService } from '../../contacts.service';
+import { File } from '../../../files/file';
+import { FileUploadComponent } from '../../../file-upload/file-upload.component';
 
 @Component({
   selector: 'app-contactdetails',
@@ -61,6 +66,20 @@ export class ContactDetailsComponent implements OnInit {
       const changeBirthDateForCommand = new ChangeBirthDateOfContactCommand(this.contact, this.previousContact.birthDate);
       this.service.postCommand(changeBirthDateForCommand, false);
       this.previousContact.birthDate = this.contact.birthDate;
+    }
+  }
+
+  onFileUploaded(file: File) {
+    if (file && file.guid) {
+      // these were not linked to a model, so need to update them myself
+      this.contact.avatarFileGuid = file.guid;
+      this.contact.avatarUrl = file.url;
+
+      // now on with the command
+      const changeAvatarCommand = new ChangeAvatarForContactCommand(this.contact, this.previousContact.avatarFileGuid);
+      this.service.postCommand(changeAvatarCommand, false);
+      this.previousContact.avatarFileGuid = this.contact.avatarFileGuid;
+      this.previousContact.avatarUrl = this.contact.avatarUrl;
     }
   }
 }
