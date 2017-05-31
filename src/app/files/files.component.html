@@ -21,7 +21,7 @@
   <!-- compact layout -->
   <div style="width: 100%" fxLayout="row" fxLayoutWrap>
     <div *ngFor="let file of files">
-      <md-card (mouseenter)="showActions(file)" (mouseleave)="hideActions(file)">
+      <md-card (mouseenter)="showActions(file)" (mouseleave)="hideActions(file)" fxFlex.gt-md="200" fxFlex.md="100"  fxFlex.sm="100" fxFlex.xs="100">
         <md-card-title-group [routerLink]="['/files',file.guid, 'details']">
           <md-card-subtitle>
             <md-icon>{{file.icon}}</md-icon>

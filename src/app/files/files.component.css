@@ -7,5 +7,10 @@ img {
     transition: 0.3s;
 }
 video {
+    cursor: pointer;
     max-height: 200px;
+}
+
+md-card {
+    margin: 0.2em;
 }
