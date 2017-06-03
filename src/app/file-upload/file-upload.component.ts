@@ -13,8 +13,9 @@ import { File as SMFile, FileState } from '../files/file'; // alias to prevent c
 })
 
 export class FileUploadComponent implements OnInit {
-  @Input()
-  public files: Array<SMFile>;
+  @Input() public files: Array<SMFile>;
+  @Input() public dragTitle = 'Drag file(s) here to upload';
+  @Input() public browseTitle = 'Or click browse to select file(s) from your filesystem';
   @Output() onFileUploaded = new EventEmitter<SMFile>();
 
   fileUploadUrl = environment.fileUploadUrl;

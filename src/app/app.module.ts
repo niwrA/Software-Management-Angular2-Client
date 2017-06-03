@@ -109,6 +109,7 @@ import { FileComponent } from './files/file/file.component';
 import { FileDetailsComponent } from './files/file/file-details/file-details.component';
 import { FilesService } from './files/files.service';
 import { FilePreviewComponent } from './files/file/file-preview/file-preview.component';
+import { ContactCardComponent } from './contacts/contact/contact-card/contact-card.component';
 
 @NgModule({
   imports: [
@@ -183,7 +184,7 @@ import { FilePreviewComponent } from './files/file/file-preview/file-preview.com
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
-    FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent
+    FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent, ContactCardComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

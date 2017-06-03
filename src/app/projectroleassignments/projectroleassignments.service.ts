@@ -4,12 +4,15 @@ import { Http } from '@angular/http';
 import { ProjectRoleAssignment, ProjectRoleAssignmentState } from './projectroleassignment';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
-import { ProjectRoleAssignmentCommand, CreateProjectRoleAssignmentCommand, DeleteProjectRoleAssignmentCommand } from './projectroleassignment/projectroleassignment.commands';
+import {
+  ProjectRoleAssignmentCommand, CreateProjectRoleAssignmentCommand,
+  DeleteProjectRoleAssignmentCommand
+} from './projectroleassignment/projectroleassignment.commands';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { Contact, ContactState } from '../contacts/contact';
-
+import { ContactCardComponent } from '../contacts/contact/contact-card/contact-card.component';
 
 @Injectable()
 export class ProjectRoleAssignmentsService {
@@ -20,8 +23,8 @@ export class ProjectRoleAssignmentsService {
     this.getProjectRoleAssignments().then(result => this.projectroleassignments = result as Array<ProjectRoleAssignment>);
   }
 
-  createProjectRoleAssignment(doSave: boolean, contactGuid: string, projectGuid: string, projectRoleGuid: string, 
-  post: boolean, contactName: string): ProjectRoleAssignment {
+  createProjectRoleAssignment(doSave: boolean, contactGuid: string, projectGuid: string, projectRoleGuid: string,
+    post: boolean, contactName: string): ProjectRoleAssignment {
     const newItem = new ProjectRoleAssignment();
     newItem.guid = UUID.UUID();
     newItem.contactGuid = contactGuid;
@@ -86,16 +89,16 @@ export class ProjectRoleAssignmentsService {
 
   getContacts(projectRoleGuid): Promise<Array<Contact>> {
     return this.http.get(this.projectroleassignmentsUrl + '/getcontactsbyprojectroleid/' + projectRoleGuid)
-        .toPromise()
-        .then(response => this.parseContactsResponse(response))
-        .catch(error => this.handleError(error, this.notificationService));
+      .toPromise()
+      .then(response => this.parseContactsResponse(response))
+      .catch(error => this.handleError(error, this.notificationService));
   }
 
- getContactsByProjectGuid(projectGuid): Promise<Array<Contact>> {
+  getContactsByProjectGuid(projectGuid): Promise<Array<Contact>> {
     return this.http.get(this.projectroleassignmentsUrl + '/getcontactsbyprojectid/' + projectGuid)
-        .toPromise()
-        .then(response => this.parseContactsResponse(response))
-        .catch(error => this.handleError(error, this.notificationService));
+      .toPromise()
+      .then(response => this.parseContactsResponse(response))
+      .catch(error => this.handleError(error, this.notificationService));
   }
 
   parseContactsResponse(response: any): Array<Contact> {

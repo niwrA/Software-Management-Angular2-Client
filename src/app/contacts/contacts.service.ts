@@ -70,6 +70,10 @@ export class ContactsService {
   }
 
   getContact(guid: string): Promise<Contact> {
+    // todo: try to always use local cache, so no single call in the future?
+    if (this.contacts.length === 0) {
+      this.getContacts('');
+    }
     if (this.contacts.length > 0) {
       const result = _.find(this.contacts, prj => prj.guid === guid);
       return Promise.resolve(result);

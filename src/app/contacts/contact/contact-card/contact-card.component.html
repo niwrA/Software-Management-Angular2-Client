@@ -1,0 +1,6 @@
+<md-card *ngIf="contact">
+  <md-card-title-group>
+    <img *ngIf="contact.avatarUrl" md-card-avatar [src]="contact.avatarUrl">
+  </md-card-title-group>
+  <md-card-content [routerLink]="['/contacts', contact.guid]">{{contact.name}}</md-card-content>
+</md-card>

@@ -10,10 +10,10 @@
                  (fileOver)="fileOverBase($event)"
                  [uploader]="uploader"
                  class="well my-drop-zone">
-                Drag files to upload here
+                {{dragTitle}}
             </div>
 
-            Or select file(s) here
+            {{browseTitle}}
             <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
         </div>
 

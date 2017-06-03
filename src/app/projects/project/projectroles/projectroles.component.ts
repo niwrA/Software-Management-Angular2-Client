@@ -18,6 +18,7 @@ import { AddRoleToProjectCommand, AddRoleToProjectParameters, RemoveRoleFromProj
 export class ProjectRolesComponent implements OnInit {
   public project: Project;
   @Input() projectroles: Array<ProjectRole>;
+  filteredProjectRoles: Array<ProjectRole>;
   canAdd: boolean;
   searchText: string;
   mailto: string;
@@ -36,12 +37,19 @@ export class ProjectRolesComponent implements OnInit {
 
   updateProject(project: Project) {
     this.project = project;
-    this.projectroles = project.projectRoles;
+    this.projectroles = project.projectRoles; // todo: we get it like this or through input?
+    this.updateProjectRoles(this.projectroles);
     this.getAllEmails();
+  }
+
+  updateProjectRoles(projectroles: Array<ProjectRole>) {
+    this.filteredProjectRoles = new Array<ProjectRole>();
+    projectroles.forEach(projectRole => this.filteredProjectRoles.push(projectRole));
   }
 
   searchTextChanged(): void {
     this.canAdd = this.searchText.length > 0;
+    this.getProjectRoles(this.searchText).then(projectroles => this.updateProjectRoles(projectroles));
   }
 
   createProjectRole(name: string) {
@@ -51,6 +59,7 @@ export class ProjectRolesComponent implements OnInit {
 
     this.project.projectRoles.push(projectrole);
     this.updateProject(this.project);
+    this.filteredProjectRoles.push(projectrole);
 
     const command = new AddRoleToProjectCommand(this.project, projectrole.guid, projectrole.name);
     this.service.postCommand(command, false);
@@ -58,6 +67,7 @@ export class ProjectRolesComponent implements OnInit {
 
   deleteProjectRole(projectrole: ProjectRole) {
     this.projectroles.splice(this.projectroles.indexOf(projectrole));
+    this.filteredProjectRoles.splice(this.filteredProjectRoles.indexOf(projectrole));
     const command = new RemoveRoleFromProjectCommand(this.project, projectrole.guid);
     this.service.postCommand(command, false);
   }
@@ -73,7 +83,7 @@ export class ProjectRolesComponent implements OnInit {
 
   getAllEmails() {
     this.projectRoleAssignmentsService.getContactsByProjectGuid(this.project.guid)
-    .then((contacts: Array<Contact>) => this.createMailTo(contacts));
+      .then((contacts: Array<Contact>) => this.createMailTo(contacts));
   }
 
   createMailTo(contacts) {

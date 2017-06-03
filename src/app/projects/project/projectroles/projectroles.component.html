@@ -8,7 +8,7 @@
     <a href="mailto:{{mailto}}"><button md-mini-fab [(disabled)]="!mailto"><md-icon>email circle</md-icon></button></a>
   </md-card-actions>
 </md-card>
-<md-card *ngFor="let projectrole of projectroles">
+<md-card *ngFor="let projectrole of filteredProjectRoles">
   <md-card-title-group [routerLink]="[projectrole.guid, 'details']">
     <md-card-subtitle>
       <md-icon>assignment</md-icon>
