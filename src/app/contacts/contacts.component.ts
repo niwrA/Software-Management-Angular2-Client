@@ -16,6 +16,7 @@ export class ContactsComponent implements OnInit {
   @Input() canAdd: boolean;
   selectedContact: Contact;
   searchText: string;
+  mailto: string;
 
   constructor(private contactsService: ContactsService) {
   }
@@ -30,6 +31,8 @@ export class ContactsComponent implements OnInit {
 
   clearSelection(): void {
     this.selectedContact = null;
+    this.selectedContacts.forEach(contact => contact.isSelected = false);
+    this.selectedContacts.splice(0);
   }
 
   getContacts(): void {
@@ -47,9 +50,11 @@ export class ContactsComponent implements OnInit {
       this.updateContacts(this.allContacts)
     }
   }
-
+  createMailTo(contacts) {
+    this.mailto = _.map(contacts, 'email').join(';');
+  }
   updateFilteredContacts(contacts: Array<Contact>): void {
-    this.contacts  = _.orderBy(contacts, ['name'], ['asc']);
+    this.contacts = _.orderBy(contacts, ['name'], ['asc']);
     // filteredContacts.forEach(element => {
     //   this.contacts.push(element);
     // });
@@ -92,8 +97,8 @@ export class ContactsComponent implements OnInit {
         this.selectedContacts.splice(index, 1);
       }
     }
+    this.createMailTo(this.selectedContacts);
   }
-
 
   showActions(contact: Contact): void {
     contact.showActions = true;

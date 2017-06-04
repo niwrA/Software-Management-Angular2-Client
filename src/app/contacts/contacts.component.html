@@ -1,19 +1,21 @@
 <md-card>
-    <md-input-container>
-      <input mdInput type="search" #searchTextInput [(ngModel)]="searchText" 
-      placeholder="Type to search ..." (keyup)="getContacts()" (keyup.enter)='createContact(searchTextInput.value)'
-      />
-    </md-input-container>
-    <button md-raised-button [disabled]='!canAdd' md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
-    <md-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</md-card-subtitle>
+  <md-input-container>
+    <input mdInput type="search" #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts()" (keyup.enter)='createContact(searchTextInput.value)' />
+  </md-input-container>
+  <button md-raised-button [disabled]='!canAdd' md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
+  <md-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</md-card-subtitle>
   <md-card-content>
+    <md-card-actions *ngIf="selectedContacts.length>0">
+      <a href="mailto:{{mailto}}"><button md-mini-fab [(disabled)]="!mailto"><md-icon>email circle</md-icon></button></a>
+      <button md-mini-fab [(disabled)]="!mailto" (click)="clearSelection()"><md-icon>delete</md-icon></button>
+    </md-card-actions>
     <md-list *ngIf="selectedContacts.length>0">
       <md-list-item>
         <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
       </md-list-item>
     </md-list>
-    <md-card *ngFor="let contact of contacts"  (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)" >
-      <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
+    <md-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">
+      <md-checkbox *ngIf="contact.isSelected || contact.showActions" style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
       <md-card-title-group [routerLink]="[contact.guid, 'details']">
         <img *ngIf="contact.avatarUrl" md-card-avatar [src]="contact.avatarUrl">
         <md-card-subtitle>
