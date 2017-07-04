@@ -1,0 +1,7 @@
+<md-card *ngIf="productfeature">
+  <md-card-content>
+    <md-input-container>
+      <input mdInput (blur)="changeName()" [(ngModel)]="productfeature.name" placeholder="Name" />
+    </md-input-container>
+  </md-card-content>
+</md-card>

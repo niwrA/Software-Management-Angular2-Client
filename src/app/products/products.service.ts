@@ -3,12 +3,13 @@ import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Product, ProductState } from './product';
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
+import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
 import { PRODUCTS } from './mock-products';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import {
   ProductCommand, CreateProductCommand, DeleteProductCommand,
-  RenameProductCommand, AddVersionToProductCommand
+  RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand
 } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -54,6 +55,25 @@ export class ProductsService {
     }
   }
 
+  createProductFeature(doSave: boolean, product: Product, name: string): ProductFeature {
+    const newItem = new ProductFeature();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    if (doSave) {
+      product.features.splice(0, 0, newItem);
+      const createProductCommand = new AddFeatureToProductCommand(product, newItem);
+      this.commandsService.postCommand(createProductCommand, false);
+    }
+    return newItem;
+  }
+
+  getProductFeature(productGuid: string, featureGuid: string): Promise<ProductFeature> {
+    if (productGuid && featureGuid) {
+      const feature = this.getProduct(productGuid).then(product => _.find<ProductFeature>(product.features, t => t.guid === featureGuid));
+      return feature;
+    }
+  }
+
   deleteProduct(product: Product): void {
     const index = this.products.indexOf(product, 0);
     if (index > -1) {
@@ -63,6 +83,13 @@ export class ProductsService {
   }
 
   cloneProduct(original: Product): Product {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
+
+  cloneProductFeature(original: ProductFeature): ProductFeature {
     if (original) {
       const clonedItem = original.clone();
       return clonedItem;

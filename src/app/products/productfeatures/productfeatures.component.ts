@@ -1,58 +1,66 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductFeaturesService } from './productfeatures.service';
+import { ProductsService } from '../products.service';
 import { ProductFeature } from './productfeature';
+import { Product } from '../product';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-productfeatures',
   templateUrl: './productfeatures.component.html',
   styleUrls: ['./productfeatures.component.css'],
-  providers: [ProductFeaturesService]
+  providers: [ProductsService]
 })
 export class ProductFeaturesComponent implements OnInit {
-
+  productGuid: string;
+  product: Product;
   productfeatures: Array<ProductFeature>;
+  selectedProductFeature: ProductFeature;
+  searchText: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductFeaturesService
-  ){}
-
-  selectedProductFeature: ProductFeature;
-  searchText: string;
+    private service: ProductsService,
+  ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getProductFeatures(params['productId'],''))
-    .subscribe((productfeatures: Array<ProductFeature>) => this.productfeatures = productfeatures);
+    this.route.parent.params.map((params: Params) => this.productGuid = params['productId'])
+      .subscribe((productfeatures: Array<ProductFeature>) => this.updateVersions(productfeatures));
   }
 
-  onSelect(productFeature: ProductFeature): void {
-    this.selectedProductFeature = productFeature;
+  updateVersions(productfeatures: Array<ProductFeature>): void {
+    this.service.getProduct(this.productGuid).then(product => this.updateProduct(product));
+  }
+
+  updateProduct(product: Product): void {
+    this.product = product;
+    this.getProductFeatures('');
+  }
+
+  onSelect(productVersion: ProductFeature): void {
+    this.selectedProductFeature = productVersion;
   }
 
   clearSelection(): void {
     this.selectedProductFeature = null;
   }
 
-  ProductFeatureDetail(event, Product: ProductFeature): void {
-/*    event.stopPropagation();
-    this.router.navigate(['/Product', Product.Guid]);
-*/  }
-
   getProductFeatures(searchText: string): void {
-    if(this.productfeatures){
-      this.service.getProductFeatures(this.productfeatures[0].ProductGuid, searchText)
-      .then(productfeatures => this.productfeatures = productfeatures);
+    if (this.product && this.product.features) {
+      if (searchText.length > 0) {
+        this.productfeatures = _.filter<ProductFeature>(this.product.features, prj => prj.name.indexOf(this.searchText) > -1);
+      } else {
+        this.productfeatures = this.product.features;
+      }
+
     }
   }
 
   createProductFeature(name: string): void {
-    let productfeature = this.service.createProductFeature();
-    productfeature.Name = name;
-    this.searchText = '';
-    this.getProductFeatures('');
+    const productfeature = this.service.createProductFeature(true, this.product, name);
+    this.getProductFeatures(name);
   }
 
 }

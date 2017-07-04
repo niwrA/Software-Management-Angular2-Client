@@ -1,4 +1,5 @@
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
+import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
 import * as _ from 'lodash';
 
 export class ProductState {
@@ -7,21 +8,30 @@ export class ProductState {
     description: string;
     businessCase: string;
     versions: Array<ProductVersionState>;
+    features: Array<ProductFeatureState>;
 }
 
 export class Product {
     private _state: ProductState;
     versions: Array<ProductVersion>;
+    features: Array<ProductFeature>;
 
     constructor(state?: ProductState) {
         this._state = state;
         this.versions = new Array<ProductVersion>();
+        this.features = new Array<ProductFeature>();
+
         if (!state) {
             this._state = new ProductState();
         } else {
             if (state.versions && state.versions.length > 0) {
                 for (let i = 0; i < state.versions.length; i++) {
                     this.versions.push(new ProductVersion(state.versions[i]));
+                }
+            }
+            if (state.features && state.features.length > 0) {
+                for (let i = 0; i < state.features.length; i++) {
+                    this.features.push(new ProductFeature(state.features[i]));
                 }
             }
         }
@@ -38,9 +48,6 @@ export class Product {
 
     get businessCase(): string { return this._state.businessCase; };
     set businessCase(value: string) { this._state.businessCase = value; };
-
-    // get versions(): Array<ProductVersion> { return this._versions; };
-    // set versions(value: Array<ProductVersion>) { this._versions = value; };
 
     public clone(): Product {
         return new Product(_.clone(this._state));

@@ -1,0 +1,21 @@
+<md-card *ngIf="register">
+  <md-card-title>{{register.title}}</md-card-title>
+  <md-input-container>
+    <input mdInput [(ngModel)]="register.name" placeholder="UserName" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="email" [(ngModel)]="register.email" placeholder="Email address" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type='password' [(ngModel)]='register.password' placeholder="Password" />
+  </md-input-container>
+    <md-input-container>
+    <input mdInput type='password' [(ngModel)]='register.repassword' placeholder="Repeat password" />
+  </md-input-container>
+  <md-card-actions>
+    <button md-raised-button (click)="doRegister()">Register</button>
+  </md-card-actions>
+</md-card>
+<div *ngIf="!register">
+  <md-spinner></md-spinner>
+</div>

@@ -1,6 +1,14 @@
+export class UserState {
+    guid: string;
+    name: string;
+    isAdmin: boolean;
+    email: string;
+    contactGuid?: string; // todo: make required?
+}
 export class User {
-    Guid: string;
-    Name: string;
-    IsAdmin: boolean;
-    ContactGuid?: string; // todo: make required?
+    guid: string;
+    name: string;
+    isAdmin: boolean;
+    email: string;
+    contactGuid?: string; // todo: make required?
 }

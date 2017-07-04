@@ -33,6 +33,7 @@ import { ProductVersionDetailsComponent } from './products/productversions/produ
 import { ProductDetailsComponent } from './products/product/productdetails/productdetails.component';
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
+import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
 
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
@@ -288,7 +289,7 @@ const appRoutes: Routes = [
         component: ProductVersionDetailsComponent
       },
       {
-        path: 'features',
+        path: 'productfeatures',
         component: ProductFeaturesComponent
       }]
   },
@@ -301,8 +302,13 @@ const appRoutes: Routes = [
     component: TechnologyComponent
   },
   {
-    path: 'productfeatures/:productFeatureId',
-    component: ProductFeatureComponent
+    path: 'products/:productId/productfeatures/:productFeatureId',
+    component: ProductFeatureComponent,
+    children: [
+      {
+        path: 'details',
+        component: ProductFeatureDetailsComponent
+      }]
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

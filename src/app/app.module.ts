@@ -110,6 +110,10 @@ import { FileDetailsComponent } from './files/file/file-details/file-details.com
 import { FilesService } from './files/files.service';
 import { FilePreviewComponent } from './files/file/file-preview/file-preview.component';
 import { ContactCardComponent } from './contacts/contact/contact-card/contact-card.component';
+import { RegisterComponent } from './admin/register/register.component';
+
+import { AccountService } from './admin/account.service';
+import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
 
 @NgModule({
   imports: [
@@ -184,13 +188,14 @@ import { ContactCardComponent } from './contacts/contact/contact-card/contact-ca
     EpicElementComponent, EntityElementsComponent, EntityElementComponent, PropertyElementsComponent,
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
-    FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent, ContactCardComponent
+    FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
+    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
     ProductFeaturesService, DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
-    PushNotificationsService, NotificationsService],
+    PushNotificationsService, NotificationsService, AccountService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent, FilePreviewComponent]
 })
