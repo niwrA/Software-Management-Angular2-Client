@@ -1,18 +1,22 @@
 <md-card>
-  <p>
+  <md-input-container>
     <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')"
       (keyup.enter)='createProductFeature(searchTextInput.value)' />
-    <button md-raised-button md-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
-  </p>
+  </md-input-container>
+  <button *ngIf="versionGuid" md-raised-button md-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
+  <button *ngIf="versionGuid" md-raised-button md-tooltip="Request new feature" (click)="requestProductFeature(searchTextInput.value)">Request</button>
   <md-card *ngFor="let productfeature of productfeatures">
     <md-card-title-group [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']">
       <md-card-subtitle>
-        <md-icon>flash</md-icon>
+        <md-icon *ngIf="productfeature.isRequest">lightbulb_outline</md-icon>
+        <md-icon *ngIf="!productfeature.isRequest"></md-icon>
       </md-card-subtitle>
       <md-card-title>{{productfeature.name}}</md-card-title>
     </md-card-title-group>
+    <md-card-content>{{productfeature.description}}</md-card-content>
     <md-card-actions align='end'>
       <button md-mini-fab [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']"><md-icon>details</md-icon></button>
+      <button md-mini-fab color="warn" (click)="deleteProductFeature(productfeature)"><md-icon>delete</md-icon></button>
     </md-card-actions>
   </md-card>
 </md-card>

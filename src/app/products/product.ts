@@ -1,5 +1,6 @@
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
 import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
+import { ProductIssue, ProductIssueState } from './productissues/productissue';
 import * as _ from 'lodash';
 
 export class ProductState {
@@ -9,24 +10,30 @@ export class ProductState {
     businessCase: string;
     versions: Array<ProductVersionState>;
     features: Array<ProductFeatureState>;
+    issues: Array<ProductIssueState>;
 }
 
 export class Product {
     private _state: ProductState;
+    private _sequenceCount;
     versions: Array<ProductVersion>;
     features: Array<ProductFeature>;
+    issues: Array<ProductIssue>;
 
     constructor(state?: ProductState) {
         this._state = state;
         this.versions = new Array<ProductVersion>();
         this.features = new Array<ProductFeature>();
+        this.issues = new Array<ProductIssue>();
+        this._sequenceCount = 0;
 
         if (!state) {
             this._state = new ProductState();
         } else {
             if (state.versions && state.versions.length > 0) {
                 for (let i = 0; i < state.versions.length; i++) {
-                    this.versions.push(new ProductVersion(state.versions[i]));
+                    const version = new ProductVersion(state.versions[i]);
+                    this.addVersion(version);
                 }
             }
             if (state.features && state.features.length > 0) {
@@ -34,7 +41,23 @@ export class Product {
                     this.features.push(new ProductFeature(state.features[i]));
                 }
             }
+            if (state.issues && state.issues.length > 0) {
+                for (let i = 0; i < state.issues.length; i++) {
+                    this.issues.push(new ProductIssue(state.issues[i]));
+                }
+            }
         }
+    }
+
+    addVersion(version: ProductVersion): void {
+        version.sequence = this._sequenceCount;
+        this._sequenceCount++;
+        this.versions.push(version);
+    }
+
+    getVersionSequenceById(versionId: string): number {
+        const version = _.find<ProductVersion>(this.versions, prj => (prj.guid === versionId));
+        return version.sequence;
     }
 
     get guid(): string { return this._state.guid; };

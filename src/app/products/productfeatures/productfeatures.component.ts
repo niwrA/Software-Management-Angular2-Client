@@ -15,6 +15,7 @@ import * as _ from 'lodash';
 export class ProductFeaturesComponent implements OnInit {
   productGuid: string;
   product: Product;
+  versionGuid: string;
   productfeatures: Array<ProductFeature>;
   selectedProductFeature: ProductFeature;
   searchText: string;
@@ -26,12 +27,22 @@ export class ProductFeaturesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map((params: Params) => this.productGuid = params['productId'])
-      .subscribe((productfeatures: Array<ProductFeature>) => this.updateVersions(productfeatures));
+    this.route.parent.params.map((params: Params) => [params['productId'], params['productVersionId']])
+      .subscribe(([productId, versionId]) => {
+        this.update(productId, versionId);
+      });
   }
 
-  updateVersions(productfeatures: Array<ProductFeature>): void {
-    this.service.getProduct(this.productGuid).then(product => this.updateProduct(product));
+  update(productId: string, versionId: string) {
+    if (productId) {
+      this.productGuid = productId;
+      this.versionGuid = versionId;
+      this.updateFeatures(productId);
+    }
+  }
+
+  updateFeatures(productGuid: string): void {
+    this.service.getProduct(productGuid).then(product => this.updateProduct(product));
   }
 
   updateProduct(product: Product): void {
@@ -49,18 +60,30 @@ export class ProductFeaturesComponent implements OnInit {
 
   getProductFeatures(searchText: string): void {
     if (this.product && this.product.features) {
+      let features = this.product.features;
       if (searchText.length > 0) {
-        this.productfeatures = _.filter<ProductFeature>(this.product.features, prj => prj.name.indexOf(this.searchText) > -1);
-      } else {
-        this.productfeatures = this.product.features;
+        features = _.filter<ProductFeature>(features, prj => (prj.name.indexOf(this.searchText) >  -1
+        || (prj.description && prj.description.indexOf(this.searchText) > -1)));
       }
-
+      if (this.versionGuid) {
+        features = _.filter<ProductFeature>(features, prj => prj.firstVersionGuid === this.versionGuid
+          || prj.requestedForVersionGuid === this.versionGuid);
+      }
+      this.productfeatures = features;
     }
   }
 
   createProductFeature(name: string): void {
-    const productfeature = this.service.createProductFeature(true, this.product, name);
+    const productfeature = this.service.createProductFeature(true, this.product, name, this.versionGuid);
+    this.getProductFeatures(name);
+  }
+  requestProductFeature(name: string): void {
+    const productfeature = this.service.requestProductFeature(true, this.product, name, this.versionGuid);
     this.getProductFeatures(name);
   }
 
+  deleteProductFeature(productfeature: ProductFeature): void {
+    this.service.deleteProductFeature(this.product, productfeature);
+    this.getProductFeatures(this.searchText);
+  }
 }

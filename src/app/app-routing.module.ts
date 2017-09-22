@@ -34,6 +34,9 @@ import { ProductDetailsComponent } from './products/product/productdetails/produ
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
+import { ProductIssuesComponent } from './products/productissues/productissues.component';
+import { ProductIssueComponent } from './products/productissues/productissue/productissue.component';
+import { ProductIssueDetailsComponent } from './products/productissues/productissue/productissuedetails/productissuedetails.component';
 
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
@@ -130,7 +133,10 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: CompanyEnvironmentDetailsComponent
-      }]
+      },
+      linksSubRoute,
+      filesSubRoute
+    ]
   },
   {
     path: 'login',
@@ -273,8 +279,12 @@ const appRoutes: Routes = [
         component: ProductVersionsComponent,
       },
       {
-        path: 'productfeatures',
+        path: 'features',
         component: ProductFeaturesComponent
+      },
+      {
+        path: 'issues',
+        component: ProductIssuesComponent
       },
       linksSubRoute,
       filesSubRoute
@@ -289,8 +299,12 @@ const appRoutes: Routes = [
         component: ProductVersionDetailsComponent
       },
       {
-        path: 'productfeatures',
+        path: 'features',
         component: ProductFeaturesComponent
+      },
+      {
+        path: 'issues',
+        component: ProductIssuesComponent
       }]
   },
   {
@@ -308,6 +322,15 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ProductFeatureDetailsComponent
+      }]
+  },
+  {
+    path: 'products/:productId/issues/:productIssueId',
+    component: ProductIssueComponent,
+    children: [
+      {
+        path: 'details',
+        component: ProductIssueDetailsComponent
       }]
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },

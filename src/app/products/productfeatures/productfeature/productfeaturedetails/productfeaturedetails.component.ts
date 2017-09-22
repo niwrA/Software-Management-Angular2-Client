@@ -3,7 +3,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductFeature } from '../../productfeature';
 import { ProductsService } from '../../../products.service';
-import { RenameProductFeatureCommand } from '../../../product/product.commands';
+import { RenameProductFeatureCommand, ChangeDescriptionOfProductFeatureCommand } from '../../../product/product.commands';
 @Component({
   selector: 'app-productfeaturedetails',
   templateUrl: './productfeaturedetails.component.html',
@@ -50,4 +50,17 @@ export class ProductFeatureDetailsComponent implements OnInit {
       this.previousProductFeature = this.productfeature;
     }
   }
+
+  changeDescription(): void {
+    if (this.previousProductFeature !== undefined) {
+      if (this.productfeature.description !== this.previousProductFeature.description) {
+        const renameCommand = new ChangeDescriptionOfProductFeatureCommand(this.productfeature);
+        this.service.postCommand(renameCommand, false);
+        this.previousProductFeature.description = this.productfeature.description;
+      }
+    } else {
+      this.previousProductFeature = this.productfeature;
+    }
+  }
+
 }

@@ -1,8 +1,8 @@
 <md-card >
   <md-card-title *ngIf="productversion">Version {{productversion.name}}</md-card-title>
-  <md-card-content *ngIf="product"><div>{{product.name}}</div></md-card-content>
+  <md-card-content *ngIf="product"><div [routerLink]="['/products', product.guid, 'versions']">{{product.name}}</div></md-card-content>
   <button routerLink="details" md-raised-button md-tooltip="todo: Product Details">Details</button>
-  <button routerLink="productfeatures" md-raised-button md-tooltip="todo: features in or requested for this version">Features</button>
+  <button routerLink="features" md-raised-button md-tooltip="todo: features in or requested for this version">Features</button>
   <button [routerLink]="['issues']" md-raised-button md-tooltip="todo: view issues in or fixed in this version">Issues</button>
   <button [routerLink]="['installations']" md-raised-button md-tooltip="todo: installations of this version">Installations</button>
   <router-outlet>

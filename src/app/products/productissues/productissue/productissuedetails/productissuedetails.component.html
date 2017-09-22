@@ -1,13 +1,13 @@
-<md-card *ngIf="productfeature">
+<md-card *ngIf="productissue">
   <md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <input mdInput (blur)="changeName()" [(ngModel)]="productfeature.name" placeholder="Name" />
+        <input mdInput (blur)="changeName()" [(ngModel)]="productissue.name" placeholder="Name" />
       </md-input-container>
     </md-card-content>
     <md-card-content layout='row'>
       <md-input-container>
-        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="productfeature.description" placeholder="Description"></textarea>
+        <textarea mdInput (blur)="changeDescription()" rows=5 [(ngModel)]="productissue.description" placeholder="Description"></textarea>
       </md-input-container>
     </md-card-content>
   </md-card-content>

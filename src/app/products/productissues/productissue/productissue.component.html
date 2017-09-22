@@ -1,3 +1,12 @@
-<p>
-  productissue works!
-</p>
+<md-card>
+  <md-card-title *ngIf="productissue">{{productissue.name}}</md-card-title>
+  <md-card-content *ngIf="product">
+    <div [routerLink]="['/products', product.guid, 'issues']">{{product.name}}</div>
+  </md-card-content>
+  <button [routerLink]='productissueDetails' md-raised-button md-tooltip="todo: productissue Details">Details</button>
+  <router-outlet></router-outlet>
+</md-card>
+<div *ngIf="!productissue">
+  <md-spinner></md-spinner>
+  Loading productissue
+</div>

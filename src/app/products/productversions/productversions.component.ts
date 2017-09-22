@@ -69,4 +69,8 @@ export class ProductVersionsComponent implements OnInit {
     // this.product.versions.splice(0, 0, productversion);
   }
 
+  deleteProductVersion(productversion: ProductVersion): void {
+    this.service.deleteProductVersion(this.product, productversion);
+    this.getProductVersions(this.searchText);
+  }
 }

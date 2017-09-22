@@ -16,7 +16,8 @@
         <div>{{productversion.releaseDate | date:'yyyy-MM-dd'}}</div>
       </md-card-content>
       <md-card-actions align='end'>
-        <button [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']"><md-icon>details</md-icon></button>
+        <button md-mini-fab [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']"><md-icon>details</md-icon></button>
+        <button md-mini-fab color="warn" (click)="deleteProductVersion(productversion)"><md-icon>delete</md-icon></button>
       </md-card-actions>
     </md-card>
   </div>

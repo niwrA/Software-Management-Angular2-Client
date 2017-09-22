@@ -5,7 +5,9 @@ export class ProductFeatureState {
     productGuid: string;
     name: string;
     description?: string;
-    isRequest?: boolean;
+    isRequest: boolean;
+    firstVersionGuid?: string;
+    requestedForVersionGuid?: string;
 }
 
 export class ProductFeature {
@@ -15,7 +17,7 @@ export class ProductFeature {
         this._state = state;
         if (!state) {
             this._state = new ProductFeatureState();
-        } 
+        }
     }
 
     get guid(): string { return this._state.guid; };
@@ -32,6 +34,12 @@ export class ProductFeature {
 
     get productGuid(): string { return this._state.productGuid; };
     set productGuid(value: string) { this._state.productGuid = value; };
+
+    get firstVersionGuid(): string { return this._state.firstVersionGuid; };
+    set firstVersionGuid(value: string) { this._state.firstVersionGuid = value; };
+
+    get requestedForVersionGuid(): string { return this._state.requestedForVersionGuid; };
+    set requestedForVersionGuid(value: string) { this._state.requestedForVersionGuid = value; };
 
     public clone(): ProductFeature {
         return new ProductFeature(_.clone(this._state));

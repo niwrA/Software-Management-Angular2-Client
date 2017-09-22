@@ -1,5 +1,8 @@
 <md-card>
   <md-card-title *ngIf="productfeature">{{productfeature.name}}</md-card-title>
+  <md-card-content *ngIf="product">
+    <div [routerLink]="['/products', product.guid, 'features']">{{product.name}}</div>
+  </md-card-content>
   <button [routerLink]='productfeatureDetails' md-raised-button md-tooltip="todo: productfeature Details">Details</button>
   <button routerLink="productfeatureissues" md-raised-button md-tooltip="todo: known issues for this  feature">Issues</button>
   <button [routerLink]='productfeatureconfigs' md-raised-button md-tooltip="todo: configuration options for this feature">Configs</button>

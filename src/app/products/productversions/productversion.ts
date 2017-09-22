@@ -13,6 +13,7 @@ export class ProductVersionState {
 export class ProductVersion {
 
     private _state: ProductVersionState;
+    private _sequence: number;
     constructor(state?: ProductVersionState) {
         this._state = state;
         if (!state) {
@@ -37,6 +38,9 @@ export class ProductVersion {
 
     get build(): number { return this._state.build; };
     set build(value: number) { this._state.build = value; };
+
+    get sequence(): number { return this._sequence; };
+    set sequence(value: number) { this._sequence = value; };
 
     get releaseDate(): string { return this._state.releaseDate; };
     set releaseDate(value: string) { this._state.releaseDate = value; };

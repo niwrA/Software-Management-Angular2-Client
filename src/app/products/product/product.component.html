@@ -3,6 +3,8 @@
   <md-card-actions *ngIf="product">
     <button routerLink='details' md-raised-button md-tooltip="todo: Product Details">Details</button>
     <button routerLink="versions" md-raised-button md-tooltip="Product Versions">Versions</button>
+    <button routerLink="features" md-raised-button md-tooltip="Product Features">Features</button>
+    <button routerLink="issues" md-raised-button md-tooltip="Product Issues">Issues</button>
     <button [routerLink]='productCompanies' md-raised-button md-tooltip="todo: View Companies using this Product">Companies</button>
     <button [routerLink]='productContacts' md-raised-button md-tooltip="todo: Product contacts">Contacts</button>
     <button [routerLink]="['links']" md-raised-button md-tooltip="Product Links">Links</button>

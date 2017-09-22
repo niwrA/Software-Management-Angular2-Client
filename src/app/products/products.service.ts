@@ -4,12 +4,15 @@ import { Http } from '@angular/http';
 import { Product, ProductState } from './product';
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
 import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
+import { ProductIssue } from './productissues/productissue';
 import { PRODUCTS } from './mock-products';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import {
   ProductCommand, CreateProductCommand, DeleteProductCommand,
-  RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand
+  RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand,
+  RequestFeatureForProductCommand, RemoveFeatureFromProductCommand, RemoveVersionFromProductCommand,
+  AddIssueToProductCommand, RemoveIssueFromProductCommand
 } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -40,8 +43,9 @@ export class ProductsService {
     const newItem = new ProductVersion();
     newItem.guid = UUID.UUID();
     newItem.name = name;
+    newItem.productGuid = product.guid;
     if (doSave) {
-      product.versions.splice(0, 0, newItem);
+      product.addVersion(newItem);
       const createProductCommand = new AddVersionToProductCommand(product, newItem);
       this.commandsService.postCommand(createProductCommand, false);
     }
@@ -55,10 +59,12 @@ export class ProductsService {
     }
   }
 
-  createProductFeature(doSave: boolean, product: Product, name: string): ProductFeature {
+  createProductFeature(doSave: boolean, product: Product, name: string, versionId: string): ProductFeature {
     const newItem = new ProductFeature();
     newItem.guid = UUID.UUID();
     newItem.name = name;
+    newItem.firstVersionGuid = versionId;
+    newItem.productGuid = product.guid;
     if (doSave) {
       product.features.splice(0, 0, newItem);
       const createProductCommand = new AddFeatureToProductCommand(product, newItem);
@@ -67,11 +73,57 @@ export class ProductsService {
     return newItem;
   }
 
+  requestProductFeature(doSave: boolean, product: Product, name: string, versionId: string): ProductFeature {
+    const newItem = new ProductFeature();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    newItem.requestedForVersionGuid = versionId;
+    newItem.isRequest = true;
+    newItem.productGuid = product.guid;
+    if (doSave) {
+      product.features.splice(0, 0, newItem);
+      const command = new RequestFeatureForProductCommand(product, newItem);
+      this.commandsService.postCommand(command, false);
+    }
+    return newItem;
+  }
+
+
   getProductFeature(productGuid: string, featureGuid: string): Promise<ProductFeature> {
     if (productGuid && featureGuid) {
       const feature = this.getProduct(productGuid).then(product => _.find<ProductFeature>(product.features, t => t.guid === featureGuid));
       return feature;
     }
+  }
+
+  createProductIssue(doSave: boolean, product: Product, name: string, versionId: string): ProductIssue {
+    const newItem = new ProductIssue();
+    const version = _.find(product.versions, t => t.guid === versionId);
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    newItem.firstVersionGuid = versionId;
+    newItem.firstVersionSequence = version.sequence;
+    newItem.productGuid = product.guid;
+    if (doSave) {
+      product.issues.splice(0, 0, newItem);
+      const createProductCommand = new AddIssueToProductCommand(product, newItem);
+      this.commandsService.postCommand(createProductCommand, false);
+    }
+    return newItem;
+  }
+
+  getProductIssue(productGuid: string, issueGuid: string): Promise<ProductIssue> {
+    if (productGuid && issueGuid) {
+      const issue = this.getProduct(productGuid).then(product => _.find<ProductIssue>(product.issues, t => t.guid === issueGuid));
+      return issue;
+    }
+  }
+  deleteProductIssue(product: Product, productissue: ProductIssue): void {
+    const index = product.issues.indexOf(productissue, 0);
+    if (index > -1) {
+      product.issues.splice(index, 1);
+    }
+    this.postCommand(new RemoveIssueFromProductCommand(product, productissue), false);
   }
 
   deleteProduct(product: Product): void {
@@ -82,6 +134,22 @@ export class ProductsService {
     this.postCommand(new DeleteProductCommand(product), false);
   }
 
+  deleteProductFeature(product: Product, productfeature: ProductFeature): void {
+    const index = product.features.indexOf(productfeature, 0);
+    if (index > -1) {
+      product.features.splice(index, 1);
+    }
+    this.postCommand(new RemoveFeatureFromProductCommand(product, productfeature), false);
+  }
+
+  deleteProductVersion(product: Product, productversion: ProductVersion): void {
+    const index = product.versions.indexOf(productversion, 0);
+    if (index > -1) {
+      product.versions.splice(index, 1);
+    }
+    this.postCommand(new RemoveVersionFromProductCommand(product, productversion), false);
+  }
+
   cloneProduct(original: Product): Product {
     if (original) {
       const clonedItem = original.clone();
@@ -90,6 +158,12 @@ export class ProductsService {
   }
 
   cloneProductFeature(original: ProductFeature): ProductFeature {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
+  cloneProductIssue(original: ProductIssue): ProductIssue {
     if (original) {
       const clonedItem = original.clone();
       return clonedItem;

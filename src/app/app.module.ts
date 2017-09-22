@@ -38,7 +38,6 @@ import { ProductVersionsService } from './products/productversions/productversio
 import { ProductVersionComponent } from './products/productversions/productversion/productversion.component';
 import { ProductFeaturesComponent } from './products/productfeatures/productfeatures.component';
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
-import { ProductFeaturesService } from './products/productfeatures/productfeatures.service';
 import { ProductIssuesComponent } from './products/productissues/productissues.component';
 import { ProductIssueComponent } from './products/productissues/productissue/productissue.component';
 import { ProductConfigsComponent } from './products/productconfigs/productconfigs.component';
@@ -54,8 +53,6 @@ import { ProjectDetailsComponent } from './projects/project/projectdetails/proje
 import { SemgraphService } from './semgraph/semgraph.service';
 import { CommandsComponent } from './commands/commands.component';
 import { CommandsService } from './commands/commands.service';
-import { EnvironmentsComponent } from './environments/environments.component';
-import { EnvironmentComponent } from './environments/environment/environment.component';
 import { CompanyEnvironmentsComponent } from './companies/company/companyenvironments/companyenvironments.component';
 import { UsersComponent } from './admin/users/users.component';
 import { UserComponent } from './admin/users/user/user.component';
@@ -114,6 +111,7 @@ import { RegisterComponent } from './admin/register/register.component';
 
 import { AccountService } from './admin/account.service';
 import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
+import { ProductIssueDetailsComponent } from './products/productissues/productissue/productissuedetails/productissuedetails.component';
 
 @NgModule({
   imports: [
@@ -152,8 +150,6 @@ import { ProductFeatureDetailsComponent } from './products/productfeatures/produ
     ProjectRolesComponent,
     ProjectDetailsComponent,
     CommandsComponent,
-    EnvironmentsComponent,
-    EnvironmentComponent,
     CompanyEnvironmentsComponent,
     UsersComponent,
     UserComponent,
@@ -189,11 +185,11 @@ import { ProductFeatureDetailsComponent } from './products/productfeatures/produ
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
     FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
-    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent
+    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
-    ProductFeaturesService, DesignsService, ContactsService, EmploymentsService,
+    DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
     PushNotificationsService, NotificationsService, AccountService],
   bootstrap: [AppComponent],
