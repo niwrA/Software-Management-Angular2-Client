@@ -1,13 +1,17 @@
 <md-card>
-  <md-card-actions>
-    <button md-mini-fab (click)="openContactsDialog()"><md-icon>add</md-icon></button>
-  </md-card-actions>
-  <md-card-content>
-    <md-list *ngIf="employments">
-      <md-list-item>
-        <div *ngFor="let employment of employments">{{employment.contactName}}
-          <button md-icon-button (click)="deleteEmployment(employment)"><md-icon>delete</md-icon></button> </div>
-      </md-list-item>
-    </md-list>
+  <md-card-content *ngIf="employments">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div style="margin-right:0.5em">
+        <button md-mini-fab (click)="openContactsDialog()"><md-icon>add</md-icon></button>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+          <div style="margin-left: 0.2em" *ngFor="let employment of employments">
+            <app-contact-card [contactGuid]="employment.contactGuid"></app-contact-card>
+            <button md-icon-button (click)="deleteEmployment(employment)"><md-icon md-mini-fab>delete</md-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </md-card-content>
 </md-card>

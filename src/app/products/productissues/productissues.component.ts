@@ -60,6 +60,8 @@ export class ProductIssuesComponent implements OnInit {
 
   // todo: do we want to get/hold the versionsequence in this component for speed?
   getProductIssues(searchText: string): void {
+    if (this.product && this.product.issues) {
+      let issues = this.product.issues;
       if (searchText.length > 0) {
         issues = _.filter<ProductIssue>(issues, prj => (prj.name.indexOf(this.searchText) > -1
           || (prj.description && prj.description.indexOf(this.searchText) > -1)));
