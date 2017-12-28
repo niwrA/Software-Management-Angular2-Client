@@ -14,6 +14,7 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
 import { CompanyEnvironmentsComponent } from './companies/company/companyenvironments/companyenvironments.component';
 import { CompanyEnvironmentComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironment.component';
 import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
+import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/company-environment-hardware/company-environment-hardware.component'
 import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -133,6 +134,10 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: CompanyEnvironmentDetailsComponent
+      },
+      {
+        path: 'hardware',
+        component: CompanyEnvironmentHardwareComponent
       },
       linksSubRoute,
       filesSubRoute

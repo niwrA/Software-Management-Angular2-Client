@@ -1,0 +1,21 @@
+<md-input-container>
+  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+    (keyup)="getCompanyEnvironmentHardware(searchTextInput.value)" (keyup.enter)='createCompanyEnvironmentHardware(searchTextInput.value)'
+  />
+</md-input-container>
+<button [disabled]='!canAdd' md-raised-button md-tooltip="Add new hardware" (click)="createCompanyEnvironmentHardware(searchTextInput.value)">Add</button>
+<md-card *ngFor="let hardware of companyenvironmenthardware">
+  <md-card-title-group [routerLink]="[hardware.guid, 'details']">
+    <md-card-subtitle>
+      <md-icon>settings input composite</md-icon>
+    </md-card-subtitle>
+    <md-card-title>{{hardware.name}}</md-card-title>
+  </md-card-title-group>
+  <md-card-actions align='end'>
+    <button md-mini-fab color="warn" (click)="deleteCompanyEnvironmentHardware(hardware)">
+<md-icon>delete</md-icon>
+</button>
+    <!--        <button [(disabled)]="!companyenvironment.Email" routerLink="companyenvironment" RouterLinkActive='active' [uiParams]="{ companyenvironmentId: companyenvironment.Guid }">
+<md-icon>email circle</md-icon></button>-->
+  </md-card-actions>
+</md-card>

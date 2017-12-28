@@ -112,6 +112,7 @@ import { RegisterComponent } from './admin/register/register.component';
 import { AccountService } from './admin/account.service';
 import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
 import { ProductIssueDetailsComponent } from './products/productissues/productissue/productissuedetails/productissuedetails.component';
+import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/company-environment-hardware/company-environment-hardware.component';
 
 @NgModule({
   imports: [
@@ -185,7 +186,7 @@ import { ProductIssueDetailsComponent } from './products/productissues/productis
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
     FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
-    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent
+    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent, CompanyEnvironmentHardwareComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

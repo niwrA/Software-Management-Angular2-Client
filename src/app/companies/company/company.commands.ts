@@ -2,6 +2,7 @@ import { Command, CommandParameters } from '../../commands/command';
 import { Company } from '../company';
 import { CompanyRole } from '../company/companyroles/companyrole';
 import { CompanyEnvironment } from '../company/companyenvironments/companyenvironment';
+import { CompanyEnvironmentHardware } from '../company/companyenvironments/companyenvironment/company-environment-hardware/companyenvironmenthardware';
 
 export class CompanyCommand extends Command {
     constructor(name: string, company: Company) {
@@ -11,7 +12,13 @@ export class CompanyCommand extends Command {
 
 export class EnvironmentCommand extends Command {
     constructor(name: string, company: Company) {
-        super(name, 'Environment', company.guid);
+        super(name, 'CompanyEnvironment', company.guid);
+    };
+}
+
+export class HardwareCommand extends Command {
+    constructor(name: string, company: Company) {
+        super(name, 'CompanyEnvironmentHardware', company.guid);
     };
 }
 
@@ -149,6 +156,52 @@ export class ChangeUrlForEnvironmentCommand extends EnvironmentCommand {
         parameters.EnvironmentGuid = companyenvironment.guid;
         parameters.OriginalUrl = orgUrl;
         parameters.Url = companyenvironment.url;
+        this.Parameters = parameters;
+    }
+}
+
+export class HardwareCommandParameters extends EnvironmentCommandParameters {
+    HardwareGuid: string;
+}
+
+export class AddHardwareToEnvironmentParameters extends HardwareCommandParameters {
+    HardwareName: string;
+}
+
+export class AddHardwareToEnvironmentCommand extends EnvironmentCommand {
+    constructor(company: Company,  hardware: CompanyEnvironmentHardware) {
+        super('AddHardwareTo', company);
+        const parameters = new AddHardwareToEnvironmentParameters();
+        parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
+        parameters.HardwareGuid = hardware.guid;
+        parameters.HardwareName = hardware.name;
+        this.Parameters = parameters;
+    }
+}
+
+export class RemoveHardwareFromEnvironmentCommand extends EnvironmentCommand {
+
+    constructor(company: Company, hardware: CompanyEnvironmentHardware) {
+        super('RemoveHardwareFrom', company);
+        const parameters = new HardwareCommandParameters();
+        parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
+        parameters.HardwareGuid = hardware.guid; 
+        this.Parameters = parameters;
+    }
+}
+
+export class RenameHardwareParameters extends HardwareCommandParameters {
+    Name: string;
+    OriginalName: string;
+}
+
+export class RenameHardwareCommand extends HardwareCommand {
+    constructor(company: Company, environment: CompanyEnvironment, hardware: CompanyEnvironmentHardware, orgName: string) {
+        super('Rename', company);
+        const parameters = new RenameEnvironmentParameters();
+        parameters.EnvironmentGuid = environment.guid;
+        parameters.OriginalName = orgName;
+        parameters.Name = environment.name;
         this.Parameters = parameters;
     }
 }
