@@ -38,7 +38,7 @@ export class TechnologiesComponent implements OnInit {
   }
 
   createTechnology(name: string): void {
-    let technology = this.technologiesService.createTechnology();
+    const technology = this.technologiesService.createTechnology();
     technology.Name = name;
     this.searchText = '';
     this.getTechnologies('');

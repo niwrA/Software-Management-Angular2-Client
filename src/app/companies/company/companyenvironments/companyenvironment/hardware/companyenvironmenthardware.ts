@@ -1,24 +1,24 @@
 import * as _ from 'lodash';
-export class CompanyEnvironmentHardwareState {
+export class CompanyEnvironmentHardwareItemState {
     guid: string;
     name: string;
-    url: string;
+    ipAddress: string;
     companyGuid: string;
     environmentGuid: string;
 }
-export class CompanyEnvironmentHardware {
-    private _state: CompanyEnvironmentHardwareState;
-    constructor(state?: CompanyEnvironmentHardwareState) {
+export class CompanyEnvironmentHardwareItem {
+    private _state: CompanyEnvironmentHardwareItemState;
+    constructor(state?: CompanyEnvironmentHardwareItemState) {
         this._state = state;
         if (!state) {
-            this._state = new CompanyEnvironmentHardwareState();
+            this._state = new CompanyEnvironmentHardwareItemState();
         }
     }
     get name(): string { return this._state.name; };
     set name(value: string) { this._state.name = value; };
 
-    get url(): string { return this._state.url; };
-    set url(value: string) { this._state.url = value; };
+    get ipAddress(): string { return this._state.ipAddress; };
+    set ipAddress(value: string) { this._state.ipAddress = value; };
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
@@ -29,7 +29,7 @@ export class CompanyEnvironmentHardware {
     get companyEnvironmentGuid(): string { return this._state.environmentGuid; };
     set companyEnvironmentGuid(value: string) { this._state.environmentGuid = value; };
 
-    public clone(): CompanyEnvironmentHardware {
-        return new CompanyEnvironmentHardware(_.clone(this._state));
+    public clone(): CompanyEnvironmentHardwareItem {
+        return new CompanyEnvironmentHardwareItem(_.clone(this._state));
     }
 }

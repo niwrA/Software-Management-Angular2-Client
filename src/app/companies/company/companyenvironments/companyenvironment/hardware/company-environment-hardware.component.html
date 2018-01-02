@@ -11,11 +11,12 @@
     </md-card-subtitle>
     <md-card-title>{{hardware.name}}</md-card-title>
   </md-card-title-group>
+  <md-card-content>
+    <div>{{hardware.ipAddress}}</div>
+  </md-card-content>
   <md-card-actions align='end'>
     <button md-mini-fab color="warn" (click)="deleteCompanyEnvironmentHardware(hardware)">
-<md-icon>delete</md-icon>
-</button>
-    <!--        <button [(disabled)]="!companyenvironment.Email" routerLink="companyenvironment" RouterLinkActive='active' [uiParams]="{ companyenvironmentId: companyenvironment.Guid }">
-<md-icon>email circle</md-icon></button>-->
+      <md-icon>delete</md-icon>
+    </button>
   </md-card-actions>
 </md-card>

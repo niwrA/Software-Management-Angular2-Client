@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../../company';
 import { CompanyEnvironment } from '../../companyenvironment';
-import { CompanyEnvironmentHardware } from './companyenvironmenthardware';
+import { CompanyEnvironmentHardwareItem } from './companyenvironmenthardware';
 import { CompaniesService } from '../../../../companies.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UUID } from 'angular2-uuid';
@@ -21,7 +21,7 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
   private environmentId: string;
   private company: Company;
   private companyenvironment: CompanyEnvironment;
-  companyenvironmenthardware: Array<CompanyEnvironmentHardware>;
+  companyenvironmenthardware: Array<CompanyEnvironmentHardwareItem>;
   canAdd: boolean;
   searchText: string;
 
@@ -55,11 +55,11 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
   }
   searchTextChanged(): void {
     this.canAdd = this.searchText.length > 0;
-    this.getCompanyEnvironmentHardware(this.searchText);
+    this.getCompanyEnvironmentHardwareItem(this.searchText);
   }
 
-  createCompanyEnvironmentHardware(name: string) {
-    const hardware = new CompanyEnvironmentHardware();
+  createCompanyEnvironmentHardwareItem(name: string) {
+    const hardware = new CompanyEnvironmentHardwareItem();
     hardware.guid = UUID.UUID();
     hardware.name = name;
     hardware.companyEnvironmentGuid = this.companyenvironment.guid;
@@ -72,16 +72,16 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
     this.service.postCommand(command, false);
   }
 
-  deleteCompanyEnvironmentHardware(companyenvironmenthardware: CompanyEnvironmentHardware) {
+  deleteCompanyEnvironmentHardwareItem(companyenvironmenthardware: CompanyEnvironmentHardwareItem) {
     this.companyenvironmenthardware.splice(this.companyenvironmenthardware.indexOf(companyenvironmenthardware));
     const command = new RemoveHardwareFromEnvironmentCommand(this.company, companyenvironmenthardware);
     this.service.postCommand(command, false);
   }
 
-  getCompanyEnvironmentHardware(searchText: string) {
+  getCompanyEnvironmentHardwareItem(searchText: string) {
     if (searchText && searchText.length > 0) {
 
-      const results = _.filter<CompanyEnvironmentHardware>(this.companyenvironmenthardware, prj => prj.name.indexOf(searchText) > -1);
+      const results = _.filter<CompanyEnvironmentHardwareItem>(this.companyenvironmenthardware, prj => prj.name.indexOf(searchText) > -1);
       return Promise.resolve(results);
     }
     return Promise.resolve(this.companyenvironmenthardware);

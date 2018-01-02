@@ -3,6 +3,7 @@ import { UUID } from 'angular2-uuid';
 import { Http } from '@angular/http';
 import { Company, CompanyState } from './company';
 import { CompanyEnvironment } from './company/companyenvironments/companyenvironment';
+import { CompanyEnvironmentHardwareItem } from './company/companyenvironments/companyenvironment/hardware/companyenvironmenthardware';
 import { CompanyRole } from './company/companyroles/companyrole';
 import { COMPANIES } from './mock-companies';
 import { CommandsService } from '../commands/commands.service';
@@ -47,7 +48,12 @@ export class CompaniesService {
       return clonedItem;
     }
   }
-
+  cloneCompanyEnvironmentHardwareItem(original: CompanyEnvironmentHardwareItem): CompanyEnvironmentHardwareItem {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
   getCompanies(searchText: string): Promise<Array<Company>> {
     if (this.companies.length > 0) {
       if (searchText && searchText.length > 0) {
@@ -81,7 +87,15 @@ export class CompaniesService {
       return environment;
     }
   }
-
+  getCompanyEnvironmentHardware(companyGuid: string, environmentGuid: string, hardwareGuid: string):
+  Promise<CompanyEnvironmentHardwareItem> {
+    if (companyGuid && environmentGuid && hardwareGuid) {
+      const hardwareitem = this.getCompany(companyGuid)
+      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+      .then(environment => _.find<CompanyEnvironmentHardwareItem>(environment.hardware, t => t.guid === hardwareGuid));
+      return hardwareitem;
+    }
+  }
   parseSingleResponse(response: any): Company {
     var state = response.json() as CompanyState;
     return new Company(state);

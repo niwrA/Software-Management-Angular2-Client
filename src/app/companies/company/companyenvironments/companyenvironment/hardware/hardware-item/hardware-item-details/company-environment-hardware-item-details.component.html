@@ -1,0 +1,14 @@
+<md-card *ngIf="hardwareitem">
+  <md-card-content>
+    <md-card-content layout='row'>
+      <md-input-container>
+        <input mdInput (blur)="changeName()" [(ngModel)]="hardwareitem.name" placeholder="Name" />
+      </md-input-container>
+    </md-card-content>
+    <md-card-content layout='row'>
+      <md-input-container>
+        <input mdInput (blur)="changeIPAddress()" [(ngModel)]="hardwareitem.ipAddress" placeholder="Ip" />
+      </md-input-container>
+    </md-card-content>
+  </md-card-content>
+</md-card>

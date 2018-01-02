@@ -1,29 +1,29 @@
 import * as _ from 'lodash';
-import { CompanyEnvironmentHardwareState, CompanyEnvironmentHardware } from './companyenvironment/company-environment-hardware/companyenvironmenthardware';
+import { CompanyEnvironmentHardwareItemState, CompanyEnvironmentHardwareItem } from './companyenvironment/hardware/companyenvironmenthardware';
 export class CompanyEnvironmentState {
     guid: string;
     name: string;
     url: string;
     companyGuid: string;
-    hardware: Array<CompanyEnvironmentHardwareState>;
+    hardware: Array<CompanyEnvironmentHardwareItemState>;
     constructor() {
-        this.hardware = new Array<CompanyEnvironmentHardwareState>();
+        this.hardware = new Array<CompanyEnvironmentHardwareItemState>();
     }
 }
 export class CompanyEnvironment {
     private _state: CompanyEnvironmentState;
-    hardware: Array<CompanyEnvironmentHardware>;
+    hardware: Array<CompanyEnvironmentHardwareItem>;
     constructor(state?: CompanyEnvironmentState) {
         this._state = state;
         if (!this.hardware) {
-            this.hardware = new Array<CompanyEnvironmentHardware>();
+            this.hardware = new Array<CompanyEnvironmentHardwareItem>();
         }
         if (!state) {
             this._state = new CompanyEnvironmentState();
         } else {
             if (state.hardware && state.hardware.length > 0) {
                 for (const hardwareState of state.hardware) {
-                    this.hardware.push(new CompanyEnvironmentHardware(hardwareState));
+                    this.hardware.push(new CompanyEnvironmentHardwareItem(hardwareState));
                 }
             }
         }

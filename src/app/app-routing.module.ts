@@ -14,7 +14,9 @@ import { CompanyRoleComponent } from './companies/company/companyroles/companyro
 import { CompanyEnvironmentsComponent } from './companies/company/companyenvironments/companyenvironments.component';
 import { CompanyEnvironmentComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironment.component';
 import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
-import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/company-environment-hardware/company-environment-hardware.component'
+import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/hardware/company-environment-hardware.component'
+import { CompanyEnvironmentHardwareItemComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/company-environment-hardware-item.component'
+import { CompanyEnvironmentHardwareItemDetailsComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/hardware-item-details/company-environment-hardware-item-details.component'
 import { LoginComponent } from './admin/login/login.component';
 
 import { ProjectsComponent } from './projects/projects.component';
@@ -144,6 +146,17 @@ const appRoutes: Routes = [
     ]
   },
   {
+    path: 'companies/:companyId/environments/:environmentId/hardware/:hardwareId',
+    component: CompanyEnvironmentHardwareItemComponent,
+    children: [
+      {
+        path: 'details',
+        component: CompanyEnvironmentHardwareItemDetailsComponent
+      },
+      linksSubRoute,
+      filesSubRoute
+    ]
+  },  {
     path: 'login',
     component: LoginComponent
   },

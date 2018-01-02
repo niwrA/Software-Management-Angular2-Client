@@ -2,7 +2,7 @@ import { Command, CommandParameters } from '../../commands/command';
 import { Company } from '../company';
 import { CompanyRole } from '../company/companyroles/companyrole';
 import { CompanyEnvironment } from '../company/companyenvironments/companyenvironment';
-import { CompanyEnvironmentHardware } from '../company/companyenvironments/companyenvironment/company-environment-hardware/companyenvironmenthardware';
+import { CompanyEnvironmentHardwareItem } from '../company/companyenvironments/companyenvironment/hardware/companyenvironmenthardware';
 
 export class CompanyCommand extends Command {
     constructor(name: string, company: Company) {
@@ -169,7 +169,7 @@ export class AddHardwareToEnvironmentParameters extends HardwareCommandParameter
 }
 
 export class AddHardwareToEnvironmentCommand extends EnvironmentCommand {
-    constructor(company: Company,  hardware: CompanyEnvironmentHardware) {
+    constructor(company: Company,  hardware: CompanyEnvironmentHardwareItem) {
         super('AddHardwareTo', company);
         const parameters = new AddHardwareToEnvironmentParameters();
         parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
@@ -181,7 +181,7 @@ export class AddHardwareToEnvironmentCommand extends EnvironmentCommand {
 
 export class RemoveHardwareFromEnvironmentCommand extends EnvironmentCommand {
 
-    constructor(company: Company, hardware: CompanyEnvironmentHardware) {
+    constructor(company: Company, hardware: CompanyEnvironmentHardwareItem) {
         super('RemoveHardwareFrom', company);
         const parameters = new HardwareCommandParameters();
         parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
@@ -196,12 +196,29 @@ export class RenameHardwareParameters extends HardwareCommandParameters {
 }
 
 export class RenameHardwareCommand extends HardwareCommand {
-    constructor(company: Company, environment: CompanyEnvironment, hardware: CompanyEnvironmentHardware, orgName: string) {
+    constructor(company: Company, hardware: CompanyEnvironmentHardwareItem, orgName: string) {
         super('Rename', company);
-        const parameters = new RenameEnvironmentParameters();
-        parameters.EnvironmentGuid = environment.guid;
+        const parameters = new RenameHardwareParameters();
+        parameters.HardwareGuid = hardware.guid;
+        parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
         parameters.OriginalName = orgName;
-        parameters.Name = environment.name;
+        parameters.Name = hardware.name;
+        this.Parameters = parameters;
+    }
+}
+export class ChangeIPAddressForHardwareParameters extends HardwareCommandParameters {
+    IPAddress: string;
+    OriginalIPAddress: string;
+}
+
+export class ChangeIPAddressForHardwareCommand extends HardwareCommand {
+    constructor(company: Company, hardware: CompanyEnvironmentHardwareItem, orgIp: string) {
+        super('ChangeIpAddressFor', company);
+        const parameters = new ChangeIPAddressForHardwareParameters();
+        parameters.HardwareGuid = hardware.guid;
+        parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
+        parameters.OriginalIPAddress = orgIp;
+        parameters.IPAddress = hardware.ipAddress;
         this.Parameters = parameters;
     }
 }

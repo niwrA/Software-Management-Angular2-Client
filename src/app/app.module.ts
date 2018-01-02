@@ -112,7 +112,9 @@ import { RegisterComponent } from './admin/register/register.component';
 import { AccountService } from './admin/account.service';
 import { ProductFeatureDetailsComponent } from './products/productfeatures/productfeature/productfeaturedetails/productfeaturedetails.component';
 import { ProductIssueDetailsComponent } from './products/productissues/productissue/productissuedetails/productissuedetails.component';
-import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/company-environment-hardware/company-environment-hardware.component';
+import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/hardware/company-environment-hardware.component';
+import { CompanyEnvironmentHardwareItemComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/company-environment-hardware-item.component';
+import { CompanyEnvironmentHardwareItemDetailsComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/hardware-item-details/company-environment-hardware-item-details.component';
 
 @NgModule({
   imports: [
@@ -186,7 +188,8 @@ import { CompanyEnvironmentHardwareComponent } from './companies/company/company
     PropertyElementComponent, CommandElementsComponent, CommandElementComponent, EpicElementDetailsComponent,
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
     FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
-    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent, CompanyEnvironmentHardwareComponent
+    ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent,
+    CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent, CompanyEnvironmentHardwareItemDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
