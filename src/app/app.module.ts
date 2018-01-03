@@ -115,6 +115,12 @@ import { ProductIssueDetailsComponent } from './products/productissues/productis
 import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/hardware/company-environment-hardware.component';
 import { CompanyEnvironmentHardwareItemComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/company-environment-hardware-item.component';
 import { CompanyEnvironmentHardwareItemDetailsComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/hardware-item-details/company-environment-hardware-item-details.component';
+import { DatabasesComponent } from './companies/company/companyenvironments/companyenvironment/databases/databases.component';
+import { DatabaseComponent } from './companies/company/companyenvironments/companyenvironment/databases/database/database.component';
+import { DatabaseDetailsComponent } from './companies/company/companyenvironments/companyenvironment/databases/database/database-details/database-details.component';
+import { AccountsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/accounts.component';
+import { AccountComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account.component';
+import { AccountDetailsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account-details/account-details.component';
 
 @NgModule({
   imports: [
@@ -189,7 +195,7 @@ import { CompanyEnvironmentHardwareItemDetailsComponent } from './companies/comp
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
     FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
     ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent,
-    CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent, CompanyEnvironmentHardwareItemDetailsComponent
+    CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent, CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent, AccountsComponent, AccountComponent, AccountDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

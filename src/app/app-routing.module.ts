@@ -66,6 +66,14 @@ import { FilesComponent } from './files/files.component';
 import { FileComponent } from './files/file/file.component';
 import { FileDetailsComponent } from './files/file/file-details/file-details.component';
 
+import { DatabasesComponent } from './companies/company/companyenvironments/companyenvironment/databases/databases.component';
+import { DatabaseComponent } from './companies/company/companyenvironments/companyenvironment/databases/database/database.component';
+import { DatabaseDetailsComponent } from './companies/company/companyenvironments/companyenvironment/databases/database/database-details/database-details.component';
+
+import { AccountsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/accounts.component';
+import { AccountComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account.component';
+import { AccountDetailsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account-details/account-details.component';
+
 import { EmploymentsComponent } from './employments/employments.component';
 
 import { PageNotFoundComponent } from './not-found.component';
@@ -141,6 +149,14 @@ const appRoutes: Routes = [
         path: 'hardware',
         component: CompanyEnvironmentHardwareComponent
       },
+      {
+        path: 'databases',
+        component: DatabasesComponent
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent
+      },
       linksSubRoute,
       filesSubRoute
     ]
@@ -156,7 +172,32 @@ const appRoutes: Routes = [
       linksSubRoute,
       filesSubRoute
     ]
-  },  {
+  },
+  {
+    path: 'companies/:companyId/environments/:environmentId/databases/:databaseId',
+    component: DatabaseComponent,
+    children: [
+      {
+        path: 'details',
+        component: DatabaseDetailsComponent
+      },
+      linksSubRoute,
+      filesSubRoute
+    ]
+  },
+  {
+    path: 'companies/:companyId/environments/:environmentId/accounts/:accountId',
+    component: AccountComponent,
+    children: [
+      {
+        path: 'details',
+        component: AccountDetailsComponent
+      },
+      linksSubRoute,
+      filesSubRoute
+    ]
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
