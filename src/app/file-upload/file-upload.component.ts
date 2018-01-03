@@ -35,8 +35,9 @@ export class FileUploadComponent implements OnInit {
 
     if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
       const url = this.snapshot.url.split('/');
-      this.forEntityType = url[1].toString();
-      this.forEntityGuid = url[2].toString();
+      const max = url.length;
+      this.forEntityType = url[max - 3].toString();
+      this.forEntityGuid = url[max - 2].toString();
       this.initFileProperties(this.forEntityGuid, this.forEntityType);
     }
   }

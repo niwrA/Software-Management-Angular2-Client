@@ -82,7 +82,7 @@ export class LinksComponent implements OnInit {
   }
 
   createLink(url: string): void {
-    const link = this.service.createLink(true, url, this._forGuid);    
+    const link = this.service.createLink(true, url, this._forGuid);
     this.links.push(link);
     this.setEmbeddedUrl(link); // todo: integrate into state wrapper / link.ts?
   }

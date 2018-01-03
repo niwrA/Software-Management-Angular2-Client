@@ -45,8 +45,9 @@ export class FilesComponent implements OnInit {
   ngOnInit() {
     if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
       const url = this.snapshot.url.split('/');
-      this._forType = url[1].toString();
-      this._forGuid = url[2].toString();
+      const max = url.length;
+      this._forType = url[max - 3].toString();
+      this._forGuid = url[max - 2].toString();
       this.service.getFilesForGuid(this._forGuid).then(files => this.updateFiles(files));
     }
   }
