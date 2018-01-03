@@ -1,3 +1,9 @@
-<p>
-  database-details works!
-</p>
+<md-card *ngIf="database">
+  <md-card-content>
+    <md-card-content layout='row'>
+      <md-input-container>
+        <input mdInput (blur)="changeName()" [(ngModel)]="database.name" placeholder="Name" />
+      </md-input-container>
+    </md-card-content>
+  </md-card-content>
+</md-card>

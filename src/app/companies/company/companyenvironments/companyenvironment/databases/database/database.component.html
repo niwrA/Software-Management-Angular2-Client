@@ -1,3 +1,11 @@
-<p>
-  database works!
-</p>
+<md-card>
+  <md-card-title *ngIf="database">{{database.name}}</md-card-title>
+  <button [routerLink]='details' md-raised-button md-tooltip="Details">Details</button>
+  <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
+  <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
+  <router-outlet></router-outlet>
+</md-card>
+<div *ngIf="!database">
+  <md-spinner></md-spinner>
+  Loading database
+</div>

@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { Company, CompanyState } from './company';
 import { CompanyEnvironment } from './company/companyenvironments/companyenvironment';
 import { CompanyEnvironmentHardwareItem } from './company/companyenvironments/companyenvironment/hardware/companyenvironmenthardware';
+import { Account } from './company/companyenvironments/companyenvironment/accounts/account';
+import { Database } from './company/companyenvironments/companyenvironment/databases/database';
 import { CompanyRole } from './company/companyroles/companyrole';
 import { COMPANIES } from './mock-companies';
 import { CommandsService } from '../commands/commands.service';
@@ -54,6 +56,18 @@ export class CompaniesService {
       return clonedItem;
     }
   }
+  cloneDatabase(original: Database): Database {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
+  cloneAccount(original: Account): Account {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
   getCompanies(searchText: string): Promise<Array<Company>> {
     if (this.companies.length > 0) {
       if (searchText && searchText.length > 0) {
@@ -93,6 +107,24 @@ export class CompaniesService {
       const hardwareitem = this.getCompany(companyGuid)
       .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
       .then(environment => _.find<CompanyEnvironmentHardwareItem>(environment.hardware, t => t.guid === hardwareGuid));
+      return hardwareitem;
+    }
+  }
+  getCompanyEnvironmentDatabase(companyGuid: string, environmentGuid: string, databaseGuid: string):
+  Promise<Database> {
+    if (companyGuid && environmentGuid && databaseGuid) {
+      const hardwareitem = this.getCompany(companyGuid)
+      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+      .then(environment => _.find<Database>(environment.databases, t => t.guid === databaseGuid));
+      return hardwareitem;
+    }
+  }
+  getCompanyEnvironmentAccount(companyGuid: string, environmentGuid: string, accountGuid: string):
+  Promise<Account> {
+    if (companyGuid && environmentGuid && accountGuid) {
+      const hardwareitem = this.getCompany(companyGuid)
+      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+      .then(environment => _.find<Account>(environment.accounts, t => t.guid === accountGuid));
       return hardwareitem;
     }
   }
