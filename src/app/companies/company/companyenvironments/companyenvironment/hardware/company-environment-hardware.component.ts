@@ -55,7 +55,7 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
   }
   searchTextChanged(): void {
     this.canAdd = this.searchText.length > 0;
-    this.getCompanyEnvironmentHardwareItem(this.searchText);
+    this.getCompanyEnvironmentHardware(this.searchText);
   }
 
   createCompanyEnvironmentHardwareItem(name: string) {
@@ -78,7 +78,7 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
     this.service.postCommand(command, false);
   }
 
-  getCompanyEnvironmentHardwareItem(searchText: string) {
+  getCompanyEnvironmentHardware(searchText: string) {
     if (searchText && searchText.length > 0) {
 
       const results = _.filter<CompanyEnvironmentHardwareItem>(this.companyenvironmenthardware, prj => prj.name.indexOf(searchText) > -1);

@@ -15,7 +15,7 @@
       </md-list-item>
     </md-list>
     <md-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">
-      <md-checkbox *ngIf="contact.isSelected || contact.showActions" style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
+      <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
       <md-card-title-group [routerLink]="[contact.guid, 'details']">
         <img *ngIf="contact.avatarUrl" md-card-avatar [src]="contact.avatarUrl">
         <md-card-subtitle>
@@ -26,7 +26,7 @@
       <md-card-content>
         <div>{{contact.email}} ...</div>
       </md-card-content>
-      <md-card-actions align='end' *ngIf="contact.showActions">
+      <md-card-actions align='end'>
         <button md-mini-fab [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
         <a href="mailto:{{contact.email}}"><button md-mini-fab [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
         <button md-mini-fab color="warn" (click)="deleteContact(contact)">

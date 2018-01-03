@@ -340,7 +340,9 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ProductFeatureDetailsComponent
-      }]
+      },
+      linksSubRoute,
+      filesSubRoute]
   },
   {
     path: 'products/:productId/issues/:productIssueId',
@@ -349,7 +351,9 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: ProductIssueDetailsComponent
-      }]
+      },
+      linksSubRoute,
+      filesSubRoute]
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

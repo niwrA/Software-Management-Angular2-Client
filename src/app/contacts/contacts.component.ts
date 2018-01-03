@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
 import * as _ from 'lodash';
