@@ -59,7 +59,7 @@ export class DatabasesComponent implements OnInit {
     this.getDatabases(this.searchText);
   }
 
-  createCompanyEnvironmentDatabase(name: string) {
+  createDatabase(name: string) {
     const database = new Database();
     database.guid = UUID.UUID();
     database.name = name;
@@ -73,7 +73,7 @@ export class DatabasesComponent implements OnInit {
     this.service.postCommand(command, false);
   }
 
-  deleteCompanyEnvironmentDatabase(database: Database) {
+  deleteDatabase(database: Database) {
     this.databases.splice(this.databases.indexOf(database));
     const command = new RemoveDatabaseFromEnvironmentCommand(this.company, database);
     this.service.postCommand(command, false);

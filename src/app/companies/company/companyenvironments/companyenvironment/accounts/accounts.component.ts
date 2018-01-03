@@ -59,7 +59,7 @@ export class AccountsComponent implements OnInit {
     this.getAccounts(this.searchText);
   }
 
-  createCompanyEnvironmentAccount(name: string) {
+  createAccount(name: string) {
     const account = new Account();
     account.guid = UUID.UUID();
     account.name = name;
@@ -73,7 +73,7 @@ export class AccountsComponent implements OnInit {
     this.service.postCommand(command, false);
   }
 
-  deleteCompanyEnvironmentAccount(account: Account) {
+  deleteAccount(account: Account) {
     this.accounts.splice(this.accounts.indexOf(account));
     const command = new RemoveAccountFromEnvironmentCommand(this.company, account);
     this.service.postCommand(command, false);
