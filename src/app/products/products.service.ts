@@ -44,8 +44,11 @@ export class ProductsService {
     newItem.guid = UUID.UUID();
     newItem.name = name;
     newItem.productGuid = product.guid;
+    const serviceProduct = _.find(this.products, function(s: Product){return s.guid === product.guid; });
     if (doSave) {
+      // todo: figure out why these aren't the same
       product.addVersion(newItem);
+      serviceProduct.addVersion(newItem);
       const createProductCommand = new AddVersionToProductCommand(product, newItem);
       this.commandsService.postCommand(createProductCommand, false);
     }

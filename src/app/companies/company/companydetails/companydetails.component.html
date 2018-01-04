@@ -1,7 +1,13 @@
 <md-card *ngIf="company">
   <md-card-content>
     <md-input-container>
-      <input mdInput [(ngModel)]="company.name" placeholder="name" />
+      <input mdInput (blur)="changeName()" [(ngModel)]="company.name" placeholder="Name" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput (blur)="changeCode()" [(ngModel)]="company.code" placeholder="Code" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput (blur)="changeExternalId()" [(ngModel)]="company.externalId" placeholder="ExternalId" />
     </md-input-container>
   </md-card-content>
 </md-card>

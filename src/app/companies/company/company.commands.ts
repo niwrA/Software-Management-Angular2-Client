@@ -69,6 +69,34 @@ export class RenameCompanyCommand extends CompanyCommand {
         this.Parameters = parameters;
     }
 }
+export class ChangeCodeForCompanyParameters extends CommandParameters {
+    Code: string;
+    OriginalCode: string;
+}
+
+export class ChangeCodeForCompanyCommand extends CompanyCommand {
+    constructor(company: Company, orgCode: string) {
+        super('ChangeCodeFor', company);
+        const parameters = new ChangeCodeForCompanyParameters();
+        parameters.OriginalCode = orgCode;
+        parameters.Code  = company.code;
+        this.Parameters = parameters;
+    }
+}
+export class ChangeExternalIdForCompanyParameters extends CommandParameters {
+    ExternalId: string;
+    OriginalExternalId: string;
+}
+
+export class ChangeExternalIdForCompanyCommand extends CompanyCommand {
+    constructor(company: Company, orgExternalId: string) {
+        super('ChangeExternalIdFor', company);
+        const parameters = new ChangeExternalIdForCompanyParameters();
+        parameters.OriginalExternalId = orgExternalId;
+        parameters.ExternalId  = company.externalId;
+        this.Parameters = parameters;
+    }
+}
 
 export class AddRoleToCompanyParameters extends CommandParameters {
     RoleGuid: string;

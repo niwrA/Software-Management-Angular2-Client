@@ -71,7 +71,10 @@ export class CompaniesService {
   getCompanies(searchText: string): Promise<Array<Company>> {
     if (this.companies.length > 0) {
       if (searchText && searchText.length > 0) {
-        const results = _.filter<Company>(this.companies, prj => prj.name.indexOf(searchText) > -1);
+        const results = _.filter<Company>(this.companies, prj =>
+          (prj.name.indexOf(searchText) > -1
+          || (prj.code && prj.code.indexOf(searchText) > -1)
+          || (prj.externalId && prj.externalId.indexOf(searchText) > -1)));
         return Promise.resolve(results);
       } else { return Promise.resolve(this.companies); }
     } else {
@@ -129,7 +132,7 @@ export class CompaniesService {
     }
   }
   parseSingleResponse(response: any): Company {
-    var state = response.json() as CompanyState;
+    const state = response.json() as CompanyState;
     return new Company(state);
   }
 

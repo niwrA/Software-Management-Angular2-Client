@@ -1,6 +1,7 @@
 <md-card>
   <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies()" (keyup.enter)='createCompany(searchTextInput.value)' />
+    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCompanies()" (keyup.enter)='createCompany(searchTextInput.value)'
+    />
   </md-input-container>
   <button md-raised-button md-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
   <md-card *ngFor="let company of companies">
@@ -10,10 +11,19 @@
       </md-card-subtitle>
       <md-card-title>{{company.name}}</md-card-title>
     </md-card-title-group>
+    <md-card-content>
+      <div>{{company.code}}</div>
+    </md-card-content>
     <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="[company.guid, 'details']"><md-icon>details circle</md-icon></button>
-      <button md-mini-fab [routerLink]="[company.guid, 'details']"><md-icon>share circle</md-icon></button>
-      <button md-mini-fab color="warn" (click)="deleteCompany(company)"><md-icon>delete</md-icon></button>
+      <button md-mini-fab [routerLink]="[company.guid, 'details']">
+        <md-icon>details circle</md-icon>
+      </button>
+      <button md-mini-fab [routerLink]="[company.guid, 'details']">
+        <md-icon>share circle</md-icon>
+      </button>
+      <button md-mini-fab color="warn" (click)="deleteCompany(company)">
+        <md-icon>delete</md-icon>
+      </button>
     </md-card-actions>
   </md-card>
 </md-card>

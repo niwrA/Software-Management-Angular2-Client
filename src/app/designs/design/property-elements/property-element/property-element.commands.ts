@@ -50,7 +50,13 @@ export class CreatePropertyCodeGenCommand extends PropertyCodeGenCommand {
         parameters.Name = propertyElement.name;
         parameters.TypeName = 'string'; // todo: typeName
         parameters.EntityName = entityElement.name;
-        parameters.EntitiesName = entityElement.name + 's'; // todo: get plural properly
+        // todo: maybe find a pluralisation library or offer the option to add the plural
+        // in the UI and move this to separate class with tests
+        if ((entityElement.name).slice(-1) === 'y') {
+            parameters.EntitiesName = entityElement.name.substr(0, entityElement.name.length - 1) + 'ies';
+        } else {
+            parameters.EntitiesName = entityElement.name + 's';
+        }
         this.Parameters = parameters;
     }
 }

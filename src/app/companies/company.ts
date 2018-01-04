@@ -3,6 +3,8 @@ import { CompanyEnvironment, CompanyEnvironmentState } from './company/companyen
 import * as _ from 'lodash';
 export class CompanyState {
     name: string;
+    code: string;
+    externalId: string;
     guid: string;
     roles: Array<CompanyRoleState>;
     environments: Array<CompanyEnvironmentState>;
@@ -38,6 +40,12 @@ export class Company {
 
     get name(): string { return this._state.name; };
     set name(value: string) { this._state.name = value; };
+
+    get externalId(): string { return this._state.externalId; };
+    set externalId(value: string) { this._state.externalId = value; };
+
+    get code(): string { return this._state.code; };
+    set code(value: string) { this._state.code = value; };
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
