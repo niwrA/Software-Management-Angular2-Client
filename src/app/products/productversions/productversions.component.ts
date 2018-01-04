@@ -54,7 +54,7 @@ export class ProductVersionsComponent implements OnInit {
 
   getProductVersions(searchText: string): void {
     if (this.product && this.product.versions) {
-      if (searchText.length > 0) {
+      if (searchText && searchText.length > 0) {
         this.productversions = _.filter<ProductVersion>(this.product.versions, prj => prj.name.indexOf(this.searchText) > -1);
       } else {
         this.productversions = this.product.versions;

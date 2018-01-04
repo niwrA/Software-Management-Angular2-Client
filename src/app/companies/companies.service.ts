@@ -72,9 +72,10 @@ export class CompaniesService {
     if (this.companies.length > 0) {
       if (searchText && searchText.length > 0) {
         const results = _.filter<Company>(this.companies, prj =>
-          (prj.name.indexOf(searchText) > -1
-          || (prj.code && prj.code.indexOf(searchText) > -1)
-          || (prj.externalId && prj.externalId.indexOf(searchText) > -1)));
+          ((prj.name && prj.name.indexOf(searchText) > -1)
+            || (prj.code && prj.code.indexOf(searchText) > -1)
+            || (prj.externalId && prj.externalId.indexOf(searchText) > -1)));
+        // const sortedResults = _.sortBy(results, function (s) { return s.name; });
         return Promise.resolve(results);
       } else { return Promise.resolve(this.companies); }
     } else {
@@ -100,34 +101,34 @@ export class CompaniesService {
   getCompanyEnvironment(companyGuid: string, environmentGuid: string): Promise<CompanyEnvironment> {
     if (companyGuid && environmentGuid) {
       const environment = this.getCompany(companyGuid)
-      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid));
+        .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid));
       return environment;
     }
   }
   getCompanyEnvironmentHardware(companyGuid: string, environmentGuid: string, hardwareGuid: string):
-  Promise<CompanyEnvironmentHardwareItem> {
+    Promise<CompanyEnvironmentHardwareItem> {
     if (companyGuid && environmentGuid && hardwareGuid) {
       const hardwareitem = this.getCompany(companyGuid)
-      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
-      .then(environment => _.find<CompanyEnvironmentHardwareItem>(environment.hardware, t => t.guid === hardwareGuid));
+        .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+        .then(environment => _.find<CompanyEnvironmentHardwareItem>(environment.hardware, t => t.guid === hardwareGuid));
       return hardwareitem;
     }
   }
   getCompanyEnvironmentDatabase(companyGuid: string, environmentGuid: string, databaseGuid: string):
-  Promise<Database> {
+    Promise<Database> {
     if (companyGuid && environmentGuid && databaseGuid) {
       const hardwareitem = this.getCompany(companyGuid)
-      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
-      .then(environment => _.find<Database>(environment.databases, t => t.guid === databaseGuid));
+        .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+        .then(environment => _.find<Database>(environment.databases, t => t.guid === databaseGuid));
       return hardwareitem;
     }
   }
   getCompanyEnvironmentAccount(companyGuid: string, environmentGuid: string, accountGuid: string):
-  Promise<Account> {
+    Promise<Account> {
     if (companyGuid && environmentGuid && accountGuid) {
       const hardwareitem = this.getCompany(companyGuid)
-      .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
-      .then(environment => _.find<Account>(environment.accounts, t => t.guid === accountGuid));
+        .then(company => _.find<CompanyEnvironment>(company.environments, t => t.guid === environmentGuid))
+        .then(environment => _.find<Account>(environment.accounts, t => t.guid === accountGuid));
       return hardwareitem;
     }
   }

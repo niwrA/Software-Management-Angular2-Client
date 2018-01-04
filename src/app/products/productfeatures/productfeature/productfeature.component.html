@@ -3,12 +3,12 @@
   <md-card-content *ngIf="product">
     <div [routerLink]="['/products', product.guid, 'features']">{{product.name}}</div>
   </md-card-content>
-  <button [routerLink]='productfeatureDetails' md-raised-button md-tooltip="todo: productfeature Details">Details</button>
-  <button routerLink="productfeatureissues" md-raised-button md-tooltip="todo: known issues for this  feature">Issues</button>
-  <button [routerLink]='productfeatureconfigs' md-raised-button md-tooltip="todo: configuration options for this feature">Configs</button>
-  <button [routerLink]='productfeaturerequests' md-raised-button md-tooltip="todo: who requested this feature">Requests</button>
-  <button [routerLink]="['links']" md-raised-button md-tooltip="Product Links">Links</button>
-  <button [routerLink]="['files']" md-raised-button md-tooltip="Product Files">Files</button>
+  <button routerLink='details' md-raised-button md-tooltip="productfeature Details">Details</button>
+  <button routerLink="issues" md-raised-button md-tooltip="todo: known issues for this  feature">Issues</button>
+  <button routerLink='configs' md-raised-button md-tooltip="todo: configuration options for this feature">Configs</button>
+  <button routerLink='requestedby' md-raised-button md-tooltip="todo: who requested this feature">Requests</button>
+  <button routerLink='links' md-raised-button md-tooltip="Product Links">Links</button>
+  <button routerLink='files' md-raised-button md-tooltip="Product Files">Files</button>
   <router-outlet></router-outlet>
 </md-card>
 <div *ngIf="!productfeature">

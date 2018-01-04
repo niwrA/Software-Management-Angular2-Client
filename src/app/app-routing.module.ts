@@ -382,6 +382,14 @@ const appRoutes: Routes = [
         path: 'details',
         component: ProductFeatureDetailsComponent
       },
+      {
+        path: 'features',
+        component: ProductFeaturesComponent
+      },
+      {
+        path: 'issues',
+        component: ProductIssuesComponent
+      },
       linksSubRoute,
       filesSubRoute]
   },

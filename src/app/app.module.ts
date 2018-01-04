@@ -195,7 +195,9 @@ import { AccountDetailsComponent } from './companies/company/companyenvironments
     EntityElementDetailsComponent, PropertyElementDetailsComponent, CommandElementDetailsComponent,
     FileUploadComponent, FilesComponent, FileComponent, FileDetailsComponent, FilePreviewComponent,
     ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent,
-    CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent, CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent, AccountsComponent, AccountComponent, AccountDetailsComponent
+    CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent,
+    CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent,
+    AccountsComponent, AccountComponent, AccountDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

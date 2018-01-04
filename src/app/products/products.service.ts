@@ -44,7 +44,7 @@ export class ProductsService {
     newItem.guid = UUID.UUID();
     newItem.name = name;
     newItem.productGuid = product.guid;
-    const serviceProduct = _.find(this.products, function(s: Product){return s.guid === product.guid; });
+    const serviceProduct = _.find(this.products, function (s: Product) { return s.guid === product.guid; });
     if (doSave) {
       // todo: figure out why these aren't the same
       product.addVersion(newItem);
@@ -201,7 +201,9 @@ export class ProductsService {
 
   parseSingleResponse(response: any, Products: Array<Product>): Product {
     const product = new Product(response.json() as ProductState);
-    Products.push(product);
+    if (Products.indexOf(product) > -1) {
+      Products.push(product);
+    }
     return product;
   }
 
