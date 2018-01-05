@@ -3,8 +3,8 @@ import { CompanyEnvironment, CompanyEnvironmentState } from './company/companyen
 import * as _ from 'lodash';
 export class CompanyState {
     name: string;
-    code: string;
-    externalId: string;
+    code?: string;
+    externalId?: string;
     guid: string;
     roles: Array<CompanyRoleState>;
     environments: Array<CompanyEnvironmentState>;

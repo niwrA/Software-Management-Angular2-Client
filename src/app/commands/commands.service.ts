@@ -1,5 +1,6 @@
+import * as _ from 'lodash';
 import { Injectable } from '@angular/core';
-import { Command } from './command';
+import { Command, CommandReadOnly, CommandState } from './command';
 import { CommandBatchResult } from './commandbatchresult';
 import { UUID } from 'angular2-uuid';
 import { Headers, Http } from '@angular/http';
@@ -10,12 +11,50 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class CommandsService {
   private commandsUrl = environment.commandsUrl;
+  private commandsReadOnlyUrl = environment.commandsReadOnlyUrl;
   private headers = new Headers({ 'Content-Type': 'application/json' });
   commands = new Array<Command>();
   postedCommands = new Array<Command>();
-
+  commandsReadOnly = new Array<CommandReadOnly>();
+  
   constructor(private http: Http, private notificationsService: NotificationsService) {
   };
+
+  getCommandsForGuid(forGuid: string): Promise<Array<CommandReadOnly>> {
+    return this.getCommands('').then(commands => this.filterByForGuid(commands, forGuid));
+  }
+
+  filterByForGuid(commands: Array<CommandReadOnly>, forGuid: string): Promise<Array<CommandReadOnly>> {
+    if (forGuid && forGuid.length > 0) {
+      const results = _.filter<CommandReadOnly>(commands, prj => prj.forGuid === forGuid);
+      return Promise.resolve(results);
+    } else { return Promise.resolve(commands); }
+
+  }
+
+  getCommands(searchText: string): Promise<Array<CommandReadOnly>> {
+    if (this.commandsReadOnly.length > 0) {
+      if (searchText && searchText.length > 0) {
+        const results = _.filter<CommandReadOnly>(this.commandsReadOnly, prj => prj.name.indexOf(searchText) > -1);
+        return Promise.resolve(results);
+      } else { return Promise.resolve(this.commandsReadOnly); }
+    } else {
+      return this.http.get(this.commandsReadOnlyUrl)
+        .toPromise()
+        .then(response => this.parseResponseReadOnly(response, this.commandsReadOnly))
+        .catch(error => this.handleError(error, this.notificationsService));
+    }
+  }
+
+  parseResponseReadOnly(response: any, commands: Array<CommandReadOnly>): Array<CommandReadOnly> {
+    const states = response.json() as Array<CommandState>;
+    commands = new Array<CommandReadOnly>();
+    // todo: option to add/update
+    for (const state of states) {
+      commands.push(new CommandReadOnly(state));
+    }
+    return commands;
+  }
 
   postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
     for (const command of commands) {

@@ -57,6 +57,8 @@ import { CommandElementsComponent } from './designs/design/command-elements/comm
 import { CommandElementComponent } from './designs/design/command-elements/command-element/command-element.component';
 import { CommandElementDetailsComponent } from './designs/design/command-elements/command-element/command-element-details/command-element-details.component';
 
+import { CommandsComponent } from './commands/commands.component';
+
 import { LinksComponent } from './links/links.component';
 import { LinkComponent } from './links/link/link.component';
 import { LinkDetailsComponent } from './links/link/linkdetails/linkdetails.component';
@@ -88,6 +90,12 @@ const filesSubRoute = {
   component: FilesComponent
 };
 
+const commandsSubRoute = {
+  path: 'commands',
+  component: CommandsComponent
+};
+
+
 const appRoutes: Routes = [
   {
     path: 'admin',
@@ -106,7 +114,8 @@ const appRoutes: Routes = [
         component: ContactDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -134,7 +143,8 @@ const appRoutes: Routes = [
         component: CompanyEnvironmentsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -238,7 +248,8 @@ const appRoutes: Routes = [
         component: ProjectRolesComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -262,7 +273,8 @@ const appRoutes: Routes = [
         component: EpicElementsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -346,7 +358,8 @@ const appRoutes: Routes = [
         component: ProductIssuesComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {

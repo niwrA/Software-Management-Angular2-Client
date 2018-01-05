@@ -1,3 +1,18 @@
-<p>
-  commands works!
-</p>
+<md-card>
+  <md-input-container>
+    <input mdInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCommands()"
+    />
+  </md-input-container>
+  <md-card *ngFor="let command of commands">
+    <md-card-title-group>
+      <md-card-subtitle>
+        <md-icon>command</md-icon>
+      </md-card-subtitle>
+      <md-card-title>{{command.name}}{{command.entity}}</md-card-title>
+    </md-card-title-group>
+    <md-card-content>
+      <div>{{command.parametersJson}}</div>
+      <div>Created by {{command.userName}} on {{command.createdOn}}</div>
+      <div>Executed on {{command.executedOn}}</div>
+    </md-card-content>
+  </md-card>
