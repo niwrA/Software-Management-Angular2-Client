@@ -1,16 +1,16 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEntityElements(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEntityElements(searchTextInput.value || '')"
       (keyup.enter)='createEntityElement(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new entity" (click)="createEntityElement(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new entity" (click)="createEntityElement(searchTextInput.value)">Add</button>
   <div *ngIf="design && epicElement && entityElements">
-    <md-card *ngFor="let entityElement of entityElements">
-      <md-card-subtitle>entity</md-card-subtitle>
-      <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']">{{entityElement.name}}</md-card-title>
-      <md-card-actions align='end'>
-        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']"><md-icon>details</md-icon></button>
-      </md-card-actions>
-    </md-card>
+    <mat-card *ngFor="let entityElement of entityElements">
+      <mat-card-subtitle>entity</mat-card-subtitle>
+      <mat-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']">{{entityElement.name}}</mat-card-title>
+      <mat-card-actions align='end'>
+        <button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid, 'details']"><mat-icon>details</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-</md-card>
+</mat-card>

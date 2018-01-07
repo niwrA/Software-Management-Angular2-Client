@@ -1,27 +1,27 @@
-<md-input-container>
-  <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+<mat-input-container>
+  <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
     (keyup)="getProjectRoles(searchTextInput.value)" (keyup.enter)='createProjectRole(searchTextInput.value)' />
-</md-input-container>
-<button [disabled]='!canAdd' md-raised-button md-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
-<md-card>
-  <md-card-actions>
-    <a href="mailto:{{mailto}}"><button md-mini-fab [(disabled)]="!mailto"><md-icon>email circle</md-icon></button></a>
-  </md-card-actions>
-</md-card>
-<md-card *ngFor="let projectrole of filteredProjectRoles">
-  <md-card-title-group [routerLink]="[projectrole.guid, 'details']">
-    <md-card-subtitle>
-      <md-icon>assignment</md-icon>
-    </md-card-subtitle>
-    <md-card-title>{{projectrole.name}}</md-card-title>
-  </md-card-title-group>
-  <md-card-content>
+</mat-input-container>
+<button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
+<mat-card>
+  <mat-card-actions>
+    <a href="mailto:{{mailto}}"><button mat-mini-fab [(disabled)]="!mailto"><mat-icon>email circle</mat-icon></button></a>
+  </mat-card-actions>
+</mat-card>
+<mat-card *ngFor="let projectrole of filteredProjectRoles">
+  <mat-card-title-group [routerLink]="[projectrole.guid, 'details']">
+    <mat-card-subtitle>
+      <mat-icon>assignment</mat-icon>
+    </mat-card-subtitle>
+    <mat-card-title>{{projectrole.name}}</mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
     <app-projectroleassignments projectroleguid='{{projectrole.guid}}' [project]='project'></app-projectroleassignments>
-  </md-card-content>
-  <md-card-actions align='end'>
-    <button md-mini-fab color="warn" (click)="deleteProjectRole(projectrole)">
-<md-icon>delete</md-icon></button>
+  </mat-card-content>
+  <mat-card-actions align='end'>
+    <button mat-mini-fab color="warn" (click)="deleteProjectRole(projectrole)">
+<mat-icon>delete</mat-icon></button>
     <!--        <button [(disabled)]="!projectrole.Email" routerLink="projectrole" RouterLinkActive='active' [uiParams]="{ projectroleId: projectrole.Guid }">
-<md-icon>email circle</md-icon></button>-->
-  </md-card-actions>
-</md-card>
+<mat-icon>email circle</mat-icon></button>-->
+  </mat-card-actions>
+</mat-card>

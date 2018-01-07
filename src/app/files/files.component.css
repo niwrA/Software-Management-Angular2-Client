@@ -11,6 +11,6 @@ video {
     max-height: 200px;
 }
 
-md-card {
+mat-card {
     margin: 0.2em;
 }

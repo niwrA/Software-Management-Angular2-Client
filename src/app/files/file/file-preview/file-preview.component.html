@@ -1,9 +1,9 @@
-<md-card>
-  <md-card-title *ngIf="file">{{file.name}}</md-card-title>
-  <md-card-content *ngIf="file">
+<mat-card>
+  <mat-card-title *ngIf="file">{{file.name}}</mat-card-title>
+  <mat-card-content *ngIf="file">
     <img *ngIf="file.cardType==='image'" [src]="file.url">
     <video controls *ngIf="file.cardType==='video'">
       <source [src]="file.url" [type]="file.contentType">
     </video>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

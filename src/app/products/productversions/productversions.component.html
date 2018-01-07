@@ -1,24 +1,24 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')"
       (keyup.enter)='createProductVersion(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
   <div *ngIf="productversions">
-    <md-card *ngFor="let productversion of productversions">
-      <md-card-title-group [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']">
-        <md-card-subtitle>
-          <md-icon>assignment circle</md-icon>
-        </md-card-subtitle>
-        <md-card-title>{{productversion.name}}</md-card-title>
-      </md-card-title-group>
-      <md-card-content>
+    <mat-card *ngFor="let productversion of productversions">
+      <mat-card-title-group [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']">
+        <mat-card-subtitle>
+          <mat-icon>assignment circle</mat-icon>
+        </mat-card-subtitle>
+        <mat-card-title>{{productversion.name}}</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-content>
         <div>{{productversion.releaseDate | date:'yyyy-MM-dd'}}</div>
-      </md-card-content>
-      <md-card-actions align='end'>
-        <button md-mini-fab [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']"><md-icon>details</md-icon></button>
-        <button md-mini-fab color="warn" (click)="deleteProductVersion(productversion)"><md-icon>delete</md-icon></button>
-      </md-card-actions>
-    </md-card>
+      </mat-card-content>
+      <mat-card-actions align='end'>
+        <button mat-mini-fab [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']"><mat-icon>details</mat-icon></button>
+        <button mat-mini-fab color="warn" (click)="deleteProductVersion(productversion)"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-</md-card>
+</mat-card>

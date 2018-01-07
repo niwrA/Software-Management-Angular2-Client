@@ -1,37 +1,37 @@
-<md-card class='flex-h' color='primary'>
-  <md-card-title>
-    {{title}} <a href='https://github.com/niwrA/Software-Management-Angular2-Client'><md-icon>code</md-icon></a>
-  </md-card-title>
+<mat-card class='flex-h' color='primary'>
+  <mat-card-title>
+    {{title}} <a href='https://github.com/niwrA/Software-Management-Angular2-Client'><mat-icon>code</mat-icon></a>
+  </mat-card-title>
   <div>
 <!--    <app-ui-menu [menuitems]="menuitems"></app-ui-menu>-->
-    <button (click)="showProjects(true)" color='{{projectsColor}}' md-raised-button md-tooltip="View Projects">Projects</button>
-    <button (click)="showProducts(true)" color='{{productsColor}}' md-raised-button md-tooltip="View Products">Products</button>
-    <button (click)="showDesigns(true)" color='{{designsColor}}' md-raised-button md-tooltip="View Designs">Designs</button>
-    <button (click)='showCompanies(true)' color='{{companiesColor}}' md-raised-button md-tooltip="View Companies">Companies</button>
-    <button (click)='showContacts(true)' color='{{contactsColor}}' md-raised-button md-tooltip="View Contacts">Contacts</button>
-    <button (click)='showTechnologies(true)' color='{{technologiesColor}}' md-raised-button md-tooltip="View Technologies">Technologies</button>
-    <button *ngIf="isAdmin()" routerLink='/admin' md-raised-button md-tooltip="admin">Admin</button>
-    <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' md-raised-button md-tooltip="todo: login">Login</button>
-    <button *ngIf="isLoggedIn()" (click)='logout()' md-raised-button md-tooltip="todo: logout">Logout</button>
+    <button (click)="showProjects(true)" color='{{projectsColor}}' mat-raised-button mat-tooltip="View Projects">Projects</button>
+    <button (click)="showProducts(true)" color='{{productsColor}}' mat-raised-button mat-tooltip="View Products">Products</button>
+    <button (click)="showDesigns(true)" color='{{designsColor}}' mat-raised-button mat-tooltip="View Designs">Designs</button>
+    <button (click)='showCompanies(true)' color='{{companiesColor}}' mat-raised-button mat-tooltip="View Companies">Companies</button>
+    <button (click)='showContacts(true)' color='{{contactsColor}}' mat-raised-button mat-tooltip="View Contacts">Contacts</button>
+    <button (click)='showTechnologies(true)' color='{{technologiesColor}}' mat-raised-button mat-tooltip="View Technologies">Technologies</button>
+    <button *ngIf="isAdmin()" routerLink='/admin' mat-raised-button mat-tooltip="admin">Admin</button>
+    <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' mat-raised-button mat-tooltip="todo: login">Login</button>
+    <button *ngIf="isLoggedIn()" (click)='logout()' mat-raised-button mat-tooltip="todo: logout">Logout</button>
   </div>
-</md-card>
+</mat-card>
 <!--  <ui-view></ui-view>-->
 <router-outlet></router-outlet>
 <simple-notifications [options]="{}"></simple-notifications>
-<!--<md-card>
-  <md-tab-group>
-    <md-tab label="Projects">
+<!--<mat-card>
+  <mat-tab-group>
+    <mat-tab label="Projects">
       <app-projects></app-projects>
-    </md-tab>
-    <md-tab label="Products">
+    </mat-tab>
+    <mat-tab label="Products">
       <app-products></app-products>
-    </md-tab>
-    <md-tab label="Customers">
+    </mat-tab>
+    <mat-tab label="Customers">
       <app-customers></app-customers>
-    </md-tab>
-    <md-tab label="Technologies">
+    </mat-tab>
+    <mat-tab label="Technologies">
       <app-technologies></app-technologies>
-    </md-tab>
-  </md-tab-group>
-</md-card>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
 -->

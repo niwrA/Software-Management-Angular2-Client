@@ -1,21 +1,21 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
       (keyup)="getDatabases(searchTextInput.value)" (keyup.enter)='createDatabase(searchTextInput.value)'
     />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new database" (click)="createDatabase(searchTextInput.value)">Add</button>
-  <md-card *ngFor="let database of databases">
-    <md-card-title-group [routerLink]="[database.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>settings input composite</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{database.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-actions align='end'>
-      <button md-mini-fab color="warn" (click)="deleteDatabase(database)">
-        <md-icon>delete</md-icon>
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new database" (click)="createDatabase(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let database of databases">
+    <mat-card-title-group [routerLink]="[database.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>settings input composite</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{database.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab color="warn" (click)="deleteDatabase(database)">
+        <mat-icon>delete</mat-icon>
       </button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

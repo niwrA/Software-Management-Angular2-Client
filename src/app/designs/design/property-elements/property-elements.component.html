@@ -1,17 +1,17 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getPropertyElements(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getPropertyElements(searchTextInput.value || '')"
       (keyup.enter)='createPropertyElement(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new property" (click)="createPropertyElement(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new property" (click)="createPropertyElement(searchTextInput.value)">Add</button>
   <div *ngIf="design && epicElement && entityElement && propertyElements">
-    <md-card *ngFor="let propertyElement of propertyElements">
-      <md-card-subtitle>property</md-card-subtitle>
-      <md-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']">{{propertyElement.name}}</md-card-title>
-      <md-card-actions align='end'>
-        <button md-icon-button (click)="deletePropertyElement(propertyElement)"><md-icon>delete</md-icon></button>
-        <button md-icon-button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']"><md-icon>details</md-icon></button>
-      </md-card-actions>
-    </md-card>
+    <mat-card *ngFor="let propertyElement of propertyElements">
+      <mat-card-subtitle>property</mat-card-subtitle>
+      <mat-card-title [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']">{{propertyElement.name}}</mat-card-title>
+      <mat-card-actions align='end'>
+        <button mat-icon-button (click)="deletePropertyElement(propertyElement)"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button [routerLink]="['/designs',design.guid,'epicelements',epicElement.guid,'entityelements',entityElement.guid,'propertyelements',propertyElement.guid, 'details']"><mat-icon>details</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-</md-card>
+</mat-card>

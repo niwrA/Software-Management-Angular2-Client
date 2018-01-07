@@ -1,12 +1,12 @@
-<md-card>
-  <md-card-title *ngIf="productissue">{{productissue.name}}</md-card-title>
-  <md-card-content *ngIf="product">
+<mat-card>
+  <mat-card-title *ngIf="productissue">{{productissue.name}}</mat-card-title>
+  <mat-card-content *ngIf="product">
     <div [routerLink]="['/products', product.guid, 'issues']">{{product.name}}</div>
-  </md-card-content>
-  <button [routerLink]='details' md-raised-button md-tooltip="todo: productissue Details">Details</button>
+  </mat-card-content>
+  <button [routerLink]="['details']" mat-raised-button mat-tooltip="todo: productissue Details">Details</button>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!productissue">
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
   Loading productissue
 </div>

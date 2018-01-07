@@ -1,16 +1,16 @@
-<md-card >
-  <md-card-title *ngIf="companyenvironment">{{companyenvironment.name}} Environment for <a [routerLink]="['/companies', company.guid, 'environments']" *ngIf="company">{{company.name}}</a></md-card-title>
-  <md-card-content *ngIf="product"><div>{{product.name}}</div></md-card-content>
-  <button routerLink="details" md-raised-button md-tooltip="Details">Details</button>
-  <button routerLink="hardware" md-raised-button md-tooltip="Hardware">(Virtual) Machines</button>
-  <button routerLink="databases" md-raised-button md-tooltip="Databases">Databases</button>
-  <button routerLink="accounts" md-raised-button md-tooltip="Accounts">Accounts</button>
-  <button [routerLink]="productinstallations" md-raised-button md-tooltip="todo: products">Product Installations</button>
-  <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-  <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
+<mat-card >
+  <mat-card-title *ngIf="companyenvironment">{{companyenvironment.name}} Environment for <a [routerLink]="['/companies', company.guid, 'environments']" *ngIf="company">{{company.name}}</a></mat-card-title>
+  <mat-card-content *ngIf="company"><div>{{company.name}}</div></mat-card-content>
+  <button routerLink="details" mat-raised-button mat-tooltip="Details">Details</button>
+  <button routerLink="hardware" mat-raised-button mat-tooltip="Hardware">(Virtual) Machines</button>
+  <button routerLink="databases" mat-raised-button mat-tooltip="Databases">Databases</button>
+  <button routerLink="accounts" mat-raised-button mat-tooltip="Accounts">Accounts</button>
+  <button mat-raised-button mat-tooltip="todo: products">Product Installations</button>
+  <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+  <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
   <router-outlet>
   </router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!companyenvironment">
-  Loading companyenvironment <md-spinner></md-spinner>
+  Loading companyenvironment <mat-spinner></mat-spinner>
 </div>

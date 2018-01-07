@@ -1,21 +1,21 @@
-<md-card *ngIf="register">
-  <md-card-title>{{register.title}}</md-card-title>
-  <md-input-container>
-    <input mdInput [(ngModel)]="register.name" placeholder="UserName" />
-  </md-input-container>
-  <md-input-container>
-    <input mdInput type="email" [(ngModel)]="register.email" placeholder="Email address" />
-  </md-input-container>
-  <md-input-container>
-    <input mdInput type='password' [(ngModel)]='register.password' placeholder="Password" />
-  </md-input-container>
-    <md-input-container>
-    <input mdInput type='password' [(ngModel)]='register.repassword' placeholder="Repeat password" />
-  </md-input-container>
-  <md-card-actions>
-    <button md-raised-button (click)="doRegister()">Register</button>
-  </md-card-actions>
-</md-card>
+<mat-card *ngIf="register">
+  <mat-card-title>{{register.title}}</mat-card-title>
+  <mat-input-container>
+    <input matInput [(ngModel)]="register.name" placeholder="UserName" />
+  </mat-input-container>
+  <mat-input-container>
+    <input matInput type="email" [(ngModel)]="register.email" placeholder="Email address" />
+  </mat-input-container>
+  <mat-input-container>
+    <input matInput type='password' [(ngModel)]='register.password' placeholder="Password" />
+  </mat-input-container>
+    <mat-input-container>
+    <input matInput type='password' [(ngModel)]='register.repassword' placeholder="Repeat password" />
+  </mat-input-container>
+  <mat-card-actions>
+    <button mat-raised-button (click)="doRegister()">Register</button>
+  </mat-card-actions>
+</mat-card>
 <div *ngIf="!register">
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
 </div>

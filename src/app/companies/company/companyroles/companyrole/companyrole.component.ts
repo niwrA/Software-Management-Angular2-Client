@@ -8,7 +8,7 @@ import { CompaniesService } from '../../../companies.service';
 import { ContactsComponent } from '../../../../contacts/contacts.component';
 import { ContactsService } from '../../../../contacts/contacts.service';
 import { Contact } from '../../../../contacts/contact';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-companyrole',
@@ -20,14 +20,14 @@ export class CompanyRoleComponent implements OnInit {
   companyrole: CompanyRole;
   company: Company;
   previousCompanyRole: CompanyRole;
-  contactDialogRef: MdDialogRef<ContactsComponent>;
+  contactDialogRef: MatDialogRef<ContactsComponent>;
   selectedContacts: Array<Contact>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: CompaniesService,
-    private dialog: MdDialog,
+    private dialog: MatDialog,
     private contactsService: ContactsService
   ) { }
 

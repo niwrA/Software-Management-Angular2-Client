@@ -9,7 +9,7 @@ import { ContactsComponent } from '../contacts/contacts.component';
 import { ContactsSelectComponent } from '../contacts/contacts-select/contacts-select.component';
 import { ContactsService } from '../contacts/contacts.service';
 import { Contact } from '../contacts/contact';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
 
@@ -19,7 +19,7 @@ import * as _ from 'lodash';
   styleUrls: ['./employments.component.css']
 })
 export class EmploymentsComponent implements OnInit {
-  contactDialogRef: MdDialogRef<ContactsSelectComponent>;
+  contactDialogRef: MatDialogRef<ContactsSelectComponent>;
   employments: Array<Employment>;
   selectedContacts: Array<Contact>;
   _companyroleguid: string;
@@ -34,7 +34,7 @@ export class EmploymentsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: EmploymentsService,
-    private dialog: MdDialog,
+    private dialog: MatDialog,
     private contactsService: ContactsService
   ) {
   }

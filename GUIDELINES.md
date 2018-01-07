@@ -29,7 +29,7 @@ https://ui-router.github.io/tutorial/ng2/hellogalaxy
 
 Similar to angular's own router, you indicate the target of your route with ```<ui-view></ui-view>```. When creating a link between components, you use ui-router's uiSref instead of href, optionally with parameters, for instance like this:
 ```html
-<button uiSref='productversion.companies' [uiParams]="{ productVersionId: productversion.Guid }" md-raised-button md-tooltip="todo: installations of this version">Installations</button>
+<button uiSref='productversion.companies' [uiParams]="{ productVersionId: productversion.Guid }" mat-raised-button mat-tooltip="todo: installations of this version">Installations</button>
 ```
 
 The example above creates a child route for productversion to place the companies component, and will look for a ui-view within the main ui-view.

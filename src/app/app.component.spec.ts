@@ -32,10 +32,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Software Management');
   }));
 
-  it('should render title in an md-card-title tag', async(() => {
+  it('should render title in an mat-card-title tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('md-card-title').textContent).toContain('Software Management');
+    expect(compiled.querySelector('mat-card-title').textContent).toContain('Software Management');
   }));
 });

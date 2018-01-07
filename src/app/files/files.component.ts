@@ -4,7 +4,7 @@ import { FilesService } from './files.service';
 import { File } from './file';
 import { FilePreviewComponent } from './file/file-preview/file-preview.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
 @Component({
@@ -30,13 +30,13 @@ export class FilesComponent implements OnInit {
   snapshot: RouterStateSnapshot;
   selectedFile: File;
   searchText: string;
-  imageDialogRef: MdDialogRef<FilePreviewComponent>;
+  imageDialogRef: MatDialogRef<FilePreviewComponent>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: FilesService,
-    private dialog: MdDialog,
+    private dialog: MatDialog,
     private sanitizer: DomSanitizer
   ) {
     this.snapshot = router.routerState.snapshot;
@@ -64,8 +64,8 @@ export class FilesComponent implements OnInit {
     this.forGuid = forGuid;
   }
 
-  getFiles(searchText: string): void {
-    this.service.getFiles(searchText).then(files => this.updateFiles(files));
+  getFiles(): void {
+    this.service.getFiles(this.searchText).then(files => this.updateFiles(files));
   }
 
   filterFiles(): void {

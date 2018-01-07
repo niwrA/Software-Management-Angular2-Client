@@ -1,6 +1,6 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "version": "1.0.0-beta.26",
     "name": "software-management"
   },
   "apps": [{
@@ -13,9 +13,9 @@
     "index": "index.html",
     "main": "main.ts",
     "test": "test.ts",
-    "tsconfig": "tsconfig.json",
+    "tsconfig": "tsconfig.app.json",
+    "testTsconfig": "tsconfig.spec.json",
     "prefix": "app",
-    "mobile": false,
     "styles": [
       "styles.scss"
     ],
@@ -36,27 +36,20 @@
       "config": "./karma.conf.js"
     }
   },
+  "lint": [{
+    "project": "src/tsconfig.app.json",
+    "exclude": "**/node_modules/**"
+  },
+  {
+    "project": "e2e/tsconfig.spec.json",
+    "exclude": "**/node_modules/**"
+  },
+  {
+    "project": "e2e/tsconfig.e2e.json",
+    "exclude": "**/node_modules/**"
+  }],
   "defaults": {
     "styleExt": "css",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
-    },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
-    }
-  },
-  "lint": [{
-    "files": "src/**/*.ts",
-    "project": "src/tsconfig.json"
-  }, {
-    "files": "e2e/**/*.ts",
-    "project": "e2e/tsconfig.json"
-  }]
+    "component": {}
+  }
 }

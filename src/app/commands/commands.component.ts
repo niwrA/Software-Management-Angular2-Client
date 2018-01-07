@@ -61,8 +61,8 @@ export class CommandsComponent implements OnInit {
     this.forGuid = forGuid;
   }
 
-  getCommands(searchText: string): void {
-    this.service.getCommands(searchText).then(commands => this.updateCommands(commands));
+  getCommands(): void {
+    this.service.getCommands(this.searchText).then(commands => this.updateCommands(commands));
   }
 
   filterCommands(): void {

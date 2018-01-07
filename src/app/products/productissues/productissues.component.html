@@ -1,21 +1,21 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductIssues(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductIssues(searchTextInput.value || '')"
       (keyup.enter)='createProductIssue(searchTextInput.value)' />
-  </md-input-container>
-  <button *ngIf="versionGuid" md-raised-button md-tooltip="Add new issue" (click)="createProductIssue(searchTextInput.value)">Add</button>
-  <md-card *ngFor="let productissue of productissues">
-    <md-card-title-group [routerLink]="['/products', productissue.productGuid, 'issues', productissue.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>bug_report</md-icon>
-        <md-icon color="warn" *ngIf="productissue.isCritical">error_outline</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{productissue.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>{{productissue.description}}</md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="['/products', productissue.productGuid, 'issues', productissue.guid, 'details']"><md-icon>details</md-icon></button>
-      <button md-mini-fab color="warn" (click)="deleteProductIssue(productissue)"><md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+  </mat-input-container>
+  <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Add new issue" (click)="createProductIssue(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let productissue of productissues">
+    <mat-card-title-group [routerLink]="['/products', productissue.productGuid, 'issues', productissue.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>bug_report</mat-icon>
+        <mat-icon color="warn" *ngIf="productissue.isCritical">error_outline</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{productissue.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>{{productissue.description}}</mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="['/products', productissue.productGuid, 'issues', productissue.guid, 'details']"><mat-icon>details</mat-icon></button>
+      <button mat-mini-fab color="warn" (click)="deleteProductIssue(productissue)"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

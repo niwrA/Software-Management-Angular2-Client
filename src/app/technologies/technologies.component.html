@@ -1,25 +1,25 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')"
       (keyup.enter)='createTechnology(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
   <p hidden>
-    <md-checkbox>Only my technologies ... </md-checkbox>
+    <mat-checkbox>Only my technologies ... </mat-checkbox>
   </p>
-  <md-card *ngFor="let technology of technologies">
-    <md-card-title-group>
-      <md-card-subtitle>
-        <md-icon>build</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{technology.Name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
+  <mat-card *ngFor="let technology of technologies">
+    <mat-card-title-group>
+      <mat-card-subtitle>
+        <mat-icon>build</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{technology.Name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
       <div>{{technology.Description}} ...</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="[technology.Guid]"><md-icon>details circle</md-icon></button>
-      <button md-mini-fab [routerLink]="[technology.Guid]"><md-icon>share circle</md-icon></button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="[technology.Guid]"><mat-icon>details circle</mat-icon></button>
+      <button mat-mini-fab [routerLink]="[technology.Guid]"><mat-icon>share circle</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

@@ -1,26 +1,26 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getDesigns()" (keyup.enter)='createDesign(searchTextInput.value)' />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new design" (click)="createDesign(searchTextInput.value)">Add</button>
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getDesigns()" (keyup.enter)='createDesign(searchTextInput.value)' />
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new design" (click)="createDesign(searchTextInput.value)">Add</button>
 
-  <md-card *ngFor="let design of designs">
-    <md-card-title-group [routerLink]="[design.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>shopping cart</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{design.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
+  <mat-card *ngFor="let design of designs">
+    <mat-card-title-group [routerLink]="[design.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>shopping cart</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{design.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
       <div>{{design.description}}</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="[design.guid, 'details']">
-<md-icon>details circle</md-icon></button>
-      <button md-mini-fab [routerLink]="[design.guid]">
-<md-icon>share circle</md-icon></button>
-      <button md-mini-fab color="warn" (click)="deleteDesign(design)">
-<md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="[design.guid, 'details']">
+<mat-icon>details circle</mat-icon></button>
+      <button mat-mini-fab [routerLink]="[design.guid]">
+<mat-icon>share circle</mat-icon></button>
+      <button mat-mini-fab color="warn" (click)="deleteDesign(design)">
+<mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

@@ -1,22 +1,22 @@
-<md-card *ngIf="productversion">
-  <md-card-content>
-    <md-input-container>
-      <input mdInput [(ngModel)]="productversion.name" placeholder="Name" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="productversion.major" placeholder="Major" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="productversion.minor" placeholder="Minor" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="productversion.build" placeholder="Build" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="productversion.revision" placeholder="Revision" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput type='date' [(ngModel)]='productversion.releaseDate' placeholder="ReleaseDate" />
-    </md-input-container>
-  </md-card-content>
-</md-card>
+<mat-card *ngIf="productversion">
+  <mat-card-content>
+    <mat-input-container>
+      <input matInput [(ngModel)]="productversion.name" placeholder="Name" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput [(ngModel)]="productversion.major" placeholder="Major" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput [(ngModel)]="productversion.minor" placeholder="Minor" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput [(ngModel)]="productversion.build" placeholder="Build" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput [(ngModel)]="productversion.revision" placeholder="Revision" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput type='date' [(ngModel)]='productversion.releaseDate' placeholder="ReleaseDate" />
+    </mat-input-container>
+  </mat-card-content>
+</mat-card>

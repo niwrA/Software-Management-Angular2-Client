@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdDialog, MdDialogRef, MdDialogActions, MdDialogTitle, MdDialogContent } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogActions, MatDialogTitle, MatDialogContent } from '@angular/material';
 import { Contact } from '../contact';
 
 @Component({
@@ -11,7 +11,7 @@ import { Contact } from '../contact';
 export class ContactsSelectComponent {
   @Input() selectedContacts: Array<Contact> = new Array<Contact>();
 
-  constructor(public dialogRef: MdDialogRef<ContactsSelectComponent>) {}
+  constructor(public dialogRef: MatDialogRef<ContactsSelectComponent>) {}
 
   confirm(): void {
     this.dialogRef.close(this.selectedContacts);

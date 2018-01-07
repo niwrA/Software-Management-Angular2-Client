@@ -10,7 +10,7 @@ import { ContactsComponent } from '../contacts/contacts.component';
 import { ContactsSelectComponent } from '../contacts/contacts-select/contacts-select.component';
 import { ContactsService } from '../contacts/contacts.service';
 import { Contact } from '../contacts/contact';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
 
@@ -20,7 +20,7 @@ import * as _ from 'lodash';
   styleUrls: ['./projectroleassignments.component.css']
 })
 export class ProjectRoleAssignmentsComponent implements OnInit {
-  contactDialogRef: MdDialogRef<ContactsSelectComponent>;
+  contactDialogRef: MatDialogRef<ContactsSelectComponent>;
   projectroleassignments: Array<ProjectRoleAssignment>;
   selectedContacts: Array<Contact>;
   _projectroleguid: string;
@@ -37,7 +37,7 @@ export class ProjectRoleAssignmentsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: ProjectRoleAssignmentsService,
-    private dialog: MdDialog,
+    private dialog: MatDialog,
     private contactsService: ContactsService,
     private projectsService: ProjectsService
 

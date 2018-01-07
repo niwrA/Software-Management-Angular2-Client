@@ -1,22 +1,22 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')"
       (keyup.enter)='createProductFeature(searchTextInput.value)' />
-  </md-input-container>
-  <button *ngIf="versionGuid" md-raised-button md-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
-  <button *ngIf="versionGuid" md-raised-button md-tooltip="Request new feature" (click)="requestProductFeature(searchTextInput.value)">Request</button>
-  <md-card *ngFor="let productfeature of productfeatures">
-    <md-card-title-group [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon *ngIf="productfeature.isRequest">lightbulb_outline</md-icon>
-        <md-icon *ngIf="!productfeature.isRequest"></md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{productfeature.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>{{productfeature.description}}</md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']"><md-icon>details</md-icon></button>
-      <button md-mini-fab color="warn" (click)="deleteProductFeature(productfeature)"><md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+  </mat-input-container>
+  <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
+  <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Request new feature" (click)="requestProductFeature(searchTextInput.value)">Request</button>
+  <mat-card *ngFor="let productfeature of productfeatures">
+    <mat-card-title-group [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon *ngIf="productfeature.isRequest">lightbulb_outline</mat-icon>
+        <mat-icon *ngIf="!productfeature.isRequest"></mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{productfeature.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>{{productfeature.description}}</mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="['/products', productfeature.productGuid, 'productfeatures', productfeature.guid, 'details']"><mat-icon>details</mat-icon></button>
+      <button mat-mini-fab color="warn" (click)="deleteProductFeature(productfeature)"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

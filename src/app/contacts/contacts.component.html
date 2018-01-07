@@ -1,37 +1,37 @@
-<md-card>
-  <md-input-container>
-    <input mdInput type="search" #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts()" (keyup.enter)='createContact(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button [disabled]='!canAdd' md-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
-  <md-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</md-card-subtitle>
-  <md-card-content>
-    <md-card-actions *ngIf="selectedContacts.length>0">
-      <a href="mailto:{{mailto}}"><button md-mini-fab [(disabled)]="!mailto"><md-icon>email circle</md-icon></button></a>
-      <button md-mini-fab [(disabled)]="!mailto" (click)="clearSelection()"><md-icon>delete</md-icon></button>
-    </md-card-actions>
-    <md-list *ngIf="selectedContacts.length>0">
-      <md-list-item>
+<mat-card>
+  <mat-input-container>
+    <input matInput type="search" #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts()" (keyup.enter)='createContact(searchTextInput.value)' />
+  </mat-input-container>
+  <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
+  <mat-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</mat-card-subtitle>
+  <mat-card-content>
+    <mat-card-actions *ngIf="selectedContacts.length>0">
+      <a href="mailto:{{mailto}}"><button mat-mini-fab [(disabled)]="!mailto"><mat-icon>email circle</mat-icon></button></a>
+      <button mat-mini-fab [(disabled)]="!mailto" (click)="clearSelection()"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+    <mat-list *ngIf="selectedContacts.length>0">
+      <mat-list-item>
         <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
-      </md-list-item>
-    </md-list>
-    <md-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">
-      <md-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></md-checkbox>
-      <md-card-title-group [routerLink]="[contact.guid, 'details']">
-        <img *ngIf="contact.avatarUrl" md-card-avatar [src]="contact.avatarUrl">
-        <md-card-subtitle>
-          <md-icon>person circle</md-icon>
-        </md-card-subtitle>
-        <md-card-title>{{contact.name}}</md-card-title>
-      </md-card-title-group>
-      <md-card-content>
+      </mat-list-item>
+    </mat-list>
+    <mat-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">
+      <mat-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></mat-checkbox>
+      <mat-card-title-group [routerLink]="[contact.guid, 'details']">
+        <img *ngIf="contact.avatarUrl" mat-card-avatar [src]="contact.avatarUrl">
+        <mat-card-subtitle>
+          <mat-icon>person circle</mat-icon>
+        </mat-card-subtitle>
+        <mat-card-title>{{contact.name}}</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-content>
         <div>{{contact.email}} ...</div>
-      </md-card-content>
-      <md-card-actions align='end'>
-        <button md-mini-fab [routerLink]="[contact.guid, 'details']"><md-icon>details circle</md-icon></button>
-        <a href="mailto:{{contact.email}}"><button md-mini-fab [(disabled)]="!contact.email"><md-icon>email circle</md-icon></button></a>
-        <button md-mini-fab color="warn" (click)="deleteContact(contact)">
-<md-icon>delete</md-icon></button>
-      </md-card-actions>
-    </md-card>
-  </md-card-content>
-</md-card>
+      </mat-card-content>
+      <mat-card-actions align='end'>
+        <button mat-mini-fab [routerLink]="[contact.guid, 'details']"><mat-icon>details circle</mat-icon></button>
+        <a href="mailto:{{contact.email}}"><button mat-mini-fab [(disabled)]="!contact.email"><mat-icon>email circle</mat-icon></button></a>
+        <button mat-mini-fab color="warn" (click)="deleteContact(contact)">
+<mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

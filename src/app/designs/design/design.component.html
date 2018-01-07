@@ -1,15 +1,15 @@
-<md-card>
-  <md-card-title *ngIf="design">{{design.name}}</md-card-title>
-  <md-card-actions *ngIf="design">
-    <button routerLink='details' md-raised-button md-tooltip="Details">Details</button>
-    <button [routerLink]="['epicelements']" md-raised-button md-tooltip="Epics">Epics</button>
-    <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
-    <button [routerLink]="['commands']" md-raised-button md-tooltip="Commands">Audit</button>
-  </md-card-actions>
+<mat-card>
+  <mat-card-title *ngIf="design">{{design.name}}</mat-card-title>
+  <mat-card-actions *ngIf="design">
+    <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
+    <button [routerLink]="['epicelements']" mat-raised-button mat-tooltip="Epics">Epics</button>
+    <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+    <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
+    <button [routerLink]="['commands']" mat-raised-button mat-tooltip="Commands">Audit</button>
+  </mat-card-actions>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!design">
   Loading ...
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
 </div>

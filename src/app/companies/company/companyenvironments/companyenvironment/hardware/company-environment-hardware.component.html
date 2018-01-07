@@ -1,24 +1,24 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
       (keyup)="getCompanyEnvironmentHardware(searchTextInput.value)" (keyup.enter)='createCompanyEnvironmentHardwareItem(searchTextInput.value)'
     />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new hardware" (click)="createCompanyEnvironmentHardwareItem(searchTextInput.value)">Add</button>
-  <md-card *ngFor="let hardware of companyenvironmenthardware">
-    <md-card-title-group [routerLink]="[hardware.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>settings input composite</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{hardware.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new hardware" (click)="createCompanyEnvironmentHardwareItem(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let hardware of companyenvironmenthardware">
+    <mat-card-title-group [routerLink]="[hardware.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>settings input composite</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{hardware.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
       <div>{{hardware.ipAddress}}</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab color="warn" (click)="deleteCompanyEnvironmentHardware(hardware)">
-        <md-icon>delete</md-icon>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab color="warn" (click)="deleteCompanyEnvironmentHardware(hardware)">
+        <mat-icon>delete</mat-icon>
       </button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

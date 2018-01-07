@@ -1,11 +1,11 @@
-<md-card>
-  <md-card-title *ngIf="file">{{file.name}}</md-card-title>
-  <md-card-actions *ngIf="file">
-    <button routerLink='details' md-raised-button md-tooltip="File Details">Details</button>
-  </md-card-actions>
+<mat-card>
+  <mat-card-title *ngIf="file">{{file.name}}</mat-card-title>
+  <mat-card-actions *ngIf="file">
+    <button routerLink='details' mat-raised-button mat-tooltip="File Details">Details</button>
+  </mat-card-actions>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!file">
   loading ...
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
 </div>

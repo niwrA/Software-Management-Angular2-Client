@@ -1,21 +1,21 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
       (keyup)="getAccounts(searchTextInput.value)" (keyup.enter)='createAccount(searchTextInput.value)'
     />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new account" (click)="createAccount(searchTextInput.value)">Add</button>
-  <md-card *ngFor="let account of accounts">
-    <md-card-title-group [routerLink]="[account.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>settings input composite</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{account.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-actions align='end'>
-      <button md-mini-fab color="warn" (click)="deleteAccount(account)">
-        <md-icon>delete</md-icon>
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new account" (click)="createAccount(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let account of accounts">
+    <mat-card-title-group [routerLink]="[account.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>settings input composite</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{account.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab color="warn" (click)="deleteAccount(account)">
+        <mat-icon>delete</mat-icon>
       </button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

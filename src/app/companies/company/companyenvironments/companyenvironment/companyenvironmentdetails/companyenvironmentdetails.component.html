@@ -1,16 +1,16 @@
-<md-card *ngIf="companyenvironment">
-  <md-card-content>
-    <md-input-container>
-      <input mdInput (blur)="changeName()" [(ngModel)]="companyenvironment.name" placeholder="Name" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput type="url" (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
-      <md-hint *ngIf="urlMissingHttp()" color="warn">
+<mat-card *ngIf="companyenvironment">
+  <mat-card-content>
+    <mat-input-container>
+      <input matInput (blur)="changeName()" [(ngModel)]="companyenvironment.name" placeholder="Name" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput type="url" (blur)="changeUrl()" [(ngModel)]="companyenvironment.url" placeholder="Url" />
+      <mat-hint *ngIf="urlMissingHttp()" color="warn">
         Missing http(s)://
-      </md-hint>
-    </md-input-container>
-  </md-card-content>
-</md-card>
+      </mat-hint>
+    </mat-input-container>
+  </mat-card-content>
+</mat-card>
     <!-- just a test 
       <input type="file" name="files" multiple/>
 -->

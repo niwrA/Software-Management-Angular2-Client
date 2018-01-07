@@ -1,16 +1,16 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEpicElements(searchTextInput.value || '')"
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEpicElements(searchTextInput.value || '')"
       (keyup.enter)='createEpicElement(searchTextInput.value)' />
-  </md-input-container>
-  <button md-raised-button md-tooltip="Add new version" (click)="createEpicElement(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new version" (click)="createEpicElement(searchTextInput.value)">Add</button>
   <div *ngIf="epicElements">
-    <md-card *ngFor="let epicElement of epicElements">
-      <md-card-subtitle>epic</md-card-subtitle>
-      <md-card-title [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']">{{epicElement.name}}</md-card-title>
-      <md-card-actions align='end'>
-        <button [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']"><md-icon>details</md-icon></button>
-      </md-card-actions>
-    </md-card>
+    <mat-card *ngFor="let epicElement of epicElements">
+      <mat-card-subtitle>epic</mat-card-subtitle>
+      <mat-card-title [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']">{{epicElement.name}}</mat-card-title>
+      <mat-card-actions align='end'>
+        <button [routerLink]="['/designs', design.guid, 'epicelements', epicElement.guid, 'details']"><mat-icon>details</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-</md-card>
+</mat-card>

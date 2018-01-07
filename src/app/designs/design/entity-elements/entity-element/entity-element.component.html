@@ -1,16 +1,16 @@
-<md-card>
-  <md-card-subtitle>entity for <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></md-card-subtitle>
-  <md-card-title *ngIf="entityElement">{{entityElement.name}}</md-card-title>
-  <md-card-actions *ngIf="entityElement">
-    <button routerLink='details' md-raised-button md-tooltip="Details">Details</button>
-    <button [routerLink]="['propertyelements']" md-raised-button md-tooltip="Entities">Properties</button>
-    <button [routerLink]="['commandelements']" md-raised-button md-tooltip="Entities">Commands</button>
-    <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" md-raised-button md-tooltip="Links">Files</button>
-  </md-card-actions>
+<mat-card>
+  <mat-card-subtitle>entity for <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></mat-card-subtitle>
+  <mat-card-title *ngIf="entityElement">{{entityElement.name}}</mat-card-title>
+  <mat-card-actions *ngIf="entityElement">
+    <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
+    <button [routerLink]="['propertyelements']" mat-raised-button mat-tooltip="Entities">Properties</button>
+    <button [routerLink]="['commandelements']" mat-raised-button mat-tooltip="Entities">Commands</button>
+    <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+    <button [routerLink]="['files']" mat-raised-button mat-tooltip="Links">Files</button>
+  </mat-card-actions>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!entityElement">
   Loading ...
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
 </div>

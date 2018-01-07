@@ -1,7 +1,7 @@
-<md-card *ngIf="contact">
-  <md-card-content layout-align="center" [routerLink]="['/contacts', contact.guid]">
+<mat-card *ngIf="contact">
+  <mat-card-content layout-align="center" [routerLink]="['/contacts', contact.guid]">
     <div class="mdcard"><img *ngIf="contact.avatarUrl"  [src]="contact.avatarUrl">
       <div>{{contact.name}}</div>
     </div>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

@@ -61,8 +61,8 @@ export class LinksComponent implements OnInit {
     this.forGuid = forGuid;
   }
 
-  getLinks(searchText: string): void {
-    this.service.getLinks(searchText).then(links => this.updateLinks(links));
+  getLinks(): void {
+    this.service.getLinks(this.searchText).then(links => this.updateLinks(links));
   }
 
   filterLinks(): void {

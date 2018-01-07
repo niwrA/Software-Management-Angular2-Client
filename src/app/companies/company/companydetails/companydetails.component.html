@@ -1,13 +1,13 @@
-<md-card *ngIf="company">
-  <md-card-content>
-    <md-input-container>
-      <input mdInput (blur)="changeName()" [(ngModel)]="company.name" placeholder="Name" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput (blur)="changeCode()" [(ngModel)]="company.code" placeholder="Code" />
-    </md-input-container>
-    <md-input-container>
-      <input mdInput (blur)="changeExternalId()" [(ngModel)]="company.externalId" placeholder="ExternalId" />
-    </md-input-container>
-  </md-card-content>
-</md-card>
+<mat-card *ngIf="company">
+  <mat-card-content>
+    <mat-input-container>
+      <input matInput (blur)="changeName()" [(ngModel)]="company.name" placeholder="Name" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput (blur)="changeCode()" [(ngModel)]="company.code" placeholder="Code" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput (blur)="changeExternalId()" [(ngModel)]="company.externalId" placeholder="ExternalId" />
+    </mat-input-container>
+  </mat-card-content>
+</mat-card>

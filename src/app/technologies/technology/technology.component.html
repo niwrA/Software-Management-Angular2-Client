@@ -1,17 +1,17 @@
-<md-card *ngIf="technology">
-  <md-card-title>{{technology.Name}}</md-card-title>
-  <md-card-actions>
-    <button [routerLink]='technologyDetails' md-raised-button md-tooltip="Technology Details">Details</button>
-    <button [routerLink]='technologyProducts' md-raised-button md-tooltip="View Products for this Technology">Products</button>
-    <button [routerLink]='technologyContacts' md-raised-button md-tooltip="Technology contacts">Contacts</button>
-    <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
-  </md-card-actions>
+<mat-card *ngIf="technology">
+  <mat-card-title>{{technology.Name}}</mat-card-title>
+  <mat-card-actions>
+    <button [routerLink]='technologyDetails' mat-raised-button mat-tooltip="Technology Details">Details</button>
+    <button [routerLink]='technologyProducts' mat-raised-button mat-tooltip="View Products for this Technology">Products</button>
+    <button [routerLink]='technologyContacts' mat-raised-button mat-tooltip="Technology contacts">Contacts</button>
+    <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+    <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
+  </mat-card-actions>
   <div>
-    <input mdInput [(ngModel)]="technology.Name" placeholder="Name"/>
-    <input mdInput type='date' [(ngModel)]='technology.EndDate' placeholder="EndDate"/>
+    <input matInput [(ngModel)]="technology.Name" placeholder="Name"/>
+    <input matInput type='date' [(ngModel)]='technology.EndDate' placeholder="EndDate"/>
   </div>
-</md-card>
+</mat-card>
   <div *ngIf="!technology">
     Error loading technology
   </div>

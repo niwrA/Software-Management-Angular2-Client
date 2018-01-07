@@ -1,11 +1,11 @@
-<md-card>
-  <md-card-title *ngIf="hardwareitem">{{hardwareitem.name}}</md-card-title>
-  <button [routerLink]='hardwareitemdetails' md-raised-button md-tooltip="Details">Details</button>
-  <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-  <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
+<mat-card>
+  <mat-card-title *ngIf="hardwareitem">{{hardwareitem.name}}</mat-card-title>
+  <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
+  <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+  <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!hardwareitem">
-  <md-spinner></md-spinner>
+  <mat-spinner></mat-spinner>
   Loading hardwareitem
 </div>

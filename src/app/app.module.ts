@@ -4,15 +4,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdButtonModule } from '@angular/material';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
 
-import { MaterialModule } from '@angular/material';
+// import { MaterialModule } from '@angular/material';
 import 'hammerjs';
-import { PushNotificationsService, SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
+import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
@@ -121,6 +120,8 @@ import { DatabaseDetailsComponent } from './companies/company/companyenvironment
 import { AccountsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/accounts.component';
 import { AccountComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account.component';
 import { AccountDetailsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account-details/account-details.component';
+import { MyMaterialModule} from './app.materials.module';
+import { RouterLinkStubDirective } from '../testing/router-stubs';
 
 @NgModule({
   imports: [
@@ -129,8 +130,8 @@ import { AccountDetailsComponent } from './companies/company/companyenvironments
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    SimpleNotificationsModule,
-    MaterialModule,
+    SimpleNotificationsModule.forRoot(),
+    MyMaterialModule,
     FileUploadModule,
     FlexLayoutModule],
   declarations: [
@@ -197,17 +198,16 @@ import { AccountDetailsComponent } from './companies/company/companyenvironments
     ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent,
     CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent,
     CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent,
-    AccountsComponent, AccountComponent, AccountDetailsComponent
+    AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
     DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
-    PushNotificationsService, NotificationsService, AccountService],
+    NotificationsService, AccountService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent, FilePreviewComponent]
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+//platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));

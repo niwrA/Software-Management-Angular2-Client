@@ -1,27 +1,27 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
       (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)' />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
 
-  <md-card *ngFor="let product of products">
-    <md-card-title-group [routerLink]="[product.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>shopping cart</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{product.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
+  <mat-card *ngFor="let product of products">
+    <mat-card-title-group [routerLink]="[product.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>shopping cart</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{product.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
       <div>{{product.description}}</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab [routerLink]="[product.guid, 'details']">
-<md-icon>details circle</md-icon></button>
-      <button md-mini-fab [routerLink]="[product.guid]">
-<md-icon>share circle</md-icon></button>
-      <button md-mini-fab color="warn" (click)="deleteProduct(product)">
-<md-icon>delete</md-icon></button>
-    </md-card-actions>
-  </md-card>
-</md-card>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="[product.guid, 'details']">
+<mat-icon>details circle</mat-icon></button>
+      <button mat-mini-fab [routerLink]="[product.guid]">
+<mat-icon>share circle</mat-icon></button>
+      <button mat-mini-fab color="warn" (click)="deleteProduct(product)">
+<mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

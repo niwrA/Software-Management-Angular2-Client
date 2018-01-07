@@ -1,23 +1,23 @@
-<md-card>
-  <md-input-container>
-    <input mdInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects(searchTextInput.value)" (keyup.enter)='createProject(searchTextInput.value)' />
-  </md-input-container>
-  <button [disabled]='!canAdd' md-raised-button md-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
-  <md-card *ngFor="let project of projects">
-    <md-card-title-group [routerLink]="[project.guid, 'details']">
-      <md-card-subtitle>
-        <md-icon>assignment</md-icon>
-      </md-card-subtitle>
-      <md-card-title>{{project.name}}</md-card-title>
-    </md-card-title-group>
-    <md-card-content>
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects()" (keyup.enter)='createProject(searchTextInput.value)' />
+  </mat-input-container>
+  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let project of projects">
+    <mat-card-title-group [routerLink]="[project.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>assignment</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{project.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
       <div>{{project.startDate | date:'yyyy-MM-dd'}} {{project.endDate | date:'yyyy-MM-dd'}}</div>
-    </md-card-content>
-    <md-card-actions align='end'>
-      <button md-mini-fab color="warn" (click)="deleteProject(project)">
-<md-icon>delete</md-icon></button>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab color="warn" (click)="deleteProject(project)">
+<mat-icon>delete</mat-icon></button>
       <!--        <button [(disabled)]="!project.Email" routerLink="project" RouterLinkActive='active' [uiParams]="{ projectId: project.Guid }">
-<md-icon>email circle</md-icon></button>-->
-    </md-card-actions>
-  </md-card>
-</md-card>
+<mat-icon>email circle</mat-icon></button>-->
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

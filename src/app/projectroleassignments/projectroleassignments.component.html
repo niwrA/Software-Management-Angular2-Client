@@ -1,17 +1,17 @@
-<md-card>
-  <md-card-content *ngIf="projectroleassignments">
+<mat-card>
+  <mat-card-content *ngIf="projectroleassignments">
     <div fxLayout="row" fxLayoutAlign="start center">
       <div style="margin-right:0.5em">
-        <button md-mini-fab (click)="openContactsDialog()"><md-icon>add</md-icon></button>
+        <button mat-mini-fab (click)="openContactsDialog()"><mat-icon>add</mat-icon></button>
       </div>
       <div fxFlex>
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
           <div style="margin-left: 0.2em" *ngFor="let projectroleassignment of projectroleassignments">
             <app-contact-card [contactGuid]="projectroleassignment.contactGuid"></app-contact-card>
-            <button md-icon-button (click)="deleteProjectRoleAssignment(projectroleassignment)"><md-icon md-mini-fab>delete</md-icon></button>
+            <button mat-icon-button (click)="deleteProjectRoleAssignment(projectroleassignment)"><mat-icon mat-mini-fab>delete</mat-icon></button>
           </div>
         </div>
       </div>
     </div>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

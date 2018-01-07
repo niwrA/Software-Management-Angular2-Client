@@ -1,16 +1,16 @@
-<md-card>
-  <md-card-title *ngIf="project">{{project.name}}</md-card-title>
-  <md-card-actions *ngIf="project">
-    <button routerLink='details' md-raised-button md-tooltip="in progress: Project Details">Details</button>
-    <button routerLink='projectProducts' md-raised-button md-tooltip="todo: View Products involved in this Project">Products</button>
-    <button routerLink='roles' md-raised-button md-tooltip="in progress: Project Roles">Roles</button>
-    <button [routerLink]="['links']" md-raised-button md-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" md-raised-button md-tooltip="Files">Files</button>
-    <button [routerLink]="['commands']" md-raised-button md-tooltip="Commands">Audit</button>
-  </md-card-actions>
+<mat-card>
+  <mat-card-title *ngIf="project">{{project.name}}</mat-card-title>
+  <mat-card-actions *ngIf="project">
+    <button routerLink='details' mat-raised-button mat-tooltip="in progress: Project Details">Details</button>
+    <button routerLink='projectProducts' mat-raised-button mat-tooltip="todo: View Products involved in this Project">Products</button>
+    <button routerLink='roles' mat-raised-button mat-tooltip="in progress: Project Roles">Roles</button>
+    <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
+    <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
+    <button [routerLink]="['commands']" mat-raised-button mat-tooltip="Commands">Audit</button>
+  </mat-card-actions>
   <router-outlet></router-outlet>
-</md-card>
+</mat-card>
 <div *ngIf="!project">
   loading ...
-  <md-spinner></md-spinner>
+  <mat-progress-spinner></mat-progress-spinner>
 </div>

@@ -1,10 +1,10 @@
 <div *ngIf="link">
   <div>
-    <md-input-container>
-      <textarea mdInput mdAutosizeMinRows rows="6" (blur)="changeName()" [(ngModel)]="link.name" placeholder="Name"></textarea>
-    </md-input-container>
+    <mat-input-container>
+      <textarea matInput mdAutosizeMinRows rows="6" (blur)="changeName()" [(ngModel)]="link.name" placeholder="Name"></textarea>
+    </mat-input-container>
   </div>
-  <md-input-container>
-    <input mdInput (blur)="changeUrl()" [(ngModel)]="link.url" placeholder="url" />
-  </md-input-container>
+  <mat-input-container>
+    <input matInput (blur)="changeUrl()" [(ngModel)]="link.url" placeholder="url" />
+  </mat-input-container>
 </div>
