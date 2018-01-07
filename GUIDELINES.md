@@ -1,5 +1,5 @@
 
-#Guidelines
+# Guidelines
 
 For components that form a new Domain/Microservice/RootAggregate, use Companies.
 For components that are generic Microservices that  should work with and link to any 'Domain/Microservice' root-aggregate, use Links as an example.
