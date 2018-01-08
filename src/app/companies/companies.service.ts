@@ -72,7 +72,7 @@ export class CompaniesService {
     if (this.companies.length > 0) {
       if (searchText && searchText.length > 0) {
         const results = _.filter<Company>(this.companies, prj =>
-          ((prj.name && prj.name.indexOf(searchText) > -1)
+          ((prj.name && prj.name.toLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1)
             || (prj.code && prj.code.indexOf(searchText) > -1)
             || (prj.externalId && prj.externalId.indexOf(searchText) > -1)));
         // const sortedResults = _.sortBy(results, function (s) { return s.name; });
