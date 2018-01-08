@@ -1,38 +1,37 @@
-#Adding a component
-A component is an indepent part of code and layout, which should be able to work as independently as possible. If you need to add a new component, do the following. Again, you can do all these things while ng serve is left running. THe only issue is that routing isn't working 100% yet, so you may need to reset the address bar to the root (localhost:4200) 
 
-##Scaffold it with Angular CLI
-ng g component <componentname>
+# Guidelines
 
-If the component is for a list of items, use the plural name. If the component is for a single item, use the singular. And always use lowercase.
+For components that form a new Domain/Microservice/RootAggregate, use Companies.
+For components that are generic Microservices that  should work with and link to any 'Domain/Microservice' root-aggregate, use Links as an example.
+For components that use data that link information from multiple domains, use CompanyRoleAssignment or ProjectRoleAssignment as examples.
 
-Will generate the folder and four files for the new component, and add it to the main app module (app.main.ts). Manual steps to do next:
+## Scaffold the basics with Angular CLI 
 
-##Create componentitem class
-If this is a component for a new collection of items, first create a class for that item, in a new file in the componentfolder called something like <component>.ts
+This means use ng g component, ng g service, etc.)
 
-```typescript
-export class Product {
-    Name: string;
-    Guid: string;
-    EndDate?: Date;
-}
-```
+If the component is for a list of items, use the plural name. If the component is for a single item, use the singular. Use camelcase as a naming convention. Use other existing UI as templates. 
 
-##add dummy testdata
-While we are still making the client only with no backend, create a mock-<componentnames>.ts file with 
-##add a service for the component in the new folder
+# Services
+A domain service contains all service interaction for all of the Domain/Microservice and is the only place where http happens. They are also almost exclusively read-only towards http - creating new data happens through the command class. 
 
-##add a state to transition to the component using the router (currently all in the ui-router-states.ts in the main app folder)
-For state management, we use ui-router for angular 2. This is a simpler and imho more robust setup for routing than the default angular 2 routing that supports child-routing, has some nice visual debugging tools and so on. There are some minor issues with it currently, but it was still easier to work with. For more details, see:
-https://ui-router.github.io/tutorial/ng2/hellogalaxy
+Data received from http is considered to be in the shape of state objects. These state objects are then wrapped in typed wrapper classes that are the only way to access the state. This keeps everything easy to maintain and strongly typed. Check out companies/company.ts for an example.
 
-Similar to angular's own router, you indicate the target of your route with ```<ui-view></ui-view>```. When creating a link between components, you use ui-router's uiSref instead of href, optionally with parameters, for instance like this:
-```html
-<button uiSref='productversion.companies' [uiParams]="{ productVersionId: productversion.Guid }" mat-raised-button mat-tooltip="todo: installations of this version">Installations</button>
-```
+As Angular CLI documents, services need to be manually added to the providers in app.module.
 
-The example above creates a child route for productversion to place the companies component, and will look for a ui-view within the main ui-view.
+New data is also created through the service, but always also added locally as well as sent as update to the backend as a command. This ensures that the UI is never waiting for the backend. We may eventually use a background service for live synching data.
 
-##import the state in app.main.ts
-Add the state to the import list and to the routeconfig in the app.main.
+# UI interactive components with Angular Material
+UI components generally done with the latest Angular Material. 
+Material Components are imported in app.materials.module.ts
+Generic UI components can get their own folder, such as file-upload.
+
+# Routing
+All routing is client side, using Angular's default routing (the newer one from Angular 4 and up). Currently all routing is in app-routing.module. All new components that need to receive routing need to be manually added here, Angular CLI doesn't do this for you.
+
+Almost any UI component should be reachable through the routers. This may be a bit more work, but ensures that you can link to them directly. It makes the backend easier and prevents http lag. So much goes through router-outlets as a result. 
+
+There is no generic crumb-trail in place yet, it's done manually now in places. This may even be preferable, not sure yet.
+
+## building for production
+
+Occasionally use ng serve --prod or ng build --prod to see if the client still builds for production.
