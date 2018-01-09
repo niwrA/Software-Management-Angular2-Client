@@ -12,7 +12,7 @@ export class ProductState {
     versions: Array<ProductVersionState>;
     features: Array<ProductFeatureState>;
     issues: Array<ProductIssueState>;
-    configoptions: Array<ProductConfigOptionState>;
+    configOptions: Array<ProductConfigOptionState>;
 }
 
 export class Product {
@@ -50,9 +50,9 @@ export class Product {
                     this.issues.push(new ProductIssue(state.issues[i]));
                 }
             }
-            if (state.configoptions && state.configoptions.length > 0) {
-                for (let i = 0; i < state.configoptions.length; i++) {
-                    this.configoptions.push(new ProductConfigOption(state.configoptions[i]));
+            if (state.configOptions && state.configOptions.length > 0) {
+                for (let i = 0; i < state.configOptions.length; i++) {
+                    this.configoptions.push(new ProductConfigOption(state.configOptions[i]));
                 }
             }
         }

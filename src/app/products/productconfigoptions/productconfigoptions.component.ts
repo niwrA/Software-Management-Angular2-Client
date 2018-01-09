@@ -42,6 +42,9 @@ export class ProductConfigOptionsComponent implements OnInit {
       this.featureId = featureId;
       this.service.getProductFeature(productId, featureId)
         .then(productFeature => this.productfeature = productFeature);
+    } else if (productId) {
+      this.productId = productId;
+      this.service.getProduct(productId).then(product => this.updateProduct(product));
     }
   }
   updateProductConfigs(configs: Array<ProductConfigOption>): void {
@@ -49,7 +52,12 @@ export class ProductConfigOptionsComponent implements OnInit {
   }
   updateProduct(product: Product): void {
     this.product = product;
-    this.productconfigoptions = this.product.configoptions; // todo: filter by featureId
+    if (this.featureId) {
+      this.productconfigoptions = _.filter<ProductConfigOption>
+      (this.product.configoptions, prj => prj.productFeatureGuid === this.featureId);
+    } else {
+      this.productconfigoptions = this.product.configoptions; // todo: filter by featureId
+    }
     this.getProductConfigOptions('');
   }
 
@@ -62,12 +70,10 @@ export class ProductConfigOptionsComponent implements OnInit {
   }
 
   getProductConfigOptions(searchText: string): void {
-    if (this.product && this.product.configoptions) {
+    if (this.productconfigoptions) {
       if (searchText && searchText.length > 0) {
         this.productconfigoptions = _.filter<ProductConfigOption>
-          (this.product.configoptions, prj => prj.name.indexOf(this.searchText) > -1);
-      } else {
-        this.productconfigoptions = this.product.configoptions;
+          (this.productconfigoptions, prj => prj.name.indexOf(this.searchText) > -1);
       }
     }
   }

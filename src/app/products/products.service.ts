@@ -13,7 +13,7 @@ import {
   ProductCommand, CreateProductCommand, DeleteProductCommand,
   RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand,
   RequestFeatureForProductCommand, RemoveFeatureFromProductCommand, RemoveVersionFromProductCommand,
-  AddIssueToProductCommand, RemoveIssueFromProductCommand, AddConfigOptionToProductFeatureCommand,
+  AddIssueToProductCommand, RemoveIssueFromProductCommand, AddConfigOptionToProductCommand,
   RemoveConfigOptionFromProductFeatureCommand
 } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
@@ -125,7 +125,7 @@ export class ProductsService {
     newItem.productFeatureGuid = productFeature.guid;
     if (doSave) {
       product.configoptions.splice(0, 0, newItem);
-      const createProductConfigCommand = new AddConfigOptionToProductFeatureCommand(productFeature, newItem);
+      const createProductConfigCommand = new AddConfigOptionToProductCommand(product, productFeature, newItem);
       this.commandsService.postCommand(createProductConfigCommand, false);
     }
     return newItem;
@@ -149,7 +149,7 @@ export class ProductsService {
     if (index > -1) {
       product.configoptions.splice(index, 1);
     }
-    this.postCommand(new RemoveConfigOptionFromProductFeatureCommand(productfeature, configoption), false);
+    this.postCommand(new RemoveConfigOptionFromProductFeatureCommand(product, configoption), false);
   }
 
   deleteProduct(product: Product): void {

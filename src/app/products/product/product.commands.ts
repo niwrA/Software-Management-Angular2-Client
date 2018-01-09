@@ -83,7 +83,7 @@ export class AddVersionToProductCommandParameters extends CommandParameters {
 
 export class AddVersionToProductCommand extends ProductCommand {
     constructor(product: Product, productversion: ProductVersion) {
-        super('AddVersionTo',product);
+        super('AddVersionTo', product);
         const parameters = new AddVersionToProductCommandParameters();
         parameters.Name = productversion.name;
         parameters.Major = productversion.major;
@@ -185,16 +185,16 @@ export class AddIssueToProductCommand extends ProductCommand {
 }
 
 
-export class AddConfigOptionToProductFeatureParameters extends CommandParameters {
+export class AddConfigOptionToProductParameters extends CommandParameters {
     Name: string;
     FeatureGuid: string;
     ConfigGuid: string;
 }
 
-export class AddConfigOptionToProductFeatureCommand extends ProductFeatureCommand {
-    constructor(productFeature: ProductFeature, configoption: ProductConfigOption) {
-        super('AddConfigOptionTo', productFeature);
-        const parameters = new AddConfigOptionToProductFeatureParameters();
+export class AddConfigOptionToProductCommand extends ProductCommand {
+    constructor(product: Product, productFeature: ProductFeature, configoption: ProductConfigOption) {
+        super('AddConfigOptionTo', product);
+        const parameters = new AddConfigOptionToProductParameters();
         parameters.Name = configoption.name;
         parameters.ConfigGuid = configoption.guid;
         parameters.FeatureGuid = configoption.productFeatureGuid;
@@ -215,18 +215,15 @@ export class RemoveVersionFromProductCommand extends ProductCommand {
     }
 }
 
-
-export class RemoveConfigOptionFromProductFeatureParameters extends CommandParameters {
-    FeatureGuid: string;
+export class RemoveConfigOptionFromProductParameters extends CommandParameters {
     ConfigGuid: string;
 }
 
-export class RemoveConfigOptionFromProductFeatureCommand extends ProductFeatureCommand {
-    constructor(productFeature: ProductFeature, configoption: ProductConfigOption) {
-        super('RemoveConfigOptionFrom', productFeature);
-        const parameters = new RemoveConfigOptionFromProductFeatureParameters();
+export class RemoveConfigOptionFromProductFeatureCommand extends ProductCommand {
+    constructor(product: Product, configoption: ProductConfigOption) {
+        super('RemoveConfigOptionFrom', product);
+        const parameters = new RemoveConfigOptionFromProductParameters();
         parameters.ConfigGuid = configoption.guid;
-        parameters.FeatureGuid = configoption.productFeatureGuid;
         this.Parameters = parameters;
     }
 }

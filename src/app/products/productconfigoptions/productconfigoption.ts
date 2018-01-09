@@ -41,8 +41,8 @@ export class ProductConfigOption {
     get productGuid(): string { return this._state.productGuid; };
     set productGuid(value: string) { this._state.productGuid = value; };
 
-    get productFeatureGuid(): string { return this._state.productGuid; };
-    set productFeatureGuid(value: string) { this._state.productGuid = value; };
+    get productFeatureGuid(): string { return this._state.productFeatureGuid; };
+    set productFeatureGuid(value: string) { this._state.productFeatureGuid = value; };
 
     get parentGuid(): string { return this._state.parentGuid; };
     set parentGuid(value: string) { this._state.parentGuid = value; };
