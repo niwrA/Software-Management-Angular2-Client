@@ -1,3 +1,19 @@
-<p>
-  productconfigoptiondetails works!
-</p>
+<mat-card *ngIf="configoption">
+  <mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-input-container>
+        <input matInput (blur)="changeName()" [(ngModel)]="configoption.name" placeholder="Name" />
+      </mat-input-container>
+    </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-input-container>
+        <input matInput (blur)="changeDefaultValue()" [(ngModel)]="configoption.defaultValue" placeholder="Default Value" />
+      </mat-input-container>
+    </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-input-container>
+        <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="configoption.description" placeholder="Description"></textarea>
+      </mat-input-container>
+    </mat-card-content>
+  </mat-card-content>
+</mat-card>

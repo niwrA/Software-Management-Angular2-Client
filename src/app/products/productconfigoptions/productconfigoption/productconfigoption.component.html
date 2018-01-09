@@ -1,3 +1,15 @@
-<p>
-  productconfigoption works!
-</p>
+<mat-card>
+  <mat-card-title *ngIf="configoption">{{configoption.name}}</mat-card-title>
+  <mat-card-content *ngIf="product">
+    <div [routerLink]="['/products', product.guid, 'configoptions']">{{product.name}}</div>
+  </mat-card-content>
+  <button routerLink='details' mat-raised-button mat-tooltip="productconfigoption Details">Details</button>
+  <button routerLink='links' mat-raised-button mat-tooltip="Product Links">Links</button>
+  <button routerLink='files' mat-raised-button mat-tooltip="Product Files">Files</button>
+  <button routerLink='commands' mat-raised-button mat-tooltip="Audit">Audit</button>
+  <router-outlet></router-outlet>
+</mat-card>
+<div *ngIf="!configoption">
+  <mat-spinner></mat-spinner>
+  Loading productconfigoption
+</div>

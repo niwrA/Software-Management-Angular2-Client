@@ -195,6 +195,12 @@ export class ProductsService {
       return clonedItem;
     }
   }
+  cloneProductConfigOption(original: ProductConfigOption): ProductConfigOption {
+    if (original) {
+      const clonedItem = original.clone();
+      return clonedItem;
+    }
+  }
 
   getProducts(searchText: string): Promise<Array<Product>> {
     if (this.products.length > 0) {

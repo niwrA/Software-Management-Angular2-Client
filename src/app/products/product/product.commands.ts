@@ -107,6 +107,12 @@ export class ProductIssueCommand extends Command {
     };
 }
 
+export class ProductConfigOptionCommand extends Command {
+    constructor(name: string, productFeature: ProductConfigOption) {
+        super(name, 'ProductConfigOption', productFeature.guid);
+    };
+}
+
 export class AddFeatureToProductParameters extends CommandParameters {
     Name: string;
     ProductFeatureGuid: string;
@@ -231,6 +237,9 @@ export class RemoveConfigOptionFromProductFeatureCommand extends ProductCommand 
 export class ProductFeatureParameters extends CommandParameters {
     ProductGuid: string;
 }
+export class ProductConfigOptionParameters extends CommandParameters {
+    ProductGuid: string;
+}
 
 export class RenameProductFeatureParameters extends ProductFeatureParameters {
     Name: string;
@@ -267,6 +276,50 @@ export class RenameProductIssueCommand extends ProductIssueCommand {
     }
 }
 
+export class RenameProductConfigOptionCommandParameters extends ProductConfigOptionParameters {
+    Name: string;
+    OriginalName: string;
+}
+
+export class RenameProductConfigOptionCommand extends ProductConfigOptionCommand {
+    constructor(productConfigOption: ProductConfigOption, orgName: string) {
+        super('Rename', productConfigOption);
+        const parameters = new RenameProductConfigOptionCommandParameters();
+        parameters.OriginalName = orgName;
+        parameters.Name = productConfigOption.name;
+        parameters.ProductGuid = productConfigOption.productGuid;
+        this.Parameters = parameters;
+    }
+}
+export class ChangeDefaultValueForProductConfigOptionCommandParameters extends ProductConfigOptionParameters {
+    DefaultValue: string;
+    OriginalDefaultValue: string;
+}
+
+export class ChangeDefaultValueForProductConfigOptionCommand extends ProductConfigOptionCommand {
+    constructor(productConfigOption: ProductConfigOption, orgValue: string) {
+        super('ChangeDefaultValueFor', productConfigOption);
+        const parameters = new ChangeDefaultValueForProductConfigOptionCommandParameters();
+        parameters.OriginalDefaultValue = orgValue;
+        parameters.DefaultValue = productConfigOption.defaultValue;
+        parameters.ProductGuid = productConfigOption.productGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class ChangeDescriptionOfProductConfigOptionCommandParameters extends ProductConfigOptionParameters {
+    Description: string;
+}
+
+export class ChangeDescriptionOfProductConfigOptionCommand extends ProductConfigOptionCommand {
+    constructor(productConfigOption: ProductConfigOption) {
+        super('ChangeDescriptionOf', productConfigOption);
+        const parameters = new ChangeDescriptionOfProductConfigOptionCommandParameters();
+        parameters.Description = productConfigOption.description;
+        parameters.ProductGuid = productConfigOption.productGuid;
+        this.Parameters = parameters;
+    }
+}
 
 // todo: support exact inserts, deletes etc.
 export class ChangeDescriptionOfProductIssueParameters extends ProductIssueParameters {
