@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductConfigOptions(searchTextInput.value || '')"
+      (keyup.enter)='createProductConfigOption(searchTextInput.value)' />
+  </mat-input-container>
+  <button *ngIf="productfeature" mat-raised-button mat-tooltip="Add new configoption" (click)="createProductConfigOption(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let productconfigoption of productconfigoptions">
+    <mat-card-title-group [routerLink]="['/products', productconfigoption.productGuid, 'configoptions', productconfigoption.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>cog</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{productconfigoption.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
+      <div>{{productconfigoption.description}}</div>
+      <div>Path: {{productconfigoption.path}}</div>
+      <div>DefaultValue: {{productconfigoption.defaultValue}}</div>
+      <div>IsOptionForParent: {{productconfigoption.isOptionForParent}}</div>
+      <div>IsDefaultOption: {{productconfigoption.isDefaultOption}}</div>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="['/products', productconfigoption.productGuid, 'configoptions', productconfigoption.guid, 'details']">
+        <mat-icon>details</mat-icon>
+      </button>
+      <button *ngIf="productfeature" mat-mini-fab color="warn" (click)="deleteProductConfigOption(productconfigoption)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

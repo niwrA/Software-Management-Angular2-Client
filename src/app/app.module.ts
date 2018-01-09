@@ -9,7 +9,6 @@ import { FileUploadModule } from 'ng2-file-upload';
 import * as _ from 'lodash';
 import { AppComponent } from './app.component';
 
-// import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
@@ -39,8 +38,6 @@ import { ProductFeaturesComponent } from './products/productfeatures/productfeat
 import { ProductFeatureComponent } from './products/productfeatures/productfeature/productfeature.component';
 import { ProductIssuesComponent } from './products/productissues/productissues.component';
 import { ProductIssueComponent } from './products/productissues/productissue/productissue.component';
-import { ProductConfigsComponent } from './products/productconfigs/productconfigs.component';
-import { ProductConfigComponent } from './products/productconfigs/productconfig/productconfig.component';
 import { SmaTextareaComponent } from './sma-textarea/sma-textarea.component';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -120,8 +117,11 @@ import { DatabaseDetailsComponent } from './companies/company/companyenvironment
 import { AccountsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/accounts.component';
 import { AccountComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account.component';
 import { AccountDetailsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account-details/account-details.component';
-import { MyMaterialModule} from './app.materials.module';
+import { MyMaterialModule} from './modules/app.materials.module';
 import { RouterLinkStubDirective } from '../testing/router-stubs';
+import { ProductConfigOptionsComponent } from './products/productconfigoptions/productconfigoptions.component';
+import { ProductConfigOptionComponent } from './products/productconfigoptions/productconfigoption/productconfigoption.component';
+import { ProductConfigOptionDetailsComponent } from './products/productconfigoptions/productconfigoption/productconfigoptiondetails/productconfigoptiondetails.component';
 
 @NgModule({
   imports: [
@@ -151,8 +151,6 @@ import { RouterLinkStubDirective } from '../testing/router-stubs';
     ProductFeatureComponent,
     ProductIssuesComponent,
     ProductIssueComponent,
-    ProductConfigsComponent,
-    ProductConfigComponent,
     ContactComponent,
     SmaTextareaComponent,
     PageNotFoundComponent,
@@ -198,7 +196,8 @@ import { RouterLinkStubDirective } from '../testing/router-stubs';
     ContactCardComponent, RegisterComponent, ProductFeatureDetailsComponent, ProductIssueDetailsComponent,
     CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent,
     CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent,
-    AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective
+    AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective, ProductConfigOptionComponent,
+    ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
@@ -210,4 +209,4 @@ import { RouterLinkStubDirective } from '../testing/router-stubs';
 })
 export class AppModule { }
 
-//platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
+// platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));

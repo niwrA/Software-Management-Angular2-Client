@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Product, ProductState } from './product';
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
 import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
+import { ProductConfigOption, ProductConfigOptionState } from './productconfigoptions/productconfigoption';
 import { ProductIssue } from './productissues/productissue';
 import { PRODUCTS } from './mock-products';
 import { CommandsService } from '../commands/commands.service';
@@ -12,7 +13,8 @@ import {
   ProductCommand, CreateProductCommand, DeleteProductCommand,
   RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand,
   RequestFeatureForProductCommand, RemoveFeatureFromProductCommand, RemoveVersionFromProductCommand,
-  AddIssueToProductCommand, RemoveIssueFromProductCommand
+  AddIssueToProductCommand, RemoveIssueFromProductCommand, AddConfigOptionToProductFeatureCommand,
+  RemoveConfigOptionFromProductFeatureCommand
 } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -115,6 +117,20 @@ export class ProductsService {
     return newItem;
   }
 
+  createProductConfigOption(doSave: boolean, product: Product, productFeature: ProductFeature, name: string): ProductConfigOption {
+    const newItem = new ProductConfigOption();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    newItem.productGuid = product.guid;
+    newItem.productFeatureGuid = productFeature.guid;
+    if (doSave) {
+      product.configoptions.splice(0, 0, newItem);
+      const createProductConfigCommand = new AddConfigOptionToProductFeatureCommand(productFeature, newItem);
+      this.commandsService.postCommand(createProductConfigCommand, false);
+    }
+    return newItem;
+  }
+
   getProductIssue(productGuid: string, issueGuid: string): Promise<ProductIssue> {
     if (productGuid && issueGuid) {
       const issue = this.getProduct(productGuid).then(product => _.find<ProductIssue>(product.issues, t => t.guid === issueGuid));
@@ -127,6 +143,13 @@ export class ProductsService {
       product.issues.splice(index, 1);
     }
     this.postCommand(new RemoveIssueFromProductCommand(product, productissue), false);
+  }
+  deleteProductConfigOption(product: Product, productfeature: ProductFeature, configoption: ProductConfigOption): void {
+    const index = product.configoptions.indexOf(configoption, 0);
+    if (index > -1) {
+      product.configoptions.splice(index, 1);
+    }
+    this.postCommand(new RemoveConfigOptionFromProductFeatureCommand(productfeature, configoption), false);
   }
 
   deleteProduct(product: Product): void {

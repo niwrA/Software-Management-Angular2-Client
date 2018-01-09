@@ -1,6 +1,7 @@
 import { ProductVersion, ProductVersionState } from './productversions/productversion';
 import { ProductFeature, ProductFeatureState } from './productfeatures/productfeature';
 import { ProductIssue, ProductIssueState } from './productissues/productissue';
+import { ProductConfigOption, ProductConfigOptionState } from './productconfigoptions/productconfigoption';
 import * as _ from 'lodash';
 
 export class ProductState {
@@ -11,6 +12,7 @@ export class ProductState {
     versions: Array<ProductVersionState>;
     features: Array<ProductFeatureState>;
     issues: Array<ProductIssueState>;
+    configoptions: Array<ProductConfigOptionState>;
 }
 
 export class Product {
@@ -19,12 +21,14 @@ export class Product {
     versions: Array<ProductVersion>;
     features: Array<ProductFeature>;
     issues: Array<ProductIssue>;
+    configoptions: Array<ProductConfigOption>;
 
     constructor(state?: ProductState) {
         this._state = state;
         this.versions = new Array<ProductVersion>();
         this.features = new Array<ProductFeature>();
         this.issues = new Array<ProductIssue>();
+        this.configoptions = new Array<ProductConfigOption>();
         this._sequenceCount = 0;
 
         if (!state) {
@@ -44,6 +48,11 @@ export class Product {
             if (state.issues && state.issues.length > 0) {
                 for (let i = 0; i < state.issues.length; i++) {
                     this.issues.push(new ProductIssue(state.issues[i]));
+                }
+            }
+            if (state.configoptions && state.configoptions.length > 0) {
+                for (let i = 0; i < state.configoptions.length; i++) {
+                    this.configoptions.push(new ProductConfigOption(state.configoptions[i]));
                 }
             }
         }

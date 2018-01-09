@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductVersion } from '../productversions/productversion';
 import { ProductFeature } from '../productfeatures/productfeature';
 import { ProductIssue } from '../productissues/productissue';
+import { ProductConfigOption } from '../productconfigoptions/productconfigoption';
 
 export class ProductCommand extends Command {
     constructor(name: string, product: Product) {
@@ -184,6 +185,23 @@ export class AddIssueToProductCommand extends ProductCommand {
 }
 
 
+export class AddConfigOptionToProductFeatureParameters extends CommandParameters {
+    Name: string;
+    FeatureGuid: string;
+    ConfigGuid: string;
+}
+
+export class AddConfigOptionToProductFeatureCommand extends ProductFeatureCommand {
+    constructor(productFeature: ProductFeature, configoption: ProductConfigOption) {
+        super('AddConfigOptionTo', productFeature);
+        const parameters = new AddConfigOptionToProductFeatureParameters();
+        parameters.Name = configoption.name;
+        parameters.ConfigGuid = configoption.guid;
+        parameters.FeatureGuid = configoption.productFeatureGuid;
+        this.Parameters = parameters;
+    }
+}
+
 export class RemoveVersionFromProductParameters extends CommandParameters {
     ProductVersionGuid: string;
 }
@@ -193,6 +211,22 @@ export class RemoveVersionFromProductCommand extends ProductCommand {
         super('RemoveVersionFrom', product);
         const parameters = new RemoveVersionFromProductParameters();
         parameters.ProductVersionGuid = productVersion.guid;
+        this.Parameters = parameters;
+    }
+}
+
+
+export class RemoveConfigOptionFromProductFeatureParameters extends CommandParameters {
+    FeatureGuid: string;
+    ConfigGuid: string;
+}
+
+export class RemoveConfigOptionFromProductFeatureCommand extends ProductFeatureCommand {
+    constructor(productFeature: ProductFeature, configoption: ProductConfigOption) {
+        super('RemoveConfigOptionFrom', productFeature);
+        const parameters = new RemoveConfigOptionFromProductFeatureParameters();
+        parameters.ConfigGuid = configoption.guid;
+        parameters.FeatureGuid = configoption.productFeatureGuid;
         this.Parameters = parameters;
     }
 }

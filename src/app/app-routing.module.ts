@@ -40,6 +40,7 @@ import { ProductFeatureDetailsComponent } from './products/productfeatures/produ
 import { ProductIssuesComponent } from './products/productissues/productissues.component';
 import { ProductIssueComponent } from './products/productissues/productissue/productissue.component';
 import { ProductIssueDetailsComponent } from './products/productissues/productissue/productissuedetails/productissuedetails.component';
+import { ProductConfigOptionsComponent } from './products/productconfigoptions/productconfigoptions.component';
 
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
@@ -357,6 +358,10 @@ const appRoutes: Routes = [
         path: 'issues',
         component: ProductIssuesComponent
       },
+      {
+        path: 'configoptions',
+        component: ProductConfigOptionsComponent
+      },
       linksSubRoute,
       filesSubRoute,
       commandsSubRoute
@@ -402,6 +407,10 @@ const appRoutes: Routes = [
       {
         path: 'issues',
         component: ProductIssuesComponent
+      },
+      {
+        path: 'configoptions',
+        component: ProductConfigOptionsComponent
       },
       linksSubRoute,
       filesSubRoute]
