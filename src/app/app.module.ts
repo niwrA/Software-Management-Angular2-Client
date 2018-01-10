@@ -117,11 +117,12 @@ import { DatabaseDetailsComponent } from './companies/company/companyenvironment
 import { AccountsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/accounts.component';
 import { AccountComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account.component';
 import { AccountDetailsComponent } from './companies/company/companyenvironments/companyenvironment/accounts/account/account-details/account-details.component';
-import { MyMaterialModule} from './modules/app.materials.module';
+import { MyMaterialModule } from './modules/app.materials.module';
 import { RouterLinkStubDirective } from '../testing/router-stubs';
 import { ProductConfigOptionsComponent } from './products/productconfigoptions/productconfigoptions.component';
 import { ProductConfigOptionComponent } from './products/productconfigoptions/productconfigoption/productconfigoption.component';
 import { ProductConfigOptionDetailsComponent } from './products/productconfigoptions/productconfigoption/productconfigoptiondetails/productconfigoptiondetails.component';
+import { UsersService } from './admin/users/users.service';
 
 @NgModule({
   imports: [
@@ -203,7 +204,7 @@ import { ProductConfigOptionDetailsComponent } from './products/productconfigopt
     TechnologiesService, ProductsService, ProductVersionsService,
     DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
-    NotificationsService, AccountService],
+    NotificationsService, AccountService, UsersService],
   bootstrap: [AppComponent],
   entryComponents: [ContactsSelectComponent, FilePreviewComponent]
 })

@@ -1,7 +1,7 @@
 import { Command} from './command';
 export const COMMANDS: Command[] = [
   {
-    Guid: 'command1', Name: 'FakeCommand', Entity: 'Entity', EntityGuid: 'entity1',
+    Guid: 'command1', Name: 'FakeCommand', UserName: 'fake.user', Entity: 'Entity', EntityGuid: 'entity1',
     CreatedOn: '2017-01-01T00:00:00', DisplayProperties: { title: 'fake title', description: 'fake description' }
   }
 ];

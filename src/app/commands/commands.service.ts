@@ -7,6 +7,8 @@ import { Headers, Http } from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
+import { User } from '../admin/users/user';
+import { UsersService } from '../admin/users/users.service';
 
 @Injectable()
 export class CommandsService {
@@ -16,8 +18,9 @@ export class CommandsService {
   commands = new Array<Command>();
   postedCommands = new Array<Command>();
   commandsReadOnly = new Array<CommandReadOnly>();
-  
-  constructor(private http: Http, private notificationsService: NotificationsService) {
+
+  constructor(private http: Http, private notificationsService: NotificationsService,
+    private userService: UsersService) {
   };
 
   getCommandsForGuid(forGuid: string): Promise<Array<CommandReadOnly>> {
@@ -55,9 +58,16 @@ export class CommandsService {
     }
     return commands;
   }
-
+  getUserName(): string {
+    if (this.userService.isLoggedIn()) {
+      return this.userService.current.name;
+    }
+    return 'arwin.vanarum';
+  }
   postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
+    const username = this.getUserName();
     for (const command of commands) {
+      command.UserName = username;
       command.ParametersJson = JSON.stringify(command.Parameters);
       this.commands.push(command);
     }
@@ -65,7 +75,9 @@ export class CommandsService {
   }
   postCommand(command: Command, replaceOriginal: Boolean): Promise<any> {
     // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
+    const username = this.getUserName();
     command.ParametersJson = JSON.stringify(command.Parameters);
+    command.UserName = username;
     this.commands.push(command);
     const currentCommands = new Array<Command>();
     currentCommands.push(command);

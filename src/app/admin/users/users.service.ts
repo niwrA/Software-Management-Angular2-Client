@@ -4,15 +4,15 @@ import { User } from './user';
 import { USERS } from './mock-users';
 import { Register } from '../register/register';
 import { environment } from '../../../environments/environment';
-import { CommandsService } from '../../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class UsersService {
-  private current: User;
+  current: User;
   users: Array<User>;
-  constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
+  constructor(private http: Http, private notificationService: NotificationsService) {
     this.users = USERS;
+    this.current = USERS[0]; // get a default user for testing
   }
 
   isLoggedIn(): boolean {
@@ -23,9 +23,10 @@ export class UsersService {
   }
   login(userName: string, password: string) {
     this.current = USERS[0];
+    this.current.name = userName;
   }
-  register(register: Register){
-    this.http.post(environment.accountsUrl, register )
+  register(register: Register) {
+    this.http.post(environment.accountsUrl, register)
   }
   logout() {
     this.current = undefined;
@@ -42,7 +43,7 @@ export class UsersService {
     return false;
   }
   isAdmin(): boolean {
-    if(this.current && this.current.isAdmin) {
+    if (this.current && this.current.isAdmin) {
       return true;
     }
     return false;

@@ -56,6 +56,7 @@ export class Command {
     Entity: string;
     EntityGuid: string;
     CreatedOn: string;
+    UserName: string;
     ParametersJson?: string;
     Parameters?: CommandParameters;
     DisplayProperties: CommandDisplayProperties;
