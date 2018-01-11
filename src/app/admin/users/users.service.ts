@@ -5,11 +5,16 @@ import { USERS } from './mock-users';
 import { Register } from '../register/register';
 import { environment } from '../../../environments/environment';
 import { NotificationsService } from 'angular2-notifications';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UsersService {
+  private _nouserstring: 'not logged in';
   private current: User;
-  get username(): string { return this.getUserName(); };
+  get currentUserName() { return this.getUserName() };
+  private _usernameSource = new BehaviorSubject<string>(this._nouserstring);
+  // Observable navItem stream
+  username$ = this._usernameSource.asObservable();
   users: Array<User>;
   constructor(private http: Http, private notificationService: NotificationsService) {
     this.users = USERS;
@@ -25,17 +30,21 @@ export class UsersService {
   login(userName: string, password: string) {
     this.current = USERS[0];
     this.current.name = userName;
+    this.getUserName();
   }
   register(register: Register) {
     this.http.post(environment.accountsUrl, register)
   }
   logout() {
     this.current = undefined;
+    this.getUserName();
   }
   private getUserName(): string {
     if (this.isLoggedIn()) {
+      this._usernameSource.next(this.current.name);
       return this.current.name;
     }
+    this._usernameSource.next(this._nouserstring);
     return 'please login';
   }
   hasAccess(component: string, level: string): boolean {

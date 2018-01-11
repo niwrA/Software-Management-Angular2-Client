@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Epics } from './menu-state';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
 import { NotificationComponent } from 'angular2-notifications';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ import { NotificationComponent } from 'angular2-notifications';
   styleUrls: ['./app.component.css'],
   providers: [UsersService, Epics]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Software Management';
   username = '';
   projectsColor = '';
@@ -22,20 +24,26 @@ export class AppComponent implements OnInit {
   technologiesColor = '';
   loginColor = '';
   menuitems = new Array<string>('projects', 'products', 'designs', 'contacts', 'companies', 'technologies', 'login');
+  private usernameSubscription: Subscription;
 
   constructor(private usersservice: UsersService, private router: Router, private activatedroute: ActivatedRoute,
     private epics: Epics) {
-    this.username = usersservice.current.name;
     this.resetColors();
     this.updateActive(this.activatedroute.url.toString());
     this.router.events.subscribe((val) => this.updateActive(val.toString())); // todo: used to be url?
   }
-
   ngOnInit() {
+    this.usernameSubscription = this.usersservice.username$.subscribe(item => this.username = item);
+
     if (this.activatedroute.firstChild) {
       this.activatedroute.firstChild.url.subscribe(s => this.updateActive(s.toString()));
     }
   }
+  ngOnDestroy() {
+    // prevent memory leak when component is destroyed
+    this.usernameSubscription.unsubscribe();
+  }
+
   updateActive(url: string) {
     if (url.length > 1) {
       let epic = '';

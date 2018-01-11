@@ -59,7 +59,7 @@ export class CommandsService {
     return commands;
   }
   postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
-    const username = this.userService.getUserName();
+    const username = this.userService.currentUserName;
     for (const command of commands) {
       command.UserName = username;
       command.ParametersJson = JSON.stringify(command.Parameters);
@@ -69,7 +69,7 @@ export class CommandsService {
   }
   postCommand(command: Command, replaceOriginal: Boolean): Promise<any> {
     // todo: (optional) remove (some) duplicate commands, e.g. reschedule only needs the last one.
-    const username = this.getUserName();
+    const username = this.userService.currentUserName;
     command.ParametersJson = JSON.stringify(command.Parameters);
     command.UserName = username;
     this.commands.push(command);
