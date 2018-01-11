@@ -8,7 +8,8 @@ import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class UsersService {
-  current: User;
+  private current: User;
+  get username(): string { return this.getUserName(); };
   users: Array<User>;
   constructor(private http: Http, private notificationService: NotificationsService) {
     this.users = USERS;
@@ -30,6 +31,12 @@ export class UsersService {
   }
   logout() {
     this.current = undefined;
+  }
+  private getUserName(): string {
+    if (this.isLoggedIn()) {
+      return this.current.name;
+    }
+    return 'please login';
   }
   hasAccess(component: string, level: string): boolean {
     // todo: calculate access based on group access rights

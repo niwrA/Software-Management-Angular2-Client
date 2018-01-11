@@ -58,14 +58,8 @@ export class CommandsService {
     }
     return commands;
   }
-  getUserName(): string {
-    if (this.userService.isLoggedIn()) {
-      return this.userService.current.name;
-    }
-    return 'arwin.vanarum';
-  }
   postCommands(commands: Array<Command>, replaceOriginal: Boolean): Promise<any> {
-    const username = this.getUserName();
+    const username = this.userService.getUserName();
     for (const command of commands) {
       command.UserName = username;
       command.ParametersJson = JSON.stringify(command.Parameters);

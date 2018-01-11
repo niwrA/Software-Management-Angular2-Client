@@ -13,6 +13,7 @@ import { NotificationComponent } from 'angular2-notifications';
 })
 export class AppComponent implements OnInit {
   title = 'Software Management';
+  username = '';
   projectsColor = '';
   productsColor = '';
   designsColor = '';
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
 
   constructor(private usersservice: UsersService, private router: Router, private activatedroute: ActivatedRoute,
     private epics: Epics) {
+    this.username = usersservice.current.name;
     this.resetColors();
     this.updateActive(this.activatedroute.url.toString());
     this.router.events.subscribe((val) => this.updateActive(val.toString())); // todo: used to be url?

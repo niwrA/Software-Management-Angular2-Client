@@ -415,7 +415,9 @@ const appRoutes: Routes = [
         component: ProductConfigOptionsComponent
       },
       linksSubRoute,
-      filesSubRoute]
+      filesSubRoute,
+      commandsSubRoute
+    ]
   },
   {
     path: 'products/:productId/issues/:productIssueId',
@@ -426,7 +428,8 @@ const appRoutes: Routes = [
         component: ProductIssueDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute]
+      filesSubRoute,
+      commandsSubRoute]
   },
   {
     path: 'products/:productId/configoptions/:configOptionId',
