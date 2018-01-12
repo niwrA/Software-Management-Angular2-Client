@@ -123,6 +123,7 @@ import { ProductConfigOptionsComponent } from './products/productconfigoptions/p
 import { ProductConfigOptionComponent } from './products/productconfigoptions/productconfigoption/productconfigoption.component';
 import { ProductConfigOptionDetailsComponent } from './products/productconfigoptions/productconfigoption/productconfigoptiondetails/productconfigoptiondetails.component';
 import { UsersService } from './admin/users/users.service';
+import { ProductConfigOptionChildrenComponent } from './products/productconfigoptions/productconfigoption/product-config-option-children/product-config-option-children.component';
 
 @NgModule({
   imports: [
@@ -198,7 +199,7 @@ import { UsersService } from './admin/users/users.service';
     CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent,
     CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent,
     AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective, ProductConfigOptionComponent,
-    ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent
+    ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent, ProductConfigOptionChildrenComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

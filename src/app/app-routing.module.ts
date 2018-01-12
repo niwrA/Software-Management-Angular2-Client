@@ -43,6 +43,7 @@ import { ProductIssueDetailsComponent } from './products/productissues/productis
 import { ProductConfigOptionsComponent } from './products/productconfigoptions/productconfigoptions.component';
 import { ProductConfigOptionComponent } from './products/productconfigoptions/productconfigoption/productconfigoption.component';
 import { ProductConfigOptionDetailsComponent } from './products/productconfigoptions/productconfigoption/productconfigoptiondetails/productconfigoptiondetails.component';
+import { ProductConfigOptionChildrenComponent } from './products/productconfigoptions/productconfigoption/product-config-option-children/product-config-option-children.component';
 
 import { DesignsComponent } from './designs/designs.component';
 import { DesignComponent } from './designs/design/design.component';
@@ -439,10 +440,26 @@ const appRoutes: Routes = [
         path: 'details',
         component: ProductConfigOptionDetailsComponent
       },
+      {
+        path: 'children',
+        component: ProductConfigOptionChildrenComponent
+      },
       linksSubRoute,
       filesSubRoute,
       commandsSubRoute]
   },
+  // {
+  //   path: 'products/:productId/configoptions/:configOptionId/children',
+  //   component: ProductConfigOptionComponent,
+  //   children: [
+  //     {
+  //       path: 'details',
+  //       component: ProductConfigOptionDetailsComponent
+  //     },
+  //     linksSubRoute,
+  //     filesSubRoute,
+  //     commandsSubRoute]
+  // },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

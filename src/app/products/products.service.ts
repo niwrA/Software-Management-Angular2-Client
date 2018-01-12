@@ -14,11 +14,12 @@ import {
   RenameProductCommand, AddVersionToProductCommand, AddFeatureToProductCommand,
   RequestFeatureForProductCommand, RemoveFeatureFromProductCommand, RemoveVersionFromProductCommand,
   AddIssueToProductCommand, RemoveIssueFromProductCommand, AddConfigOptionToProductCommand,
-  RemoveConfigOptionFromProductFeatureCommand
+  RemoveConfigOptionFromProductFeatureCommand, AddChildToProductConfigOptionCommand, RemoveChildFromProductConfigOptionCommand
 } from './product/product.commands';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
+import { pack } from 'd3';
 
 @Injectable()
 export class ProductsService {
@@ -130,6 +131,29 @@ export class ProductsService {
     }
     return newItem;
   }
+
+  createProductConfigOptionChild(doSave: boolean, product: Product, parent: ProductConfigOption, name: string): ProductConfigOption {
+    const newItem = new ProductConfigOption();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    newItem.productGuid = parent.productGuid;
+    newItem.parentGuid = parent.guid;
+    newItem.productFeatureGuid = parent.productFeatureGuid;
+    if (doSave) {
+      product.configoptions.splice(0, 0, newItem);
+      const createProductConfigCommand = new AddChildToProductConfigOptionCommand(newItem);
+      this.commandsService.postCommand(createProductConfigCommand, false);
+    }
+    return newItem;
+  }
+  removeChildFromProductConfigOption(product: Product, configoption: ProductConfigOption, parent: ProductConfigOption): void {
+    const index = product.configoptions.indexOf(configoption, 0);
+    if (index > -1) {
+      product.configoptions.splice(index, 1);
+    }
+    this.postCommand(new RemoveChildFromProductConfigOptionCommand(configoption, parent), false);
+  }
+
 
   getProductIssue(productGuid: string, issueGuid: string): Promise<ProductIssue> {
     if (productGuid && issueGuid) {

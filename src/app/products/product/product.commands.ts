@@ -208,6 +208,41 @@ export class AddConfigOptionToProductCommand extends ProductCommand {
     }
 }
 
+export class AddChildToProductConfigOptionParameters extends CommandParameters {
+    Name: string;
+    FeatureGuid: string;
+    ProductGuid: string;
+    ParentGuid: string;
+}
+
+export class AddChildToProductConfigOptionCommand extends ProductConfigOptionCommand {
+    constructor(configoption: ProductConfigOption) {
+        super('AddChildTo', configoption);
+        const parameters = new AddChildToProductConfigOptionParameters();
+        parameters.Name = configoption.name;
+        parameters.ProductGuid = configoption.productGuid;
+        parameters.FeatureGuid = configoption.productFeatureGuid;
+        parameters.ParentGuid = configoption.parentGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class RemoveChildFromProductConfigOptionParameters extends CommandParameters {
+    ProductGuid: string;
+    ChildGuid: string;
+}
+
+export class RemoveChildFromProductConfigOptionCommand extends ProductConfigOptionCommand {
+    constructor(configoption: ProductConfigOption, parent: ProductConfigOption) {
+        super('RemoveChildFrom', parent);
+        const parameters = new RemoveChildFromProductConfigOptionParameters();
+        parameters.ProductGuid = configoption.productGuid;
+        parameters.ChildGuid = configoption.guid;
+        this.Parameters = parameters;
+    }
+}
+
+
 export class RemoveVersionFromProductParameters extends CommandParameters {
     ProductVersionGuid: string;
 }

@@ -18,6 +18,7 @@ export class ProductConfigOptionComponent implements OnInit {
   featureId: string;
   configoptionId: string;
   configoption: ProductConfigOption;
+  parent: ProductConfigOption;
   product: Product;
 
   constructor(
@@ -46,6 +47,12 @@ export class ProductConfigOptionComponent implements OnInit {
   updateProductConfig(product: Product, configoptionId: string) {
     this.product = product;
     this.configoption = _.find(product.configoptions, function (c) { return c.guid === configoptionId });
+    if (this.configoption) {
+      const parentId = this.configoption.parentGuid;
+      if (parentId) {
+        this.parent = _.find(product.configoptions, function (c) { return c.guid === parentId });
+      } else { this.parent = undefined }
+    }
   }
 }
 
