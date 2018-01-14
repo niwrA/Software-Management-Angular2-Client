@@ -22,14 +22,14 @@ export class ProductInstallationsService {
     this.getProductInstallations().then(result => this.productinstallations = result as Array<ProductInstallation>);
   }
 
-  createProductInstallation(doSave: boolean, companyGuid: string,  productGuid: string,
-    post: boolean, companyName: string): ProductInstallation {
+  createProductInstallation(doSave: boolean, companyGuid: string,  productGuid: string, companyEnvironmentGuid: string,
+    productVersionGuid: string, post: boolean): ProductInstallation {
     const newItem = new ProductInstallation();
     newItem.guid = UUID.UUID();
     newItem.companyGuid = companyGuid;
     newItem.productGuid = productGuid;
-    // newItem.productGuid = productGuid;
-    // newItem.companyName = companyName;
+    newItem.companyEnvironmentGuid = companyEnvironmentGuid;
+    newItem.productVersionGuid = productVersionGuid;
     if (doSave) {
       this.productinstallations.splice(0, 0, newItem);
       if (post) {

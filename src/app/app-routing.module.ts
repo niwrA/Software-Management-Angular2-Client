@@ -84,6 +84,8 @@ import { AccountDetailsComponent } from './companies/company/companyenvironments
 
 import { EmploymentsComponent } from './employments/employments.component';
 
+import { ProductInstallationComponent } from './product-installations/product-installation/product-installation.component';
+import { ProductInstallationDetailsComponent } from './product-installations/product-installation/product-installation-details/product-installation-details.component';
 import { PageNotFoundComponent } from './not-found.component';
 
 const linksSubRoute = {
@@ -178,7 +180,8 @@ const appRoutes: Routes = [
         component: CompanyEnvironmentSoftwareComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -228,7 +231,8 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: LinkDetailsComponent
-      }
+      },
+      commandsSubRoute
     ]
   },
   {
@@ -238,7 +242,8 @@ const appRoutes: Routes = [
       {
         path: 'details',
         component: FileDetailsComponent
-      }
+      },
+      commandsSubRoute
     ]
   },
   {
@@ -453,6 +458,23 @@ const appRoutes: Routes = [
       linksSubRoute,
       filesSubRoute,
       commandsSubRoute]
+  },
+  {
+    path: 'product-installations/:productInstallationId',
+    component: ProductInstallationComponent,
+    children: [
+      {
+        path: 'details',
+        component: ProductInstallationDetailsComponent
+      },
+      {
+        path: 'configoptions',
+        component: ProductConfigOptionsComponent
+      },
+      linksSubRoute,
+      filesSubRoute,
+      commandsSubRoute
+    ]
   },
   // {
   //   path: 'products/:productId/configoptions/:configOptionId/children',

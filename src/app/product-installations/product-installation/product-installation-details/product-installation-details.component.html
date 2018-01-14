@@ -1,0 +1,8 @@
+<div *ngIf="productinstallation">
+    <mat-input-container>
+      <input matInput (blur)="changeStartDate()" type='date' [(ngModel)]='productinstallation.startDate' placeholder="StartDate" />
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput (blur)="changeEndDate()" type='date' [(ngModel)]='productinstallation.endDate' placeholder="EndDate" />
+    </mat-input-container>
+  </div>

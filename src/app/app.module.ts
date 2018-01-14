@@ -132,6 +132,8 @@ import { ProductsSelectComponent } from './products/products-select/products-sel
 import { ProductInstallationsComponent } from './product-installations/product-installations.component';
 import { ProductInstallationsService } from './product-installations/product-installations.service';
 import { ProductInstallationComponent } from './product-installations/product-installation/product-installation.component';
+import { ProductCardComponent } from './products/product/product-card/product-card.component';
+import { ProductInstallationDetailsComponent } from './product-installations/product-installation/product-installation-details/product-installation-details.component';
 
 @NgModule({
   imports: [
@@ -210,7 +212,9 @@ import { ProductInstallationComponent } from './product-installations/product-in
     AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective, ProductConfigOptionComponent,
     ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent,
     ProductConfigOptionChildrenComponent, ProductInstallationsComponent, CompanyEnvironmentSoftwareComponent, ProductsSelectComponent,
-    ProductInstallationComponent
+    ProductInstallationComponent,
+    ProductCardComponent,
+    ProductInstallationDetailsComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

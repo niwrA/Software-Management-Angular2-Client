@@ -240,6 +240,7 @@ export class ProductsService {
     }
   }
 
+  // todo: this should also get all products if not yet retrieved
   getProduct(guid: string): Promise<Product> {
     if (this.products.length > 0) {
       const result = _.find(this.products, prj => prj.guid === guid);

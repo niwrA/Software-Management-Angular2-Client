@@ -2,6 +2,7 @@
   <mat-card-title *ngIf="link">{{link.name}}</mat-card-title>
   <mat-card-actions *ngIf="link">
     <button routerLink='details' mat-raised-button mat-tooltip="Link Details">Details</button>
+    <button routerLink='commands' mat-raised-button mat-tooltip="Audit">Audit</button>
   </mat-card-actions>
   <router-outlet></router-outlet>
 </mat-card>

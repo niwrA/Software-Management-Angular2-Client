@@ -1,3 +1,13 @@
-<p>
-  product-installation works!
-</p>
+<mat-card>
+    <mat-card-title *ngIf="productinstallation">{{productinstallation.name}}</mat-card-title>
+    <mat-card-actions *ngIf="productinstallation">
+      <button routerLink='details' mat-raised-button mat-tooltip="Link Details">Details</button>
+      <button routerLink='commands' mat-raised-button mat-tooltip="Audit">Audit</button>
+    </mat-card-actions>
+    <router-outlet></router-outlet>
+  </mat-card>
+  <div *ngIf="!productinstallation">
+    loading ...
+    <mat-spinner></mat-spinner>
+  </div>
+  

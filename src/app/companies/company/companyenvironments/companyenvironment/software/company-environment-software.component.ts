@@ -6,6 +6,7 @@ import { ProductsSelectComponent } from '../../../../../products/products-select
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ProductInstallation } from '../../../../../product-installations/productinstallation';
 import { Product } from '../../../../../products/product';
+import { ProductCardComponent } from '../../../../../products/product/product-card/product-card.component';
 import { ProductInstallationsService } from '../../../../../product-installations/product-installations.service';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +26,8 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
   companyenvironment: CompanyEnvironment;
   constructor(private dialog: MatDialog, private service: ProductInstallationsService,
     private route: ActivatedRoute,
-    private companiesService: CompaniesService
+    private companiesService: CompaniesService,
+    private productInstallationsService: ProductInstallationsService
   ) { }
 
   ngOnInit() {
@@ -47,8 +49,17 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
   updateCompanyEnvironment(companyEnvironment: CompanyEnvironment) {
     this.companyenvironment = companyEnvironment;
     this.companiesService.getCompany(companyEnvironment.companyGuid).then(company => this.company = company);
+    this.productInstallationsService.getProductInstallations(null, companyEnvironment.companyGuid)
+      .then(installs => this.updateInstalls(installs, companyEnvironment));
   }
 
+  updateInstalls(installs: Array<ProductInstallation>, companyEnvironment: CompanyEnvironment) {
+    if (companyEnvironment) {
+      this.productinstallations = _.filter(installs, f => f.companyEnvironmentGuid === companyEnvironment.guid);
+    } else {
+      this.productinstallations = installs;
+    }
+  }
 
   openProductsDialog() {
     this.productDialogRef = this.dialog.open(ProductsSelectComponent/*, {
@@ -65,11 +76,16 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
       const exist = _.find(this.productinstallations, productinstallation => productinstallation.productGuid === selected.guid);
       if (!exist) {
         const productinstallation = this.service.createProductInstallation(true, this.company.guid, selected.guid,
-          false, selected.name);
+          this.companyenvironment.guid, null, false);
         this.productinstallations.push(productinstallation);
         productinstallations.push(productinstallation);
       }
     }
     this.service.postProductInstallations(productinstallations);
+  }
+
+  deleteProductInstallation(productinstallation: ProductInstallation) {
+    this.service.deleteProductInstallation(productinstallation);
+    this.productinstallations.splice(this.productinstallations.indexOf(productinstallation));
   }
 }
