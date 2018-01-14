@@ -19,5 +19,6 @@ export const environment = {
   fileUploadUrl: 'http://localhost:50274/api/fileupload',
   staticFilesUrl: 'http://localhost:50274/uploads',
   accountsUrl: 'http://localhost:53699/api/account',
+  productinstallationsUrl: 'http://localhost:50274/api/productinstallations',
   config: securityConfig
 };

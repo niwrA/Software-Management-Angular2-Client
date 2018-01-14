@@ -77,7 +77,7 @@ export class ContactsComponent implements OnInit {
 
   deleteContact(contact: Contact): void {
     this.contactsService.deleteContact(contact);
-    let index = this.contacts.indexOf(contact, 0);
+    const index = this.contacts.indexOf(contact, 0);
     if (index > -1) {
       this.contacts.splice(index, 1);
     }

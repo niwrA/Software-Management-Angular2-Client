@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import 'hammerjs';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 
+// todo: make separately loading modules per microservice, e.g. Projects, Contacts
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
 import { ProjectsService } from './projects/projects.service';
@@ -70,6 +71,7 @@ import { EmploymentComponent } from './employments/employment/employment.compone
 import { EmploymentsService } from './employments/employments.service';
 import { CompanyRoleComponent } from './companies/company/companyroles/companyrole/companyrole.component';
 import { ContactsSelectComponent } from './contacts/contacts-select/contacts-select.component';
+import { CompaniesSelectComponent } from './companies/companies-select/companies-select.component';
 import { ProductVersionDetailsComponent } from './products/productversions/productversion/productversiondetails/productversiondetails.component';
 import { CompanyEnvironmentComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironment.component';
 import { CompanyEnvironmentDetailsComponent } from './companies/company/companyenvironments/companyenvironment/companyenvironmentdetails/companyenvironmentdetails.component';
@@ -122,8 +124,14 @@ import { RouterLinkStubDirective } from '../testing/router-stubs';
 import { ProductConfigOptionsComponent } from './products/productconfigoptions/productconfigoptions.component';
 import { ProductConfigOptionComponent } from './products/productconfigoptions/productconfigoption/productconfigoption.component';
 import { ProductConfigOptionDetailsComponent } from './products/productconfigoptions/productconfigoption/productconfigoptiondetails/productconfigoptiondetails.component';
-import { UsersService } from './admin/users/users.service';
 import { ProductConfigOptionChildrenComponent } from './products/productconfigoptions/productconfigoption/product-config-option-children/product-config-option-children.component';
+import { UsersService } from './admin/users/users.service';
+import { CompanyEnvironmentSoftwareComponent } from './companies/company/companyenvironments/companyenvironment/software/company-environment-software.component';
+import { ProductsSelectComponent } from './products/products-select/products-select.component';
+
+import { ProductInstallationsComponent } from './product-installations/product-installations.component';
+import { ProductInstallationsService } from './product-installations/product-installations.service';
+import { ProductInstallationComponent } from './product-installations/product-installation/product-installation.component';
 
 @NgModule({
   imports: [
@@ -180,6 +188,7 @@ import { ProductConfigOptionChildrenComponent } from './products/productconfigop
     EmploymentComponent,
     CompanyRoleComponent,
     ContactsSelectComponent,
+    CompaniesSelectComponent,
     ProductVersionDetailsComponent,
     CompanyEnvironmentComponent,
     CompanyEnvironmentDetailsComponent,
@@ -199,15 +208,17 @@ import { ProductConfigOptionChildrenComponent } from './products/productconfigop
     CompanyEnvironmentHardwareComponent, CompanyEnvironmentHardwareItemComponent,
     CompanyEnvironmentHardwareItemDetailsComponent, DatabasesComponent, DatabaseComponent, DatabaseDetailsComponent,
     AccountsComponent, AccountComponent, AccountDetailsComponent, RouterLinkStubDirective, ProductConfigOptionComponent,
-    ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent, ProductConfigOptionChildrenComponent
+    ProductConfigOptionsComponent, ProductConfigOptionComponent, ProductConfigOptionDetailsComponent,
+    ProductConfigOptionChildrenComponent, ProductInstallationsComponent, CompanyEnvironmentSoftwareComponent, ProductsSelectComponent,
+    ProductInstallationComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
     DesignsService, ContactsService, EmploymentsService,
     LinksService, FilesService, SemgraphService, CommandsService,
-    NotificationsService, AccountService, UsersService],
+    NotificationsService, AccountService, UsersService, ProductInstallationsService],
   bootstrap: [AppComponent],
-  entryComponents: [ContactsSelectComponent, FilePreviewComponent]
+  entryComponents: [ContactsSelectComponent, CompaniesSelectComponent, ProductsSelectComponent, FilePreviewComponent]
 })
 export class AppModule { }
 

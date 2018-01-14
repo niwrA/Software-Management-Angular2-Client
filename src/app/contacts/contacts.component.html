@@ -11,7 +11,7 @@
     </mat-card-actions>
     <mat-list *ngIf="selectedContacts.length>0">
       <mat-list-item>
-        <div *ngFor="let contact of selectedContacts">{{contact.name}}<span style="white-space:pre-wrap" *ngIf="selectedContacts.length>1">; </span> </div>
+        <div style="white-space:pre-wrap" *ngFor="let contact of selectedContacts">{{contact.name}}<span *ngIf="selectedContacts.length>1">; </span> </div>
       </mat-list-item>
     </mat-list>
     <mat-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">

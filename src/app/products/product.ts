@@ -22,6 +22,7 @@ export class Product {
     features: Array<ProductFeature>;
     issues: Array<ProductIssue>;
     configoptions: Array<ProductConfigOption>;
+    isSelected: boolean;
 
     constructor(state?: ProductState) {
         this._state = state;

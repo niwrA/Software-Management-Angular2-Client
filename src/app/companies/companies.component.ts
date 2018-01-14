@@ -11,6 +11,7 @@ import { Company } from './company';
 export class CompaniesComponent implements OnInit {
   @Input() companies = new Array<Object>();
   @Input() canAdd: Boolean;
+  @Input() selectedCompanies = new Array<Company>();
   selectedCompany: Company;
   searchText: string;
 

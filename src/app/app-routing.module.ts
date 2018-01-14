@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './admin/login/login.component';
 
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactComponent } from './contacts/contact/contact.component';
@@ -17,7 +18,8 @@ import { CompanyEnvironmentDetailsComponent } from './companies/company/companye
 import { CompanyEnvironmentHardwareComponent } from './companies/company/companyenvironments/companyenvironment/hardware/company-environment-hardware.component'
 import { CompanyEnvironmentHardwareItemComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/company-environment-hardware-item.component'
 import { CompanyEnvironmentHardwareItemDetailsComponent } from './companies/company/companyenvironments/companyenvironment/hardware/hardware-item/hardware-item-details/company-environment-hardware-item-details.component'
-import { LoginComponent } from './admin/login/login.component';
+import { CompanyEnvironmentSoftwareComponent } from './companies/company/companyenvironments/companyenvironment/software/company-environment-software.component';
+
 
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
@@ -170,6 +172,10 @@ const appRoutes: Routes = [
       {
         path: 'accounts',
         component: AccountsComponent
+      },
+      {
+        path: 'software',
+        component: CompanyEnvironmentSoftwareComponent
       },
       linksSubRoute,
       filesSubRoute

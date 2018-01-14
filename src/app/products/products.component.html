@@ -4,8 +4,13 @@
       (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)' />
   </mat-input-container>
   <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
-
+  <mat-list *ngIf="selectedProducts.length>0">
+    <mat-list-item>
+      <div style="white-space:pre-wrap" *ngFor="let contact of selectedProducts">{{contact.name}}<span *ngIf="selectedProducts.length>1">; </span> </div>
+    </mat-list-item>
+  </mat-list>
   <mat-card *ngFor="let product of products">
+    <mat-checkbox style="float:right" [(ngModel)]="product.isSelected" (click)="toggleSelect(product)" align='end'></mat-checkbox>
     <mat-card-title-group [routerLink]="[product.guid, 'details']">
       <mat-card-subtitle>
         <mat-icon>shopping cart</mat-icon>

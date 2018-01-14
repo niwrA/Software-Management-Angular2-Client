@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Select Products</h1>
+<div mat-dialog-content>
+  <app-products *ngIf="selectedProducts" [selectedProducts]="selectedProducts"></app-products>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="confirm()" mat-dialog-close primary>OK</button>
+  <button mat-button (click)="cancel()" mat-dialog-close>Cancel</button>
+</div>

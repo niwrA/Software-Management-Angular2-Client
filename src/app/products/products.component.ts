@@ -9,6 +9,7 @@ import { Product } from './product';
 })
 export class ProductsComponent implements OnInit {
   @Input() products = new Array<Product>();
+  @Input() selectedProducts = new Array<Product>();
   @Input() canAdd: Boolean;
   selectedProduct: Product;
   searchText: string;
@@ -21,9 +22,22 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  onSelect(company: Product): void {
-    this.selectedProduct = company;
+  onSelect(product: Product): void {
+    this.selectedProduct = product;
   }
+
+  toggleSelect(product: Product): void {
+    // product.isSelected = !product.isSelected;
+    if (!product.isSelected) {
+      this.selectedProducts.push(product);
+    } else {
+      const index = this.selectedProducts.indexOf(product, 0);
+      if (index > -1) {
+        this.selectedProducts.splice(index, 1);
+      }
+    }
+  }
+
 
   clearSelection(): void {
     this.selectedProduct = null;
