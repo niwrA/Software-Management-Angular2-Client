@@ -14,13 +14,20 @@ export class CompaniesComponent implements OnInit {
   @Input() selectedCompanies = new Array<Company>();
   selectedCompany: Company;
   searchText: string;
+  // todo: this will be a separate component
+  views = [
+    { value: 'cards', viewValue: 'Cards' },
+    { value: 'list', viewValue: 'List' }
+  ];
+  selectedView: string;
 
   constructor(private companiesService: CompaniesService) {
     this.companies = companiesService.companies;
-   }
+  }
 
   ngOnInit() {
     this.getCompanies();
+    this.selectedView = 'cards';
   }
 
   onSelect(company: Company): void {

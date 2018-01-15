@@ -1,6 +1,6 @@
 <mat-card>
   <mat-input-container>
-    <input matInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)'
+    <input type="search" matInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)'
     />
   </mat-input-container>
   <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>

@@ -1,6 +1,6 @@
 <mat-card>
   <mat-input-container>
-    <input matInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCommands()"
+    <input matInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="filterCommands()"
     />
   </mat-input-container>
   <mat-card *ngFor="let command of commands">

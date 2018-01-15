@@ -1,6 +1,6 @@
 <mat-card>
   <mat-input-container>
-    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects()" (keyup.enter)='createProject(searchTextInput.value)' />
+    <input type="search" matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getProjects()" (keyup.enter)='createProject(searchTextInput.value)' />
   </mat-input-container>
   <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new project" (click)="createProject(searchTextInput.value)">Add</button>
   <mat-card *ngFor="let project of projects">

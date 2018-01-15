@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 
 const MAT_MODULES = [
     MatButtonModule,
@@ -14,7 +15,8 @@ const MAT_MODULES = [
     MatInputModule,
     MatProgressSpinnerModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
     // and so on...
 ];
 

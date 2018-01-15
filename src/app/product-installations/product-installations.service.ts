@@ -19,7 +19,7 @@ export class ProductInstallationsService {
   productinstallations = new Array<ProductInstallation>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
-    this.getProductInstallations().then(result => this.productinstallations = result as Array<ProductInstallation>);
+    // this.getProductInstallations().then(result => this.productinstallations = result as Array<ProductInstallation>);
   }
 
   createProductInstallation(doSave: boolean, companyGuid: string,  productGuid: string, companyEnvironmentGuid: string,
@@ -113,9 +113,7 @@ export class ProductInstallationsService {
     const states = response.json() as Array<ProductInstallationState>;
     productinstallations = new Array<ProductInstallation>();
     for (const state of states) {
-      const productinstallation = new ProductInstallation(state);
-      productinstallations.push(productinstallation);
-      // this.productinstallations.push(productinstallation);
+      productinstallations.push(new ProductInstallation(state));
     }
     return productinstallations;
   }

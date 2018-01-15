@@ -61,13 +61,11 @@ export class CommandsComponent implements OnInit {
     this.forGuid = forGuid;
   }
 
-  getCommands(): void {
-    this.service.getCommands(this.searchText).then(commands => this.updateCommands(commands));
-  }
-
   filterCommands(): void {
     if (this.searchText && this.searchText.length > 0) {
-      this.commands = _.filter<CommandReadOnly>(this.allCommands, prj => prj.name.indexOf(this.searchText) > -1);
+      this.commands = _.filter<CommandReadOnly>
+        (this.allCommands, prj => prj.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
+          || prj.parametersJson.indexOf(this.searchText) > -1);
     } else { this.commands = this.allCommands; }
   }
 

@@ -1,7 +1,7 @@
 <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between start">
   <div style="width: 40%">
     <mat-input-container>
-      <input matInput [disabled]='!canAdd' #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+      <input type="search" matInput [disabled]='!canAdd' #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
         (keyup)="getFiles()" (keyup.enter)='createFile(searchTextInput.value)' />
     </mat-input-container>
     <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new file" (click)="createFile(searchTextInput.value)">Add</button>

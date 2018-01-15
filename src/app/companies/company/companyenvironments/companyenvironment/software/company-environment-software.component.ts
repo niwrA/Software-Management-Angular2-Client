@@ -26,8 +26,7 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
   companyenvironment: CompanyEnvironment;
   constructor(private dialog: MatDialog, private service: ProductInstallationsService,
     private route: ActivatedRoute,
-    private companiesService: CompaniesService,
-    private productInstallationsService: ProductInstallationsService
+    private companiesService: CompaniesService
   ) { }
 
   ngOnInit() {
@@ -49,7 +48,7 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
   updateCompanyEnvironment(companyEnvironment: CompanyEnvironment) {
     this.companyenvironment = companyEnvironment;
     this.companiesService.getCompany(companyEnvironment.companyGuid).then(company => this.company = company);
-    this.productInstallationsService.getProductInstallations(null, companyEnvironment.companyGuid)
+    this.service.getProductInstallations(null, companyEnvironment.companyGuid)
       .then(installs => this.updateInstalls(installs, companyEnvironment));
   }
 
