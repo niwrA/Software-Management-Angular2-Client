@@ -12,11 +12,13 @@
             <mat-card>
               <mat-card-title [routerLink]="['/product-installations', productinstallation.guid, 'details']">Installation</mat-card-title>
               <mat-card-content>
+                <app-product-card [productGuid]="productinstallation.productGuid"></app-product-card>
+                <p></p>
                 <div *ngIf="productinstallation.startDate">From </div>
                 <div>{{productinstallation.startDate}}</div>
                 <div *ngIf="productinstallation.endDate"> to </div>
                 <div>{{productinstallation.endDate}}</div>
-                <app-product-card [productGuid]="productinstallation.productGuid"></app-product-card>
+                <div>ExternalId: {{productinstallation.externalId}}</div>
               </mat-card-content>
               <mat-card-actions>
                 <button mat-icon-button (click)="deleteProductInstallation(productinstallation)">

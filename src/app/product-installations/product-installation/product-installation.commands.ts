@@ -59,3 +59,17 @@ export class ChangeEndDateOfProductInstallationCommand extends ProductInstallati
         this.Parameters = parameters;
     }
 }
+
+export class ChangeExternalIdParameters extends CommandParameters {
+    ExternalId?: string;
+    OriginalExternalId?: string;
+}
+export class ChangeExternalIdOfProductInstallationCommand extends ProductInstallationCommand {
+    constructor(productinstallation: ProductInstallation, orgExternalId?: string) {
+        super('ChangeEndDateOf', productinstallation);
+        const parameters = new ChangeExternalIdParameters();
+        parameters.OriginalExternalId = orgExternalId;
+        parameters.ExternalId = productinstallation.externalId;
+        this.Parameters = parameters;
+    }
+}

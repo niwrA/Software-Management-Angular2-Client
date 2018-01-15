@@ -2,7 +2,8 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductInstallation } from '../../productinstallation';
-import { ChangeEndDateOfProductInstallationCommand, ChangeStartDateOfProductInstallationCommand } from '../product-installation.commands';
+import { ChangeEndDateOfProductInstallationCommand, ChangeStartDateOfProductInstallationCommand
+, ChangeExternalIdOfProductInstallationCommand } from '../product-installation.commands';
 import { ProductInstallationsService } from '../../product-installations.service';
 
 @Component({
@@ -52,6 +53,18 @@ export class ProductInstallationDetailsComponent implements OnInit {
           (this.productinstallation, this.previousProductInstallation.endDate);
         this.service.postCommand(renameCommand, false);
         this.previousProductInstallation.endDate = this.productinstallation.endDate;
+      }
+    } else {
+      this.previousProductInstallation = this.productinstallation;
+    }
+  }
+  changeExternalId(): void {
+    if (this.previousProductInstallation !== undefined) {
+      if (this.productinstallation.endDate !== this.previousProductInstallation.endDate) {
+        const renameCommand = new ChangeExternalIdOfProductInstallationCommand
+          (this.productinstallation, this.previousProductInstallation.externalId);
+        this.service.postCommand(renameCommand, false);
+        this.previousProductInstallation.externalId = this.productinstallation.externalId;
       }
     } else {
       this.previousProductInstallation = this.productinstallation;

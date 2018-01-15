@@ -1,6 +1,5 @@
 <mat-card >
   <mat-card-title *ngIf="companyenvironment">{{companyenvironment.name}} Environment for <a [routerLink]="['/companies', company.guid, 'environments']" *ngIf="company">{{company.name}}</a></mat-card-title>
-  <mat-card-content *ngIf="company"><div>{{company.name}}</div></mat-card-content>
   <button routerLink="details" mat-raised-button mat-tooltip="Details">Details</button>
   <button routerLink="hardware" mat-raised-button mat-tooltip="Hardware">(Virtual) Machines</button>
   <button routerLink="databases" mat-raised-button mat-tooltip="Databases">Databases</button>

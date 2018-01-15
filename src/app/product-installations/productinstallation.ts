@@ -8,6 +8,7 @@ export class ProductInstallationState {
     productVersionGuid: string;
     startDate: string;
     endDate: string;
+    externalId: string;
     constructor() {
     }
 }
@@ -39,6 +40,9 @@ export class ProductInstallation {
 
     get endDate(): string { return this._state.endDate; };
     set endDate(value: string) { this._state.endDate = value; };
+
+    get externalId(): string { return this._state.externalId; };
+    set externalId(value: string) { this._state.externalId = value; };
 
     public clone(): ProductInstallation {
         return new ProductInstallation(_.clone(this._state));
