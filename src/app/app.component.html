@@ -12,8 +12,8 @@
     <button (click)='showContacts(true)' color='{{contactsColor}}' mat-raised-button mat-tooltip="View Contacts">Contacts</button>
     <button (click)='showTechnologies(true)' color='{{technologiesColor}}' mat-raised-button mat-tooltip="View Technologies">Technologies</button>
     <button *ngIf="isAdmin()" routerLink='/admin' mat-raised-button mat-tooltip="admin">Admin</button>
-    <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' mat-raised-button mat-tooltip="todo: login">Login</button>
-    <button *ngIf="isLoggedIn()" (click)='logout()' mat-raised-button mat-tooltip="todo: logout">Logout</button>
+    <!-- <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' mat-raised-button mat-tooltip="todo: login">Login</button> -->
+    <!-- <button *ngIf="isLoggedIn()" (click)='logout()' mat-raised-button mat-tooltip="todo: logout">Logout</button> -->
   </div>
 </mat-card>
 <!--  <ui-view></ui-view>-->

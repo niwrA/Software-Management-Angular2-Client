@@ -16,7 +16,7 @@ export class LinksService {
   links = new Array<Link>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
-    //    this.getLinks('').then(result => this.links = result as Array<Link>);
+    this.getLinks('').then(result => this.links = result as Array<Link>);
   }
 
   createLink(doSave: boolean, url: string, forGuid: string): Link {

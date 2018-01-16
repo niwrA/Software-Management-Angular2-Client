@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CompaniesService } from './companies.service';
 import { Company } from './company';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-companies',
@@ -9,9 +10,10 @@ import { Company } from './company';
 })
 
 export class CompaniesComponent implements OnInit {
-  @Input() companies = new Array<Object>();
+  @Input() companies = new Array<Company>();
   @Input() canAdd: Boolean;
   @Input() selectedCompanies = new Array<Company>();
+  filteredCompanies = new Array<Company>();
   selectedCompany: Company;
   searchText: string;
   // todo: this will be a separate component
@@ -22,12 +24,13 @@ export class CompaniesComponent implements OnInit {
   selectedView: string;
 
   constructor(private companiesService: CompaniesService) {
-    this.companies = companiesService.companies;
+    this.getCompanies();
   }
 
   ngOnInit() {
+    this.selectedView = 'list';
+    this.searchText = '';
     this.getCompanies();
-    this.selectedView = 'cards';
   }
 
   onSelect(company: Company): void {
@@ -39,11 +42,23 @@ export class CompaniesComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.companiesService.getCompanies(this.searchText).then(companies => this.companies = companies);
+    this.companiesService.getCompanies('').then(companies => this.updateCompanies(companies));
+  }
+
+  filterCompanies(): void {
+    let filteredCompanies: Array<Company>;
+    if (this.searchText && this.searchText.length > 0) {
+      filteredCompanies = _.filter(this.companies, s => s.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
+        || (s.externalId && s.externalId.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1));
+    } else {
+      filteredCompanies = this.companies;
+    }
+    this.filteredCompanies = _.take(filteredCompanies, 20);
   }
 
   updateCompanies(companies: Array<Company>): void {
     this.companies = companies;
+    this.filterCompanies();
   }
 
   createCompany(name: string): void {

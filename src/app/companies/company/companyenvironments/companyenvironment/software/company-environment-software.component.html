@@ -21,7 +21,7 @@
                 <div>ExternalId: {{productinstallation.externalId}}</div>
               </mat-card-content>
               <mat-card-actions>
-                <button mat-icon-button (click)="deleteProductInstallation(productinstallation)">
+                <button [disabled]='productinstallation.startDate' mat-icon-button (click)="deleteProductInstallation(productinstallation)">
                   <mat-icon mat-mini-fab>delete</mat-icon>
                 </button>
               </mat-card-actions>
