@@ -7,7 +7,7 @@ export const DESIGNS: DesignState[] = [
     epicElements: [{
       guid: 'epic11', name: 'Projects', description: 'description', designGuid: 'design11',
       entityElements: [{
-        guid: 'entity11', name: 'Project', description: 'description', designGuid: 'design11', epicElementGuid: 'epic11',
+        guid: 'entity11', name: 'Project', description: 'description', parentGuid: '', designGuid: 'design11', epicElementGuid: 'epic11',
         propertyElements: [{ guid: 'property11', name: 'Name', description: 'description',
           designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11' },
         {

@@ -1,9 +1,16 @@
 import { Command, CommandParameters } from '../../commands/command';
 import { Design } from '../design';
+import { EntityElement } from './entity-elements/entity-element';
 
 export class DesignCommand extends Command {
     constructor(name: string, design: Design) {
         super(name, 'Design', design.guid);
+    };
+}
+
+export class EntityElementCommand extends Command {
+    constructor(name: string, entityElement: EntityElement) {
+        super(name, 'EntityElement', entityElement.guid);
     };
 }
 
@@ -50,6 +57,42 @@ export class ChangeDescriptionOfDesignCommand extends DesignCommand {
         super('ChangeDescriptionOf', design);
         const parameters = new ChangeDescriptionOfDesignParameters();
         parameters.Description = design.description;
+        this.Parameters = parameters;
+    }
+}
+
+export class AddChildToEntityElementParameters extends CommandParameters {
+    Name: string;
+    DesignGuid: string;
+    EpicGuid: string;
+    ParentGuid: string;
+}
+
+export class AddChildToEntityElementCommand extends EntityElementCommand {
+    constructor(entityelement: EntityElement) {
+        super('AddChildTo', entityelement);
+        const parameters = new AddChildToEntityElementParameters();
+        parameters.Name = entityelement.name;
+        parameters.DesignGuid = entityelement.designGuid;
+        parameters.EpicGuid = entityelement.epicGuid;
+        parameters.ParentGuid = entityelement.parentGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class RemoveChildFromEntityElementParameters extends CommandParameters {
+    DesignGuid: string;
+    EpicGuid: string;
+    ParentGuid: string;
+}
+
+export class RemoveChildFromEntityElementCommand extends EntityElementCommand {
+    constructor(entityelement: EntityElement, parent: EntityElement) {
+        super('RemoveChildFrom', parent);
+        const parameters = new RemoveChildFromEntityElementParameters();
+        parameters.EpicGuid = entityelement.epicGuid;
+        parameters.DesignGuid = entityelement.designGuid;
+        parameters.ParentGuid = entityelement.parentGuid;
         this.Parameters = parameters;
     }
 }

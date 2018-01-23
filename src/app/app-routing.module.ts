@@ -56,6 +56,7 @@ import { EpicElementDetailsComponent } from './designs/design/epic-elements/epic
 import { EntityElementsComponent } from './designs/design/entity-elements/entity-elements.component';
 import { EntityElementComponent } from './designs/design/entity-elements/entity-element/entity-element.component';
 import { EntityElementDetailsComponent } from './designs/design/entity-elements/entity-element/entity-element-details/entity-element-details.component';
+import { EntityElementChildrenComponent } from './designs/design/entity-elements/entity-element/entity-element-children/entity-element-children.component';
 import { PropertyElementsComponent } from './designs/design/property-elements/property-elements.component';
 import { PropertyElementComponent } from './designs/design/property-elements/property-element/property-element.component';
 import { PropertyElementDetailsComponent } from './designs/design/property-elements/property-element/property-element-details/property-element-details.component';
@@ -324,6 +325,10 @@ const appRoutes: Routes = [
         path: 'commandelements',
         component: CommandElementsComponent
       },
+      {
+        path: 'children',
+        component: EntityElementChildrenComponent
+      },
       linksSubRoute,
       filesSubRoute
     ]
@@ -489,7 +494,7 @@ const appRoutes: Routes = [
   //     commandsSubRoute]
   // },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', redirectTo: '/index.html' }
 ];
 
 @NgModule({

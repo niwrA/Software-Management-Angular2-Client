@@ -134,6 +134,7 @@ import { ProductInstallationsService } from './product-installations/product-ins
 import { ProductInstallationComponent } from './product-installations/product-installation/product-installation.component';
 import { ProductCardComponent } from './products/product/product-card/product-card.component';
 import { ProductInstallationDetailsComponent } from './product-installations/product-installation/product-installation-details/product-installation-details.component';
+import { EntityElementChildrenComponent } from './designs/design/entity-elements/entity-element/entity-element-children/entity-element-children.component';
 
 @NgModule({
   imports: [
@@ -214,7 +215,8 @@ import { ProductInstallationDetailsComponent } from './product-installations/pro
     ProductConfigOptionChildrenComponent, ProductInstallationsComponent, CompanyEnvironmentSoftwareComponent, ProductsSelectComponent,
     ProductInstallationComponent,
     ProductCardComponent,
-    ProductInstallationDetailsComponent
+    ProductInstallationDetailsComponent,
+    EntityElementChildrenComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,

@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-input-container>
+    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEntityElements()"
+      (keyup.enter)='createEntityElementChild(searchTextInput.value)' />
+  </mat-input-container>
+  <button *ngIf="entityelement" mat-raised-button mat-tooltip="Add new entityelement" (click)="createEntityElementChild(searchTextInput.value)">Add</button>
+  <mat-card *ngFor="let entityelement of filteredchildren">
+    <mat-card-title-group [routerLink]="['/designs', entityelement.designGuid, 'epicelements', entityelement.epicGuid, 'entityelements', entityelement.guid, 'details']">
+      <mat-card-subtitle>
+        <mat-icon>cog</mat-icon>
+      </mat-card-subtitle>
+      <mat-card-title>{{entityelement.name}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
+      <div>{{entityelement.description}}</div>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button *ngIf="entityelement" mat-mini-fab [routerLink]="['/designs', entityelement.designGuid, 'epicelements', entityelement.epicGuid, 'entityelements', entityelement.guid, 'details']">
+        <mat-icon>details</mat-icon>
+      </button>
+      <button *ngIf="entityelement" mat-mini-fab color="warn" (click)="deleteEntityElementChild(entityelement)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

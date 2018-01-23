@@ -5,6 +5,7 @@ export class EntityElementState {
     name: string;
     guid: string;
     designGuid: string;
+    parentGuid: string;
     epicElementGuid: string;
     description: string;
     propertyElements: Array<PropertyElementState>;
@@ -39,6 +40,9 @@ export class EntityElement {
 
     get guid(): string { return this._state.guid; };
     set guid(value: string) { this._state.guid = value; };
+
+    get parentGuid(): string { return this._state.parentGuid; };
+    set parentGuid(value: string) { this._state.parentGuid = value; };
 
     get designGuid(): string { return this._state.designGuid; };
     set designGuid(value: string) { this._state.designGuid = value; };

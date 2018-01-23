@@ -7,7 +7,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
 import {
-  AddAccountToEnvironmentCommand,
+  CreateAccountCommand,
   RemoveAccountFromEnvironmentCommand
 } from '../../../company.commands';
 
@@ -49,7 +49,7 @@ export class AccountsComponent implements OnInit {
     }
   }
 
-  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment){
+  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment) {
     this.companyenvironment = companyEnvironment;
     this.accounts = companyEnvironment.accounts;
     this.service.getCompany(companyEnvironment.companyGuid).then(company => this.company = company);
@@ -69,7 +69,7 @@ export class AccountsComponent implements OnInit {
     this.companyenvironment.accounts.push(account);
     this.updateCompanyEnvironment(this.companyenvironment);
 
-    const command = new AddAccountToEnvironmentCommand(this.company, account);
+    const command = new CreateAccountCommand(account);
     this.service.postCommand(command, false);
   }
 

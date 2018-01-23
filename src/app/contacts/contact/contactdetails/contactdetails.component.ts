@@ -79,7 +79,7 @@ export class ContactDetailsComponent implements OnInit {
       const changeAvatarCommand = new ChangeAvatarForContactCommand(this.contact, this.previousContact.avatarFileGuid);
       this.service.postCommand(changeAvatarCommand, false);
       this.previousContact.avatarFileGuid = this.contact.avatarFileGuid;
-      this.previousContact.avatarUrl = this.contact.avatarUrl;
+      this.previousContact.avatarUrl = this.contact.avatarUrl; // todo: make relative path
     }
   }
 }

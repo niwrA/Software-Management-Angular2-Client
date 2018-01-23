@@ -12,7 +12,7 @@ import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import {
   DesignCommand, CreateDesignCommand, DeleteDesignCommand,
-  RenameDesignCommand
+  RenameDesignCommand, AddChildToEntityElementCommand, RemoveChildFromEntityElementCommand
 } from './design/design.commands';
 import { CreateEntityElementCommand } from './design/entity-elements/entity-element/entity-element.commands';
 import { CreatePropertyElementCommand, CreatePropertyCodeGenCommand, DeletePropertyElementCommand 
@@ -69,6 +69,29 @@ export class DesignsService {
     }
     return newItem;
   }
+
+  createEntityElementChild(doSave: boolean, epicElement: EpicElement, parent: EntityElement, name: string): EntityElement {
+    const newItem = new EntityElement();
+    newItem.guid = UUID.UUID();
+    newItem.name = name;
+    newItem.parentGuid = parent.guid;
+    newItem.epicGuid = parent.epicGuid;
+    newItem.designGuid = parent.designGuid;
+    if (doSave) {
+      epicElement.entities.splice(0, 0, newItem);
+      const createEpicElementConfigCommand = new AddChildToEntityElementCommand(newItem);
+      this.commandsService.postCommand(createEpicElementConfigCommand, false);
+    }
+    return newItem;
+  }
+  removeChildFromEntityElement(epicElement: EpicElement, entityelement: EntityElement, parent: EntityElement): void {
+    const index = epicElement.entities.indexOf(entityelement, 0);
+    if (index > -1) {
+      epicElement.entities.splice(index, 1);
+    }
+    this.postCommand(new RemoveChildFromEntityElementCommand(entityelement, parent), false);
+  }
+
   createPropertyElement(doSave: boolean, entity: EntityElement, name?: string): PropertyElement {
     const newItem = new PropertyElement();
     newItem.guid = UUID.UUID();
@@ -78,7 +101,7 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       entity.properties.push(newItem);
-      let commands = new Array<Command>();
+      const commands = new Array<Command>();
 
       const createPropertyCommand = new CreatePropertyElementCommand(newItem);
       commands.push(createPropertyCommand);
