@@ -136,6 +136,7 @@ import { ProductCardComponent } from './products/product/product-card/product-ca
 import { ProductInstallationDetailsComponent } from './product-installations/product-installation/product-installation-details/product-installation-details.component';
 import { EntityElementChildrenComponent } from './designs/design/entity-elements/entity-element/entity-element-children/entity-element-children.component';
 import { AppnavbarComponent } from './shared/appnavbar/appnavbar.component';
+import { SearchandaddComponent } from './shared/searchandadd/searchandadd.component';
 
 @NgModule({
   imports: [
@@ -218,7 +219,8 @@ import { AppnavbarComponent } from './shared/appnavbar/appnavbar.component';
     ProductCardComponent,
     ProductInstallationDetailsComponent,
     EntityElementChildrenComponent,
-    AppnavbarComponent
+    AppnavbarComponent,
+    SearchandaddComponent
   ],
   providers: [ProjectsService, ProjectRoleAssignmentsService, CompaniesService,
     TechnologiesService, ProductsService, ProductVersionsService,
@@ -226,7 +228,8 @@ import { AppnavbarComponent } from './shared/appnavbar/appnavbar.component';
     LinksService, FilesService, SemgraphService, CommandsService,
     NotificationsService, AccountService, UsersService, ProductInstallationsService],
   bootstrap: [AppComponent],
-  entryComponents: [ContactsSelectComponent, CompaniesSelectComponent, ProductsSelectComponent, FilePreviewComponent, AppnavbarComponent]
+  entryComponents: [ContactsSelectComponent, CompaniesSelectComponent, ProductsSelectComponent,
+    FilePreviewComponent, AppnavbarComponent, SearchandaddComponent]
 })
 export class AppModule { }
 

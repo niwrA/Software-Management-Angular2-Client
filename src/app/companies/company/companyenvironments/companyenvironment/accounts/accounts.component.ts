@@ -54,9 +54,9 @@ export class AccountsComponent implements OnInit {
     this.accounts = companyEnvironment.accounts;
     this.service.getCompany(companyEnvironment.companyGuid).then(company => this.company = company);
   }
-  searchTextChanged(): void {
-    this.canAdd = this.searchText.length > 0;
-    this.getAccounts(this.searchText);
+  searchTextChanged(searchText): void {
+    this.canAdd = searchText.length > 0;
+    this.getAccounts(searchText);
   }
 
   createAccount(name: string) {

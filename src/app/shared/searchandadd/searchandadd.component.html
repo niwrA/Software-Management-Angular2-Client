@@ -1,0 +1,5 @@
+<mat-input-container class="inline-control">
+    <input type="search" matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (ngModelChange)="filterHandler($event)"
+      (keyup.enter)='createHandler(searchTextInput.value)' />
+  </mat-input-container>
+  <button mat-raised-button mat-tooltip="Add new company" (click)="createHandler(searchTextInput.value)">Add</button>

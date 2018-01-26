@@ -59,10 +59,10 @@ export class CompanyRolesComponent implements OnInit {
 
   getCompanyRoles(searchText: string) {
     if (searchText && searchText.length > 0) {
-
-      const results = _.filter<CompanyRole>(this.companyroles, prj => prj.name.indexOf(searchText) > -1);
-      return Promise.resolve(results);
+      const results = _.filter<CompanyRole>(this.companyroles, prj => prj.name.toLowerCase().indexOf(searchText) > -1);
+      this.companyroles = results;
+    } else {
+      this.companyroles = this.company.roles;
     }
-    return Promise.resolve(this.companyroles);
   }
 }

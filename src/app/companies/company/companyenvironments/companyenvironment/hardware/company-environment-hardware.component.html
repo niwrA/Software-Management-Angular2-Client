@@ -1,10 +1,5 @@
 <mat-card>
-  <mat-input-container>
-    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
-      (keyup)="getCompanyEnvironmentHardware(searchTextInput.value)" (keyup.enter)='createCompanyEnvironmentHardwareItem(searchTextInput.value)'
-    />
-  </mat-input-container>
-  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new hardware" (click)="createCompanyEnvironmentHardwareItem(searchTextInput.value)">Add</button>
+  <app-searchandadd [(searchText)]="searchText" (onFilter)="getCompanyEnvironmentHardware($event)" (onCreate)="createCompanyEnvironmentHardwareItem($event)"></app-searchandadd>
   <mat-card *ngFor="let hardware of companyenvironmenthardware">
     <mat-card-title-group [routerLink]="[hardware.guid, 'details']">
       <mat-card-subtitle>

@@ -1,9 +1,5 @@
-<mat-input-container>
-  <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
-    (keyup)="getCompanyEnvironments(searchTextInput.value)" (keyup.enter)='createCompanyEnvironment(searchTextInput.value)'
-  />
-</mat-input-container>
-<button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new companyenvironment" (click)="createCompanyEnvironment(searchTextInput.value)">Add</button>
+<app-searchandadd [(searchText)]="searchText" (onFilter)="getCompanyEnvironments($event)" (onCreate)="createCompanyEnvironment($event)"></app-searchandadd>
+
 <mat-card *ngFor="let companyenvironment of companyenvironments">
   <mat-card-title-group [routerLink]="[companyenvironment.guid, 'details']">
     <mat-card-subtitle>

@@ -1,8 +1,4 @@
-<mat-input-container>
-  <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getCompanyRoles(searchTextInput.value)" (keyup.enter)='createCompanyRole(searchTextInput.value)' />
-</mat-input-container>
-<button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new companyrole" (click)="createCompanyRole(searchTextInput.value)">Add</button>
-
+<app-searchandadd [(searchText)]="searchText" (onCreate)="createCompanyRole($event)" (onFilter)="getCompanyRoles($event)"></app-searchandadd>
 <mat-card *ngFor="let companyrole of companyroles">
   <mat-card-title-group [routerLink]="[companyrole.guid]">
     <mat-card-subtitle>

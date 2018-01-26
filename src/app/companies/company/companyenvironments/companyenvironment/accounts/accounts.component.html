@@ -1,10 +1,6 @@
 <mat-card>
-  <mat-input-container>
-    <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
-      (keyup)="getAccounts(searchTextInput.value)" (keyup.enter)='createAccount(searchTextInput.value)'
-    />
-  </mat-input-container>
-  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new account" (click)="createAccount(searchTextInput.value)">Add</button>
+  <app-searchandadd [(searchText)]="searchText" (onFilter)="getAccounts($event)" (onCreate)="createAccount($event)"></app-searchandadd>
+
   <mat-card *ngFor="let account of accounts">
     <mat-card-title-group [routerLink]="[account.guid, 'details']">
       <mat-card-subtitle>
