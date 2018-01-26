@@ -64,7 +64,7 @@ export class ChangeDescriptionOfDesignCommand extends DesignCommand {
 export class AddChildToEntityElementParameters extends CommandParameters {
     Name: string;
     DesignGuid: string;
-    EpicGuid: string;
+    EpicElementGuid: string;
     ParentGuid: string;
 }
 
@@ -74,7 +74,7 @@ export class AddChildToEntityElementCommand extends EntityElementCommand {
         const parameters = new AddChildToEntityElementParameters();
         parameters.Name = entityelement.name;
         parameters.DesignGuid = entityelement.designGuid;
-        parameters.EpicGuid = entityelement.epicGuid;
+        parameters.EpicElementGuid = entityelement.epicGuid;
         parameters.ParentGuid = entityelement.parentGuid;
         this.Parameters = parameters;
     }
@@ -82,7 +82,7 @@ export class AddChildToEntityElementCommand extends EntityElementCommand {
 
 export class RemoveChildFromEntityElementParameters extends CommandParameters {
     DesignGuid: string;
-    EpicGuid: string;
+    EpicElementGuid: string;
     ParentGuid: string;
 }
 
@@ -90,7 +90,7 @@ export class RemoveChildFromEntityElementCommand extends EntityElementCommand {
     constructor(entityelement: EntityElement, parent: EntityElement) {
         super('RemoveChildFrom', parent);
         const parameters = new RemoveChildFromEntityElementParameters();
-        parameters.EpicGuid = entityelement.epicGuid;
+        parameters.EpicElementGuid = entityelement.epicGuid;
         parameters.DesignGuid = entityelement.designGuid;
         parameters.ParentGuid = entityelement.parentGuid;
         this.Parameters = parameters;

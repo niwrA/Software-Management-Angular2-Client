@@ -55,14 +55,16 @@ export class EntityElementChildrenComponent implements OnInit {
   }
   getEntityElements(): void {
     const searchText = this.searchText;
+    let filtered: Array<EntityElement>;
     if (this.children) {
       if (searchText && searchText.length > 0) {
-        this.filteredchildren = _.filter<EntityElement>
+        filtered = _.filter<EntityElement>
           (this.children, prj => prj.name.indexOf(this.searchText) > -1);
       } else {
-        this.filteredchildren = this.children;
+        filtered = this.children;
       }
     }
+    this.filteredchildren = _.filter(filtered, f => f.parentGuid === this.entityelement.guid);
   }
 
   createEntityElementChild(name: string): void {

@@ -10,5 +10,14 @@
         <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="entityElement.description" placeholder="Description"></textarea>
       </mat-input-container>
     </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-input-container>
+        <input matInput (blur)="changePlural()" [(ngModel)]="entityElement.pluralName" placeholder="Plural Name" />
+        <mat-hint align="start">Will be used for one to many relationship and table name in relational databases</mat-hint>
+    </mat-input-container>
+    </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-slide-toggle [(ngModel)]="entityElement.isCollection">One-to-many (children) relationship</mat-slide-toggle>
+    </mat-card-content>
   </mat-card-content>
 </mat-card>

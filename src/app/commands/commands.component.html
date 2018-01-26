@@ -11,7 +11,7 @@
       <mat-card-title>{{command.name}}{{command.entity}}</mat-card-title>
     </mat-card-title-group>
     <mat-card-content>
-      <div>{{command.parametersJson}}</div>
+      <p>{{command.parametersJson | json}}</p>
       <div>Created by {{command.userName}} on {{command.createdOn}}</div>
       <div>Executed on {{command.executedOn}}</div>
     </mat-card-content>

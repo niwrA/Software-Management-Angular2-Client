@@ -78,7 +78,7 @@ export class DesignsService {
     newItem.epicGuid = parent.epicGuid;
     newItem.designGuid = parent.designGuid;
     if (doSave) {
-      epicElement.entities.splice(0, 0, newItem);
+      epicElement.entities.push(newItem);
       const createEpicElementConfigCommand = new AddChildToEntityElementCommand(newItem);
       this.commandsService.postCommand(createEpicElementConfigCommand, false);
     }

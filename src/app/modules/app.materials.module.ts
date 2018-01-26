@@ -5,6 +5,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const MAT_MODULES = [
     MatButtonModule,
@@ -16,7 +17,8 @@ const MAT_MODULES = [
     MatProgressSpinnerModule,
     MatListModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
     // and so on...
 ];
 

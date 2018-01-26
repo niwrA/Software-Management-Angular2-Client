@@ -44,13 +44,15 @@ export class EntityElementsComponent implements OnInit {
   }
 
   getEntityElements(searchText: string): void {
+    let elements: Array<EntityElement>;
     if (this.epicElement && this.epicElement.entities) {
       if (searchText.length > 0) {
-        this.entityElements = _.filter<EntityElement>(this.epicElement.entities, prj => prj.name.indexOf(this.searchText) > -1);
+        elements = _.filter<EntityElement>(this.epicElement.entities, prj => prj.name.indexOf(this.searchText) > -1);
       } else {
-        this.entityElements = this.epicElement.entities;
+        elements = this.epicElement.entities;
       }
     }
+    this.entityElements = _.filter<EntityElement>(elements, el => el.parentGuid === null);
   }
 
   createEntityElement(name: string): void {
