@@ -1,8 +1,6 @@
 <mat-card>
   <mat-card-title *ngIf="database">{{database.name}}</mat-card-title>
-  <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
-  <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
-  <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
+  <app-navbar [navLinks]='navLinks'></app-navbar>
   <router-outlet></router-outlet>
 </mat-card>
 <div *ngIf="!database">

@@ -35,18 +35,17 @@ export class LinksComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.snapshot = router.routerState.snapshot;
-  }
-
-  ngOnInit() {
-    // this.route.params.subscribe((params: Params) => this.getLinksForGuid(params['forId']));
     if (this.snapshot && this.snapshot.url && this.snapshot.url.length > 1) {
       const url = this.snapshot.url.split('/');
       const maxIndex = url.length - 1;
       if (maxIndex > 1) {
-        this._forGuid = url[maxIndex - 1].toString();
-        this.getLinksForGuid(this._forGuid);
+        this.forGuid = url[maxIndex - 1].toString();
       }
     }
+  }
+
+  ngOnInit() {
+    // this.route.params.subscribe((params: Params) => this.getLinksForGuid(params['forId']));
   }
 
   onSelect(link: Link): void {
@@ -59,10 +58,11 @@ export class LinksComponent implements OnInit {
 
   getLinksForGuid(forGuid: string): void {
     this.forGuid = forGuid;
+    this.getLinks();
   }
 
   getLinks(): void {
-    this.service.getLinks(this.searchText).then(links => this.updateLinks(links));
+    this.service.getLinksForGuid(this._forGuid).then(links => this.updateLinks(links));
   }
 
   filterLinks(): void {
@@ -71,7 +71,7 @@ export class LinksComponent implements OnInit {
     } else { this.links = this.allLinks; }
 
     // todo: this can be async
-    for (let link of this.links) {
+    for (const link of this.links) {
       this.setEmbeddedUrl(link);
     }
   }

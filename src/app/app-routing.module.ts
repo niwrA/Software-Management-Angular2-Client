@@ -194,7 +194,8 @@ const appRoutes: Routes = [
         component: CompanyEnvironmentHardwareItemDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -206,7 +207,8 @@ const appRoutes: Routes = [
         component: DatabaseDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -218,7 +220,8 @@ const appRoutes: Routes = [
         component: AccountDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -327,10 +330,11 @@ const appRoutes: Routes = [
       },
       {
         path: 'children',
-        component: EntityElementChildrenComponent
+        component: ProductConfigOptionChildrenComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -342,7 +346,8 @@ const appRoutes: Routes = [
         component: PropertyElementDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {
@@ -354,7 +359,8 @@ const appRoutes: Routes = [
         component: CommandElementDetailsComponent
       },
       linksSubRoute,
-      filesSubRoute
+      filesSubRoute,
+      commandsSubRoute
     ]
   },
   {

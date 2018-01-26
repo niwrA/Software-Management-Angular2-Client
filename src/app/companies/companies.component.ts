@@ -45,11 +45,11 @@ export class CompaniesComponent implements OnInit {
     this.companiesService.getCompanies('').then(companies => this.updateCompanies(companies));
   }
 
-  filterCompanies(): void {
+  filterCompanies(searchText: string): void {
     let filteredCompanies: Array<Company>;
-    if (this.searchText && this.searchText.length > 0) {
-      filteredCompanies = _.filter(this.companies, s => s.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-        || (s.externalId && s.externalId.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1));
+    if (searchText && searchText.length > 0) {
+      filteredCompanies = _.filter(this.companies, s => s.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        || (s.code && s.code.toLowerCase().indexOf(searchText.toLowerCase()) > -1));
     } else {
       filteredCompanies = this.companies;
     }
@@ -58,7 +58,7 @@ export class CompaniesComponent implements OnInit {
 
   updateCompanies(companies: Array<Company>): void {
     this.companies = companies;
-    this.filterCompanies();
+    this.filterCompanies(this.searchText);
   }
 
   createCompany(name: string): void {

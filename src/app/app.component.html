@@ -1,38 +1,4 @@
-<mat-card class='flex-h' color='primary'>
-  <!-- <mat-card-title>
-    <div class='userinfo'>{{username}}</div>
-    {{title}} <a href='https://github.com/niwrA/Software-Management-Angular2-Client'><mat-icon>code</mat-icon></a>
-  </mat-card-title> -->
-  <div>
-<!--    <app-ui-menu [menuitems]="menuitems"></app-ui-menu>-->
-    <button (click)="showProjects(true)" color='{{projectsColor}}' mat-raised-button mat-tooltip="View Projects">Projects</button>
-    <button (click)="showProducts(true)" color='{{productsColor}}' mat-raised-button mat-tooltip="View Products">Products</button>
-    <button (click)="showDesigns(true)" color='{{designsColor}}' mat-raised-button mat-tooltip="View Designs">Designs</button>
-    <button (click)='showCompanies(true)' color='{{companiesColor}}' mat-raised-button mat-tooltip="View Companies">Companies</button>
-    <button (click)='showContacts(true)' color='{{contactsColor}}' mat-raised-button mat-tooltip="View Contacts">Contacts</button>
-    <button (click)='showTechnologies(true)' color='{{technologiesColor}}' mat-raised-button mat-tooltip="View Technologies">Technologies</button>
-    <button *ngIf="isAdmin()" routerLink='/admin' mat-raised-button mat-tooltip="admin">Admin</button>
-    <!-- <button *ngIf="!isLoggedIn()" (click)='showLogin(true)' color='{{loginColor}}' mat-raised-button mat-tooltip="todo: login">Login</button> -->
-    <!-- <button *ngIf="isLoggedIn()" (click)='logout()' mat-raised-button mat-tooltip="todo: logout">Logout</button> -->
-  </div>
-</mat-card>
-<!--  <ui-view></ui-view>-->
+<div style="width:100%;background-color:rgb(3, 12, 95)">
+<app-navbar [navLinks]="navLinks" colorName="primary"></app-navbar></div>
 <router-outlet></router-outlet>
 <simple-notifications [options]="{}"></simple-notifications>
-<!--<mat-card>
-  <mat-tab-group>
-    <mat-tab label="Projects">
-      <app-projects></app-projects>
-    </mat-tab>
-    <mat-tab label="Products">
-      <app-products></app-products>
-    </mat-tab>
-    <mat-tab label="Customers">
-      <app-customers></app-customers>
-    </mat-tab>
-    <mat-tab label="Technologies">
-      <app-technologies></app-technologies>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
--->

@@ -1,0 +1,5 @@
+<div *ngIf="navLinks">
+  <button mat-raised-button [color]="colorName" *ngFor="let link of navLinks" [routerLink]="link.path" [routerLinkActive]="['active']">
+    {{link.label}}
+  </button>
+</div>

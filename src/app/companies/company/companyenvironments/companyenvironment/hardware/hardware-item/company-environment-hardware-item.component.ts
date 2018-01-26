@@ -5,6 +5,7 @@ import { Company } from '../../../../../company';
 import { CompanyEnvironment } from '../../../companyenvironment';
 import { CompanyEnvironmentHardwareItem } from '../companyenvironmenthardware';
 import { CompaniesService } from '../../../../../companies.service';
+import { NavLink } from '../../../../../../shared/appnavbar/navlink';
 
 @Component({
   selector: 'app-company-environment-hardware-item',
@@ -19,6 +20,13 @@ export class CompanyEnvironmentHardwareItemComponent implements OnInit {
   companyId: string;
   environmentId: string;
   hardwareId: string;
+
+  public navLinks = new Array<NavLink>(
+    new NavLink('details', 'Details', true),
+    new NavLink('links', 'Links', false),
+    new NavLink('files', 'Files', false),
+    new NavLink('commands', 'Audit', false)
+  );
 
   constructor(
     private route: ActivatedRoute,

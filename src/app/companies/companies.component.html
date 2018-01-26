@@ -7,46 +7,48 @@
     </mat-select>
   </mat-input-container>
   <mat-input-container class="inline-control">
-    <input type="search" matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="filterCompanies()" (keyup.enter)='createCompany(searchTextInput.value)'
-    />
+    <input type="search" matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (ngModelChange)="filterCompanies($event)"
+      (keyup.enter)='createCompany(searchTextInput.value)' />
   </mat-input-container>
   <button mat-raised-button mat-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button>
-  <mat-card-subtitle *ngIf="filteredCompanies">{{filteredCompanies.length}} companies shown of {{companies.length}}</mat-card-subtitle>  
-  <span *ngIf="selectedView==='cards'">
-    <mat-card *ngFor="let company of filteredCompanies">
-      <mat-card-title-group [routerLink]="[company.guid, 'details']">
+  <mat-card-subtitle *ngIf="filteredCompanies">{{filteredCompanies.length}} companies shown of {{companies.length}}</mat-card-subtitle>
+</mat-card>
+<span *ngIf="selectedView==='cards'">
+  <mat-card *ngFor="let company of filteredCompanies">
+    <a [routerLink]="[company.guid, 'details']">
+      <mat-card-title-group>
         <mat-card-subtitle>
           <mat-icon>business center</mat-icon>
         </mat-card-subtitle>
         <mat-card-title>{{company.name}}</mat-card-title>
       </mat-card-title-group>
-      <mat-card-content>
-        <div>{{company.code}}</div>
-      </mat-card-content>
-      <mat-card-actions align='end'>
-        <button mat-mini-fab [routerLink]="[company.guid, 'details']">
-          <mat-icon>details circle</mat-icon>
-        </button>
-        <button mat-mini-fab [routerLink]="[company.guid, 'details']">
-          <mat-icon>share circle</mat-icon>
-        </button>
-        <button mat-mini-fab color="warn" (click)="deleteCompany(company)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </span>
-
-  <mat-nav-list *ngIf="selectedView==='list'">
-    <mat-list-item *ngFor="let company of filteredCompanies">
-      <mat-icon matListIcon>business center</mat-icon>
-      <a matLine [routerLink]="[company.guid, 'details']">
-        <h3 matLine>{{company.name}}</h3>
-      </a>
-      <div matLine>{{company.code}}</div>
-      <button mat-icon-button color="warn" (click)="deleteCompany(company)">
+    </a>
+    <mat-card-content>
+      <div>{{company.code}}</div>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab [routerLink]="[company.guid, 'details']">
+        <mat-icon>details circle</mat-icon>
+      </button>
+      <button mat-mini-fab [routerLink]="[company.guid, 'details']">
+        <mat-icon>share circle</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="deleteCompany(company)">
         <mat-icon>delete</mat-icon>
       </button>
-    </mat-list-item>
-  </mat-nav-list>
-</mat-card>
+    </mat-card-actions>
+  </mat-card>
+</span>
+
+<mat-nav-list *ngIf="selectedView==='list'">
+  <mat-list-item *ngFor="let company of filteredCompanies">
+    <mat-icon matListIcon>business center</mat-icon>
+    <a matLine [routerLink]="[company.guid, 'details']">
+      <h3 matLine>{{company.name}}</h3>
+    </a>
+    <div matLine>{{company.code}}</div>
+    <button mat-icon-button color="warn" (click)="deleteCompany(company)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-nav-list>

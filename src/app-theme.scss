@@ -26,7 +26,16 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 .active {@extend .mat-accent;}
 
 // additional options for positioning input controls using mat-input-container 
-mat-input-container {width: 100%}
+mat-input-container {
+    width: 100%;
+    max-width: 500px}
 //.full-width-ui-control {width: 100%}
 .inline-control {width: auto}
 .right-aligned-control {float:right}
+
+// navigation
+
+a { text-decoration: none}
+a { color: rgb(0, 0, 0)}
+a:visited { color: rgb(0, 0, 0)}
+a:hover {background: rgb(232, 232, 232);}

@@ -1,12 +1,7 @@
 <mat-card>
   <mat-card-title *ngIf="company">{{company.name}}</mat-card-title>
   <mat-card-actions *ngIf="company">
-    <button routerLink='details' [routerLinkActive]="['active']" mat-raised-button mat-tooltip="Company Details">Details</button>
-    <button routerLink='roles' [routerLinkActive]="['active']" mat-raised-button mat-tooltip="todo: View Roles for this Company">Roles</button>
-    <button routerLink='environments' [routerLinkActive]="['active']" mat-raised-button mat-tooltip="todo: View environments for this Company">Environments</button>
-    <button [routerLink]="['links']" [routerLinkActive]="['active']" mat-raised-button mat-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" [routerLinkActive]="['active']" mat-raised-button mat-tooltip="Files">Files</button>
-    <button [routerLink]="['commands']" [routerLinkActive]="['active']" mat-raised-button mat-tooltip="Commands">Audit</button>
+    <app-navbar [navLinks]="navLinks"></app-navbar>
   </mat-card-actions>
   <router-outlet></router-outlet>
 </mat-card>

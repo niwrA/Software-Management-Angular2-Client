@@ -40,7 +40,7 @@ export const environment = {
   commandsUrl: 'http://localhost:50274/api/commands/batch', // change to eventsource if you want to try posting to the eventsource backend
   commandsReadOnlyUrl: 'http://localhost:50274/api/commands',
   fileUploadUrl: 'http://localhost:50274/api/fileupload',
-  staticFilesUrl: 'uploads',
+  staticFilesUrl: 'http://localhost:50274/uploads',
   accountsUrl: 'http://localhost:53699/api/account',
   productinstallationsUrl: 'http://localhost:50274/api/productinstallations',
   config: securityConfig

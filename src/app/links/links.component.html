@@ -1,35 +1,44 @@
-<mat-card>
-  <mat-input-container>
-    <input type="search" matInput  #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)'
-    />
-  </mat-input-container>
-  <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
-  <mat-list *ngIf="selectedLinks">
-    <mat-list-item>
-      <div *ngFor="let link of selectedLinks">{{link.name}}<span style="white-space:pre-wrap" *ngIf="selectedLinks.length>1">; </span> </div>
-    </mat-list-item>
-  </mat-list>
-  <mat-card *ngFor="let link of links">
-    <mat-card-title-group [routerLink]="['/links',link.guid, 'details']">
-      <mat-card-subtitle>
+<mat-input-container>
+  <input type="search" matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
+    (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)' />
+</mat-input-container>
+<button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
+<mat-list *ngIf="selectedLinks">
+  <mat-list-item>
+    <div *ngFor="let link of selectedLinks">{{link.name}}
+      <span style="white-space:pre-wrap" *ngIf="selectedLinks.length>1">; </span>
+    </div>
+  </mat-list-item>
+</mat-list>
+<mat-card *ngFor="let link of links">
+  <mat-card-title-group [routerLink]="['/links',link.guid, 'details']">
+    <mat-card-subtitle>
+      <mat-icon>link</mat-icon>
+    </mat-card-subtitle>
+    <mat-card-title>{{link.name}}</mat-card-title>
+    <img mat-card-avatar [src]="link.imageUrl">
+  </mat-card-title-group>
+  <mat-card-content>
+    <!-- todo: scss styling -->
+    <div *ngIf="link.embeddedUrl">
+      <iframe width="380" height="214" align="middle" [src]="link.embeddedUrl" frameborder="0" allowfullscreen></iframe>
+      <br />
+    </div>
+    <br/>
+    <div>{{link.description}}</div>
+    <div>{{link.siteName}}</div>
+    <div>{{link.url}}</div>
+  </mat-card-content>
+  <mat-card-actions align='end'>
+    <button mat-mini-fab [routerLink]="['/links', link.guid, 'details']">
+      <mat-icon>details circle</mat-icon>
+    </button>
+    <a [attr.href]="link.url">
+      <button mat-mini-fab [(disabled)]="!link.url">
         <mat-icon>link</mat-icon>
-      </mat-card-subtitle>
-      <mat-card-title>{{link.name}}</mat-card-title>
-      <img mat-card-avatar [src]="link.imageUrl">
-    </mat-card-title-group>
-    <mat-card-content>
-      <!-- todo: scss styling -->
-      <div *ngIf="link.embeddedUrl">
-        <iframe width="380" height="214" align="middle" [src]="link.embeddedUrl" frameborder="0" allowfullscreen></iframe><br /></div>
-      <br/>
-      <div>{{link.description}}</div>
-      <div>{{link.siteName}}</div>
-      <div>{{link.url}}</div>
-    </mat-card-content>
-    <mat-card-actions align='end'>
-      <button mat-mini-fab [routerLink]="['/links', link.guid, 'details']"><mat-icon>details circle</mat-icon></button>
-      <a [attr.href]="link.url"><button mat-mini-fab [(disabled)]="!link.url"><mat-icon>link</mat-icon></button></a>
-      <button mat-mini-fab color="warn" (click)="deleteLink(link)">
-<mat-icon>delete</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
+      </button>
+    </a>
+    <button mat-mini-fab color="warn" (click)="deleteLink(link)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
