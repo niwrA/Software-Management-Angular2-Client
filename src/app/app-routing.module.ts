@@ -330,7 +330,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'children',
-        component: ProductConfigOptionChildrenComponent
+        component: EntityElementChildrenComponent
       },
       linksSubRoute,
       filesSubRoute,

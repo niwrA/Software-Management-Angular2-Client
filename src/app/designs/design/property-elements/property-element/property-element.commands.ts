@@ -1,6 +1,7 @@
 import { Command, CommandParameters } from '../../../../commands/command';
 import { PropertyElement } from '../property-element';
 import { EntityElement } from '../../entity-elements/entity-element';
+import { EpicElement } from '../../epic-elements/epic-element';
 export class PropertyElementCommand extends Command {
     constructor(name: string, propertyElement: PropertyElement) {
         super(name, 'PropertyElement', propertyElement.guid);
@@ -28,6 +29,7 @@ export class CreatePropertyCodeGenParameters extends PropertyElementCommandParam
     TypeName: string;
     EntityName: string;
     EntitiesName: string;
+    RootEntitiesName: string;
 }
 
 export class CreatePropertyElementCommand extends PropertyElementCommand {
@@ -42,9 +44,11 @@ export class CreatePropertyElementCommand extends PropertyElementCommand {
     }
 }
 
+
+
 // to consider: make backend only?
 export class CreatePropertyCodeGenCommand extends PropertyCodeGenCommand {
-    constructor(propertyElement: PropertyElement, entityElement: EntityElement) {
+    constructor(propertyElement: PropertyElement, entityElement: EntityElement, epicElement: EpicElement) {
         super('CreateProperty', propertyElement);
         const parameters = new CreatePropertyCodeGenParameters();
         parameters.Name = propertyElement.name;
@@ -52,12 +56,17 @@ export class CreatePropertyCodeGenCommand extends PropertyCodeGenCommand {
         parameters.EntityName = entityElement.name;
         // todo: maybe find a pluralisation library or offer the option to add the plural
         // in the UI and move this to separate class with tests
-        if ((entityElement.name).slice(-1) === 'y') {
-            parameters.EntitiesName = entityElement.name.substr(0, entityElement.name.length - 1) + 'ies';
-        } else {
-            parameters.EntitiesName = entityElement.name + 's';
-        }
+        parameters.EntitiesName = this.pluralize(entityElement.name);
+        parameters.RootEntitiesName = this.pluralize(epicElement.name);
         this.Parameters = parameters;
+    }
+
+    pluralize(name: string): string {
+        if (name.slice(-1) === 'y') {
+            return name.substr(0, name.length - 1) + 'ies';
+        } else {
+            return name + 's';
+        }
     }
 }
 

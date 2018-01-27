@@ -2,12 +2,7 @@
   <mat-card-subtitle>entity for <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></mat-card-subtitle>
   <mat-card-title *ngIf="entityElement">{{entityElement.name}}</mat-card-title>
   <mat-card-actions *ngIf="entityElement">
-    <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
-    <button [routerLink]="['propertyelements']" mat-raised-button mat-tooltip="Entities">Properties</button>
-    <button [routerLink]="['commandelements']" mat-raised-button mat-tooltip="Entities">Commands</button>
-    <button *ngIf="design && epicElement && entityElement" [routerLink]="['/designs', design.guid, 'epicelements',epicElement.guid, 'entityelements', entityElement.guid, 'children']" mat-raised-button mat-tooltip="Children">Child Elements</button>
-    <button [routerLink]="['links']" mat-raised-button mat-tooltip="Links">Links</button>
-    <button [routerLink]="['files']" mat-raised-button mat-tooltip="Files">Files</button>
+    <app-navbar [navLinks]="navLinks"></app-navbar>
   </mat-card-actions>
   <router-outlet></router-outlet>
 </mat-card>

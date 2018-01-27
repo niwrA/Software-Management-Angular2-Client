@@ -6,6 +6,7 @@ import { Design } from '../../../design';
 import { EpicElement } from '../../epic-elements/epic-element';
 import { EntityElement } from '../entity-element';
 import * as _ from 'lodash';
+import { NavLink } from '../../../../shared/appnavbar/navlink';
 
 @Component({
   selector: 'app-entity-element',
@@ -17,6 +18,15 @@ export class EntityElementComponent implements OnInit {
   design: Design;
   epicElement: EpicElement;
   entityElement: EntityElement;
+  public navLinks = new Array<NavLink>(
+    new NavLink('details', 'Details', true),
+    new NavLink('propertyelements', 'Properties', false),
+    new NavLink('commandelements', 'Commands', false),
+    new NavLink('children', 'Children', false),
+    new NavLink('links', 'Links', false),
+    new NavLink('files', 'Files', false),
+    new NavLink('commands', 'Audit', false)
+  );
 
   constructor(
     private route: ActivatedRoute,

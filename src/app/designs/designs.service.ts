@@ -92,7 +92,7 @@ export class DesignsService {
     this.postCommand(new RemoveChildFromEntityElementCommand(entityelement, parent), false);
   }
 
-  createPropertyElement(doSave: boolean, entity: EntityElement, name?: string): PropertyElement {
+  createPropertyElement(doSave: boolean, entity: EntityElement, epic: EpicElement, name?: string): PropertyElement {
     const newItem = new PropertyElement();
     newItem.guid = UUID.UUID();
     newItem.designGuid = entity.designGuid;
@@ -106,7 +106,7 @@ export class DesignsService {
       const createPropertyCommand = new CreatePropertyElementCommand(newItem);
       commands.push(createPropertyCommand);
 
-      const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity);
+      const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity, epic);
       commands.push(createPropertyCodeGenCommand);
 
       this.commandsService.postCommands(commands, false);

@@ -2,8 +2,7 @@
   <mat-card-subtitle>command for <a *ngIf="design && epicElement && entityElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements', entityElement.guid, 'commandelements']">{{entityElement.name}}</a> in <a *ngIf="design && epicElement" [routerLink]="['/designs',design.guid, 'epicelements', epicElement.guid, 'entityelements']">{{epicElement.name}}</a> in <a *ngIf="design" [routerLink]="['/designs',design.guid, 'epicelements']">{{design.name}}</a></mat-card-subtitle>
   <mat-card-title *ngIf="commandElement">{{commandElement.name}}</mat-card-title>
   <mat-card-actions *ngIf="commandElement">
-    <button routerLink='details' mat-raised-button mat-tooltip="Details">Details</button>
-    <button [routerLink]="['links',commandElement.guid]" mat-raised-button mat-tooltip="Links">Links</button>
+    <app-navbar [navLinks]="navLinks"></app-navbar>
   </mat-card-actions>
   <router-outlet></router-outlet>
 </mat-card>

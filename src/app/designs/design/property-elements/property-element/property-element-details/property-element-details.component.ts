@@ -26,6 +26,12 @@ export class PropertyElementDetailsComponent implements OnInit {
   propertyElement: PropertyElement;
   private propertyElementId: string;
 
+  dataTypes = [
+    {value: 'string', viewValue: 'String'},
+    {value: 'numeric', viewValue: 'Numeric'},
+    {value: 'boolean', viewValue: 'Boolean'}
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

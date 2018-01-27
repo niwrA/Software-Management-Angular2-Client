@@ -10,5 +10,15 @@
         <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea>
       </mat-input-container>
     </mat-card-content>
-  </mat-card-content>
+    <mat-card-content layout='row'>
+        <mat-input-container>
+          <mat-select placeholder="DataType">
+              <mat-option *ngFor="let food of dataTypes" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          <!-- <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea> -->
+        </mat-input-container>
+      </mat-card-content>
+    </mat-card-content>
 </mat-card>

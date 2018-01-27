@@ -65,7 +65,7 @@ export class PropertyElementsComponent implements OnInit {
   }
 
   createPropertyElement(name: string): void {
-    this.service.createPropertyElement(true, this.entityElement, name);
+    this.service.createPropertyElement(true, this.entityElement, this.epicElement, name);
     this.getPropertyElements(this.searchText);
   }
 
