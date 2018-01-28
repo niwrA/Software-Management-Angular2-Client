@@ -53,6 +53,38 @@ export class RenameEntityElementCommand extends EntityElementCommand {
     }
 }
 
+export class ChangePluralNameOfEntityElementParameters extends EntityElementCommandParameters {
+    PluralName: string;
+    OriginalPluralName: string;
+}
+
+export class ChangePluralNameOfEntityElementCommand extends EntityElementCommand {
+    constructor(entityElement: EntityElement, orgName: string) {
+        super('ChangePluralNameOf', entityElement);
+        const parameters = new ChangePluralNameOfEntityElementParameters();
+        parameters.OriginalPluralName = orgName;
+        parameters.PluralName = entityElement.pluralName;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class ChangeIsCollectionForEntityElementParameters extends EntityElementCommandParameters {
+    IsCollection: boolean;
+}
+
+export class ChangeIsCollectionForEntityElementCommand extends EntityElementCommand {
+    constructor(entityElement: EntityElement, newValue: boolean) {
+        super('ChangeIsCollectionFor', entityElement);
+        const parameters = new ChangeIsCollectionForEntityElementParameters();
+        parameters.IsCollection    = newValue;
+        parameters.DesignGuid = entityElement.designGuid;
+        parameters.EpicElementGuid = entityElement.epicGuid;
+        this.Parameters = parameters;
+    }
+}
+
 // todo: support exact inserts, deletes etc.
 export class ChangeDescriptionOfEntityElementParameters extends EntityElementCommandParameters {
     Description: string;

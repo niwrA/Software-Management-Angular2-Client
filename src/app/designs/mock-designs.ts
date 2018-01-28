@@ -8,18 +8,23 @@ export const DESIGNS: DesignState[] = [
       guid: 'epic11', name: 'Projects', description: 'description', designGuid: 'design11',
       entityElements: [{
         guid: 'entity11', name: 'Project', description: 'description', parentGuid: '', designGuid: 'design11', epicElementGuid: 'epic11',
-        propertyElements: [{ guid: 'property11', name: 'Name', description: 'description',
-          designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11' },
+        isCollection: false, pluralName: 'Projects',
+        propertyElements: [{
+          guid: 'property11', name: 'Name', description: 'description', dataType: '', isState: false,
+          designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11'
+        },
         {
-          guid: 'property12', name: 'Description', description: 'description',
+          guid: 'property12', name: 'Description', description: 'description', dataType: '', isState: false,
           designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11'
         }],
         commandElements: [{
           guid: 'command11', name: 'ChangeNameOf', description: 'description',
           designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11'
         },
-        { guid: 'command12', name: 'ChangeDescriptionOf', description: 'description',
-          designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11' }]
+        {
+          guid: 'command12', name: 'ChangeDescriptionOf', description: 'description',
+          designGuid: 'design11', epicElementGuid: 'epic11', entityElementGuid: 'entity11'
+        }]
       }]
     }]
   }

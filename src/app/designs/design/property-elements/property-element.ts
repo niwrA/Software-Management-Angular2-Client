@@ -7,6 +7,8 @@ export class PropertyElementState {
     epicElementGuid: string;
     entityElementGuid: string;
     description: string;
+    dataType: string;
+    isState: boolean;
 }
 
 export class PropertyElement {
@@ -36,6 +38,12 @@ export class PropertyElement {
 
     get description(): string { return this._state.description; };
     set description(value: string) { this._state.description = value; };
+
+    get dataType(): string { return this._state.dataType; };
+    set dataType(value: string) { this._state.dataType = value; };
+
+    get isState(): boolean { return this._state.isState; };
+    set isState(value: boolean) { this._state.isState = value; };
 
     public clone(): PropertyElement {
         return new PropertyElement(_.clone(this._state));

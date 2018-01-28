@@ -6,7 +6,8 @@ import { Design } from '../../../../design';
 import { EntityElement } from '../../entity-element';
 import { EpicElement } from '../../../epic-elements/epic-element';
 import { CommandsService } from '../../../../../commands/commands.service';
-import { RenameEntityElementCommand, ChangeDescriptionOfEntityElementCommand } from '../entity-element.commands';
+import { RenameEntityElementCommand, ChangeDescriptionOfEntityElementCommand,
+  ChangePluralNameOfEntityElementCommand, ChangeIsCollectionForEntityElementCommand } from '../entity-element.commands';
 
 import * as _ from 'lodash';
 
@@ -48,6 +49,7 @@ export class EntityElementDetailsComponent implements OnInit {
     this.design = design;
     this.epicElement = design.epics.find(epic => epic.guid === epicElementId);
     this.entityElement = this.epicElement.entities.find(entity => entity.guid === entityElementId);
+    this.previousEntityElement = this.entityElement.clone();
   }
 
   changeName(): void {
@@ -68,6 +70,30 @@ export class EntityElementDetailsComponent implements OnInit {
         const command = new ChangeDescriptionOfEntityElementCommand(this.entityElement);
         this.service.postCommand(command, false);
         this.previousEntityElement.description = this.entityElement.description;
+      }
+    } else {
+      this.previousEntityElement = this.entityElement;
+    }
+  }
+
+  changePluralName(): void {
+    if (this.previousEntityElement !== undefined) {
+      if (this.entityElement.pluralName !== this.previousEntityElement.pluralName) {
+        const renameCommand = new ChangePluralNameOfEntityElementCommand(this.entityElement, this.previousEntityElement.pluralName);
+        this.service.postCommand(renameCommand, false);
+        this.previousEntityElement.pluralName = this.entityElement.pluralName;
+      }
+    } else {
+      this.previousEntityElement = this.entityElement;
+    }
+  }
+
+  changeIsCollection(value: boolean): void {
+    if (this.previousEntityElement !== undefined) {
+      if (value !== this.previousEntityElement.isCollection) {
+        const renameCommand = new ChangeIsCollectionForEntityElementCommand(this.entityElement, value);
+        this.service.postCommand(renameCommand, false);
+        this.previousEntityElement.isCollection = value;
       }
     } else {
       this.previousEntityElement = this.entityElement;

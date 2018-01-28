@@ -15,7 +15,8 @@ import {
   RenameDesignCommand, AddChildToEntityElementCommand, RemoveChildFromEntityElementCommand
 } from './design/design.commands';
 import { CreateEntityElementCommand } from './design/entity-elements/entity-element/entity-element.commands';
-import { CreatePropertyElementCommand, CreatePropertyCodeGenCommand, DeletePropertyElementCommand 
+import {
+  CreatePropertyElementCommand, CreatePropertyCodeGenCommand, DeletePropertyElementCommand
 } from './design/property-elements/property-element/property-element.commands';
 import { CreateEpicElementCommand } from './design/epic-elements/epic-element/epic-element.commands';
 import { CreateCommandElementCommand } from './design/command-elements/command-element/command-element.commands';
@@ -113,6 +114,16 @@ export class DesignsService {
     }
     return newItem;
   }
+
+  createPropertyElementCodeGen(entity: EntityElement, epic: EpicElement, newItem: PropertyElement): void {
+    const commands = new Array<Command>();
+
+    const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity, epic);
+    commands.push(createPropertyCodeGenCommand);
+
+    this.commandsService.postCommands(commands, false);
+  }
+
   createCommandElement(doSave: boolean, entity: EntityElement, name?: string): CommandElement {
     const newItem = new CommandElement();
     newItem.guid = UUID.UUID();

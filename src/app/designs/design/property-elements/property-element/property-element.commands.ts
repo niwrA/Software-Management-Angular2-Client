@@ -116,3 +116,37 @@ export class ChangeDescriptionOfPropertyElementCommand extends PropertyElementCo
     }
 }
 
+export class ChangeDataTypeOfPropertyElementParameters extends PropertyElementCommandParameters {
+    DataType: string;
+    OriginalDataType: string;
+}
+
+export class ChangeDataTypeOfPropertyElementCommand extends PropertyElementCommand {
+    constructor(propertyElement: PropertyElement, orgDataType: string) {
+        super('ChangeDataTypeOf', propertyElement);
+        const parameters = new ChangeDataTypeOfPropertyElementParameters();
+        parameters.OriginalDataType = orgDataType;
+        parameters.DataType = propertyElement.dataType;
+        parameters.DesignGuid = propertyElement.designGuid;
+        parameters.EpicElementGuid = propertyElement.epicGuid;
+        parameters.EntityElementGuid = propertyElement.entityGuid;
+        this.Parameters = parameters;
+    }
+}
+
+export class ChangeIsStateForPropertyElementParameters extends PropertyElementCommandParameters {
+    IsState: boolean;
+}
+
+export class ChangeIsStateForPropertyElementCommand extends PropertyElementCommand {
+    constructor(propertyElement: PropertyElement, newValue: boolean) {
+        super('ChangeIsStateFor', propertyElement);
+        const parameters = new ChangeIsStateForPropertyElementParameters();
+        parameters.IsState = newValue;
+        parameters.DesignGuid = propertyElement.designGuid;
+        parameters.EpicElementGuid = propertyElement.epicGuid;
+        parameters.EntityElementGuid = propertyElement.entityGuid;
+        this.Parameters = parameters;
+    }
+}
+

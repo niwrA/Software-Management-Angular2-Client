@@ -7,7 +7,10 @@ import { PropertyElement } from '../../property-element';
 import { EpicElement } from '../../../epic-elements/epic-element';
 import { EntityElement } from '../../../entity-elements/entity-element';
 import { CommandsService } from '../../../../../commands/commands.service';
-import { RenamePropertyElementCommand, ChangeDescriptionOfPropertyElementCommand } from '../property-element.commands';
+import {
+  RenamePropertyElementCommand, ChangeDescriptionOfPropertyElementCommand,
+  ChangeDataTypeOfPropertyElementCommand, ChangeIsStateForPropertyElementCommand
+} from '../property-element.commands';
 
 import * as _ from 'lodash';
 
@@ -27,9 +30,9 @@ export class PropertyElementDetailsComponent implements OnInit {
   private propertyElementId: string;
 
   dataTypes = [
-    {value: 'string', viewValue: 'String'},
-    {value: 'numeric', viewValue: 'Numeric'},
-    {value: 'boolean', viewValue: 'Boolean'}
+    { value: 'string', viewValue: 'String' },
+    { value: 'numeric', viewValue: 'Numeric' },
+    { value: 'boolean', viewValue: 'Boolean' }
   ];
 
   constructor(
@@ -39,7 +42,8 @@ export class PropertyElementDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['designId'], params['epicElementId'], params['entityElementId'], params['propertyElementId']])
+    this.route.parent.params.map(params => [params['designId'], params['epicElementId'],
+    params['entityElementId'], params['propertyElementId']])
       .subscribe(([designId, epicElementId, entityElementId, propertyElementId]) => {
         this.getPropertyElement(designId, epicElementId, entityElementId, propertyElementId);
       });
@@ -84,4 +88,33 @@ export class PropertyElementDetailsComponent implements OnInit {
       this.previousPropertyElement = this.propertyElement.clone();
     }
   }
+
+  changeDataType(): void {
+    if (this.previousPropertyElement !== undefined) {
+      if (this.propertyElement.dataType !== this.previousPropertyElement.dataType) {
+        const renameCommand = new ChangeDataTypeOfPropertyElementCommand(this.propertyElement, this.previousPropertyElement.dataType);
+        this.service.postCommand(renameCommand, false);
+        this.previousPropertyElement.dataType = this.propertyElement.dataType;
+      }
+    } else {
+      this.previousPropertyElement = this.propertyElement.clone();
+    }
+  }
+
+  changeIsState(value: boolean): void {
+    if (this.previousPropertyElement !== undefined) {
+      if (value !== this.previousPropertyElement.isState) {
+        const renameCommand = new ChangeIsStateForPropertyElementCommand(this.propertyElement, value);
+        this.service.postCommand(renameCommand, false);
+        this.previousPropertyElement.isState = value;
+      }
+    } else {
+      this.previousPropertyElement = this.propertyElement;
+    }
+  }
+
+  updateCode(): void {
+    this.service.createPropertyElementCodeGen(this.entityElement, this.epicElement, this.propertyElement);
+  }
+
 }

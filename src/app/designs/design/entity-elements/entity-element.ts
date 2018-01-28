@@ -8,6 +8,8 @@ export class EntityElementState {
     parentGuid: string;
     epicElementGuid: string;
     description: string;
+    pluralName: string;
+    isCollection: boolean;
     propertyElements: Array<PropertyElementState>;
     commandElements: Array<CommandElementState>;
 }
@@ -55,6 +57,12 @@ export class EntityElement {
 
     get description(): string { return this._state.description; };
     set description(value: string) { this._state.description = value; };
+
+    get pluralName(): string { return this._state.pluralName; };
+    set pluralName(value: string) { this._state.pluralName = value; };
+
+    get isCollection(): boolean { return this._state.isCollection; };
+    set isCollection(value: boolean) { this._state.isCollection = value; };
 
     public clone(): EntityElement {
         return new EntityElement(_.clone(this._state));

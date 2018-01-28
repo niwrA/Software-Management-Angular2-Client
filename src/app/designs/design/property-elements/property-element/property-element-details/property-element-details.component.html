@@ -11,14 +11,20 @@
       </mat-input-container>
     </mat-card-content>
     <mat-card-content layout='row'>
-        <mat-input-container>
-          <mat-select placeholder="DataType">
-              <mat-option *ngFor="let food of dataTypes" [value]="food.value">
-                {{ food.viewValue }}
-              </mat-option>
-            </mat-select>
-          <!-- <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea> -->
-        </mat-input-container>
-      </mat-card-content>
+      <mat-input-container>
+        <mat-select [(ngModel)]="propertyElement.dataType" placeholder="DataType" (blur)="changeDataType()">
+          <mat-option *ngFor="let datatype of dataTypes" [value]="datatype.value">
+            {{ datatype.viewValue }}
+          </mat-option>
+        </mat-select>
+        <!-- <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea> -->
+      </mat-input-container>
     </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-slide-toggle (ngModelChange)="changeIsState($event)" [(ngModel)]="propertyElement.isState">Is State backed by Repository</mat-slide-toggle>
+    </mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="updateCode()">Update Code</button>
+  </mat-card-actions>
 </mat-card>
