@@ -27,7 +27,7 @@
     <br/>
     <div>{{link.description}}</div>
     <div>{{link.siteName}}</div>
-    <div>{{link.url}}</div>
+    <div><a [attr.href]="link.url">{{link.url}}</a></div>
   </mat-card-content>
   <mat-card-actions align='end'>
     <button mat-mini-fab [routerLink]="['/links', link.guid, 'details']">

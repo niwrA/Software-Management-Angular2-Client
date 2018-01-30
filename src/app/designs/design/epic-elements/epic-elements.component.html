@@ -1,9 +1,5 @@
 <mat-card>
-  <mat-input-container>
-    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getEpicElements(searchTextInput.value || '')"
-      (keyup.enter)='createEpicElement(searchTextInput.value)' />
-  </mat-input-container>
-  <button mat-raised-button mat-tooltip="Add new version" (click)="createEpicElement(searchTextInput.value)">Add</button>
+  <app-searchandadd [(searchText)]="searchText" (onCreate)="createEpicElement($event)" (onFilter)="getEpicElements($event)"></app-searchandadd>
   <div *ngIf="epicElements">
     <mat-card *ngFor="let epicElement of epicElements">
       <mat-card-subtitle>epic</mat-card-subtitle>

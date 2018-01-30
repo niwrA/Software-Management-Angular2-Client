@@ -40,8 +40,8 @@ export class EpicElementsComponent implements OnInit {
 
   getEpicElements(searchText: string): void {
     if (this.design && this.design.epics) {
-      if (searchText.length > 0) {
-        this.epicElements = _.filter<EpicElement>(this.design.epics, prj => prj.name.indexOf(this.searchText) > -1);
+      if (searchText && searchText.length > 0) {
+        this.epicElements = _.filter<EpicElement>(this.design.epics, prj => prj.name.indexOf(searchText) > -1);
       } else {
         this.epicElements = this.design.epics;
       }
@@ -50,6 +50,6 @@ export class EpicElementsComponent implements OnInit {
 
   createEpicElement(name: string): void {
     this.service.createEpicElement(true, this.design, name);
-    this.getEpicElements(this.searchText);
+    this.getEpicElements(name);
   }
 }
