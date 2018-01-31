@@ -77,4 +77,7 @@ export class CommandsComponent implements OnInit {
   searchTextChanged(): void {
     this.canAdd = this.searchText.length > 0;
   }
+  import(): void {
+    this.service.executeNew();
+  }
 }

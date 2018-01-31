@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts();
+    this.getProducts('');
   }
 
   onSelect(product: Product): void {
@@ -43,13 +43,13 @@ export class ProductsComponent implements OnInit {
     this.selectedProduct = null;
   }
 
-  getProducts(): void {
-    this.productsService.getProducts(this.searchText).then(products => this.products = products);
+  getProducts(searchText: string): void {
+    this.productsService.getProducts(searchText).then(products => this.products = products);
   }
 
   createProduct(name: string): void {
     const product = this.productsService.createProduct(true, name);
-    this.getProducts();
+    this.getProducts(this.searchText);
   }
 
   deleteProduct(product: Product): void {

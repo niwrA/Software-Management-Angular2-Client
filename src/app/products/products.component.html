@@ -1,9 +1,5 @@
 <mat-card>
-  <mat-input-container>
-    <input type="search" matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
-      (keyup)="getProducts()" (keyup.enter)='createProduct(searchTextInput.value)' />
-  </mat-input-container>
-  <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new product" (click)="createProduct(searchTextInput.value)">Add</button>
+  <app-searchandadd [(searchText)]="searchText" (onCreate)="createProduct($event)" (onFilter)="getProducts($event)"></app-searchandadd>
   <mat-list *ngIf="selectedProducts.length>0">
     <mat-list-item>
       <div style="white-space:pre-wrap" *ngFor="let contact of selectedProducts">{{contact.name}}<span *ngIf="selectedProducts.length>1">; </span> </div>

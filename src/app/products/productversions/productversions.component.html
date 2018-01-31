@@ -1,9 +1,5 @@
 <mat-card>
-  <mat-input-container>
-    <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductVersions(searchTextInput.value || '')"
-      (keyup.enter)='createProductVersion(searchTextInput.value)' />
-  </mat-input-container>
-  <button mat-raised-button mat-tooltip="Add new version" (click)="createProductVersion(searchTextInput.value)">Add</button>
+  <app-searchandadd [(searchText)]="searchText" (onCreate)="createProductVersion($event)" (onFilter)="getProductVersions($event)"></app-searchandadd>
   <div *ngIf="productversions">
     <mat-card *ngFor="let productversion of productversions">
       <mat-card-title-group [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']">
@@ -16,8 +12,12 @@
         <div>{{productversion.releaseDate | date:'yyyy-MM-dd'}}</div>
       </mat-card-content>
       <mat-card-actions align='end'>
-        <button mat-mini-fab [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']"><mat-icon>details</mat-icon></button>
-        <button mat-mini-fab color="warn" (click)="deleteProductVersion(productversion)"><mat-icon>delete</mat-icon></button>
+        <button mat-mini-fab [routerLink]="['/products', productversion.productGuid, 'versions', productversion.guid, 'details']">
+          <mat-icon>details</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" (click)="deleteProductVersion(productversion)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

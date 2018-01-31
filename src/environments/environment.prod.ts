@@ -35,6 +35,7 @@ export const environment = {
   projectroleassignmentsUrl: 'api/projectroleassignments',
   commandsUrl: 'api/commands/batch', // change to eventsource if you want to try posting to the eventsource backend
   commandsReadOnlyUrl: 'api/commands',
+  commandsExecuteNewUrl: 'api/commands/executenew',
   fileUploadUrl: 'api/fileupload',
   staticFilesUrl: 'uploads',
   accountsUrl: 'api/account',

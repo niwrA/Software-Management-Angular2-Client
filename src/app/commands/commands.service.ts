@@ -14,6 +14,7 @@ import { UsersService } from '../admin/users/users.service';
 export class CommandsService {
   private commandsUrl = environment.commandsUrl;
   private commandsReadOnlyUrl = environment.commandsReadOnlyUrl;
+  private commandsExecuteNewUrl = environment.commandsExecuteNewUrl;
   private headers = new Headers({ 'Content-Type': 'application/json' });
   commands = new Array<Command>();
   postedCommands = new Array<Command>();
@@ -79,6 +80,9 @@ export class CommandsService {
     // todo: only non-processed commands and add a then that updates the commands / moves processed commands from this buffer
     // and any additional notifications about that something was saved.
     //    this.commands = new Array<Command>();
+  }
+  executeNew(): void {
+    this.http.get(this.commandsExecuteNewUrl)
   }
   private postcommands(commands: Array<Command>) {
     return this.http.post(this.commandsUrl, JSON.stringify(commands),
