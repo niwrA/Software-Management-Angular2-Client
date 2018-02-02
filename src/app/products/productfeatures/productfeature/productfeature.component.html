@@ -3,13 +3,7 @@
   <mat-card-content *ngIf="product">
     <div [routerLink]="['/products', product.guid, 'features']">{{product.name}}</div>
   </mat-card-content>
-  <button routerLink='details' mat-raised-button mat-tooltip="productfeature Details">Details</button>
-  <button routerLink="issues" mat-raised-button mat-tooltip="todo: known issues for this  feature">Issues</button>
-  <button routerLink="configoptions" mat-raised-button mat-tooltip="Feature ConfigOptions">ConfigOptions</button>
-  <button routerLink='requestedby' mat-raised-button mat-tooltip="todo: who requested this feature">Requests</button>
-  <button routerLink='links' mat-raised-button mat-tooltip="Product Links">Links</button>
-  <button routerLink='files' mat-raised-button mat-tooltip="Product Files">Files</button>
-  <button routerLink='commands' mat-raised-button mat-tooltip="Audit">Audit</button>
+  <app-navbar [(navLinks)]="navLinks"></app-navbar>
   <router-outlet></router-outlet>
 </mat-card>
 <div *ngIf="!productfeature">

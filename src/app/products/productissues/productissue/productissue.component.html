@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-title *ngIf="productissue">{{productissue.name}}</mat-card-title>
-  <mat-card-content *ngIf="product">
-    <div [routerLink]="['/products', product.guid, 'issues']">{{product.name}}</div>
+  <mat-card-subtitle *ngIf="product"><a [routerLink]="['/products', product.guid, 'issues']">{{product.name}}</a></mat-card-subtitle>
+  <mat-card-content *ngIf="productissue">
+    <app-navbar [(navLinks)]="navLinks"></app-navbar>
   </mat-card-content>
-  <button [routerLink]="['details']" mat-raised-button mat-tooltip="todo: productissue Details">Details</button>
   <router-outlet></router-outlet>
 </mat-card>
 <div *ngIf="!productissue">

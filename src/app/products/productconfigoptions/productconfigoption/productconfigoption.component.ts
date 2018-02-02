@@ -6,6 +6,7 @@ import { Product } from '../../product';
 import { ProductConfigOption } from '../productconfigoption'
 import { ProductsService } from '../../products.service';
 import * as _ from 'lodash';
+import { NavLink } from '../../../shared/appnavbar/navlink';
 
 @Component({
   selector: 'app-productconfigoption',
@@ -20,6 +21,15 @@ export class ProductConfigOptionComponent implements OnInit {
   configoption: ProductConfigOption;
   parent: ProductConfigOption;
   product: Product;
+
+  public navLinks = new Array<NavLink>(
+    new NavLink('details', 'Details', true),
+    new NavLink('children', 'Children', false),
+    new NavLink('installations', 'Installed On', false),
+    new NavLink('links', 'Links', false),
+    new NavLink('files', 'Files', false),
+    new NavLink('commands', 'Audit', false)
+  );
 
   constructor(
     private route: ActivatedRoute,

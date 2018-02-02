@@ -1,10 +1,9 @@
 <mat-card >
   <mat-card-title *ngIf="productversion">Version {{productversion.name}}</mat-card-title>
   <mat-card-content *ngIf="product"><div [routerLink]="['/products', product.guid, 'versions']">{{product.name}}</div></mat-card-content>
-  <button routerLink="details" mat-raised-button mat-tooltip="todo: Product Details">Details</button>
-  <button routerLink="features" mat-raised-button mat-tooltip="todo: features in or requested for this version">Features</button>
-  <button [routerLink]="['issues']" mat-raised-button mat-tooltip="todo: view issues in or fixed in this version">Issues</button>
-  <button [routerLink]="['installations']" mat-raised-button mat-tooltip="todo: installations of this version">Installations</button>
+  <mat-card-actions *ngIf="productversion">
+      <app-navbar [(navLinks)]="navLinks"></app-navbar>    
+  </mat-card-actions>
   <router-outlet>
   </router-outlet>
 </mat-card>

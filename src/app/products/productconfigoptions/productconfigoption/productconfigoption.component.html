@@ -4,11 +4,7 @@
     <span *ngIf="parent && product" [routerLink]="['/products', product.guid, 'configoptions', parent.guid, 'children']">child of {{parent.name}} for </span>
     <span [routerLink]="['/products', product.guid, 'configoptions']">{{product.name}}</span>
   </mat-card-content>
-  <button routerLink='details' mat-raised-button mat-tooltip="productconfigoption Details">Details</button>
-  <button *ngIf="configoption && product" [routerLink]="['/products', product.guid, 'configoptions',configoption.guid, 'children']" mat-raised-button mat-tooltip="ChildConfigOptions">Children</button>
-  <button routerLink='links' mat-raised-button mat-tooltip="Product Links">Links</button>
-  <button routerLink='files' mat-raised-button mat-tooltip="Product Files">Files</button>
-  <button routerLink='commands' mat-raised-button mat-tooltip="Audit">Audit</button>
+  <app-navbar [(navLinks)]="navLinks"></app-navbar>
   <router-outlet></router-outlet>
 </mat-card>
 <div *ngIf="!configoption">

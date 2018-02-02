@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Product } from '../../product';
 import { ProductIssue } from '../productissue';
 import { ProductsService } from '../../products.service';
+import { NavLink } from '../../../shared/appnavbar/navlink';
 
 @Component({
   selector: 'app-productissue',
@@ -15,6 +16,12 @@ export class ProductIssueComponent implements OnInit {
   product: Product;
   productId: string;
   issueId: string;
+  public navLinks = new Array<NavLink>(
+    new NavLink('details', 'Details', true),
+    new NavLink('links', 'Links', false),
+    new NavLink('files', 'Files', false),
+    new NavLink('commands', 'Audit', false)
+  );
 
   constructor(
     private route: ActivatedRoute,

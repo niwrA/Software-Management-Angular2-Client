@@ -41,4 +41,4 @@ a { color: rgb(0, 0, 0)}
 a:visited { color: rgb(0, 0, 0)}
 a:hover {background: rgb(232, 232, 232);}
 
-.top-bar-background { background-color: 003366 }
+.top-bar-background { @extend .mat-primary }
