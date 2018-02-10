@@ -51,24 +51,40 @@ export class CommandReadOnly {
 }
 
 export class Command {
-    Name: string;
+    Command: string;
+    CommandVersion?: string;
     Guid: string;
     Entity: string;
     EntityGuid: string;
+    EntityRoot?: string;
+    EntityRootGuid?: string;
     CreatedOn: string;
     UserName: string;
     ParametersJson?: string;
     Parameters?: CommandParameters;
     DisplayProperties: CommandDisplayProperties;
-    constructor(type: string, entityName: string, entityGuid: string) {
-        const now = new Date();
+    constructor(type: string, entityName: string, entityGuid: string, entityRoot?: string, entityRootGuid?: string) {
+        const now = new Date().toISOString();
+        let title = '';
+
+        if (entityRoot === '') { entityRoot = entityName; entityRootGuid = entityGuid; };
+
         this.Guid = UUID.UUID();
-        this.Name = type;
+        this.Command = type;
         this.Entity = entityName;
         this.EntityGuid = entityGuid;
-        this.CreatedOn = now.toDateString();
+        this.EntityRoot = entityRoot;
+        this.EntityRootGuid = entityRootGuid;
+        this.CreatedOn = now;
+
+        // if (entityRoot !== entityName) {
+        //     title = this.Command + this.Entity + 'For' + this.EntityRoot;
+        // } else {
+        title = this.Command + ' ' + this.Entity;
+        // }
+
         this.DisplayProperties = new CommandDisplayProperties();
-        this.DisplayProperties.title = this.Name + ' ' + this.Entity;
+        this.DisplayProperties.title = title;
         this.DisplayProperties.description = this.CreatedOn.toString();
     }
 }

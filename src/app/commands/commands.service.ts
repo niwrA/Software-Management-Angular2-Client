@@ -93,9 +93,9 @@ export class CommandsService {
 
   private processResults(results: any, commands: Array<Command>, postedCommands: Array<Command>,
     notificationService: NotificationsService) {
-    const batchresult = results.json() as CommandBatchResult;
+    const batchresult: CommandBatchResult = results.json() as CommandBatchResult;
     if (batchresult.success) {
-      console.log(batchresult.executedCommands.length + ' project command(s) posted successfully');
+      console.log(batchresult.message);
       for (const command of commands) {
         postedCommands.push(command);
         commands.splice(0);

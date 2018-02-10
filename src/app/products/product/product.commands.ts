@@ -78,21 +78,19 @@ export class AddVersionToProductCommandParameters extends CommandParameters {
     Minor: number;
     Revision: number;
     Build: number;
-    ProductVersionGuid: string;
 }
 
-export class AddVersionToProductCommand extends ProductCommand {
+export class AddVersionToProductCommand extends Command {
     constructor(product: Product, productversion: ProductVersion) {
-        super('AddVersionTo', product);
+        super('Add', 'ProductVersion', productversion.guid, 'Product', product.guid);
         const parameters = new AddVersionToProductCommandParameters();
         parameters.Name = productversion.name;
         parameters.Major = productversion.major;
         parameters.Minor = productversion.minor;
         parameters.Revision = productversion.revision;
         parameters.Build = productversion.build;
-        parameters.ProductVersionGuid = productversion.guid;
         this.Parameters = parameters;
-    }
+    };
 }
 
 export class ProductFeatureCommand extends Command {
