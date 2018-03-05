@@ -1,8 +1,7 @@
 import { Command } from './command';
 
-export class CommandBatchResult{
+export class CommandBatchResult {
     success: boolean;
-    executedCommands: Array<Command>;
+    count: number;
     message: string;
-
 }

@@ -50,13 +50,13 @@ export class CompanyEnvironmentsComponent implements OnInit {
     this.company.environments.push(companyenvironment);
     this.updateCompany(this.company);
 
-    const command = new AddEnvironmentToCompanyCommand(this.company, companyenvironment.guid, companyenvironment.name);
+    const command = new AddEnvironmentToCompanyCommand(this.company, companyenvironment);
     this.service.postCommand(command, false);
   }
 
   deleteCompanyEnvironment(companyenvironment: CompanyEnvironment) {
     this.companyenvironments.splice(this.companyenvironments.indexOf(companyenvironment));
-    const command = new RemoveEnvironmentFromCompanyCommand(this.company, companyenvironment.guid);
+    const command = new RemoveEnvironmentFromCompanyCommand(this.company, companyenvironment);
     this.service.postCommand(command, false);
   }
 

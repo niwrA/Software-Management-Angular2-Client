@@ -71,119 +71,111 @@ export class ChangeBusinessCaseOfProductCommand extends ProductCommand {
         this.Parameters = parameters;
     }
 }
-
+export class ProductVersionCommand extends Command {
+    constructor(name: string, productVersion: ProductVersion, product: Product) {
+        super(name, 'ProductVersion', productVersion.guid, 'Product', product.guid);
+    };
+}
 export class AddVersionToProductCommandParameters extends CommandParameters {
     Name: string;
     Major: number;
     Minor: number;
     Revision: number;
     Build: number;
-    ProductVersionGuid: string;
 }
 
-export class AddVersionToProductCommand extends ProductCommand {
+export class AddVersionToProductCommand extends ProductVersionCommand {
     constructor(product: Product, productversion: ProductVersion) {
-        super('AddVersionTo', product);
+        super('Add', productversion, product);
         const parameters = new AddVersionToProductCommandParameters();
         parameters.Name = productversion.name;
         parameters.Major = productversion.major;
         parameters.Minor = productversion.minor;
         parameters.Revision = productversion.revision;
         parameters.Build = productversion.build;
-        parameters.ProductVersionGuid = productversion.guid;
         this.Parameters = parameters;
-    }
+    };
 }
 
 export class ProductFeatureCommand extends Command {
-    constructor(name: string, productFeature: ProductFeature) {
-        super(name, 'ProductFeature', productFeature.guid);
+    constructor(name: string, productFeature: ProductFeature, product: Product) {
+        super(name, 'ProductFeature', productFeature.guid, 'Product', product.guid);
     };
 }
 
 export class ProductIssueCommand extends Command {
-    constructor(name: string, productIssue: ProductIssue) {
-        super(name, 'ProductIssue', productIssue.guid);
+    constructor(name: string, productIssue: ProductIssue, product: Product) {
+        super(name, 'ProductIssue', productIssue.guid, 'Product', product.guid);
     };
 }
 
 export class ProductConfigOptionCommand extends Command {
-    constructor(name: string, productFeature: ProductConfigOption) {
-        super(name, 'ProductConfigOption', productFeature.guid);
+    constructor(name: string, productFeature: ProductConfigOption, product: Product) {
+        super(name, 'ProductConfigOption', productFeature.guid, 'Product', product.guid);
     };
 }
 
 export class AddFeatureToProductParameters extends CommandParameters {
     Name: string;
-    ProductFeatureGuid: string;
     FirstVersionGuid: string;
 }
-export class AddFeatureToProductCommand extends ProductCommand {
+export class AddFeatureToProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('AddFeatureTo', product);
+        super('Add', productFeature, product);
         const parameters = new AddFeatureToProductParameters();
         parameters.Name = productFeature.name;
-        parameters.ProductFeatureGuid = productFeature.guid;
         parameters.FirstVersionGuid = productFeature.firstVersionGuid;
         this.Parameters = parameters;
     }
 }
 export class RequestFeatureForProductParameters extends CommandParameters {
     Name: string;
-    ProductFeatureGuid: string;
     RequestedForVersionGuid: string;
 }
 
-export class RequestFeatureForProductCommand extends ProductCommand {
+export class RequestFeatureForProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('RequestFeatureFor', product);
+        super('Request', productFeature, product);
         const parameters = new RequestFeatureForProductParameters();
         parameters.Name = productFeature.name;
-        parameters.ProductFeatureGuid = productFeature.guid;
         parameters.RequestedForVersionGuid = productFeature.requestedForVersionGuid;
         this.Parameters = parameters;
     }
 }
 
 export class RemoveFeatureFromProductParameters extends CommandParameters {
-    ProductFeatureGuid: string;
 }
 
-export class RemoveFeatureFromProductCommand extends ProductCommand {
+export class RemoveFeatureFromProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('RemoveFeatureFrom', product);
+        super('Remove', productFeature, product);
         const parameters = new RemoveFeatureFromProductParameters();
-        parameters.ProductFeatureGuid = productFeature.guid;
         this.Parameters = parameters;
     }
 }
 
 export class RemoveIssueFromProductParameters extends CommandParameters {
-    ProductIssueGuid: string;
 }
 
-export class RemoveIssueFromProductCommand extends ProductCommand {
+export class RemoveIssueFromProductCommand extends ProductIssueCommand {
     constructor(product: Product, productIssue: ProductIssue) {
-        super('RemoveIssueFrom', product);
+        super('Remove', productIssue, product);
         const parameters = new RemoveIssueFromProductParameters();
-        parameters.ProductIssueGuid = productIssue.guid;
         this.Parameters = parameters;
     }
 }
 
 export class AddIssueToProductParameters extends CommandParameters {
     Name: string;
-    ProductIssueGuid: string;
     FirstVersionGuid: string;
     FirstVersionSequence: number;
 }
 
-export class AddIssueToProductCommand extends ProductCommand {
+export class AddIssueToProductCommand extends ProductIssueCommand {
     constructor(product: Product, productIssue: ProductIssue) {
-        super('AddIssueTo', product);
+        super('Add', productIssue, product);
         const parameters = new AddIssueToProductParameters();
         parameters.Name = productIssue.name;
-        parameters.ProductIssueGuid = productIssue.guid;
         parameters.FirstVersionGuid = productIssue.firstVersionGuid;
         parameters.FirstVersionSequence = productIssue.firstVersionSequence;
         this.Parameters = parameters;
@@ -194,15 +186,13 @@ export class AddIssueToProductCommand extends ProductCommand {
 export class AddConfigOptionToProductParameters extends CommandParameters {
     Name: string;
     FeatureGuid: string;
-    ConfigGuid: string;
 }
 
-export class AddConfigOptionToProductCommand extends ProductCommand {
+export class AddConfigOptionToProductCommand extends ProductConfigOptionCommand {
     constructor(product: Product, productFeature: ProductFeature, configoption: ProductConfigOption) {
-        super('AddConfigOptionTo', product);
+        super('Add', configoption, product);
         const parameters = new AddConfigOptionToProductParameters();
         parameters.Name = configoption.name;
-        parameters.ConfigGuid = configoption.guid;
         parameters.FeatureGuid = configoption.productFeatureGuid;
         this.Parameters = parameters;
     }
@@ -211,16 +201,14 @@ export class AddConfigOptionToProductCommand extends ProductCommand {
 export class AddChildToProductConfigOptionParameters extends CommandParameters {
     Name: string;
     FeatureGuid: string;
-    ProductGuid: string;
     ParentGuid: string;
 }
 
 export class AddChildToProductConfigOptionCommand extends ProductConfigOptionCommand {
-    constructor(configoption: ProductConfigOption) {
-        super('AddChildTo', configoption);
+    constructor(configoption: ProductConfigOption, product: Product) {
+        super('AddChildTo', configoption, product);
         const parameters = new AddChildToProductConfigOptionParameters();
         parameters.Name = configoption.name;
-        parameters.ProductGuid = configoption.productGuid;
         parameters.FeatureGuid = configoption.productFeatureGuid;
         parameters.ParentGuid = configoption.parentGuid;
         this.Parameters = parameters;
@@ -228,31 +216,21 @@ export class AddChildToProductConfigOptionCommand extends ProductConfigOptionCom
 }
 
 export class RemoveChildFromProductConfigOptionParameters extends CommandParameters {
-    ProductGuid: string;
     ChildGuid: string;
 }
 
 export class RemoveChildFromProductConfigOptionCommand extends ProductConfigOptionCommand {
-    constructor(configoption: ProductConfigOption, parent: ProductConfigOption) {
-        super('RemoveChildFrom', parent);
+    constructor(configoption: ProductConfigOption, parent: ProductConfigOption, product: Product) {
+        super('RemoveChildFrom', parent, product);
         const parameters = new RemoveChildFromProductConfigOptionParameters();
-        parameters.ProductGuid = configoption.productGuid;
         parameters.ChildGuid = configoption.guid;
         this.Parameters = parameters;
     }
 }
 
-
-export class RemoveVersionFromProductParameters extends CommandParameters {
-    ProductVersionGuid: string;
-}
-
-export class RemoveVersionFromProductCommand extends ProductCommand {
+export class RemoveVersionFromProductCommand extends ProductVersionCommand {
     constructor(product: Product, productVersion: ProductVersion) {
-        super('RemoveVersionFrom', product);
-        const parameters = new RemoveVersionFromProductParameters();
-        parameters.ProductVersionGuid = productVersion.guid;
-        this.Parameters = parameters;
+        super('Remove', productVersion, product);
     }
 }
 
@@ -262,7 +240,7 @@ export class RemoveConfigOptionFromProductParameters extends CommandParameters {
 
 export class RemoveConfigOptionFromProductFeatureCommand extends ProductCommand {
     constructor(product: Product, configoption: ProductConfigOption) {
-        super('RemoveConfigOptionFrom', product);
+        super('Remove', product);
         const parameters = new RemoveConfigOptionFromProductParameters();
         parameters.ConfigGuid = configoption.guid;
         this.Parameters = parameters;
@@ -270,10 +248,8 @@ export class RemoveConfigOptionFromProductFeatureCommand extends ProductCommand 
 }
 
 export class ProductFeatureParameters extends CommandParameters {
-    ProductGuid: string;
 }
 export class ProductConfigOptionParameters extends CommandParameters {
-    ProductGuid: string;
 }
 
 export class RenameProductFeatureParameters extends ProductFeatureParameters {
@@ -282,17 +258,15 @@ export class RenameProductFeatureParameters extends ProductFeatureParameters {
 }
 
 export class RenameProductFeatureCommand extends ProductFeatureCommand {
-    constructor(productFeature: ProductFeature, orgName: string) {
-        super('Rename', productFeature);
+    constructor(productFeature: ProductFeature, product: Product, orgName: string) {
+        super('Rename', productFeature, product);
         const parameters = new RenameProductFeatureParameters();
         parameters.OriginalName = orgName;
         parameters.Name = productFeature.name;
-        parameters.ProductGuid = productFeature.productGuid;
         this.Parameters = parameters;
     }
 }
 export class ProductIssueParameters extends CommandParameters {
-    ProductGuid: string;
 }
 
 export class RenameProductIssueParameters extends ProductIssueParameters {
@@ -301,12 +275,11 @@ export class RenameProductIssueParameters extends ProductIssueParameters {
 }
 
 export class RenameProductIssueCommand extends ProductIssueCommand {
-    constructor(productIssue: ProductIssue, orgName: string) {
-        super('Rename', productIssue);
+    constructor(productIssue: ProductIssue, product: Product, orgName: string) {
+        super('Rename', productIssue, product);
         const parameters = new RenameProductIssueParameters();
         parameters.OriginalName = orgName;
         parameters.Name = productIssue.name;
-        parameters.ProductGuid = productIssue.productGuid;
         this.Parameters = parameters;
     }
 }
@@ -317,12 +290,11 @@ export class RenameProductConfigOptionCommandParameters extends ProductConfigOpt
 }
 
 export class RenameProductConfigOptionCommand extends ProductConfigOptionCommand {
-    constructor(productConfigOption: ProductConfigOption, orgName: string) {
-        super('Rename', productConfigOption);
+    constructor(productConfigOption: ProductConfigOption, product: Product, orgName: string) {
+        super('Rename', productConfigOption, product);
         const parameters = new RenameProductConfigOptionCommandParameters();
         parameters.OriginalName = orgName;
         parameters.Name = productConfigOption.name;
-        parameters.ProductGuid = productConfigOption.productGuid;
         this.Parameters = parameters;
     }
 }
@@ -332,12 +304,11 @@ export class ChangeDefaultValueForProductConfigOptionCommandParameters extends P
 }
 
 export class ChangeDefaultValueForProductConfigOptionCommand extends ProductConfigOptionCommand {
-    constructor(productConfigOption: ProductConfigOption, orgValue: string) {
-        super('ChangeDefaultValueFor', productConfigOption);
+    constructor(productConfigOption: ProductConfigOption, product: Product, orgValue: string) {
+        super('ChangeDefaultValueFor', productConfigOption, product);
         const parameters = new ChangeDefaultValueForProductConfigOptionCommandParameters();
         parameters.OriginalDefaultValue = orgValue;
         parameters.DefaultValue = productConfigOption.defaultValue;
-        parameters.ProductGuid = productConfigOption.productGuid;
         this.Parameters = parameters;
     }
 }
@@ -347,11 +318,10 @@ export class ChangeDescriptionOfProductConfigOptionCommandParameters extends Pro
 }
 
 export class ChangeDescriptionOfProductConfigOptionCommand extends ProductConfigOptionCommand {
-    constructor(productConfigOption: ProductConfigOption) {
-        super('ChangeDescriptionOf', productConfigOption);
+    constructor(productConfigOption: ProductConfigOption, product: Product) {
+        super('ChangeDescriptionOf', productConfigOption, product);
         const parameters = new ChangeDescriptionOfProductConfigOptionCommandParameters();
         parameters.Description = productConfigOption.description;
-        parameters.ProductGuid = productConfigOption.productGuid;
         this.Parameters = parameters;
     }
 }
@@ -362,11 +332,10 @@ export class ChangeDescriptionOfProductIssueParameters extends ProductIssueParam
 }
 
 export class ChangeDescriptionOfProductIssueCommand extends ProductIssueCommand {
-    constructor(productIssue: ProductIssue) {
-        super('ChangeDescriptionOf', productIssue);
+    constructor(productIssue: ProductIssue, product: Product) {
+        super('ChangeDescriptionOf', productIssue, product);
         const parameters = new ChangeDescriptionOfProductIssueParameters();
         parameters.Description = productIssue.description;
-        parameters.ProductGuid = productIssue.productGuid;
         this.Parameters = parameters;
     }
 }
@@ -377,11 +346,10 @@ export class ChangeDescriptionOfProductFeatureParameters extends ProductFeatureP
 }
 
 export class ChangeDescriptionOfProductFeatureCommand extends ProductFeatureCommand {
-    constructor(productFeature: ProductFeature) {
-        super('ChangeDescriptionOf', productFeature);
+    constructor(productFeature: ProductFeature, product: Product) {
+        super('ChangeDescriptionOf', productFeature, product);
         const parameters = new ChangeDescriptionOfProductFeatureParameters();
         parameters.Description = productFeature.description;
-        parameters.ProductGuid = productFeature.productGuid;
         this.Parameters = parameters;
     }
 }

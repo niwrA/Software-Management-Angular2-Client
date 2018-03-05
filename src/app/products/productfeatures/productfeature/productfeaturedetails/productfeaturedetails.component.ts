@@ -4,12 +4,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductFeature } from '../../productfeature';
 import { ProductsService } from '../../../products.service';
 import { RenameProductFeatureCommand, ChangeDescriptionOfProductFeatureCommand } from '../../../product/product.commands';
+import { Product } from '../../../product';
 @Component({
   selector: 'app-productfeaturedetails',
   templateUrl: './productfeaturedetails.component.html',
   styleUrls: ['./productfeaturedetails.component.css']
 })
 export class ProductFeatureDetailsComponent implements OnInit {
+  product: Product;
   productfeature: ProductFeature;
   previousProductFeature: ProductFeature;
   productId: string;
@@ -35,6 +37,8 @@ export class ProductFeatureDetailsComponent implements OnInit {
     if (productId && featureId) {
       this.productId = productId;
       this.featureId = featureId;
+      this.service.getProduct(productId).then(product => this.product = product);
+      // todo: get this from product now
       this.service.getProductFeature(productId, featureId).then(productFeature => this.update(productFeature));
     }
   }
@@ -42,7 +46,7 @@ export class ProductFeatureDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProductFeature !== undefined) {
       if (this.productfeature.name !== this.previousProductFeature.name) {
-        const renameCommand = new RenameProductFeatureCommand(this.productfeature, this.previousProductFeature.name);
+        const renameCommand = new RenameProductFeatureCommand(this.productfeature, this.product, this.previousProductFeature.name);
         this.service.postCommand(renameCommand, false);
         this.previousProductFeature.name = this.productfeature.name;
       }
@@ -54,7 +58,7 @@ export class ProductFeatureDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousProductFeature !== undefined) {
       if (this.productfeature.description !== this.previousProductFeature.description) {
-        const renameCommand = new ChangeDescriptionOfProductFeatureCommand(this.productfeature);
+        const renameCommand = new ChangeDescriptionOfProductFeatureCommand(this.productfeature, this.product);
         this.service.postCommand(renameCommand, false);
         this.previousProductFeature.description = this.productfeature.description;
       }

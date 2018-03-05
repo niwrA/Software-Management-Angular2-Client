@@ -65,7 +65,7 @@ export class PropertyElementsComponent implements OnInit {
   }
 
   createPropertyElement(name: string): void {
-    this.service.createPropertyElement(true, this.entityElement, this.epicElement, name);
+    this.service.createPropertyElement(true, this.entityElement, this.epicElement, this.design, name);
     this.getPropertyElements(this.searchText);
   }
 
@@ -74,6 +74,6 @@ export class PropertyElementsComponent implements OnInit {
     if (index > -1) {
       this.entityElement.properties.splice(index, 1);
     }
-    this.service.deletePropertyElement(propertyElement);
+    this.service.deletePropertyElement(propertyElement, this.design);
   }
 }

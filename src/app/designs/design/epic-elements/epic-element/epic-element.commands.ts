@@ -1,34 +1,32 @@
 import { Command, CommandParameters } from '../../../../commands/command';
 import { EpicElement } from '../epic-element';
+import { Design } from '../../../design';
 
 export class EpicElementCommand extends Command {
-    constructor(name: string, epicElement: EpicElement) {
-        super(name, 'EpicElement', epicElement.guid);
+    constructor(name: string, epicElement: EpicElement, design: Design) {
+        super(name, 'EpicElement', epicElement.guid, 'Design', design.guid);
     };
 }
 
 export class EpicElementCommandParameters extends CommandParameters {
-    DesignGuid: string;
 }
 
 export class CreateEpicElementParameters extends EpicElementCommandParameters {
     Name: string;
 }
 export class CreateEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement) {
-        super('Create', epicElement);
+    constructor(epicElement: EpicElement, design: Design) {
+        super('Create', epicElement, design);
         const parameters = new CreateEpicElementParameters();
         parameters.Name = epicElement.name;
-        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
 
 export class DeleteEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement) {
-        super('Delete', epicElement);
+    constructor(epicElement: EpicElement, design: Design) {
+        super('Delete', epicElement, design);
         const parameters = new EpicElementCommandParameters();
-        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
@@ -39,12 +37,11 @@ export class RenameEpicElementParameters extends EpicElementCommandParameters {
 }
 
 export class RenameEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement, orgName: string) {
-        super('Rename', epicElement);
+    constructor(epicElement: EpicElement, design: Design, orgName: string) {
+        super('Rename', epicElement, design);
         const parameters = new RenameEpicElementParameters();
         parameters.OriginalName = orgName;
         parameters.Name = epicElement.name;
-        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }
@@ -55,11 +52,10 @@ export class ChangeDescriptionOfEpicElementParameters extends EpicElementCommand
 }
 
 export class ChangeDescriptionOfEpicElementCommand extends EpicElementCommand {
-    constructor(epicElement: EpicElement) {
-        super('ChangeDescriptionOf', epicElement);
+    constructor(epicElement: EpicElement, design: Design) {
+        super('ChangeDescriptionOf', epicElement, design);
         const parameters = new ChangeDescriptionOfEpicElementParameters();
         parameters.Description = epicElement.description;
-        parameters.DesignGuid = epicElement.designGuid;
         this.Parameters = parameters;
     }
 }

@@ -52,12 +52,12 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       design.epics.push(newItem);
-      const createDesignCommand = new CreateEpicElementCommand(newItem);
-      this.commandsService.postCommand(createDesignCommand, false);
+      const createEpicCommand = new CreateEpicElementCommand(newItem, design);
+      this.commandsService.postCommand(createEpicCommand, false);
     }
     return newItem;
   }
-  createEntityElement(doSave: boolean, epic: EpicElement, name?: string): EntityElement {
+  createEntityElement(doSave: boolean, epic: EpicElement, design: Design, name?: string): EntityElement {
     const newItem = new EntityElement();
     newItem.guid = UUID.UUID();
     newItem.designGuid = epic.designGuid;
@@ -65,13 +65,13 @@ export class DesignsService {
     newItem.name = name;
     if (doSave) {
       epic.entities.push(newItem);
-      const createEntityCommand = new CreateEntityElementCommand(newItem);
+      const createEntityCommand = new CreateEntityElementCommand(newItem, design);
       this.commandsService.postCommand(createEntityCommand, false);
     }
     return newItem;
   }
 
-  createEntityElementChild(doSave: boolean, epicElement: EpicElement, parent: EntityElement, name: string): EntityElement {
+  createEntityElementChild(doSave: boolean, epicElement: EpicElement, parent: EntityElement, design: Design, name: string): EntityElement {
     const newItem = new EntityElement();
     newItem.guid = UUID.UUID();
     newItem.name = name;
@@ -80,20 +80,20 @@ export class DesignsService {
     newItem.designGuid = parent.designGuid;
     if (doSave) {
       epicElement.entities.push(newItem);
-      const createEpicElementConfigCommand = new AddChildToEntityElementCommand(newItem);
+      const createEpicElementConfigCommand = new AddChildToEntityElementCommand(newItem, design);
       this.commandsService.postCommand(createEpicElementConfigCommand, false);
     }
     return newItem;
   }
-  removeChildFromEntityElement(epicElement: EpicElement, entityelement: EntityElement, parent: EntityElement): void {
+  removeChildFromEntityElement(epicElement: EpicElement, entityelement: EntityElement, parent: EntityElement, design: Design): void {
     const index = epicElement.entities.indexOf(entityelement, 0);
     if (index > -1) {
       epicElement.entities.splice(index, 1);
     }
-    this.postCommand(new RemoveChildFromEntityElementCommand(entityelement, parent), false);
+    this.postCommand(new RemoveChildFromEntityElementCommand(entityelement, parent, design), false);
   }
 
-  createPropertyElement(doSave: boolean, entity: EntityElement, epic: EpicElement, name?: string): PropertyElement {
+  createPropertyElement(doSave: boolean, entity: EntityElement, epic: EpicElement, design: Design, name?: string): PropertyElement {
     const newItem = new PropertyElement();
     newItem.guid = UUID.UUID();
     newItem.designGuid = entity.designGuid;
@@ -104,7 +104,7 @@ export class DesignsService {
       entity.properties.push(newItem);
       const commands = new Array<Command>();
 
-      const createPropertyCommand = new CreatePropertyElementCommand(newItem);
+      const createPropertyCommand = new CreatePropertyElementCommand(newItem, design);
       commands.push(createPropertyCommand);
 
       const createPropertyCodeGenCommand = new CreatePropertyCodeGenCommand(newItem, entity, epic);
@@ -146,8 +146,8 @@ export class DesignsService {
     this.postCommand(new DeleteDesignCommand(design), false);
   }
 
-  deletePropertyElement(propertyElement: PropertyElement): void {
-    this.postCommand(new DeletePropertyElementCommand(propertyElement), false);
+  deletePropertyElement(propertyElement: PropertyElement, design: Design): void {
+    this.postCommand(new DeletePropertyElementCommand(propertyElement, design), false);
   }
 
   cloneDesign(original: Design): Design {

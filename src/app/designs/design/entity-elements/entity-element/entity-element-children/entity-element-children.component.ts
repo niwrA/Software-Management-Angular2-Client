@@ -68,13 +68,13 @@ export class EntityElementChildrenComponent implements OnInit {
   }
 
   createEntityElementChild(name: string): void {
-    const entityelement = this.service.createEntityElementChild(true, this.epicelement, this.entityelement, name);
+    const entityelement = this.service.createEntityElementChild(true, this.epicelement, this.entityelement, this.design, name);
     this.updateChildren(this.entityelement.guid);
     this.getEntityElements();
   }
 
   deleteEntityElementChild(entityelement: EntityElement): void {
-    this.service.removeChildFromEntityElement(this.epicelement, entityelement, this.entityelement);
+    this.service.removeChildFromEntityElement(this.epicelement, entityelement, this.entityelement, this.design);
     this.updateChildren(this.entityelement.guid);
     this.getEntityElements();
   }
