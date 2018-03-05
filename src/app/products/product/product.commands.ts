@@ -121,7 +121,7 @@ export class AddFeatureToProductParameters extends CommandParameters {
 }
 export class AddFeatureToProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('AddFeatureTo', productFeature, product);
+        super('Add', productFeature, product);
         const parameters = new AddFeatureToProductParameters();
         parameters.Name = productFeature.name;
         parameters.FirstVersionGuid = productFeature.firstVersionGuid;
@@ -135,7 +135,7 @@ export class RequestFeatureForProductParameters extends CommandParameters {
 
 export class RequestFeatureForProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('RequestFeatureFor', productFeature, product);
+        super('Request', productFeature, product);
         const parameters = new RequestFeatureForProductParameters();
         parameters.Name = productFeature.name;
         parameters.RequestedForVersionGuid = productFeature.requestedForVersionGuid;
@@ -148,7 +148,7 @@ export class RemoveFeatureFromProductParameters extends CommandParameters {
 
 export class RemoveFeatureFromProductCommand extends ProductFeatureCommand {
     constructor(product: Product, productFeature: ProductFeature) {
-        super('RemoveFeatureFrom', productFeature, product);
+        super('Remove', productFeature, product);
         const parameters = new RemoveFeatureFromProductParameters();
         this.Parameters = parameters;
     }
@@ -159,7 +159,7 @@ export class RemoveIssueFromProductParameters extends CommandParameters {
 
 export class RemoveIssueFromProductCommand extends ProductIssueCommand {
     constructor(product: Product, productIssue: ProductIssue) {
-        super('RemoveIssueFrom', productIssue, product);
+        super('Remove', productIssue, product);
         const parameters = new RemoveIssueFromProductParameters();
         this.Parameters = parameters;
     }
@@ -173,7 +173,7 @@ export class AddIssueToProductParameters extends CommandParameters {
 
 export class AddIssueToProductCommand extends ProductIssueCommand {
     constructor(product: Product, productIssue: ProductIssue) {
-        super('AddIssueTo', productIssue, product);
+        super('Add', productIssue, product);
         const parameters = new AddIssueToProductParameters();
         parameters.Name = productIssue.name;
         parameters.FirstVersionGuid = productIssue.firstVersionGuid;
@@ -190,7 +190,7 @@ export class AddConfigOptionToProductParameters extends CommandParameters {
 
 export class AddConfigOptionToProductCommand extends ProductConfigOptionCommand {
     constructor(product: Product, productFeature: ProductFeature, configoption: ProductConfigOption) {
-        super('AddConfigOptionTo', configoption, product);
+        super('Add', configoption, product);
         const parameters = new AddConfigOptionToProductParameters();
         parameters.Name = configoption.name;
         parameters.FeatureGuid = configoption.productFeatureGuid;
@@ -230,7 +230,7 @@ export class RemoveChildFromProductConfigOptionCommand extends ProductConfigOpti
 
 export class RemoveVersionFromProductCommand extends ProductVersionCommand {
     constructor(product: Product, productVersion: ProductVersion) {
-        super('RemoveVersionFrom', productVersion, product);
+        super('Remove', productVersion, product);
     }
 }
 
@@ -240,7 +240,7 @@ export class RemoveConfigOptionFromProductParameters extends CommandParameters {
 
 export class RemoveConfigOptionFromProductFeatureCommand extends ProductCommand {
     constructor(product: Product, configoption: ProductConfigOption) {
-        super('RemoveConfigOptionFrom', product);
+        super('Remove', product);
         const parameters = new RemoveConfigOptionFromProductParameters();
         parameters.ConfigGuid = configoption.guid;
         this.Parameters = parameters;

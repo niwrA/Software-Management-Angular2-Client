@@ -35,7 +35,11 @@ export class AccountCommand extends Command {
         super(name, 'CompanyEnvironmentAccount', account.guid, 'Company', company.guid);
     };
 }
-
+export class CompanyRoleCommand extends Command {
+    constructor(name: string, role: CompanyRole, company: Company) {
+        super(name, 'CompanyRole', role.guid, 'Company', company.guid);
+    };
+}
 export class CreateCompanyParameters extends CommandParameters {
     Name: string;
 }
@@ -102,9 +106,9 @@ export class AddRoleToCompanyParameters extends CommandParameters {
     RoleName: string;
 }
 
-export class AddRoleToCompanyCommand extends CompanyCommand {
+export class AddRoleToCompanyCommand extends CompanyRoleCommand {
     constructor(company: Company, role: CompanyRole) {
-        super('AddRoleTo', company);
+        super('Add', role, company);
         const parameters = new AddRoleToCompanyParameters();
         parameters.RoleName = role.name;
         this.Parameters = parameters;
@@ -115,10 +119,10 @@ export class RemoveRoleFromCompanyParameters extends CommandParameters {
     RoleGuid: string;
 }
 
-export class RemoveRoleFromCompanyCommand extends CompanyCommand {
+export class RemoveRoleFromCompanyCommand extends CompanyRoleCommand {
 
     constructor(company: Company, role: CompanyRole) {
-        super('RemoveRoleFrom', company);
+        super('Remove', role, company);
         const parameters = new RemoveRoleFromCompanyParameters();
         parameters.RoleGuid = role.guid;
         this.Parameters = parameters;
@@ -130,9 +134,9 @@ export class RenameRoleForCompanyParameters extends CommandParameters {
     OriginalName: string;
 }
 
-export class RenameRoleForCompanyCommand extends CompanyCommand {
+export class RenameRoleForCompanyCommand extends CompanyRoleCommand {
     constructor(company: Company, companyrole: CompanyRole, orgName: string) {
-        super('RenameRoleFor', company);
+        super('Rename', companyrole, company);
         const parameters = new RenameRoleForCompanyParameters();
         parameters.OriginalName = orgName;
         parameters.Name = companyrole.name;
@@ -151,7 +155,7 @@ export class AddEnvironmentToCompanyParameters extends EnvironmentCommandParamet
 
 export class AddEnvironmentToCompanyCommand extends EnvironmentCommand {
     constructor(company: Company, environment: CompanyEnvironment) {
-        super('AddEnvironmentTo', company, environment);
+        super('Add', company, environment);
         const parameters = new AddEnvironmentToCompanyParameters();
         parameters.EnvironmentName = environment.name;
         this.Parameters = parameters;
@@ -161,7 +165,7 @@ export class AddEnvironmentToCompanyCommand extends EnvironmentCommand {
 export class RemoveEnvironmentFromCompanyCommand extends EnvironmentCommand {
 
     constructor(company: Company, environment: CompanyEnvironment) {
-        super('RemoveEnvironmentFrom', company, environment);
+        super('Remove', company, environment);
         const parameters = new EnvironmentCommandParameters();
         this.Parameters = parameters;
     }
@@ -206,7 +210,7 @@ export class AddHardwareToEnvironmentParameters extends HardwareCommandParameter
 
 export class AddHardwareToEnvironmentCommand extends HardwareCommand {
     constructor(company: Company, hardware: CompanyEnvironmentHardwareItem) {
-        super('AddHardwareTo', company, hardware);
+        super('Add', company, hardware);
         const parameters = new AddHardwareToEnvironmentParameters();
         parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
         parameters.HardwareName = hardware.name;
@@ -217,7 +221,7 @@ export class AddHardwareToEnvironmentCommand extends HardwareCommand {
 export class RemoveHardwareFromEnvironmentCommand extends HardwareCommand {
 
     constructor(company: Company, hardware: CompanyEnvironmentHardwareItem) {
-        super('RemoveHardwareFrom', company, hardware);
+        super('Remove', company, hardware);
         const parameters = new HardwareCommandParameters();
         parameters.EnvironmentGuid = hardware.companyEnvironmentGuid;
         this.Parameters = parameters;
@@ -264,7 +268,7 @@ export class AddDatabaseToEnvironmentParameters extends DatabaseCommandParameter
 
 export class AddDatabaseToEnvironmentCommand extends DatabaseCommand {
     constructor(company: Company, database: Database) {
-        super('AddDatabaseTo', company, database);
+        super('Add', company, database);
         const parameters = new AddDatabaseToEnvironmentParameters();
         parameters.EnvironmentGuid = database.companyEnvironmentGuid;
         parameters.DatabaseName = database.name;
@@ -275,7 +279,7 @@ export class AddDatabaseToEnvironmentCommand extends DatabaseCommand {
 export class RemoveDatabaseFromEnvironmentCommand extends DatabaseCommand {
 
     constructor(company: Company, database: Database) {
-        super('RemoveDatabaseFrom', company, database);
+        super('Remove', company, database);
         const parameters = new DatabaseCommandParameters();
         parameters.EnvironmentGuid = database.companyEnvironmentGuid;
         this.Parameters = parameters;
@@ -325,7 +329,7 @@ export class RemoveAccountFromEnvironmentParameters extends EnvironmentCommandPa
 export class RemoveAccountFromEnvironmentCommand extends AccountCommand {
 
     constructor(company: Company, account: Account) {
-        super('RemoveAccountFrom', company, account);
+        super('Remove', company, account);
         const parameters = new RemoveAccountFromEnvironmentParameters();
         parameters.EnvironmentGuid = account.companyEnvironmentGuid;
         this.Parameters = parameters;
