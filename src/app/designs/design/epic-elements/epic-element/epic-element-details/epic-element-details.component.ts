@@ -47,7 +47,7 @@ export class EpicElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousEpicElement !== undefined) {
       if (this.epicElement.name !== this.previousEpicElement.name) {
-        const renameCommand = new RenameEpicElementCommand(this.epicElement, this.previousEpicElement.name);
+        const renameCommand = new RenameEpicElementCommand(this.epicElement, this.design, this.previousEpicElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousEpicElement.name = this.epicElement.name;
       }
@@ -59,7 +59,7 @@ export class EpicElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousEpicElement !== undefined) {
       if (this.epicElement.description !== this.previousEpicElement.description) {
-        const command = new ChangeDescriptionOfEpicElementCommand(this.epicElement);
+        const command = new ChangeDescriptionOfEpicElementCommand(this.epicElement, this.design);
         this.service.postCommand(command, false);
         this.previousEpicElement.description = this.epicElement.description;
       }

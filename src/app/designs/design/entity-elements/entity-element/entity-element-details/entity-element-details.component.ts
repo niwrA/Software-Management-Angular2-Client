@@ -55,7 +55,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousEntityElement !== undefined) {
       if (this.entityElement.name !== this.previousEntityElement.name) {
-        const renameCommand = new RenameEntityElementCommand(this.entityElement, this.previousEntityElement.name);
+        const renameCommand = new RenameEntityElementCommand(this.entityElement, this.design, this.previousEntityElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousEntityElement.name = this.entityElement.name;
       }
@@ -67,7 +67,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousEntityElement !== undefined) {
       if (this.entityElement.description !== this.previousEntityElement.description) {
-        const command = new ChangeDescriptionOfEntityElementCommand(this.entityElement);
+        const command = new ChangeDescriptionOfEntityElementCommand(this.entityElement, this.design);
         this.service.postCommand(command, false);
         this.previousEntityElement.description = this.entityElement.description;
       }
@@ -79,7 +79,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changePluralName(): void {
     if (this.previousEntityElement !== undefined) {
       if (this.entityElement.pluralName !== this.previousEntityElement.pluralName) {
-        const renameCommand = new ChangePluralNameOfEntityElementCommand(this.entityElement, this.previousEntityElement.pluralName);
+        const renameCommand = new ChangePluralNameOfEntityElementCommand(this.entityElement, this.design, this.previousEntityElement.pluralName);
         this.service.postCommand(renameCommand, false);
         this.previousEntityElement.pluralName = this.entityElement.pluralName;
       }
@@ -91,7 +91,7 @@ export class EntityElementDetailsComponent implements OnInit {
   changeIsCollection(value: boolean): void {
     if (this.previousEntityElement !== undefined) {
       if (value !== this.previousEntityElement.isCollection) {
-        const renameCommand = new ChangeIsCollectionForEntityElementCommand(this.entityElement, value);
+        const renameCommand = new ChangeIsCollectionForEntityElementCommand(this.entityElement, this.design, value);
         this.service.postCommand(renameCommand, false);
         this.previousEntityElement.isCollection = value;
       }

@@ -2,9 +2,10 @@ import { Command, CommandParameters } from '../../../../commands/command';
 import { PropertyElement } from '../property-element';
 import { EntityElement } from '../../entity-elements/entity-element';
 import { EpicElement } from '../../epic-elements/epic-element';
+import { Design } from '../../../design';
 export class PropertyElementCommand extends Command {
-    constructor(name: string, propertyElement: PropertyElement) {
-        super(name, 'PropertyElement', propertyElement.guid);
+    constructor(name: string, propertyElement: PropertyElement, design: Design) {
+        super(name, 'PropertyElement', propertyElement.guid, 'Design', design.guid);
     };
 }
 
@@ -15,7 +16,6 @@ export class PropertyCodeGenCommand extends Command {
 }
 
 export class PropertyElementCommandParameters extends CommandParameters {
-    DesignGuid: string;
     EpicElementGuid: string;
     EntityElementGuid: string;
 }
@@ -33,11 +33,10 @@ export class CreatePropertyCodeGenParameters extends PropertyElementCommandParam
 }
 
 export class CreatePropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement) {
-        super('Create', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design) {
+        super('Create', propertyElement, design);
         const parameters = new CreatePropertyElementParameters();
         parameters.Name = propertyElement.name;
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;
@@ -71,10 +70,9 @@ export class CreatePropertyCodeGenCommand extends PropertyCodeGenCommand {
 }
 
 export class DeletePropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement) {
-        super('Delete', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design) {
+        super('Delete', propertyElement, design);
         const parameters = new PropertyElementCommandParameters();
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;
@@ -87,12 +85,11 @@ export class RenamePropertyElementParameters extends PropertyElementCommandParam
 }
 
 export class RenamePropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement, orgName: string) {
-        super('Rename', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design, orgName: string) {
+        super('Rename', propertyElement, design);
         const parameters = new RenamePropertyElementParameters();
         parameters.OriginalName = orgName;
         parameters.Name = propertyElement.name;
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;
@@ -105,11 +102,10 @@ export class ChangeDescriptionOfPropertyElementParameters extends PropertyElemen
 }
 
 export class ChangeDescriptionOfPropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement) {
-        super('ChangeDescriptionOf', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design) {
+        super('ChangeDescriptionOf', propertyElement, design);
         const parameters = new ChangeDescriptionOfPropertyElementParameters();
         parameters.Description = propertyElement.description;
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;
@@ -122,12 +118,11 @@ export class ChangeDataTypeOfPropertyElementParameters extends PropertyElementCo
 }
 
 export class ChangeDataTypeOfPropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement, orgDataType: string) {
-        super('ChangeDataTypeOf', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design, orgDataType: string) {
+        super('ChangeDataTypeOf', propertyElement, design);
         const parameters = new ChangeDataTypeOfPropertyElementParameters();
         parameters.OriginalDataType = orgDataType;
         parameters.DataType = propertyElement.dataType;
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;
@@ -139,11 +134,10 @@ export class ChangeIsStateForPropertyElementParameters extends PropertyElementCo
 }
 
 export class ChangeIsStateForPropertyElementCommand extends PropertyElementCommand {
-    constructor(propertyElement: PropertyElement, newValue: boolean) {
-        super('ChangeIsStateFor', propertyElement);
+    constructor(propertyElement: PropertyElement, design: Design, newValue: boolean) {
+        super('ChangeIsStateFor', propertyElement, design);
         const parameters = new ChangeIsStateForPropertyElementParameters();
         parameters.IsState = newValue;
-        parameters.DesignGuid = propertyElement.designGuid;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;
         this.Parameters = parameters;

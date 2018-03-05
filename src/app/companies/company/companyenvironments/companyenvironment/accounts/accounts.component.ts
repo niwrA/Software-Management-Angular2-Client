@@ -69,7 +69,7 @@ export class AccountsComponent implements OnInit {
     this.companyenvironment.accounts.push(account);
     this.updateCompanyEnvironment(this.companyenvironment);
 
-    const command = new CreateAccountCommand(account);
+    const command = new CreateAccountCommand(account, this.company);
     this.service.postCommand(command, false);
   }
 

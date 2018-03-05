@@ -141,7 +141,7 @@ export class ProductsService {
     newItem.productFeatureGuid = parent.productFeatureGuid;
     if (doSave) {
       product.configoptions.splice(0, 0, newItem);
-      const createProductConfigCommand = new AddChildToProductConfigOptionCommand(newItem);
+      const createProductConfigCommand = new AddChildToProductConfigOptionCommand(newItem, product);
       this.commandsService.postCommand(createProductConfigCommand, false);
     }
     return newItem;
@@ -151,7 +151,7 @@ export class ProductsService {
     if (index > -1) {
       product.configoptions.splice(index, 1);
     }
-    this.postCommand(new RemoveChildFromProductConfigOptionCommand(configoption, parent), false);
+    this.postCommand(new RemoveChildFromProductConfigOptionCommand(configoption, parent, product), false);
   }
 
 

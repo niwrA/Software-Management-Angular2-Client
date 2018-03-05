@@ -56,7 +56,7 @@ export class EntityElementsComponent implements OnInit {
   }
 
   createEntityElement(name: string): void {
-    this.service.createEntityElement(true, this.epicElement, name);
+    this.service.createEntityElement(true, this.epicElement, this.design, name);
     this.getEntityElements(this.searchText);
   }
 }

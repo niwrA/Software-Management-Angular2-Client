@@ -68,7 +68,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.name !== this.previousPropertyElement.name) {
-        const renameCommand = new RenamePropertyElementCommand(this.propertyElement, this.previousPropertyElement.name);
+        const renameCommand = new RenamePropertyElementCommand(this.propertyElement, this.design, this.previousPropertyElement.name);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.name = this.propertyElement.name;
       }
@@ -80,7 +80,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.description !== this.previousPropertyElement.description) {
-        const command = new ChangeDescriptionOfPropertyElementCommand(this.propertyElement);
+        const command = new ChangeDescriptionOfPropertyElementCommand(this.propertyElement, this.design);
         this.service.postCommand(command, false);
         this.previousPropertyElement.description = this.propertyElement.description;
       }
@@ -92,7 +92,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeDataType(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.dataType !== this.previousPropertyElement.dataType) {
-        const renameCommand = new ChangeDataTypeOfPropertyElementCommand(this.propertyElement, this.previousPropertyElement.dataType);
+        const renameCommand = new ChangeDataTypeOfPropertyElementCommand(this.propertyElement, this.design, this.previousPropertyElement.dataType);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.dataType = this.propertyElement.dataType;
       }
@@ -104,7 +104,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeIsState(value: boolean): void {
     if (this.previousPropertyElement !== undefined) {
       if (value !== this.previousPropertyElement.isState) {
-        const renameCommand = new ChangeIsStateForPropertyElementCommand(this.propertyElement, value);
+        const renameCommand = new ChangeIsStateForPropertyElementCommand(this.propertyElement, this.design, value);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.isState = value;
       }

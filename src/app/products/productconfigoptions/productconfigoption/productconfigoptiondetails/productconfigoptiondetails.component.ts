@@ -57,7 +57,7 @@ export class ProductConfigOptionDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousConfigOption !== undefined) {
       if (this.configoption.name !== this.previousConfigOption.name) {
-        const renameCommand = new RenameProductConfigOptionCommand(this.configoption, this.previousConfigOption.name);
+        const renameCommand = new RenameProductConfigOptionCommand(this.configoption, this.product, this.previousConfigOption.name);
         this.service.postCommand(renameCommand, false);
         this.previousConfigOption.name = this.configoption.name;
       }
@@ -70,7 +70,7 @@ export class ProductConfigOptionDetailsComponent implements OnInit {
     if (this.previousConfigOption !== undefined) {
       if (this.configoption.defaultValue !== this.previousConfigOption.defaultValue) {
         const redefaultValueCommand = new ChangeDefaultValueForProductConfigOptionCommand
-          (this.configoption, this.previousConfigOption.defaultValue);
+          (this.configoption, this.product, this.previousConfigOption.defaultValue);
         this.service.postCommand(redefaultValueCommand, false);
         this.previousConfigOption.defaultValue = this.configoption.defaultValue;
       }
@@ -82,7 +82,7 @@ export class ProductConfigOptionDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousConfigOption !== undefined) {
       if (this.configoption.description !== this.previousConfigOption.description) {
-        const renameCommand = new ChangeDescriptionOfProductConfigOptionCommand(this.configoption);
+        const renameCommand = new ChangeDescriptionOfProductConfigOptionCommand(this.configoption, this.product);
         this.service.postCommand(renameCommand, false);
         this.previousConfigOption.description = this.configoption.description;
       }

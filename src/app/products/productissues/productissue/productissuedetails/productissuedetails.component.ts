@@ -4,12 +4,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductIssue } from '../../productissue';
 import { ProductsService } from '../../../products.service';
 import { RenameProductIssueCommand, ChangeDescriptionOfProductIssueCommand } from '../../../product/product.commands';
+import { Product } from '../../../product';
 @Component({
   selector: 'app-productissuedetails',
   templateUrl: './productissuedetails.component.html',
   styleUrls: ['./productissuedetails.component.css']
 })
 export class ProductIssueDetailsComponent implements OnInit {
+  product: Product;
   productissue: ProductIssue;
   previousProductIssue: ProductIssue;
   productId: string;
@@ -35,6 +37,8 @@ export class ProductIssueDetailsComponent implements OnInit {
     if (productId && issueId) {
       this.productId = productId;
       this.issueId = issueId;
+      this.service.getProduct(productId).then(product => this.product = product);
+      // todo: get this from product now?
       this.service.getProductIssue(productId, issueId).then(productIssue => this.update(productIssue));
     }
   }
@@ -42,7 +46,7 @@ export class ProductIssueDetailsComponent implements OnInit {
   changeName(): void {
     if (this.previousProductIssue !== undefined) {
       if (this.productissue.name !== this.previousProductIssue.name) {
-        const renameCommand = new RenameProductIssueCommand(this.productissue, this.previousProductIssue.name);
+        const renameCommand = new RenameProductIssueCommand(this.productissue, this.product, this.previousProductIssue.name);
         this.service.postCommand(renameCommand, false);
         this.previousProductIssue.name = this.productissue.name;
       }
@@ -54,7 +58,7 @@ export class ProductIssueDetailsComponent implements OnInit {
   changeDescription(): void {
     if (this.previousProductIssue !== undefined) {
       if (this.productissue.description !== this.previousProductIssue.description) {
-        const renameCommand = new ChangeDescriptionOfProductIssueCommand(this.productissue);
+        const renameCommand = new ChangeDescriptionOfProductIssueCommand(this.productissue, this.product);
         this.service.postCommand(renameCommand, false);
         this.previousProductIssue.description = this.productissue.description;
       }

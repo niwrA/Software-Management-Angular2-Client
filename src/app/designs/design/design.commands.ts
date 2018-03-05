@@ -9,8 +9,8 @@ export class DesignCommand extends Command {
 }
 
 export class EntityElementCommand extends Command {
-    constructor(name: string, entityElement: EntityElement) {
-        super(name, 'EntityElement', entityElement.guid);
+    constructor(name: string, entityElement: EntityElement, design: Design) {
+        super(name, 'EntityElement', entityElement.guid, 'Design', design.guid);
     };
 }
 
@@ -69,11 +69,10 @@ export class AddChildToEntityElementParameters extends CommandParameters {
 }
 
 export class AddChildToEntityElementCommand extends EntityElementCommand {
-    constructor(entityelement: EntityElement) {
-        super('AddChildTo', entityelement);
+    constructor(entityelement: EntityElement, design: Design) {
+        super('AddChildTo', entityelement, design);
         const parameters = new AddChildToEntityElementParameters();
         parameters.Name = entityelement.name;
-        parameters.DesignGuid = entityelement.designGuid;
         parameters.EpicElementGuid = entityelement.epicGuid;
         parameters.ParentGuid = entityelement.parentGuid;
         this.Parameters = parameters;
@@ -87,11 +86,10 @@ export class RemoveChildFromEntityElementParameters extends CommandParameters {
 }
 
 export class RemoveChildFromEntityElementCommand extends EntityElementCommand {
-    constructor(entityelement: EntityElement, parent: EntityElement) {
-        super('RemoveChildFrom', parent);
+    constructor(entityelement: EntityElement, parent: EntityElement, design: Design) {
+        super('RemoveChildFrom', parent, design);
         const parameters = new RemoveChildFromEntityElementParameters();
         parameters.EpicElementGuid = entityelement.epicGuid;
-        parameters.DesignGuid = entityelement.designGuid;
         parameters.ParentGuid = entityelement.parentGuid;
         this.Parameters = parameters;
     }

@@ -47,13 +47,13 @@ export class CompanyRolesComponent implements OnInit {
     this.company.roles.push(companyrole);
     this.updateCompany(this.company);
 
-    const command = new AddRoleToCompanyCommand(this.company, companyrole.guid, companyrole.name);
+    const command = new AddRoleToCompanyCommand(this.company, companyrole);
     this.service.postCommand(command, false);
   }
 
   deleteCompanyRole(companyrole: CompanyRole) {
     this.companyroles.splice(this.companyroles.indexOf(companyrole));
-    const command = new RemoveRoleFromCompanyCommand(this.company, companyrole.guid);
+    const command = new RemoveRoleFromCompanyCommand(this.company, companyrole);
     this.service.postCommand(command, false);
   }
 
