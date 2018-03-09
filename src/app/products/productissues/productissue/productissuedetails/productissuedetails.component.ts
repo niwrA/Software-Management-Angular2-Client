@@ -3,7 +3,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductIssue } from '../../productissue';
 import { ProductsService } from '../../../products.service';
-import { RenameProductIssueCommand, ChangeDescriptionOfProductIssueCommand } from '../../../product/product.commands';
+import { RenameProductIssueCommand, ChangeDescriptionOfProductIssueCommand,
+  ResolveProductIssueCommand } from '../../../product/product.commands';
 import { Product } from '../../../product';
 @Component({
   selector: 'app-productissuedetails',
@@ -67,4 +68,15 @@ export class ProductIssueDetailsComponent implements OnInit {
     }
   }
 
+  resolve(): void {
+    if (this.previousProductIssue !== undefined) {
+      if (this.productissue.resolvedVersionGuid !== this.previousProductIssue.resolvedVersionGuid) {
+        const resolveCommand = new ResolveProductIssueCommand(this.productissue, this.product);
+        this.service.postCommand(resolveCommand, false);
+        this.previousProductIssue.description = this.productissue.description;
+      }
+    } else {
+      this.previousProductIssue = this.productissue;
+    }
+  }
 }

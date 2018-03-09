@@ -15,7 +15,6 @@ export class ProductsComponent implements OnInit {
   searchText: string;
 
   constructor(private productsService: ProductsService) {
-    this.products = productsService.products;
   }
 
   ngOnInit() {
@@ -37,7 +36,6 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
-
 
   clearSelection(): void {
     this.selectedProduct = null;

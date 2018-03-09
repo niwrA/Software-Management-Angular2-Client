@@ -9,7 +9,7 @@ export class ProductIssueState {
     isSolved: boolean;
     firstVersionGuid?: string;
     firstVersionSequence?: number;
-    lastVersionGuid?: string;
+    resolvedVersionGuid?: string;
 }
 
 export class ProductIssue {
@@ -47,8 +47,8 @@ export class ProductIssue {
     get firstVersionSequence(): number { return this._state.firstVersionSequence; };
     set firstVersionSequence(value: number) { this._state.firstVersionSequence = value; };
 
-    get lastVersionGuid(): string { return this._state.lastVersionGuid; };
-    set lastVersionGuid(value: string) { this._state.lastVersionGuid = value; };
+    get resolvedVersionGuid(): string { return this._state.resolvedVersionGuid; };
+    set resolvedVersionGuid(value: string) { this._state.resolvedVersionGuid = value; };
 
     public clone(): ProductIssue {
         return new ProductIssue(_.clone(this._state));

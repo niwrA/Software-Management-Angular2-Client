@@ -9,8 +9,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-productfeatures',
   templateUrl: './productfeatures.component.html',
-  styleUrls: ['./productfeatures.component.css'],
-  providers: [ProductsService]
+  styleUrls: ['./productfeatures.component.css']
 })
 export class ProductFeaturesComponent implements OnInit {
   productGuid: string;

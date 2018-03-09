@@ -9,8 +9,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-productversions',
   templateUrl: './productversions.component.html',
-  styleUrls: ['./productversions.component.css'],
-  providers: [ProductsService]
+  styleUrls: ['./productversions.component.css']
 })
 export class ProductVersionsComponent implements OnInit {
   productGuid: string;
@@ -47,7 +46,7 @@ export class ProductVersionsComponent implements OnInit {
     this.selectedProductVersion = null;
   }
 
-  ProductVersionDetail(event, Product: ProductVersion): void {
+  ProductVersionDetail(event, product: ProductVersion): void {
 /*    event.stopPropagation();
     this.router.navigate(['/Product', Product.Guid]);
 */  }

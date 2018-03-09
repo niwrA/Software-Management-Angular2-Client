@@ -326,7 +326,6 @@ export class ChangeDescriptionOfProductConfigOptionCommand extends ProductConfig
     }
 }
 
-// todo: support exact inserts, deletes etc.
 export class ChangeDescriptionOfProductIssueParameters extends ProductIssueParameters {
     Description: string;
 }
@@ -336,6 +335,19 @@ export class ChangeDescriptionOfProductIssueCommand extends ProductIssueCommand 
         super('ChangeDescriptionOf', productIssue, product);
         const parameters = new ChangeDescriptionOfProductIssueParameters();
         parameters.Description = productIssue.description;
+        this.Parameters = parameters;
+    }
+}
+
+export class ResolveProductIssueParameters extends ProductIssueParameters {
+    ResolvedVersionGuid: string;
+}
+
+export class ResolveProductIssueCommand extends ProductIssueCommand {
+    constructor(productIssue: ProductIssue, product: Product) {
+        super('Resolve', productIssue, product);
+        const parameters = new ResolveProductIssueParameters();
+        parameters.ResolvedVersionGuid = productIssue.resolvedVersionGuid;
         this.Parameters = parameters;
     }
 }

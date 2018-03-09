@@ -255,7 +255,7 @@ export class ProductsService {
 
   parseSingleResponse(response: any, Products: Array<Product>): Product {
     const product = new Product(response.json() as ProductState);
-    if (Products.indexOf(product) > -1) {
+    if (!Products.indexOf(product)) {
       Products.push(product);
     }
     return product;

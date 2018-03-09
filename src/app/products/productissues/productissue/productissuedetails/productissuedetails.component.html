@@ -10,5 +10,14 @@
         <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="productissue.description" placeholder="Description"></textarea>
       </mat-input-container>
     </mat-card-content>
+    <mat-card-content layout='row'>
+      <mat-input-container>
+        <mat-select matInput [(ngModel)]="productissue.resolvedVersionGuid" placeholder="Resolved in version">
+          <span>
+              <mat-option (click)="resolve()" *ngFor="let version of product.versions" value="{{version.guid}}">{{version.name}}</mat-option>
+          </span>
+        </mat-select>
+      </mat-input-container>
+    </mat-card-content>
   </mat-card-content>
 </mat-card>
