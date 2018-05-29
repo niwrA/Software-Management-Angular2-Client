@@ -110,8 +110,8 @@ export class ProductIssueCommand extends Command {
 }
 
 export class ProductConfigOptionCommand extends Command {
-    constructor(name: string, productFeature: ProductConfigOption, product: Product) {
-        super(name, 'ProductConfigOption', productFeature.guid, 'Product', product.guid);
+    constructor(name: string, productConfigOption: ProductConfigOption, product: Product) {
+        super(name, 'ProductConfigOption', productConfigOption.guid, 'Product', product.guid);
     };
 }
 

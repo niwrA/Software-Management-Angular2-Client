@@ -123,7 +123,9 @@ export class ProductsService {
     newItem.guid = UUID.UUID();
     newItem.name = name;
     newItem.productGuid = product.guid;
-    newItem.productFeatureGuid = productFeature.guid;
+    if (productFeature) {
+      newItem.productFeatureGuid = productFeature.guid;
+    }
     if (doSave) {
       product.configoptions.splice(0, 0, newItem);
       const createProductConfigCommand = new AddConfigOptionToProductCommand(product, productFeature, newItem);
