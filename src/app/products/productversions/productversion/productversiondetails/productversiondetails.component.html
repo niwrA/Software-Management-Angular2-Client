@@ -1,22 +1,22 @@
 <mat-card *ngIf="productversion">
   <mat-card-content>
-    <mat-input-container>
+    <mat-form-field>
       <input matInput [(ngModel)]="productversion.name" placeholder="Name" />
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput [(ngModel)]="productversion.major" placeholder="Major" />
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput [(ngModel)]="productversion.minor" placeholder="Minor" />
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput [(ngModel)]="productversion.build" placeholder="Build" />
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput [(ngModel)]="productversion.revision" placeholder="Revision" />
-    </mat-input-container>
-    <mat-input-container>
+    </mat-form-field>
+    <mat-form-field>
       <input matInput type='date' [(ngModel)]='productversion.releaseDate' placeholder="ReleaseDate" />
-    </mat-input-container>
+    </mat-form-field>
   </mat-card-content>
 </mat-card>

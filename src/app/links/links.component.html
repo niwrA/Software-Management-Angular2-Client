@@ -1,7 +1,7 @@
-<mat-input-container>
+<mat-form-field>
   <input type="search" matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
     (keyup)="getLinks()" (keyup.enter)='createLink(searchTextInput.value)' />
-</mat-input-container>
+</mat-form-field>
 <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new link" (click)="createLink(searchTextInput.value)">Add</button>
 <mat-list *ngIf="selectedLinks">
   <mat-list-item>

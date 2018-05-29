@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Company } from '../../../../../../company';
@@ -28,19 +28,19 @@ export class DatabaseDetailsComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['companyId'], params['environmentId'], params['databaseId']])
-      .subscribe(([companyId, environmentId, databaseId]) => {
-        this.getCompanyEnvironmentDatabase(companyId, environmentId, databaseId);
-      });
+    this.route.paramMap.subscribe(params => this.getCompanyEnvironmentDatabase(
+      params.get('companyId'), params.get('environmentId'), params.get('databaseId')))
   }
 
-// this could be done directly from the company, but want to have the service decide on caching, when to retrieve what, etc. in the future?
+  // this could be done directly from the company, but want to have the service decide on caching,
+  // when to retrieve what, etc. in the future?
   getCompanyEnvironmentDatabase(companyId: string, environmentId: string, databaseId: string): void {
     if (companyId && environmentId && databaseId) {
       this.companyId = companyId;
       this.environmentId = environmentId;
       this.databaseId = databaseId;
-      this.service.getCompanyEnvironmentDatabase(companyId, environmentId, databaseId).then(companyEnvironmentDatabase => this.update(companyEnvironmentDatabase));
+      this.service.getCompanyEnvironmentDatabase(companyId, environmentId, databaseId)
+        .then(companyEnvironmentDatabase => this.update(companyEnvironmentDatabase));
       this.service.getCompany(companyId).then(company => this.company = company);
     }
   }

@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductFeatures(searchTextInput.value || '')"
       (keyup.enter)='createProductFeature(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Add new feature" (click)="createProductFeature(searchTextInput.value)">Add</button>
   <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Request new feature" (click)="requestProductFeature(searchTextInput.value)">Request</button>
   <mat-card *ngFor="let productfeature of productfeatures">

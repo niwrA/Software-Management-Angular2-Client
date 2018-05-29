@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input type="search" matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getTechnologies(searchTextInput.value || '')"
       (keyup.enter)='createTechnology(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button mat-raised-button mat-tooltip="Add new technology" (click)="createTechnology(searchTextInput.value)">Add</button>
   <p hidden>
     <mat-checkbox>Only my technologies ... </mat-checkbox>

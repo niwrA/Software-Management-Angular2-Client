@@ -7,7 +7,7 @@ import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import { ProjectCommand, CreateProjectCommand, DeleteProjectCommand } from './project/project.commands';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductFeature } from '../../productfeatures/productfeature';
@@ -37,10 +37,8 @@ export class ProductConfigOptionComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.params.map(params => [params['productId'], params['productFeatureId'], params['configOptionId']])
-      .subscribe(([productId, featureId, configoptionId]) => {
-        this.getProductConfigOption(productId, featureId, configoptionId);
-      });
+    this.route.paramMap.subscribe(params => this.getProductConfigOption(
+      params.get('productId'), params.get('productFeatureId'), params.get('configOptionId')))
   }
 
   getProductConfigOption(productId: string, featureId: string, configoptionId): void {

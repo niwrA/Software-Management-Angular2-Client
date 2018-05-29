@@ -1,17 +1,17 @@
 <mat-card *ngIf="register">
   <mat-card-title>{{register.title}}</mat-card-title>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput [(ngModel)]="register.name" placeholder="UserName" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput type="email" [(ngModel)]="register.email" placeholder="Email address" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput type='password' [(ngModel)]='register.password' placeholder="Password" />
-  </mat-input-container>
-    <mat-input-container>
+  </mat-form-field>
+    <mat-form-field>
     <input matInput type='password' [(ngModel)]='register.repassword' placeholder="Repeat password" />
-  </mat-input-container>
+  </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button (click)="doRegister()">Register</button>
   </mat-card-actions>

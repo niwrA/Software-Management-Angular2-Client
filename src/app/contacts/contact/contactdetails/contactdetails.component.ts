@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Contact } from '../../contact';
@@ -26,7 +28,7 @@ export class ContactDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getContact(params['contactId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getContact(params['contactId'])))
       .subscribe((contact: Contact) => this.update(contact));
   }
 

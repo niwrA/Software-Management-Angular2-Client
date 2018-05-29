@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Technology } from '../technology';
@@ -20,7 +22,7 @@ export class TechnologyComponent {
   ) { }
 
   ngOnInit() {
-    this.route.params.switchMap((params: Params) => this.service.getTechnology(params['technologyId']))
+    this.route.params.pipe(switchMap((params: Params) => this.service.getTechnology(params['technologyId'])))
       .subscribe((technology: Technology) => this.technology = technology);
   }
 

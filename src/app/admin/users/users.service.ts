@@ -5,7 +5,7 @@ import { USERS } from './mock-users';
 import { Register } from '../register/register';
 import { environment } from '../../../environments/environment';
 import { NotificationsService } from 'angular2-notifications';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UsersService {

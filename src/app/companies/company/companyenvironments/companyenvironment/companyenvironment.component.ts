@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Company } from '../../../company';
@@ -33,10 +33,7 @@ export class CompanyEnvironmentComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.params.map(params => [params['companyId'], params['environmentId']])
-      .subscribe(([companyId, environmentId]) => {
-        this.getCompanyEnvironment(companyId, environmentId);
-      });
+    this.route.paramMap.subscribe(params => this.getCompanyEnvironment(params.get('companyId'), params.get('environmentId')))
   }
 
 // this could be done directly from the company, but want to have the service decide on caching, when to retrieve what, etc. in the future?

@@ -1,10 +1,12 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductIssue } from '../../productissue';
 import { ProductsService } from '../../../products.service';
-import { RenameProductIssueCommand, ChangeDescriptionOfProductIssueCommand,
-  ResolveProductIssueCommand } from '../../../product/product.commands';
+import {
+  RenameProductIssueCommand, ChangeDescriptionOfProductIssueCommand,
+  ResolveProductIssueCommand
+} from '../../../product/product.commands';
 import { Product } from '../../../product';
 @Component({
   selector: 'app-productissuedetails',
@@ -24,11 +26,9 @@ export class ProductIssueDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['productId'], params['productIssueId']])
-      .subscribe(([productId, issueId]) => {
-        this.getProductIssue(productId, issueId);
-      });
+    this.route.paramMap.subscribe(params => this.getProductIssue(params.get('productId'), params.get('issueId')))
   }
+
   update(newValue) {
     this.previousProductIssue = this.service.cloneProductIssue(newValue);
     this.productissue = newValue;

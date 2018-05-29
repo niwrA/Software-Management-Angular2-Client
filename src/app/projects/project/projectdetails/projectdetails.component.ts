@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from '../../project';
@@ -22,7 +24,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     // todo:  back to route.parent
-    this.route.parent.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getProject(params['projectId'])))
       .subscribe((project: Project) => this.update(project));
   }
 

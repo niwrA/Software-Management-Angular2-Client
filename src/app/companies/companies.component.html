@@ -1,15 +1,15 @@
 <mat-card>
-  <mat-input-container class="inline-control right-aligned-control">
+  <mat-form-field class="inline-control right-aligned-control">
     <mat-select #viewSelect placeholder="Selected View" [(ngModel)]="selectedView">
       <mat-option *ngFor="let view of views" [value]="view.value">
         {{ view.viewValue }}
       </mat-option>
     </mat-select>
-  </mat-input-container>
-  <!-- <mat-input-container class="inline-control">
+  </mat-form-field>
+  <!-- <mat-form-field class="inline-control">
     <input type="search" matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (ngModelChange)="filterCompanies($event)"
       (keyup.enter)='createCompany(searchTextInput.value)' />
-  </mat-input-container> -->
+  </mat-form-field> -->
   <app-searchandadd [(searchText)]="searchText" (onFilter)="filterCompanies($event)" (onCreate)="createCompany($event)"></app-searchandadd>
   <!-- <button mat-raised-button mat-tooltip="Add new company" (click)="createCompany(searchTextInput.value)">Add</button> -->
   <mat-card-subtitle *ngIf="filteredCompanies">{{filteredCompanies.length}} companies shown of {{companies.length}}</mat-card-subtitle>

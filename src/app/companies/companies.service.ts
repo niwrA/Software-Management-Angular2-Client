@@ -11,7 +11,7 @@ import { COMPANIES } from './mock-companies';
 import { CommandsService } from '../commands/commands.service';
 import { NotificationsService } from 'angular2-notifications';
 import { CompanyCommand, CreateCompanyCommand, DeleteCompanyCommand, RenameCompanyCommand } from './company/company.commands';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { environment as environmentSettings} from '../../environments/environment';
 

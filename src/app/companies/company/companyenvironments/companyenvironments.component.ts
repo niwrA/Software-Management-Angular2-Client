@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../../company';
 import { CompanyEnvironment } from './companyenvironment';
@@ -28,7 +30,7 @@ export class CompanyEnvironmentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getCompany(params['companyId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getCompany(params['companyId'])))
       .subscribe(company => this.updateCompany(company));
   }
 

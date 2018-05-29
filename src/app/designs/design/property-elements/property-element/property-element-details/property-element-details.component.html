@@ -1,24 +1,24 @@
 <mat-card *ngIf="propertyElement">
   <mat-card-content>
     <mat-card-content layout='row'>
-      <mat-input-container>
+      <mat-form-field>
         <input matInput (blur)="changeName()" [(ngModel)]="propertyElement.name" placeholder="Name" />
-      </mat-input-container>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-content layout='row'>
-      <mat-input-container>
+      <mat-form-field>
         <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea>
-      </mat-input-container>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-content layout='row'>
-      <mat-input-container>
+      <mat-form-field>
         <mat-select [(ngModel)]="propertyElement.dataType" placeholder="DataType" (blur)="changeDataType()">
           <mat-option *ngFor="let datatype of dataTypes" [value]="datatype.value">
             {{ datatype.viewValue }}
           </mat-option>
         </mat-select>
         <!-- <textarea matInput (blur)="changeDescription()" rows=5 [(ngModel)]="propertyElement.description" placeholder="Description"></textarea> -->
-      </mat-input-container>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-content layout='row'>
       <mat-slide-toggle (ngModelChange)="changeIsState($event)" [(ngModel)]="propertyElement.isState">Is State backed by Repository</mat-slide-toggle>

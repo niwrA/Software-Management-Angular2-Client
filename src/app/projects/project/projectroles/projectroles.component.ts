@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit, Input } from '@angular/core';
 import { PROJECTROLES } from './mock-projectroles';
 import { Project } from '../../project';
@@ -31,7 +33,7 @@ export class ProjectRolesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getProject(params['projectId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getProject(params['projectId'])))
       .subscribe(project => this.updateProject(project));
   }
 

@@ -1,13 +1,13 @@
 <div *ngIf="contact">
-  <mat-input-container>
+  <mat-form-field>
     <input matInput (blur)="changeName()" [(ngModel)]="contact.name" placeholder="Name" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput (blur)="changeEmail()" [(ngModel)]="contact.email" placeholder="email" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput (blur)="changeBirthDate()" type='date' [(ngModel)]='contact.birthDate' placeholder="BirthDate" />
-  </mat-input-container>
+  </mat-form-field>
   <div style="width:40%">
     <img *ngIf="contact.avatarUrl" [src]="contact.avatarUrl" />
   </div>

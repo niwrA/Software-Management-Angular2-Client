@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DesignsService } from '../../designs.service';
@@ -27,10 +27,7 @@ export class EntityElementsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['designId'], params['epicElementId']])
-      .subscribe(([designId, epicElementId]) => {
-        this.getEpicElement(designId, epicElementId);
-      });
+    this.route.paramMap.subscribe(params => this.getEpicElement(params.get('designId'), params.get('epicElementId')))
   }
 
   getEpicElement(designId: string, epicElementId: string) {
