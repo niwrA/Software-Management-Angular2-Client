@@ -5,7 +5,7 @@ import { CommandBatchResult } from './commandbatchresult';
 import { UUID } from 'angular2-uuid';
 import { Headers, Http } from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
-import 'rxjs/add/operator/toPromise';
+
 import { environment } from '../../environments/environment';
 import { User } from '../admin/users/user';
 import { UsersService } from '../admin/users/users.service';

@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {map} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductFeature } from '../productfeature';
@@ -32,7 +34,7 @@ export class ProductFeatureComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.params.map(params => [params['productId'], params['productFeatureId']])
+    this.route.params.pipe(map(params => [params['productId'], params['productFeatureId']]))
       .subscribe(([productId, featureId]) => {
         this.getProductFeature(productId, featureId);
       });

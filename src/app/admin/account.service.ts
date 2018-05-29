@@ -1,27 +1,19 @@
+
+import { throwError as observableThrowError, Observable } from 'rxjs';
+
+import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 import { environment } from '../../environments/environment';
 
-/** 
- * ROPC Authentication service. 
- */
 @Injectable() export class AccountService {
 
-  /** 
-   * Stores the URL so we can redirect after signing in. 
-   */
   public redirectUrl: string;
 
-  /** 
-   * User's data. 
-   */
   private user: any = {};
 
   private headers: Headers;
@@ -38,19 +30,11 @@ import { environment } from '../../environments/environment';
 
   }
 
-  /** 
-   * Tries to sign in the user. 
-   * 
-   * @param username 
-   * @param password 
-   * @return The user's data 
-   */
   public signin(username: string, password: string): Observable<any> {
 
-    // Token endpoint & params.  
-    let tokenEndpoint: string = environment.accountsUrl + '/login';
+    const tokenEndpoint: string = environment.accountsUrl + '/login';
 
-    let params: any = {
+    const params: any = {
       client_id: environment.config.CLIENT_ID,
       grant_type: environment.config.GRANT_TYPE,
       username: username,
@@ -59,10 +43,10 @@ import { environment } from '../../environments/environment';
     };
 
     // Encodes the parameters.  
-    let body: string = this.encodeParams(params);
+    const body: string = this.encodeParams(params);
 
-    return this.http.post(tokenEndpoint, body, this.options)
-      .map((res: Response) => {
+    return this.http.post(tokenEndpoint, body, this.options).pipe(
+      map((res: Response) => {
 
         const body: any = res.json();
 
@@ -74,12 +58,12 @@ import { environment } from '../../environments/environment';
 
         }
 
-      }).catch((error: any) => {
+      }), catchError((error: any) => {
 
         // Error on post request.  
-        return Observable.throw(error);
+        return observableThrowError(error);
 
-      });
+      }), );
 
   }
 
@@ -106,19 +90,19 @@ import { environment } from '../../environments/environment';
 
       this.http.post(tokenEndpoint, body, this.options)
         .subscribe(
-        (res: Response) => {
+          (res: Response) => {
 
-          let body: any = res.json();
+            let body: any = res.json();
 
-          // Successful if there's an access token in the response.  
-          if (typeof body.access_token !== 'undefined') {
+            // Successful if there's an access token in the response.  
+            if (typeof body.access_token !== 'undefined') {
 
-            // Stores access token & refresh token.  
-            this.store(body);
+              // Stores access token & refresh token.  
+              this.store(body);
 
-          }
+            }
 
-        });
+          });
 
     }
 
@@ -147,11 +131,11 @@ import { environment } from '../../environments/environment';
 
       this.http.post(revocationEndpoint, body, this.options)
         .subscribe(
-        () => {
+          () => {
 
-          localStorage.removeItem('id_token');
+            localStorage.removeItem('id_token');
 
-        });
+          });
 
     }
 
@@ -180,11 +164,11 @@ import { environment } from '../../environments/environment';
 
       this.http.post(revocationEndpoint, body, this.options)
         .subscribe(
-        () => {
+          () => {
 
-          localStorage.removeItem('refresh_token');
+            localStorage.removeItem('refresh_token');
 
-        });
+          });
 
     }
 
@@ -202,7 +186,7 @@ import { environment } from '../../environments/environment';
     // Revokes token.  
     this.revokeToken();
 
-    // Revokes refresh token.  
+    // Revokes refresh token.
     this.revokeRefreshToken();
 
   }
@@ -223,13 +207,12 @@ import { environment } from '../../environments/environment';
    */
   private decodeToken(): void {
 
-    if (tokenNotExpired()) {
+    const jwtHelper: JwtHelperService = new JwtHelperService();
+    if (jwtHelper.isTokenExpired()) {
 
       const token: string = localStorage.getItem('id_token');
 
-      const jwtHelper: JwtHelper = new JwtHelper();
       this.user = jwtHelper.decodeToken(token);
-
     }
 
   }

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Epics } from './menu-state';
 import { UiMenuComponent } from './ui-menu/ui-menu.component';
 import { NotificationComponent } from 'angular2-notifications';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NavLink } from './shared/appnavbar/navlink';
 

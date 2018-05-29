@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Company } from '../../../company';

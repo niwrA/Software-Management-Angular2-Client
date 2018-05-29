@@ -1,5 +1,5 @@
 import { Injectable, Directive, Input } from '@angular/core'
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute, Params, ActivatedRouteSnapshot } from '@angular/router';
 

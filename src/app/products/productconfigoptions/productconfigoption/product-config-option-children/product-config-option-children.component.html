@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductConfigOptions()"
       (keyup.enter)='createProductConfigOptionChild(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button *ngIf="configoption" mat-raised-button mat-tooltip="Add new configoption" (click)="createProductConfigOptionChild(searchTextInput.value)">Add</button>
   <mat-card *ngFor="let productconfigoption of filteredchildren">
     <mat-card-title-group [routerLink]="['/products', productconfigoption.productGuid, 'configoptions', productconfigoption.guid, 'details']">

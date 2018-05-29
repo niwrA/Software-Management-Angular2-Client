@@ -1,7 +1,7 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput type="search" #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getContacts()" (keyup.enter)='createContact(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button mat-raised-button [disabled]='!canAdd' mat-tooltip="Add new contact" (click)="createContact(searchTextInput.value)">Add</button>
   <mat-card-subtitle *ngIf="contacts">{{contacts.length}} contact(s) found.</mat-card-subtitle>
   <mat-card-content>
@@ -15,7 +15,7 @@
       </mat-list-item>
     </mat-list>
     <mat-card *ngFor="let contact of contacts" (mouseenter)="showActions(contact)" (mouseleave)="hideActions(contact)">
-      <mat-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" align='end'></mat-checkbox>
+      <mat-checkbox style="float:right" [(ngModel)]="contact.isSelected" (click)="toggleSelect(contact)" labelPosition='end'></mat-checkbox>
       <mat-card-title-group [routerLink]="[contact.guid, 'details']">
         <img *ngIf="contact.avatarUrl" mat-card-avatar [src]="contact.avatarUrl">
         <mat-card-subtitle>

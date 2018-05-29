@@ -1,7 +1,7 @@
 <div *ngIf="file">
   <div>
-    <mat-input-container>
+    <mat-form-field>
       <textarea matInput mdAutosizeMinRows rows="6" (blur)="changeName()" [(ngModel)]="file.name" placeholder="Name"></textarea>
-    </mat-input-container>
+    </mat-form-field>
   </div>
 </div>

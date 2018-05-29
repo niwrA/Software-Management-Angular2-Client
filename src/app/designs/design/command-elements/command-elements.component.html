@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getCommandElements(searchTextInput.value || '')"
       (keyup.enter)='createCommandElement(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button mat-raised-button mat-tooltip="Add new command" (click)="createCommandElement(searchTextInput.value)">Add</button>
   <div *ngIf="design && epicElement && entityElement && commandElements">
     <mat-card *ngFor="let commandElement of commandElements">

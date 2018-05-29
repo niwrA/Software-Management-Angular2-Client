@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Company } from '../company';
@@ -29,7 +31,7 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.switchMap((params: Params) => this.service.getCompany(params['companyId']))
+    this.route.params.pipe(switchMap((params: Params) => this.service.getCompany(params['companyId'])))
       .subscribe((company: Company) => this.company = company);
   }
 

@@ -1,7 +1,7 @@
-<mat-input-container>
+<mat-form-field>
   <input matInput type="search" #searchTextInput [(ngModel)]="searchText" (ngModelChange)="filterCommands()" placeholder="Type to search ..."
   />
-</mat-input-container>
+</mat-form-field>
 <mat-card *ngFor="let command of commands">
   <mat-card-title-group>
     <mat-card-subtitle>

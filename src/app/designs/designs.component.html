@@ -1,7 +1,7 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input type="search" matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..." (keyup)="getDesigns()" (keyup.enter)='createDesign(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new design" (click)="createDesign(searchTextInput.value)">Add</button>
 
   <mat-card *ngFor="let design of designs">

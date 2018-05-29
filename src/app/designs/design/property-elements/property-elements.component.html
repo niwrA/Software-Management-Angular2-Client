@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getPropertyElements(searchTextInput.value || '')"
       (keyup.enter)='createPropertyElement(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button mat-raised-button mat-tooltip="Add new property" (click)="createPropertyElement(searchTextInput.value)">Add</button>
   <div *ngIf="design && epicElement && entityElement && propertyElements">
     <mat-card *ngFor="let propertyElement of propertyElements">

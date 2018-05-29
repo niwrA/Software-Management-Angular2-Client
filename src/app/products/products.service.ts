@@ -16,7 +16,7 @@ import {
   AddIssueToProductCommand, RemoveIssueFromProductCommand, AddConfigOptionToProductCommand,
   RemoveConfigOptionFromProductFeatureCommand, AddChildToProductConfigOptionCommand, RemoveChildFromProductConfigOptionCommand
 } from './product/product.commands';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
 import { pack } from 'd3';

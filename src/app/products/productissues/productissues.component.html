@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput #searchTextInput [(ngModel)]="searchText" placeholder="Type to search ..." (keyup)="getProductIssues(searchTextInput.value || '')"
       (keyup.enter)='createProductIssue(searchTextInput.value)' />
-  </mat-input-container>
+  </mat-form-field>
   <button *ngIf="versionGuid" mat-raised-button mat-tooltip="Add new issue" (click)="createProductIssue(searchTextInput.value)">Add</button>
   <mat-card *ngFor="let productissue of productissues">
     <mat-card-title-group [routerLink]="['/products', productissue.productGuid, 'issues', productissue.guid, 'details']">

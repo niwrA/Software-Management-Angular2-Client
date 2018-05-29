@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {map} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from '../products.service';
@@ -26,7 +28,7 @@ export class ProductIssuesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map((params: Params) => [params['productId'], params['productVersionId']])
+    this.route.parent.params.pipe(map((params: Params) => [params['productId'], params['productVersionId']]))
       .subscribe(([productId, versionId]) => {
         this.update(productId, versionId);
       });

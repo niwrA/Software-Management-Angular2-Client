@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { File } from '../file';
@@ -20,7 +22,7 @@ export class FileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.switchMap((params: Params) => this.service.getFile(params['fileId']))
+    this.route.params.pipe(switchMap((params: Params) => this.service.getFile(params['fileId'])))
       .subscribe((file: File) => this.update(file));
   }
   update(newValue) {

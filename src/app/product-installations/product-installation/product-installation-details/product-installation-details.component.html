@@ -1,13 +1,13 @@
 <div *ngIf="productinstallation">
-  <mat-input-container>
+  <mat-form-field>
     <input matInput (blur)="changeStartDate()" type='date' [(ngModel)]='productinstallation.startDate' placeholder="StartDate"
     />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput (blur)="changeEndDate()" type='date' [(ngModel)]='productinstallation.endDate' placeholder="EndDate" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput (blur)="changeExternalId()" type='string' [(ngModel)]='productinstallation.externalId' placeholder="ExternalId"
     />
-  </mat-input-container>
+  </mat-form-field>
 </div>

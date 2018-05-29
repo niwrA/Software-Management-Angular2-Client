@@ -33,10 +33,7 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
 
   // todo: extract companyEnvironmentId to determine from which environment to get the hardware
   ngOnInit() {
-    this.route.parent.params.map(params => [params['companyId'], params['environmentId']])
-      .subscribe(([companyId, environmentId]) => {
-        this.getCompanyEnvironment(companyId, environmentId);
-      });
+    this.route.paramMap.subscribe(params => this.getCompanyEnvironment(params.get('companyId'), params.get('environmentId')))
   }
 
   getCompanyEnvironment(companyId: string, environmentId: string): void {
@@ -48,7 +45,7 @@ export class CompanyEnvironmentHardwareComponent implements OnInit {
     }
   }
 
-  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment){
+  updateCompanyEnvironment(companyEnvironment: CompanyEnvironment) {
     this.companyenvironment = companyEnvironment;
     this.companyenvironmenthardware = companyEnvironment.hardware;
     this.service.getCompany(companyEnvironment.companyGuid).then(company => this.company = company);

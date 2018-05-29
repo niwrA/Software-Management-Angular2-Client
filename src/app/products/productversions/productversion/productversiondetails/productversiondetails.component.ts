@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductVersion } from '../../productversion';
@@ -20,11 +20,8 @@ export class ProductVersionDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['productId'], params['productVersionId']])
-      .subscribe(([productId, versionId]) => {
-        this.getProductVersion(productId, versionId);
-      });
-  }
+    this.route.paramMap.subscribe(params => this.getProductVersion(params.get('productId'), params.get('productVersionId')))
+  };
 
   getProductVersion(productId: string, versionId: string): void {
     if (productId && versionId) {

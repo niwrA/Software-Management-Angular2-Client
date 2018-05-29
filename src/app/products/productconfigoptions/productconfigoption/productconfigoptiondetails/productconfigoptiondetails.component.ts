@@ -1,6 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Product } from '../../../product';
 import { ProductFeature } from '../../../productfeatures/productfeature';
 import { ProductsService } from '../../../products.service';
@@ -9,6 +9,8 @@ import {
   RenameProductConfigOptionCommand, ChangeDescriptionOfProductConfigOptionCommand,
   ChangeDefaultValueForProductConfigOptionCommand
 } from '../../../product/product.commands';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Component({
@@ -18,8 +20,10 @@ import * as _ from 'lodash';
 })
 export class ProductConfigOptionDetailsComponent implements OnInit {
   product: Product;
+  product$: Observable<Product>;
   configoption: ProductConfigOption;
   productfeature: ProductFeature;
+  productfeature$: Observable<Product>;
   previousConfigOption: ProductConfigOption;
   productId: string;
   featureId: string;
@@ -31,11 +35,10 @@ export class ProductConfigOptionDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['productId'], params['productFeatureId'], params['configOptionId']])
-      .subscribe(([productId, featureId, configoptionId]) => {
-        this.getProductConfigOption(productId, featureId, configoptionId);
-      });
-  }
+    this.route.paramMap.subscribe(params =>
+      this.getProductConfigOption(params.get('productId'), params.get('productFeatureId'), params.get('configOptionId')
+      ))
+  };
 
   getProductConfigOption(productId: string, featureId: string, configoptionId): void {
     if (productId) {

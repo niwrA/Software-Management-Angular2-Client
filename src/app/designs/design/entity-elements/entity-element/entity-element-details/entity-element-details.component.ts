@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DesignsService } from '../../../../designs.service';
@@ -6,8 +6,10 @@ import { Design } from '../../../../design';
 import { EntityElement } from '../../entity-element';
 import { EpicElement } from '../../../epic-elements/epic-element';
 import { CommandsService } from '../../../../../commands/commands.service';
-import { RenameEntityElementCommand, ChangeDescriptionOfEntityElementCommand,
-  ChangePluralNameOfEntityElementCommand, ChangeIsCollectionForEntityElementCommand } from '../entity-element.commands';
+import {
+  RenameEntityElementCommand, ChangeDescriptionOfEntityElementCommand,
+  ChangePluralNameOfEntityElementCommand, ChangeIsCollectionForEntityElementCommand
+} from '../entity-element.commands';
 
 import * as _ from 'lodash';
 
@@ -32,10 +34,8 @@ export class EntityElementDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['designId'], params['epicElementId'], params['entityElementId']])
-      .subscribe(([designId, epicElementId, entityElementId]) => {
-        this.getEntityElement(designId, epicElementId, entityElementId);
-      });
+    this.route.paramMap.subscribe(params => this.getEntityElement(
+      params.get('designId'), params.get('epicElementId'), params.get('entityElementId')))
   }
 
   getEntityElement(designId: string, epicElementId: string, entityElementId: string) {

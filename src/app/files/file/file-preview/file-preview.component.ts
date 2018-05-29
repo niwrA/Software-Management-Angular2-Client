@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { File } from '../../file';
@@ -21,7 +23,7 @@ export class FilePreviewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getFile(params['fileId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getFile(params['fileId'])))
       .subscribe((file: File) => this.update(file));
   }
 

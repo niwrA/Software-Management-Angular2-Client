@@ -20,7 +20,7 @@ import {
 } from './design/property-elements/property-element/property-element.commands';
 import { CreateEpicElementCommand } from './design/epic-elements/epic-element/epic-element.commands';
 import { CreateCommandElementCommand } from './design/command-elements/command-element/command-element.commands';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
 

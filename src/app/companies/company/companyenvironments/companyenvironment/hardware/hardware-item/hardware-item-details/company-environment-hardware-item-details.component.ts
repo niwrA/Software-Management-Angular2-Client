@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Company } from '../../../../../../company';
@@ -28,19 +28,19 @@ export class CompanyEnvironmentHardwareItemDetailsComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['companyId'], params['environmentId'], params['hardwareId']])
-      .subscribe(([companyId, environmentId, hardwareId]) => {
-        this.getCompanyEnvironmentHardware(companyId, environmentId, hardwareId);
-      });
+    this.route.paramMap.subscribe(params => this.getCompanyEnvironmentHardware(
+      params.get('companyId'), params.get('environmentId'), params.get('hardwareId')))
   }
 
-// this could be done directly from the company, but want to have the service decide on caching, when to retrieve what, etc. in the future?
+  // this could be done directly from the company, but want to have the service decide on caching,
+  // when to retrieve what, etc. in the future?
   getCompanyEnvironmentHardware(companyId: string, environmentId: string, hardwareId: string): void {
     if (companyId && environmentId && hardwareId) {
       this.companyId = companyId;
       this.environmentId = environmentId;
       this.hardwareId = hardwareId;
-      this.service.getCompanyEnvironmentHardware(companyId, environmentId, hardwareId).then(companyEnvironmentHardware => this.update(companyEnvironmentHardware));
+      this.service.getCompanyEnvironmentHardware(companyId, environmentId, hardwareId)
+        .then(companyEnvironmentHardware => this.update(companyEnvironmentHardware));
       this.service.getCompany(companyId).then(company => this.company = company);
     }
   }

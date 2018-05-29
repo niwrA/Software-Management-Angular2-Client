@@ -1,5 +1,5 @@
 
-import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Design } from '../../../../design';
@@ -30,10 +30,8 @@ export class EntityElementChildrenComponent implements OnInit {
     private service: DesignsService) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['designId'], params['epicElementId'], params['entityElementId']])
-      .subscribe(([designId, epicelementId, entityelementId]) => {
-        this.getEntityElement(designId, epicelementId, entityelementId);
-      });
+    this.route.paramMap.subscribe(params => this.getEntityElement(
+      params.get('designId'), params.get('epicElementId'), params.get('entityElementId')))
   }
 
   getEntityElement(designId: string, epicelementId: string, entityelementId): void {

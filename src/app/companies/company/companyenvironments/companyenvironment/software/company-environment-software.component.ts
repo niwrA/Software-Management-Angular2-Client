@@ -30,10 +30,7 @@ export class CompanyEnvironmentSoftwareComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.map(params => [params['companyId'], params['environmentId']])
-      .subscribe(([companyId, environmentId]) => {
-        this.getCompanyEnvironment(companyId, environmentId);
-      });
+    this.route.paramMap.subscribe(params => this.getCompanyEnvironment(params.get('companyId'), params.get('environmentId')))
   }
 
   getCompanyEnvironment(companyId: string, environmentId: string): void {

@@ -1,11 +1,11 @@
 <mat-card *ngIf="login">
   <mat-card-title>{{login.title}}</mat-card-title>
-  <mat-input-container>
+  <mat-form-field>
     <input matInput [(ngModel)]="login.name" placeholder="Name" />
-  </mat-input-container>
-  <mat-input-container>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput type='password' [(ngModel)]='login.password' placeholder="Password" />
-  </mat-input-container>
+  </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button (click)="doLogin()">Login</button>
   </mat-card-actions>

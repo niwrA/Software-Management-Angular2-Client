@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Design } from '../../design';
@@ -27,7 +29,7 @@ export class DesignDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.parent.params.switchMap((params: Params) => this.service.getDesign(params['designId']))
+    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getDesign(params['designId'])))
       .subscribe((design: Design) => this.update(design));
   }
 

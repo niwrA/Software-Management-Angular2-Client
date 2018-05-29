@@ -9,7 +9,7 @@ import {
   DeleteProjectRoleAssignmentCommand
 } from './projectroleassignment/projectroleassignment.commands';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Contact, ContactState } from '../contacts/contact';
 import { ContactCardComponent } from '../contacts/contact/contact-card/contact-card.component';

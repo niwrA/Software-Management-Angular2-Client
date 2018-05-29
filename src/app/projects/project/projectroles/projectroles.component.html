@@ -1,7 +1,7 @@
-<mat-input-container>
+<mat-form-field>
   <input matInput #searchTextInput [(ngModel)]="searchText" (ngModelChange)="searchTextChanged()" placeholder="Type to search ..."
     (keyup)="getProjectRoles(searchTextInput.value)" (keyup.enter)='createProjectRole(searchTextInput.value)' />
-</mat-input-container>
+</mat-form-field>
 <button [disabled]='!canAdd' mat-raised-button mat-tooltip="Add new projectrole" (click)="createProjectRole(searchTextInput.value)">Add</button>
 <mat-card>
   <mat-card-actions>
