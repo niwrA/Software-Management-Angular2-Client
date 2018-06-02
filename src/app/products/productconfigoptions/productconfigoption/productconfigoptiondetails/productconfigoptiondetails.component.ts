@@ -35,7 +35,7 @@ export class ProductConfigOptionDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params =>
+    this.route.parent.paramMap.subscribe(params =>
       this.getProductConfigOption(params.get('productId'), params.get('productFeatureId'), params.get('configOptionId')
       ))
   };

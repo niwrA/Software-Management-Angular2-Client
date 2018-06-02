@@ -30,7 +30,7 @@ export class EntityElementChildrenComponent implements OnInit {
     private service: DesignsService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getEntityElement(
+    this.route.parent.paramMap.subscribe(params => this.getEntityElement(
       params.get('designId'), params.get('epicElementId'), params.get('entityElementId')))
   }
 

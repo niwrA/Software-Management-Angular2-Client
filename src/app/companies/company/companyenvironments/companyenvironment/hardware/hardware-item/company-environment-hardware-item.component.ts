@@ -34,7 +34,7 @@ export class CompanyEnvironmentHardwareItemComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getCompanyEnvironmentHardware(
+    this.route.parent.paramMap.subscribe(params => this.getCompanyEnvironmentHardware(
       params.get('companyId'), params.get('environmentId'), params.get('hardwareId')))
   }
 

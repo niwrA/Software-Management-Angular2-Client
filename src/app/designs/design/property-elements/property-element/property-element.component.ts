@@ -34,7 +34,7 @@ export class PropertyElementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getPropertyElement(params.get('designId'),
+    this.route.parent.paramMap.subscribe(params => this.getPropertyElement(params.get('designId'),
       params.get('epicElementId'), params.get('entityElementId'), params.get('propertyElementId')));
   }
 

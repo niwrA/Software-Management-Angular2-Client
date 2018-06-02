@@ -35,7 +35,7 @@ export class EntityElementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getEntityElement(
+    this.route.parent.paramMap.subscribe(params => this.getEntityElement(
       params.get('designId'), params.get('epicElementId'), params.get('entityElementId')))
   }
 

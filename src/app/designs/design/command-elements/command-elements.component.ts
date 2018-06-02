@@ -29,7 +29,7 @@ export class CommandElementsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getEpicElement(
+    this.route.parent.paramMap.subscribe(params => this.getEpicElement(
       params.get('designId'), params.get('epicElementId'), params.get('entityElementId')))
   }
 

@@ -28,11 +28,13 @@ export class EpicElementDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getEpicElement(params.get('designId'), params.get('epicElementId')))
+    this.route.parent.paramMap.subscribe(params => this.getEpicElement(params.get('designId'), params.get('epicElementId')))
   }
 
   getEpicElement(designId: string, epicElementId: string) {
-    this.service.getDesign(designId).then(design => this.updateEpicElement(design, epicElementId));
+    if (designId && epicElementId) {
+      this.service.getDesign(designId).then(design => this.updateEpicElement(design, epicElementId));
+    }
   }
 
   updateEpicElement(design: Design, epicElementId: string) {

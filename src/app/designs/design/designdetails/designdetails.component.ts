@@ -29,10 +29,12 @@ export class DesignDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getDesign(params['designId'])))
-      .subscribe((design: Design) => this.update(design));
+    this.route.parent.paramMap.subscribe(params => this.updateDesign(params.get('designId')));
   }
 
+  updateDesign(designid): void {
+    this.service.getDesign(designid).then((design: Design) => this.update(design))
+  }
   changeName(): void {
     if (this.previousDesign !== undefined) {
       if (this.design.name !== this.previousDesign.name) {

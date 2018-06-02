@@ -26,7 +26,7 @@ export class ProductIssueDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getProductIssue(params.get('productId'), params.get('issueId')))
+    this.route.parent.paramMap.subscribe(params => this.getProductIssue(params.get('productId'), params.get('issueId')))
   }
 
   update(newValue) {

@@ -28,7 +28,7 @@ export class ProductConfigOptionChildrenComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getProductConfigOption(params.get('productId'), params.get('configOptionId')))
+    this.route.parent.paramMap.subscribe(params => this.getProductConfigOption(params.get('productId'), params.get('configOptionId')))
   }
 
   getProductConfigOption(productId: string, configoptionId): void {

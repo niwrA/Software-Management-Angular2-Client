@@ -34,7 +34,7 @@ export class DatabasesComponent implements OnInit {
 
   // todo: extract companyEnvironmentId to determine from which environment to get the database
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getCompanyEnvironment(params.get('companyId'), params.get('environmentId')))
+    this.route.parent.paramMap.subscribe(params => this.getCompanyEnvironment(params.get('companyId'), params.get('environmentId')))
   }
 
   getCompanyEnvironment(companyId: string, environmentId: string): void {

@@ -28,7 +28,7 @@ export class DatabaseDetailsComponent implements OnInit {
     private service: CompaniesService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getCompanyEnvironmentDatabase(
+    this.route.parent.paramMap.subscribe(params => this.getCompanyEnvironmentDatabase(
       params.get('companyId'), params.get('environmentId'), params.get('databaseId')))
   }
 

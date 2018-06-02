@@ -174,12 +174,8 @@ export class DesignsService {
 
   getDesign(guid: string): Promise<Design> {
     // if mock, then reload all
-    if (guid.length < 10 && this.designs.length === 0) {
-      for (const state of DESIGNS) {
-        this.designs.push(new Design(state));
-      }
-    }
-    if (this.designs.length > 0) {
+
+    if (this.designs && this.designs.length > 0) {
       const result = _.find(this.designs, prj => prj.guid === guid);
       return Promise.resolve(result);
     } else {

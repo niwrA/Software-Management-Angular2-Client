@@ -20,7 +20,7 @@ export class ProductVersionDetailsComponent implements OnInit {
     private service: ProductsService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getProductVersion(params.get('productId'), params.get('productVersionId')))
+    this.route.parent.paramMap.subscribe(params => this.getProductVersion(params.get('productId'), params.get('productVersionId')))
   };
 
   getProductVersion(productId: string, versionId: string): void {

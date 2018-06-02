@@ -33,7 +33,7 @@ export class CommandElementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getCommandElement(
+    this.route.parent.paramMap.subscribe(params => this.getCommandElement(
       params.get('designId'), params.get('epicElementId'), params.get('entityElementId'), params.get('commandElementId')))
   }
 

@@ -31,7 +31,7 @@ export class ProductConfigOptionsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.getProductFeature(
+    this.route.parent.paramMap.subscribe(params => this.getProductFeature(
       params.get('productId'), params.get('productFeatureId'), params.get('parentId')))
   }
 
