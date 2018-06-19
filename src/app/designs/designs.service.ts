@@ -24,13 +24,15 @@ import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DesignsService {
   designsUrl = environment.designsUrl;
   designs = new Array<Design>();
 
   constructor(private commandsService: CommandsService, private http: Http, private notificationService: NotificationsService) {
-    this.getDesigns('').then(result => this.designs = result as Array<Design>);
+    // this.getDesigns('').then(result => this.designs = result as Array<Design>);
   }
 
   createDesign(doSave: boolean, name?: string): Design {
@@ -188,7 +190,7 @@ export class DesignsService {
 
   parseSingleResponse(response: any, Designs: Array<Design>): Design {
     const design = new Design(response.json() as DesignState);
-    const result = _.find(this.designs, prj => prj.guid === design.guid);
+    const result = _.find(Designs, prj => prj.guid === design.guid);
     if (!result) {
       Designs.push(design);
     }
@@ -197,7 +199,7 @@ export class DesignsService {
 
   parseResponse(response: any, Designs: Array<Design>): Array<Design> {
     const states = response.json() as Array<DesignState>;
-    Designs = new Array<Design>();
+    Designs.length = 0;
     for (const state of states) {
       const design = new Design(state);
       Designs.push(design);

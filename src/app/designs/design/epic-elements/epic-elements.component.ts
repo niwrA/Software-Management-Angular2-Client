@@ -11,8 +11,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-epic-elements',
   templateUrl: './epic-elements.component.html',
-  styleUrls: ['./epic-elements.component.css'],
-  providers: [DesignsService]
+  styleUrls: ['./epic-elements.component.css']
 })
 
 export class EpicElementsComponent implements OnInit {
@@ -27,8 +26,7 @@ export class EpicElementsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.pipe(switchMap((params: Params) => this.service.getDesign(params['designId'])))
-      .subscribe((design: Design) => this.updateDesign(design));
+    this.route.parent.paramMap.subscribe(params => this.getDesign(params.get('designId')))
   }
 
   getDesign(guid: string) {

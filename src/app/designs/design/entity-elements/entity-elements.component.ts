@@ -10,8 +10,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-entity-elements',
   templateUrl: './entity-elements.component.html',
-  styleUrls: ['./entity-elements.component.css'],
-  providers: [DesignsService]
+  styleUrls: ['./entity-elements.component.css']
 })
 
 export class EntityElementsComponent implements OnInit {

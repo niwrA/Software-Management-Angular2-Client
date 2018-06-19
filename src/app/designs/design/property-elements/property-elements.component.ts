@@ -11,8 +11,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-property-elements',
   templateUrl: './property-elements.component.html',
-  styleUrls: ['./property-elements.component.css'],
-  providers: [DesignsService]
+  styleUrls: ['./property-elements.component.css']
 })
 
 export class PropertyElementsComponent implements OnInit {

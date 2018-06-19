@@ -11,8 +11,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-command-elements',
   templateUrl: './command-elements.component.html',
-  styleUrls: ['./command-elements.component.css'],
-  providers: [DesignsService]
+  styleUrls: ['./command-elements.component.css']
 })
 
 export class CommandElementsComponent implements OnInit {

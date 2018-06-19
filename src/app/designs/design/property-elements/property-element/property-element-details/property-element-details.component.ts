@@ -89,7 +89,8 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeDataType(): void {
     if (this.previousPropertyElement !== undefined) {
       if (this.propertyElement.dataType !== this.previousPropertyElement.dataType) {
-        const renameCommand = new ChangeDataTypeOfPropertyElementCommand(this.propertyElement, this.design, this.previousPropertyElement.dataType);
+        const renameCommand = new ChangeDataTypeOfPropertyElementCommand(
+          this.propertyElement, this.design, this.previousPropertyElement.dataType);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.dataType = this.propertyElement.dataType;
       }

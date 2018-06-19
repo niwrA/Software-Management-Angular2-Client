@@ -3,12 +3,12 @@ import { CommandElement } from '../command-element';
 
 export class CommandElementCommand extends Command {
     constructor(name: string, commandElement: CommandElement) {
-        super(name, 'CommandElement', commandElement.guid);
+        super(name, 'CommandElement', commandElement.guid, 'Design', commandElement.designGuid);
     };
 }
 
 export class CommandElementCommandParameters extends CommandParameters {
-    DesignGuid: string;
+    // DesignGuid: string;
     EpicElementGuid: string;
     EntityElementGuid: string;
 }
@@ -21,7 +21,7 @@ export class CreateCommandElementCommand extends CommandElementCommand {
         super('Create', commandElement);
         const parameters = new CreateCommandElementParameters();
         parameters.Name = commandElement.name;
-        parameters.DesignGuid = commandElement.designGuid;
+        // parameters.DesignGuid = commandElement.designGuid;
         parameters.EntityElementGuid = commandElement.entityGuid;
         parameters.EpicElementGuid = commandElement.epicGuid;
         this.Parameters = parameters;
@@ -32,7 +32,7 @@ export class DeleteCommandElementCommand extends CommandElementCommand {
     constructor(commandElement: CommandElement) {
         super('Delete', commandElement);
         const parameters = new CommandElementCommandParameters();
-        parameters.DesignGuid = commandElement.designGuid;
+        // parameters.DesignGuid = commandElement.designGuid;
         parameters.EntityElementGuid = commandElement.entityGuid;
         parameters.EpicElementGuid = commandElement.epicGuid;
         this.Parameters = parameters;
@@ -50,7 +50,7 @@ export class RenameCommandElementCommand extends CommandElementCommand {
         const parameters = new RenameCommandElementParameters();
         parameters.OriginalName = orgName;
         parameters.Name = commandElement.name;
-        parameters.DesignGuid = commandElement.designGuid;
+        // parameters.DesignGuid = commandElement.designGuid;
         parameters.EntityElementGuid = commandElement.entityGuid;
         parameters.EpicElementGuid = commandElement.epicGuid;
         this.Parameters = parameters;
@@ -67,7 +67,7 @@ export class ChangeDescriptionOfCommandElementCommand extends CommandElementComm
         super('ChangeDescriptionOf', commandElement);
         const parameters = new ChangeDescriptionOfCommandElementParameters();
         parameters.Description = commandElement.description;
-        parameters.DesignGuid = commandElement.designGuid;
+        // parameters.DesignGuid = commandElement.designGuid;
         parameters.EntityElementGuid = commandElement.entityGuid;
         parameters.EpicElementGuid = commandElement.epicGuid;
         this.Parameters = parameters;
