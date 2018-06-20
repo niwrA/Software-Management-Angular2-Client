@@ -129,14 +129,14 @@ export class ChangeDataTypeOfPropertyElementCommand extends PropertyElementComma
     }
 }
 
-export class ChangeIsStateForPropertyElementParameters extends PropertyElementCommandParameters {
+export class ChangeIsStatePropertyElementParameters extends PropertyElementCommandParameters {
     IsState: boolean;
 }
 
-export class ChangeIsStateForPropertyElementCommand extends PropertyElementCommand {
+export class ChangeIsStatePropertyElementCommand extends PropertyElementCommand {
     constructor(propertyElement: PropertyElement, design: Design, newValue: boolean) {
-        super('ChangeIsStateFor', propertyElement, design);
-        const parameters = new ChangeIsStateForPropertyElementParameters();
+        super('ChangeIsState', propertyElement, design);
+        const parameters = new ChangeIsStatePropertyElementParameters();
         parameters.IsState = newValue;
         parameters.EpicElementGuid = propertyElement.epicGuid;
         parameters.EntityElementGuid = propertyElement.entityGuid;

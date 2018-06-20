@@ -9,7 +9,7 @@ import { EntityElement } from '../../../entity-elements/entity-element';
 import { CommandsService } from '../../../../../commands/commands.service';
 import {
   RenamePropertyElementCommand, ChangeDescriptionOfPropertyElementCommand,
-  ChangeDataTypeOfPropertyElementCommand, ChangeIsStateForPropertyElementCommand
+  ChangeDataTypeOfPropertyElementCommand, ChangeIsStatePropertyElementCommand
 } from '../property-element.commands';
 
 import * as _ from 'lodash';
@@ -102,7 +102,7 @@ export class PropertyElementDetailsComponent implements OnInit {
   changeIsState(value: boolean): void {
     if (this.previousPropertyElement !== undefined) {
       if (value !== this.previousPropertyElement.isState) {
-        const renameCommand = new ChangeIsStateForPropertyElementCommand(this.propertyElement, this.design, value);
+        const renameCommand = new ChangeIsStatePropertyElementCommand(this.propertyElement, this.design, value);
         this.service.postCommand(renameCommand, false);
         this.previousPropertyElement.isState = value;
       }
